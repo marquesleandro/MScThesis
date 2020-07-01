@@ -1,0 +1,461 @@
+\subsection{Método Taylor-Galerkin}
+
+Quando possuímos um número de Reynolds acima de um determinado
+valor crítico, é possível observar algumas oscilações espúrias no resultado
+da equação convecção-difusão. Estas oscilações não são características
+apenas do MEF mas podem ser vistas no MDF também. Para problemas permanentes,
+essas oscilações são resolvidas utilizando as formulações 
+\textit{Petrov-Galerkin} para equações em 1D 
+ou \textit{Streamline Upwind Petrov-Galerkin} (SUPG) para
+equações em 2D. Nesses métodos, as funções bases são modificadas
+para obter um efeito \textit{upwind}. Para problemas transientes,
+os métodos mais utilizados para eliminar essas oscilações são:
+\textit{Semi-Lagrangiano}, \textit{Galerkin Característico} e
+\textit{Taylor-Galerkin}. 
+Nesta seção apresentaremos a formulação do \textbf{Método Taylor-Galerkin}.
+
+
+\medskip
+O método Taylor-Galerkin produzirá um termo difusivo na equação em que
+reduzirá as oscilações espúrias. Com o intuito didático, apresentaremos
+a formulação para uma equação convecção-difusão em 1D. Para mais informação
+consultar \cite{donea1984} e \cite{zienkiewiczvol3}.
+
+\medskip
+Dado a equação convecção-difusão em 1D:
+
+\begin{equation} \label{convection diffusion 1D}
+ \frac{\partial s}{\partial t} 
+ = 
+ - u \frac{\partial s}{\partial x}
+ + \frac{\partial^2 s}{\partial x^2} 
+\end{equation}
+
+\medskip
+Onde \textit{s} é uma variável escalar qualquer e \textit{u}
+é a velocidade.
+Multiplicando ambos os lados por $\partial / \partial t$, temos:
+
+\begin{equation} \label{convection diffusion 1D mod}
+ \frac{\partial }{\partial t}
+ \bigg[ 
+ \frac{\partial s}{\partial t} 
+ \bigg]
+ = 
+ \frac{\partial }{\partial t}
+ \bigg[ 
+ - u \frac{\partial s}{\partial x}
+ + \frac{\partial^2 s}{\partial x^2} 
+ \bigg]
+\end{equation}
+
+A série de Taylor para o escalar \textit{s} será:
+\begin{equation}
+ s^{n+1} = s^{n} 
+         + \frac{\partial s^{n}}{\partial t} \frac{\Delta t}{1!} 
+         + \frac{\partial^2 s^{n}}{\partial t^2} \frac{\Delta t^2}{2!}
+         + ...
+\end{equation}
+
+\medskip
+Caso os termos de ordem superior a dois forem omitidos, a equação fica 
+da forma:
+
+\begin{equation}
+ s^{n+1} = s^{n} 
+         + \frac{\partial s^{n}}{\partial t}\Delta t 
+         + \frac{\partial^2 s^{n}}{\partial t^2} \frac{\Delta t^2}{2!}
+         + O(\Delta t^3)
+\end{equation}
+
+onde \textit{O($\Delta t^3$)} é o erro devido o truncamento da série e
+será atribuído ao erro do MEF, assim a aproximação se torna:
+
+\begin{equation} \label{taylor serie 1D}
+ s^{n+1} = s^{n} 
+         + \frac{\partial s^{n}}{\partial t}\Delta t 
+         + \frac{\partial^2 s^{n}}{\partial t^2} \frac{\Delta t^2}{2}
+\end{equation}
+
+Substituindo a equação convecção-difusão (\ref{convection diffusion 1D})
+e a equação convecção-difusão multiplicada pela derivada temporal
+(\ref{convection diffusion 1D mod}) na aproximação feita acima, temos:
+
+\begin{equation}
+ s^{n+1} = s^{n} 
+         + \Delta t 
+         \bigg[
+         - u \frac{\partial s^{n}}{\partial x}
+         + \frac{\partial^2 s^{n}}{\partial x^2} 
+         \bigg]
+         + \frac{\Delta t^2}{2}
+         \bigg[
+         \frac{\partial }{\partial t}
+         \bigg[ 
+         - u \frac{\partial s^{n}}{\partial x}
+         + \frac{\partial^2 s^{n}}{\partial x^2} 
+         \bigg]
+         \bigg]
+\end{equation}
+
+Assumindo que \textit{u} é constante, temos:
+
+\begin{equation}
+ s^{n+1} = s^{n} 
+         + \Delta t 
+         \bigg[
+         - u \frac{\partial s^{n}}{\partial x}
+         + \frac{\partial^2 s^{n}}{\partial x^2} 
+         \bigg]
+         + \frac{\Delta t^2}{2}
+         \bigg[
+         - u
+         \frac{\partial }{\partial t}
+         \frac{\partial s^{n}}{\partial x}
+         + \frac{\partial }{\partial t}
+         \frac{\partial^2 s^{n}}{\partial x^2} 
+         \bigg]
+\end{equation}
+
+Invertendo as ordens de derivação do último termo, ficamos:
+
+\begin{equation}
+ s^{n+1} = s^{n} 
+         + \Delta t 
+         \bigg[
+         - u \frac{\partial s^{n}}{\partial x}
+         + \frac{\partial^2 s^{n}}{\partial x^2} 
+         \bigg]
+         + \frac{\Delta t^2}{2}
+         \bigg[
+         - u
+         \frac{\partial }{\partial x}
+         \frac{\partial s^{n}}{\partial t}
+         + \frac{\partial^2 }{\partial x^2}
+         \frac{\partial s^{n}}{\partial t} 
+         \bigg]
+\end{equation}
+
+
+Substituindo os termo $\partial s/ \partial t$ pela equação
+convecção-difusão (\ref{convection diffusion 1D}), temos:
+
+\begin{equation}
+ s^{n+1} = s^{n} 
+         + \Delta t 
+         \bigg[
+         - u \frac{\partial s^{n}}{\partial x}
+         + \frac{\partial^2 s^{n}}{\partial x^2} 
+         \bigg]
+         + \frac{\Delta t^2}{2}
+         \bigg[
+         - u
+         \frac{\partial }{\partial x}
+         \bigg[
+          - u \frac{\partial s^{n}}{\partial x}
+          + \frac{\partial^2 s^{n}}{\partial x^2} 
+         \bigg]
+         + \frac{\partial^2 }{\partial x^2}
+         \bigg[
+          - u \frac{\partial s^{n}}{\partial x}
+          + \frac{\partial^2 s^{n}}{\partial x^2} 
+         \bigg]
+         \bigg]
+\end{equation}
+
+\medskip
+Desenvolvendo a equação, temos:
+
+\begin{equation}
+ s^{n+1} = s^{n} 
+         + \Delta t 
+         \bigg[
+         - u \frac{\partial s^{n}}{\partial x}
+         + \frac{\partial^2 s^{n}}{\partial x^2} 
+         \bigg]
+         + \frac{\Delta t^2}{2}
+         \bigg[
+         - u^2 \frac{\partial^2 s^{n}}{\partial x^2}
+         - u \frac{\partial^3 s^{n}}{\partial x^3} 
+         - u \frac{\partial^3 s^{n}}{\partial x^3}
+         + \frac{\partial^4 s^{n}}{\partial x^4} 
+         \bigg]
+\end{equation}
+
+\medskip
+Truncando os termos de ordem superior a dois, ficamos:
+
+\begin{equation}
+ s^{n+1} = s^{n} 
+         + \Delta t 
+         \bigg[
+         - u \frac{\partial s^{n}}{\partial x}
+         + \frac{\partial^2 s^{n}}{\partial x^2} 
+         \bigg]
+         + \frac{\Delta t^2}{2}
+         \bigg[
+         + u^2 \frac{\partial^2 s^{n}}{\partial x^2}
+         + O(\Delta t^3) 
+         \bigg]
+\end{equation}
+
+\medskip
+O erro novamente será atribuído ao MEF, dessa forma, possuímos
+a seguinte equação:
+
+\begin{equation}
+ s^{n+1} = s^{n} 
+         + \Delta t 
+         \bigg[
+         - u \frac{\partial s^{n}}{\partial x}
+         + \frac{\partial^2 s^{n}}{\partial x^2} 
+         \bigg]
+         + u^2 
+         \frac{\Delta t^2}{2}
+         \frac{\partial^2 s^{n}}{\partial x^2}
+\end{equation}
+
+Isto é:
+\begin{equation}
+ \bigg[
+ \frac{s^{n+1} - s^{n}}{\Delta t}
+ \bigg]
+ =  
+ - u \frac{\partial s^{n}}{\partial x}
+ + \frac{\partial^2 s^{n}}{\partial x^2} 
+ + u^2 
+ \frac{\Delta t}{2}
+ \frac{\partial^2 s^{n}}{\partial x^2}
+\end{equation}
+
+\medskip
+Para uma equação convecção-difusão em 2D, a equação se torna:
+
+\begin{equation}
+\begin{aligned}
+ \bigg[
+ \frac{s^{n+1} - s^{n}}{\Delta t}
+ \bigg]
+ =  
+ - u \frac{\partial s^{n}}{\partial x}
+ - v \frac{\partial s^{n}}{\partial y}
+ + \frac{\partial^2 s^{n}}{\partial x^2} 
+ + \frac{\partial^2 s^{n}}{\partial y^2} 
+ + u 
+ \frac{\Delta t}{2}
+ \frac{\partial}{\partial x}
+ \bigg[
+ u \frac{\partial s^{n}}{\partial x}
+ + v \frac{\partial s^{n}}{\partial y}
+ \bigg] \\
+ + v 
+ \frac{\Delta t}{2}
+ \frac{\partial}{\partial y}
+ \bigg[
+ u \frac{\partial s^{n}}{\partial x}
+ + v \frac{\partial s^{n}}{\partial y}
+ \bigg]
+\end{aligned}
+\end{equation}
+
+\medskip
+Os métodos \textit{Taylor-Galerkin} e \textit{Galerkin Característico}
+possuem o mesmo resultado quando a variável é escalar \cite{lohner1984}.
+Os dois últimos termos da equação acima são conhecidos como
+difusão artificial ou difusão numérica e são eles que atuam
+para a redução das oscilações espúrias que ocorrem quando
+o número de Reynolds é acima de um valor crítico. A representação matricial
+destes termos segundo o Método dos Elementos Finitos será
+apresentado a seguir. Os termos restantes da equação acima já
+foram apresentados matricialmente nas seções anteriores quando
+a variável escalar era a vorticidade ($\omega$) ou a concentração (\textit{c}).
+
+
+\begin{align}
+ u 
+ \frac{\Delta t}{2}
+ \frac{\partial}{\partial x}
+ \bigg[
+ u \frac{\partial s^{n}}{\partial x}
+ + v \frac{\partial s^{n}}{\partial y}
+ \bigg]
+ = 
+ u
+ \frac{\Delta t}{2}
+ \Big[
+ u K_{xx}
+ + v K_{xy}
+ \Big]
+ s^{n}\\
+ v 
+ \frac{\Delta t}{2}
+ \frac{\partial}{\partial y}
+ \bigg[
+ u \frac{\partial s^{n}}{\partial x}
+ + v \frac{\partial s^{n}}{\partial y}
+ \bigg]
+ = 
+ v
+ \frac{\Delta t}{2}
+ \Big[
+ u K_{yx}
+ + v K_{yy}
+ \Big]
+ s^{n}
+\end{align}
+
+\medskip
+Onde \textbf{K\textsubscript{xy}} e \textbf{K\textsubscript{yx}} 
+possuem dimensões \textbf{n}x\textbf{n}
+e são definidas como:
+
+\begin{align}
+  \textbf{K\textsubscript{xy}} & = \textbf{A} k_{xy}^{e} \\
+  \textbf{K\textsubscript{yx}} & = \textbf{A} k_{yx}^{e}
+\end{align}
+
+\medskip
+Onde 
+$k^{e}_{xy}$ e
+$k^{e}_{yx}$
+são as matrizes elementares cuja dimensão para o 
+\textit{elemento triangular linear} é \textit{3}x\textit{3} e 
+são definidas por:
+
+
+\begin{equation}
+ \begin{aligned}
+  k_{xy}^{e} & = \int_{\Omega^{e}} \frac{\partial N_{i}^{e}}{\partial x} \frac{\partial N_{j}^{e}}{\partial y} \\
+  k_{yx}^{e} & = \int_{\Omega^{e}} \frac{\partial N_{i}^{e}}{\partial y} \frac{\partial N_{j}^{e}}{\partial x}
+ \end{aligned}
+\end{equation}
+
+
+\medskip
+Com isso, possuímos:
+
+\begin{equation}
+\begin{aligned}
+ M \bigg[ \frac{w^{n+1} - w^{n}}{\Delta t} \bigg]
+ + u \cdot G_x & w^{n}
+ + v \cdot G_y w^{n} 
+ + \frac{1}{\textit{Re}} \Big[ K_{xx} + K_{yy} \Big] w^{n+1} \\
+ & + u
+ \frac{\Delta t}{2}
+ \big[
+ u K_{xx}
+ + v K_{xy}
+ \big]
+ w^{n} 
+ + v
+ \frac{\Delta t}{2}
+ \Big[
+ u K_{yx}
+ + v K_{yy}
+ \Big]
+ w^{n} 
+ = 0 \\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+ - \Big[ K_{xx} + K_{yy} \Big] \psi + Mw  = 0
+\end{equation}
+
+\begin{equation}
+ Mu - G_y \psi = 0
+\end{equation}
+
+\begin{equation}
+ Mv + G_x \psi = 0
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+ M \bigg[ \frac{c^{n+1} - c^{n}}{\Delta t} \bigg]
+ + u \cdot G_x c^{n}
+ & + v \cdot G_y c^{n} 
+ + \frac{1}{\textit{ReSc}} \Big[ K_{xx} + K_{yy} \Big] c^{n+1} \\
+ & + u
+ \frac{\Delta t}{2}
+ \big[
+ u K_{xx}
+ + v K_{xy}
+ \big]
+ c^{n}
+ + v
+ \frac{\Delta t}{2}
+ \Big[
+ u K_{yx}
+ + v K_{yy}
+ \Big]
+ c^{n}
+ = 0  
+\end{aligned} 
+\end{equation}
+
+\medskip
+Apresentaremos a seguir as equações de governo em sua 
+forma adimensional discretizadas segundo o Método dos Elementos 
+Finitos que foram usadas neste trabalho:
+
+\begin{equation} \label{vorticity taylor}
+\begin{aligned}
+ \bigg[ \frac{M}{\Delta t} + \frac{1}{\textit{Re}} \Big[ K_{xx} + K_{yy} \Big] \bigg] w^{n+1}
+ & = \frac{M}{\Delta t} w^{n}
+ - u \cdot G_x  w^{n}
+ - v \cdot G_y w^{n} \\
+ & - u
+ \frac{\Delta t}{2}
+ \big[
+ u K_{xx}
+ + v K_{xy}
+ \big]
+ w^{n} 
+ - v
+ \frac{\Delta t}{2}
+ \Big[
+ u K_{yx}
+ + v K_{yy}
+ \Big]
+ w^{n}\\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+ \Big[ K_{xx} + K_{yy} \Big] \psi = Mw
+\end{equation}
+
+\begin{equation}
+ Mu = G_y \psi 
+\end{equation}
+
+\begin{equation}
+ Mv = - G_x \psi 
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+ \bigg[ \frac{M}{\Delta t} + \frac{1}{\textit{ReSc}} \Big[ K_{xx} + K_{yy} \Big] \bigg] c^{n+1}
+ & = \frac{M}{\Delta t} c^{n}
+ - u \cdot G_x  c^{n}
+ - v \cdot G_y c^{n} \\
+ & - u
+ \frac{\Delta t}{2}
+ \big[
+ u K_{xx}
+ + v K_{xy}
+ \big]
+ c^{n} 
+ - v
+ \frac{\Delta t}{2}
+ \Big[
+ u K_{yx}
+ + v K_{yy}
+ \Big]
+ c^{n} 
+\end{aligned}
+\end{equation}
+
+
+\newpage

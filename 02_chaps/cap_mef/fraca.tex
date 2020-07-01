@@ -1,0 +1,314 @@
+O resultado da ponderação da equação de
+governo integrada sobre o domínio
+é conhecida como
+\textbf{formulação fraca} como mencionado por Anjos (2007) \cite{anjos2007}.
+A seguir apresentaremos a formulação fraca
+para o problema de escoamento de um fluido monofásico,
+newtoniano e incompressível utilizando
+a formulação corrente-vorticidade com  
+equação de transporte de espécie química.
+Para mais detalhes, consultar o trabalho de Brenner e Scott (1994) \cite{brenner1994}.
+Como o objetivo é encontrar uma solução
+aproximada, é aceitável supor que seja produzido
+um \textbf{Resíduo R} nas equações de governo,
+isto é:
+
+\begin{align}
+& \overset{.}{w} + \textbf{v}.\nabla w - \frac{1}{Re} \nabla^2 w 
+ - \frac{\Delta t}{2} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla w \big]
+ = R_1 \\[10pt]
+& \nabla^2 \psi + w
+ = R_2 \\[10pt]
+& \textbf{v} - \textbf{D}\psi
+ = R_3 \\[10pt]
+& \overset{.}{c} + \textbf{v}.\nabla c - \frac{1}{ReSc} \nabla^2 c
+ - \frac{\Delta t}{2} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla c \big]
+ = R_4
+\end{align}
+
+Buscaremos forçar o resíduo ser equivalente
+a zero em um sentido médio como mencionado por Finlayson (1972) \cite{finlayson1972}, logo:
+
+\begin{align}
+ \int_{\Omega} R_1 \cdot \delta d\Omega &= 0 \\
+ \int_{\Omega} R_2 \cdot \phi d\Omega &= 0 \\
+ \int_{\Omega} R_3 \cdot \xi d\Omega &= 0 \\
+ \int_{\Omega} R_4 \cdot \eta d\Omega &= 0
+\end{align}
+
+
+
+\noindent
+onde $\delta$, $\phi$, $\xi$ e $\eta$ são funções peso. A função peso
+é um conjunto de funções arbitrárias
+dentro de um espaço de funções que será
+discutido à frente. Possuímos, então,
+as seguintes integrais:
+
+\begin{equation}
+ \int_{\Omega} \Bigg\{ 
+ \overset{.}{w} + \textbf{v}.\nabla w 
+ - \frac{1}{\textit{Re}} \nabla^2 w 
+ - \frac{\Delta t}{2} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla w \big]
+\Bigg\} \cdot \delta d\Omega = 0
+\end{equation}
+
+\begin{equation}
+ \int_{\Omega} \big\{ \nabla^2 \psi + w \big\} \cdot \phi d\Omega = 0
+\end{equation}
+
+\begin{equation}
+ \int_{\Omega} \big\{ \textbf{v} - \textbf{D}\psi \big\} \cdot \xi d\Omega = 0
+\end{equation}
+
+\begin{equation}
+ \int_{\Omega} \Bigg\{ 
+ \overset{.}{c} + \textbf{v}.\nabla c 
+ - \frac{1}{\textit{ReSc}} \nabla^2 c 
+ - \frac{\Delta t}{2} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla c \big]
+ \Bigg\} \cdot \eta d\Omega = 0
+\end{equation}
+
+
+
+\noindent
+Desenvolvendo a integral, temos:
+
+\begin{equation} \label{diffusion_vorticity} 
+   \int_{\Omega} \overset{.}{w} \delta d\Omega 
+ + \int_{\Omega} \textbf{v}.\nabla w \delta d\Omega 
+ - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 w \delta 
+ - \frac{\Delta t}{2} \int_{\Omega} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla w \big] \delta d\Omega
+ = 0
+\end{equation}
+
+\begin{equation} \label{diffusion_stream}
+   \int_{\Omega} \nabla^2 \psi \phi d\Omega
+ + \int_{\Omega} w \phi d\Omega = 0
+\end{equation}
+
+\begin{equation}
+   \int_{\Omega} \textbf{v} \xi d\Omega
+ - \int_{\Omega} \textbf{D}\psi \xi d\Omega = 0
+\end{equation}
+
+\begin{equation} \label{diffusion_concentration} 
+   \int_{\Omega} \overset{.}{c} \eta d\Omega
+ + \int_{\Omega} \textbf{v}.\nabla c \eta d\Omega
+ - \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla^2 c \eta d\Omega 
+ - \frac{\Delta t}{2} \int_{\Omega} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla c \big] \eta d\Omega
+ = 0
+\end{equation}
+
+\medskip
+No termo difusivo das equações (\ref{diffusion_vorticity}, \ref{diffusion_stream} e \ref{diffusion_concentration}),
+aplicaremos o teorema de Green com o intuito de diminuir a ordem
+da derivada e separar o termo avaliado no contorno. Assim o termo difusivo se transformará em:
+
+\begin{equation} \label{diffusion2_vorticity} 
+ - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 w \delta d\Omega
+ = \frac{1}{\textit{Re}} \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega
+ - \frac{1}{\textit{Re}} \int_{\Gamma} \delta \nabla w \cdot \textbf{n} d\Gamma
+\end{equation}
+
+\begin{equation} \label{diffusion2_stream} 
+ \int_{\Omega} \nabla^2 \psi \phi d\Omega
+ = - \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega
+   + \int_{\Gamma} \phi \nabla \psi \cdot \textbf{n} d\Gamma
+\end{equation}
+
+\begin{equation} \label{diffusion2_concentration} 
+ - \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla^2 c \eta d\Omega
+ = \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla c \cdot \nabla \eta d\Omega
+ - \frac{1}{\textit{ReSc}} \int_{\Gamma} \eta \nabla c \cdot \textbf{n} d\Gamma
+\end{equation}
+
+\noindent
+onde \textbf{n} é o vetor normal orientado para fora do contorno $\Gamma$.
+O último termo das equações acima é conhecido como condição natural. Conforme apresentado na seção \ref{formulacao forte},
+para o problema proposto neste trabalho, possuímos apenas condições de contorno de Dirichlet 
+(conhecida como condição essencial). Desta forma, assumiremos por hipótese que
+$\delta = 0$, $\phi = 0$ e $\eta = 0$ nas equações (\ref{diffusion2_vorticity}, \ref{diffusion2_stream} e \ref{diffusion2_concentration})
+para todo contorno $\Gamma$. Portanto, a integral em $\Gamma$ é nula.
+Assim, o termo difusivo das equações (\ref{diffusion_vorticity}, \ref{diffusion_stream} e \ref{diffusion_concentration}) será:
+
+\begin{equation}
+ - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 w \delta d\Omega
+ = \frac{1}{\textit{Re}} \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega
+\end{equation}
+
+\begin{equation} 
+ \int_{\Omega} \nabla^2 \psi \phi d\Omega
+ = - \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega
+\end{equation}
+
+\begin{equation} 
+ - \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla^2 c \eta d\Omega
+ = \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla c \cdot \nabla \eta d\Omega
+\end{equation}
+
+\medskip
+Para o termo de difusividade numérica das equações
+(\ref{diffusion_vorticity} e \ref{diffusion_concentration}),
+aplicaremos um procedimento semelhante ao anterior. 
+Dessa forma, o termo de difusividade numérica será:
+
+\begin{equation}
+ - \frac{\Delta t}{2} \int_{\Omega} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla w \big] \delta d\Omega
+ = 
+ \frac{\Delta t}{2} \int_{\Omega} \big[ \textbf{v} \cdot \nabla w \big] \textbf{v} \cdot \nabla \delta d\Omega
+ - \frac{\Delta t}{2} \int_{\Gamma} \big[ \textbf{v} \cdot \nabla w \big] \delta \textbf{v} \cdot \textbf{n} d\Gamma
+\end{equation}
+
+\begin{equation}
+ - \frac{\Delta t}{2} \int_{\Omega} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla c \big] \eta d\Omega
+ = 
+ \frac{\Delta t}{2} \int_{\Omega} \big[ \textbf{v} \cdot \nabla c \big] \textbf{v} \cdot \nabla \eta d\Omega
+ - \frac{\Delta t}{2} \int_{\Gamma} \big[ \textbf{v} \cdot \nabla c \big] \eta \textbf{v} \cdot \textbf{n} d\Gamma
+\end{equation}
+
+
+\newpage
+Da mesma forma, podemos anular o termo de condição
+natural segundo a hipótese adotada anteriormente.
+Portanto, o termo de difusividade numérica das
+equações (\ref{diffusion_vorticity} e \ref{diffusion_concentration}) será:
+
+\begin{equation}
+ - \frac{\Delta t}{2} \int_{\Omega} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla w \big] \delta d\Omega
+ = 
+ \frac{\Delta t}{2} \int_{\Omega} \big[ \textbf{v} \cdot \nabla w \big] \textbf{v} \cdot \nabla \delta d\Omega
+\end{equation}
+
+\begin{equation}
+ - \frac{\Delta t}{2} \int_{\Omega} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla c \big] \eta d\Omega
+ = 
+ \frac{\Delta t}{2} \int_{\Omega} \big[ \textbf{v} \cdot \nabla c \big] \textbf{v} \cdot \nabla \eta d\Omega
+\end{equation}
+
+\medskip
+\noindent
+Portanto, substituindo os novos termos difusivos nas equações de governo:
+
+\begin{equation} \label{vorticity weak} 
+   \int_{\Omega} \overset{.}{w} \delta d\Omega 
+ + \int_{\Omega} \textbf{v}.\nabla w \delta d\Omega 
+ + \frac{1}{\textit{Re}} \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega 
+ + \frac{\Delta t}{2} \int_{\Omega} \big[ \textbf{v} \cdot \nabla w \big] \textbf{v} \cdot \nabla \delta d\Omega
+ = 0
+\end{equation}
+
+\begin{equation}
+ - \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega
+ + \int_{\Omega} w \phi d\Omega = 0
+\end{equation}
+
+\begin{equation}
+   \int_{\Omega} \textbf{v} \xi d\Omega
+ - \int_{\Omega} \textbf{D}\psi \xi d\Omega = 0
+\end{equation}
+
+\begin{equation} \label{concentration weak}
+   \int_{\Omega} \overset{.}{c} \eta d\Omega
+ + \int_{\Omega} \textbf{v}.\nabla c \eta d\Omega
+ + \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla c \cdot \nabla \eta d\Omega 
+ + \frac{\Delta t}{2} \int_{\Omega} \big[ \textbf{v} \cdot \nabla c \big] \textbf{v} \cdot \nabla \eta d\Omega
+ = 0
+\end{equation}
+
+\medskip
+\noindent
+Se assumirmos que:
+
+\begin{equation}
+ \begin{aligned}
+  \textbf{$m_1$}(\overset{.}{w},\delta) & = \int_{\Omega} \overset{.}{w} \delta d\Omega \\ 
+  \textbf{$g_1$}(\textbf{v},\delta) & = \int_{\Omega} \textbf{v}.\nabla w \delta d\Omega \\
+  \textbf{$k_1$}(w,\delta) & = \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega \\
+  \textbf{$k_{n1}$}(w,\delta) & = \int_{\Omega} \big[ \textbf{v} \cdot \nabla w \big] \textbf{v} \cdot \nabla \delta d\Omega \\
+  \textbf{$k_2$}(\psi,\phi) & = \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega \\
+  \textbf{$m_2$}(\psi,\phi) & = \int_{\Omega} w \phi d\Omega \\
+ \end{aligned}
+ \qquad
+ \begin{aligned}  
+  \textbf{$m_3$}(\textbf{v},\xi) & = \int_{\Omega} \textbf{v} \xi d\Omega \\
+  \textbf{$g_3$}(\psi,\xi) & = \int_{\Omega} \textbf{D}\psi \xi d\Omega \\
+  \textbf{$m_4$}(\overset{.}{c},\eta) & = \int_{\Omega} \overset{.}{c} \eta d\Omega \\
+  \textbf{$g_4$}(\textbf{v},\eta) & = \int_{\Omega} \textbf{v}.\nabla c \eta d\Omega \\
+  \textbf{$k_4$}(c,\eta) & = \int_{\Omega} \nabla c \cdot \nabla \eta d\Omega \\
+  \textbf{$k_{n4}$}(c,\delta) & = \int_{\Omega} \big[ \textbf{v} \cdot \nabla c \big] \textbf{v} \cdot \nabla \eta d\Omega 
+ \end{aligned}
+\end{equation}
+
+\noindent
+Então as equações podem ser apresentadas em sua respectiva forma fraca como:
+
+\begin{align}
+ \textbf{$m_1$}(\overset{.}{w},\delta) + \textbf{$g_1$}(\textbf{v},\delta) 
+ + \frac{1}{\textit{Re}}\textbf{$k_1$}(w,\delta) + \frac{\Delta t}{2} \textbf{$k_{n1}$}(w,\delta) &= 0 \\
+ -\textbf{$k_2$}(\psi,\phi) + \textbf{$m_2$}(\psi,\phi) &= 0 \\
+  \textbf{$m_3$}(\textbf{v},\xi) - \textbf{$g_3$}(\psi,\xi) &= 0 \\
+ \textbf{$m_4$}(\overset{.}{c},\eta) + \textbf{$g_4$}(\textbf{v},\eta) 
+ + \frac{1}{\textit{ReSc}}\textbf{$k_4$}(c,\eta) +\frac{\Delta t}{2} \textbf{$k_{n4}$}(c,\eta) &= 0
+\end{align}
+
+
+\noindent
+Dados os conjuntos de funções bases:
+
+\begin{equation}
+ \begin{aligned}
+  \mathbb{W} &= \{w \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega w^2 d\Omega < \infty 
+  ; w = w_\Gamma\} \\
+  \mathbb{P} &= \{\psi \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega \psi^2 d\Omega < \infty 
+  ; \psi = \psi_\Gamma\} \\
+  \mathbb{V} &= \{v \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega v^2 d\Omega < \infty 
+  ; v = v_\Gamma\} \\
+  \mathbb{C} &= \{c \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega c^2 d\Omega < \infty 
+  ; c = c_\Gamma\}
+ \end{aligned}
+\end{equation}
+
+\noindent
+E Dados os espaços de funções pesos:
+
+\begin{equation}
+ \begin{aligned}
+  \mathbb{D} &= \{\delta \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega \delta^2 d\Omega < \infty
+  ; \delta_\Gamma = 0\} \\
+  \mathbb{F} &= \{\phi \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega \phi^2 d\Omega < \infty 
+  ; \phi_\Gamma = 0\} \\
+  \mathbb{X} &= \{\delta \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega \xi^2 d\Omega < \infty 
+  ; \xi_\Gamma = 0\} \\
+  \mathbb{N} &= \{\eta \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega \eta^2 d\Omega < \infty 
+  ; \eta_\Gamma = 0\}
+ \end{aligned}
+\end{equation}
+
+\noindent
+A formulação fraca consiste em
+encontrarmos as soluções de $w \in \mathbb{W}$,
+$\psi \in \mathbb{P}$, $v \in \mathbb{V}$ e $c \in \mathbb{C}$
+tal que:
+
+\begin{align}
+ \textbf{$m_1$}(\overset{.}{w},\delta) + \textbf{$g_1$}(\textbf{v},\delta) 
+ + \frac{1}{\textit{Re}}\textbf{$k_1$}(w,\delta) + \frac{\Delta t}{2} \textbf{$k_{n1}$}(w,\delta) &= 0 \\
+ -\textbf{$k_2$}(\psi,\phi) + \textbf{$m_2$}(\psi,\phi) &= 0 \\
+  \textbf{$m_3$}(\textbf{v},\xi) - \textbf{$g_3$}(\psi,\xi) &= 0 \\
+ \textbf{$m_4$}(\overset{.}{c},\eta) + \textbf{$g_4$}(\textbf{v},\eta) 
+ + \frac{1}{\textit{ReSc}}\textbf{$k_4$}(c,\eta) +\frac{\Delta t}{2} \textbf{$k_{n4}$}(c,\eta) &= 0
+\end{align}
+
+
+\noindent
+para todo $\delta \in \mathbb{D}$, $\phi \in \mathbb{F}$, 
+$\xi \in \mathbb{X}$ e $\eta \in \mathbb{N}$.

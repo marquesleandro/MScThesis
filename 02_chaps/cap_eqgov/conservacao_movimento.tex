@@ -1,0 +1,316 @@
+O mesmo conceito da conservação de massa é aplicado para
+a conservação da quantidade de movimento linear. Dessa forma,
+o princípio de conservação da quantidade de movimento linear estabelece que:
+
+\medskip
+\begin{center}
+\textarray{A taxa de acumulação\\
+           da quantidade de\\ 
+           movimento linear\\ 
+           dentro do volume\\
+           de controle}
+           $= -$ 
+\textarray{O fluxo líquido\\
+           da quantidade\\ 
+           de movimento\\
+           linear que\\
+           cruza a fronteira}
+           $+$ 
+\textarray{A resultante das \\
+           forças aplicadas \\ 
+           à superfície de \\
+           controle e as\\
+           forças de volume}
+\end{center}
+
+\medskip
+Matematicamente, a taxa de acumulação da quantidade de movimento linear
+dentro do volume de controle pode ser representada como:
+
+\begin{equation} \label{qml 1} 
+ \int_{V} \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) dV
+\end{equation}
+
+\medskip
+O fluxo líquido da quantidade de movimento
+linear que cruza a fronteira do volume pode ser
+representado matematicamente como:
+
+\begin{equation}  
+ \oint_{S} \rho \textbf{v} \textbf{v} \cdot \textbf{n} dA
+\end{equation}
+
+\medskip
+A resultante das forças é dividida nas forças aplicadas
+à superfície de controle e nas forças de volume.
+A resultante das forças aplicadas à superfície de controle
+pode ser representada por:
+
+\begin{equation}  
+ \oint_{S} \sigma \cdot \textbf{n} dA
+\end{equation}
+
+\medskip
+\noindent
+onde $\sigma$ é o tensor de tensões. A resultante
+das forças de volume é representada por:
+
+\begin{equation} 
+ \int_{V} \rho \textbf{g} dV
+\end{equation}
+
+\medskip
+\noindent
+onde $\textbf{g}$ é o vetor da aceleração da gravidade.
+Dessa forma, segundo o princípio de conservação da quantidade
+de movimento linear:
+
+\begin{equation}
+ \int_{V} \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) dV
+ = - 
+ \oint_{S} \rho \textbf{v} \textbf{v} \cdot \textbf{n} dA
+ +
+ \oint_{S} \sigma \cdot \textbf{n} dA
+ +
+ \int_{V} \rho \textbf{g} dV
+\end{equation}
+
+\medskip
+\noindent
+Aplicando o \textit{Teorema de Gauss} nas integrais
+de área:
+
+\begin{equation}
+ \int_{V} \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) dV
+ = - 
+ \int_{V} \nabla \cdot \big( \rho \textbf{v} \textbf{v} \big) dV
+ +
+ \int_{V} \nabla \cdot \sigma dV
+ +
+ \int_{V} \rho \textbf{g} dV
+\end{equation}
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation} \label{qm 2}
+ \int_{V} \Bigg[ \frac{\partial}{\partial t} \big( \rho \textbf{v} \big)
+ + 
+ \nabla \cdot \big( \rho \textbf{v} \textbf{v} \big)
+ -
+ \nabla \cdot \sigma
+ -
+ \rho \textbf{g} \Bigg] dV = 0
+\end{equation}
+
+
+
+\medskip
+\noindent
+Considerando o fato de $dV \neq 0$,
+a Eq. \ref{qm 2} pode ser expressa como:
+
+\begin{equation}
+ \frac{\partial}{\partial t} \big( \rho \textbf{v} \big)
+ + 
+ \nabla \cdot \big( \rho \textbf{v} \textbf{v} \big)
+ -
+ \nabla \cdot \sigma
+ -
+ \rho \textbf{g} = 0
+\end{equation}
+
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation}
+ \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) 
+ +
+ \nabla \cdot \big( \rho \textbf{v} \textbf{v} \big)
+ =
+ \nabla \cdot \sigma
+ +
+ \rho \textbf{g}
+\end{equation}
+
+\medskip
+\noindent
+Desenvolvendo o lado esquerdo da equação, temos:
+
+\begin{equation}
+ \rho \frac{\partial \textbf{v}}{\partial t}
+ +
+ \textbf{v} \frac{\partial \rho}{\partial t}
+ +
+ \rho \textbf{v} \cdot \nabla \textbf{v}
+ + 
+ \textbf{v} \cdot \nabla \big( \rho \textbf{v} \big)
+ =
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ +
+ \textbf{v} \Bigg[ \frac{\partial \rho}{\partial t} + \nabla \big( \rho \textbf{v} \big) \Bigg]
+\end{equation}
+
+\newpage
+Vimos que o último termo da equação acima
+é nulo pois trata-se da equação da continuidade (Eq. \ref{continuity equation}).
+Logo, a equação de conservação de momento pode ser reescrita como:
+
+\begin{equation} \label{qm 3}
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ =
+ \nabla \cdot \sigma
+ +
+ \rho \textbf{g}
+\end{equation}
+
+\medskip
+\noindent
+O tensor de tensões $\sigma$ pode ser decomposto
+na soma de outros dois tensores:
+
+\begin{equation}
+ \sigma = -p \textbf{I} + \tau
+\end{equation}
+
+\medskip
+\noindent
+onde, $p$ é o campo de pressão, \textbf{I} é a matriz identidade e
+$\tau$ é o tensor desviatório. Substituindo na Eq. \ref{qm 3} temos:
+
+\begin{equation}
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ =
+ \nabla \cdot \big[ -p \textbf{I} + \tau \big]
+ +
+ \rho \textbf{g}
+\end{equation}
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation} \label{qm 4}
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ =
+ -
+ \nabla p
+ +
+ \nabla \cdot \tau
+ +
+ \rho \textbf{g}
+\end{equation}
+
+\medskip
+O tensor desviatório $\tau$ depende da taxa do tensor deformação
+e podemos defini-lo relacionando as propriedades físicas do meio.
+Considerando um fluido homogêneo, isotrópico e
+o tensor desviatório como sendo uma função contínua e linear do
+gradiente de velocidade, temos:
+
+\begin{equation}
+ \tau = \mu \big[ \nabla \textbf{v} + \big( \nabla \textbf{v} \big)^{T} \big]
+      + \lambda \textbf{I} \nabla \cdot \textbf{v}
+\end{equation}
+
+\medskip
+\noindent
+onde $\mu$ é a viscosidade dinâmica do fluido,
+$\lambda$ é conhecido como o segundo coeficiente
+de viscosidade e \textbf{I} é a matriz identidade.
+Substituindo na Eq. \ref{qm 4}, temos:
+
+\begin{equation} 
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ =
+ -
+ \nabla p
+ +
+ \nabla \cdot \big[ 
+ \mu \big[ \nabla \textbf{v} + \big( \nabla \textbf{v} \big)^{T} \big]
+ + \lambda \textbf{I} \nabla \cdot \textbf{v}
+ \big]
+ +
+ \rho \textbf{g}
+\end{equation}
+
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation} 
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ =
+ -
+ \nabla p
+ +
+ \nabla \cdot \big[ \mu \big[ \nabla \textbf{v} + \big( \nabla \textbf{v} \big)^{T} \big] \big]
+ + 
+ \nabla \cdot \big[ \lambda \textbf{I} \nabla \cdot \textbf{v} \big]
+ +
+ \rho \textbf{g}
+\end{equation}
+
+
+\medskip
+\noindent
+Considerando que viscosidade dinâmica $\mu$ não depende da posição, temos:
+
+\begin{equation} 
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ =
+ -
+ \nabla p
+ +
+ \mu \big[ \nabla \cdot \nabla \textbf{v} + \nabla \cdot \big( \nabla \textbf{v} \big)^{T} \big]
+ +
+ \nabla \cdot \big[ \lambda \textbf{I} \nabla \cdot \textbf{v} \big]
+ +
+ \rho \textbf{g}
+\end{equation}
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation} 
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ =
+ -
+ \nabla p
+ +
+ \mu \big[ \nabla^{2} \textbf{v} + \nabla \big( \nabla \cdot \textbf{v} \big) \big]
+ +
+ \nabla \cdot \big[ \lambda \textbf{I} \nabla \cdot \textbf{v} \big]
+ +
+ \rho \textbf{g}
+\end{equation}
+
+\medskip
+\noindent
+Segundo a Eq. \ref{incompressible continuity equation}, temos:
+
+\begin{equation} \label{navier-stokes}
+ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v}
+ =
+ -
+ \frac{1}{\rho} \nabla p
+ +
+ \nu \nabla^{2} \textbf{v}
+ +
+ \textbf{g}
+\end{equation}
+
+\medskip
+\noindent
+onde $\nu$ é o coeficiente de viscosidade
+cinemática do fluido. A Eq. \ref{navier-stokes} é conhecida como 
+\textit{Equação de Navier-Stokes} e é válida
+para um fluido homogêneo, isotrópico, incompressível
+e com viscosidade que não varie em função do espaço.
+
+\newpage

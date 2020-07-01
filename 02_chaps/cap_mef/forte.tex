@@ -1,0 +1,30 @@
+As equações de governo na forma diferencial 
+com as condições de contorno
+são conhecida como \textbf{Formulação Forte}.
+Desta forma, a formulação forte para
+o problema proposto é:
+
+\begin{align}
+& \overset{.}{w} + \textbf{v}.\nabla w = \frac{1}{Re} \nabla^2 w 
+ + \frac{\Delta t}{2} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla w \big] \label{vorticity taylor-galerkin} \\[10pt]
+& \nabla^2 \psi = - w \\[10pt]
+& \textbf{v} = \textbf{D}\psi \\[10pt]
+& \overset{.}{c} + \textbf{v}.\nabla c = \frac{1}{ReSc} \nabla^2 c
+ + \frac{\Delta t}{2} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla c \big] \label{concentration taylor-galerkin}
+\end{align}
+
+
+\medskip
+\noindent
+Estas equações são válidas no domínio $\Omega \subset \mathbb{R}^2$
+com as seguintes condições de contorno:
+
+\begin{equation} \label{bc}
+ \begin{aligned}
+  w = w_\Gamma \quad & \mbox{em $\Gamma_1$}\\
+  \psi = \psi_\Gamma \quad & \mbox{em $\Gamma_2$}\\
+  \textbf{v} = \textbf{v}_\Gamma \quad & \mbox{em $\Gamma_3$}\\
+  c = c_\Gamma \quad & \mbox{em $\Gamma_4$}
+\end{aligned}
+\end{equation}
+

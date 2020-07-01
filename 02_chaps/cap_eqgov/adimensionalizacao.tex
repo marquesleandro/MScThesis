@@ -1,0 +1,249 @@
+Nesta seção a forma adimensional das equações
+da continuidade, da Navier-Stokes e do
+transporte de espécie química é apresentada.
+A adimensionalização ajuda a entender quais os
+termos da equação influencia mais durante uma
+determinada simulação além de possibilitar
+experimentos com modelos em escala reduzida. 
+Os seguintes parâmetros
+foram usados na adimensionalização:
+
+\begin{equation}
+ \begin{aligned}
+  p & = \rho_{0} U^{2} p^{*} \\[10pt]
+ \textbf{v} & = U \textbf{v}^{*} \\
+ \end{aligned}
+ \qquad
+ \begin{aligned}
+ c & = ( c_{s} - c_{0} ) c^{*} + c_{0}\\[10pt]
+ \textbf{g} & = g_{0} \textbf{g}^{*} \\
+ \end{aligned}
+ \qquad
+ \begin{aligned}
+ \nu & = \nu_{0} \nu^{*} \\[10pt]
+ \rho & = \rho_{0} \rho^{*} \\
+ \end{aligned}
+ \qquad
+ \begin{aligned}
+ D & = D_{0} D^{*} \\[5pt]
+ \nabla & = \frac{1}{L} \nabla^{*} \\
+ \end{aligned}
+ \qquad
+ \begin{aligned}
+ x & = L x^{*} \\[5pt]
+ t & = \frac{L}{U} t^{*} \\
+ \end{aligned}
+ \nonumber
+\end{equation}
+
+
+\medskip
+\noindent
+onde o asterisco identifica as variáveis adimensionais.
+Substituindo os parâmetros acima na Eq. \ref{incompressible
+continuity equation}, temos:
+
+\begin{equation}
+ \frac{U}{L} \nabla^{*} \cdot \textbf{v}^{*} = 0
+\end{equation}
+
+\medskip
+\noindent
+Multiplicando ambos os lados por $U/L$:
+
+\begin{equation} \label{continuidade adimensional 1}
+ \nabla^{*} \cdot \textbf{v}^{*} = 0
+\end{equation}
+
+\medskip
+\noindent
+Um procedimento semelhante
+é realizado na Eq. \ref{navier-stokes}, isto é:
+
+\begin{equation}
+ \frac{U^{2}}{L} \frac{\partial \textbf{v$^{*}$}}{\partial t^{*}} 
+ + 
+ \frac{U^{2}}{L} \textbf{v$^{*}$} \cdot \nabla^{*} \textbf{v$^{*}$}
+ =
+ -
+ \frac{U^{2}}{L} \frac{1}{\rho^{*}} \nabla^{*} p^{*}
+ +
+ \frac{\nu_{0} U}{L^{2}} \nu^{*} \nabla^{*2} \textbf{v$^{*}$}
+ +
+ g_{0} \textbf{g$^{*}$}
+\end{equation}
+
+\medskip
+\noindent
+Multiplicando ambos os lados por $L/U^{2}$:
+
+\begin{equation} \label{navier-stokes adimensional 2}
+ \frac{\partial \textbf{v$^{*}$}}{\partial t^{*}} 
+ + 
+ \textbf{v$^{*}$} \cdot \nabla^{*} \textbf{v$^{*}$}
+ =
+ -
+ \frac{1}{\rho^{*}} \nabla^{*} p^{*}
+ +
+ \frac{\nu_{0}}{UL} \nu^{*} \nabla^{*2} \textbf{v$^{*}$}
+ +
+ \frac{g_{0}L}{U^{2}} \textbf{g$^{*}$}
+\end{equation}
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation} \label{navier-stokes adimensional 1}
+ \frac{\partial \textbf{v$^{*}$}}{\partial t^{*}} 
+ + 
+ \textbf{v$^{*}$} \cdot \nabla^{*} \textbf{v$^{*}$}
+ =
+ -
+ \nabla^{*} p^{*}
+ +
+ \frac{\nu_{0}}{UL} \nabla^{*2} \textbf{v$^{*}$}
+ +
+ \frac{g_{0}L}{U^{2}} \textbf{g$^{*}$}
+\end{equation}
+
+\medskip
+\noindent
+Para a Eq. \ref{chemical species} um procedimento semelhante é
+realizado:
+
+\begin{equation}
+ (c_{s}-c_{0}) \frac{U}{L} \frac{\partial c^{*}}{\partial t^{*}}
+ +
+ (c_{s}-c_{0}) \frac{U}{L} \textbf{v$^{*}$} \cdot \nabla^{*} c^{*}
+ =
+ (c_{s}-c_{0}) \frac{D_{0}}{L^{2}} D^{*} \nabla^{*2} c^{*}
+\end{equation}
+
+\medskip
+\noindent
+Multiplicando ambos os lados por $L/U(c_{s}-c_{0})$, temos:
+
+\begin{equation} \label{especie quimica adimensional 2}
+ \frac{\partial c^{*}}{\partial t^{*}}
+ +
+ \textbf{v$^{*}$} \cdot \nabla^{*} c^{*}
+ =
+ \frac{D_{0}}{UL} D^{*} \nabla^{*2} c^{*}
+\end{equation}
+
+\medskip
+\noindent
+isto é
+
+\begin{equation} \label{especie quimica adimensional 1}
+ \frac{\partial c^{*}}{\partial t^{*}}
+ +
+ \textbf{v$^{*}$} \cdot \nabla^{*} c^{*}
+ =
+ \frac{D_{0}}{UL} \nabla^{*2} c^{*}
+\end{equation}
+
+\newpage
+Importantes grupos adimensionais são encontrados nas
+Eqs. \ref{continuidade adimensional 1}, \ref{navier-stokes adimensional 1}
+e \ref{especie quimica adimensional 1}. 
+A descrição destes grupos são apresentados abaixo:
+
+\begin{itemize}
+ \item \textbf{Número de Reynolds} ($Re$): 
+ Relação entre as forças de inércia e as forças viscosas
+ que agem sobre uma partícula de fluido em movimento.
+ É representado por:
+ \begin{equation}
+  Re = \frac{UL}{\nu_{0}}
+ \end{equation}
+ 
+ onde, $\nu_{0}$, $U$ e $L$ são os valores da 
+ viscosidade cinemática do fluido, 
+ velocidade de referência
+ e comprimento característico do problema
+ respectivamente. O número de Reynolds é
+ frequentemente utilizado para definir o
+ escoamento, onde $Re < Re_{critico}$ é
+ definido como laminar e $Re > Re_{critico}$
+ como turbulento. Segundo Fox, McDonald e Pritchard (2012) \cite{fox2012}, o
+ $Re_{critico}$ para escoamentos em tubos é
+ $Re_{critico} \simeq 2300$.
+
+ \item \textbf{Número de Froude} ($Fr$): 
+ Relação entre as forças de inércia e as forças gravitacionais.
+ É representado por:
+ \begin{equation}
+  Fr = \frac{U}{\sqrt{g_{0}L}}
+ \end{equation}
+ 
+ onde, $g_{0}$ é a aceleração da gravidade
+ referencial.
+
+ \item \textbf{Número de Péclet de massa} ($Pe_{m}$): 
+ Relação entre a dimensão da camada característica do
+ problema e a espessua da camada limite de
+ concentração de espécie química. Também pode ser
+ interpretado como a relação entre a concentração
+ transferida por convecção e por difusão.
+ É representado por:
+ \begin{equation}
+  Pe_{m} = \frac{D_{0}}{UL}
+ \end{equation}
+ 
+ onde, $D_{0}$ é o coeficiente de difusão da
+ espécie química. O número $Pe_{m}$ é frequentemente
+ apresentado pelo produto de outros dois grupos tais
+ como o \textit{número de Reynolds} e o \textit{número de Schmidt}.
+
+ \newpage
+ \item \textbf{Número de Schmidt} ($Sc$): 
+ Relação entre a espessura da camada limite hidrodinâmica
+ e a difusão de espécie química.
+ É representado por:
+ \begin{equation}
+  Sc = \frac{\nu_{0}}{D_{0}}
+ \end{equation}
+\end{itemize}
+
+\medskip
+Substituindo estes grupos adimensionais nas Eqs.
+\ref{continuidade adimensional 1}, \ref{navier-stokes adimensional 1}
+e \ref{especie quimica adimensional 1} e retirando o asterisco, temos:
+
+\begin{equation} \label{continuidade adimensional}
+ \nabla \cdot \textbf{v} = 0
+\end{equation}
+
+\begin{equation} \label{navier-stokes adimensional}
+ \frac{\partial \textbf{v}}{\partial t} 
+ + 
+ \textbf{v} \cdot \nabla \textbf{v}
+ =
+ -
+ \nabla p
+ +
+ \frac{1}{Re} \nabla^{2} \textbf{v}
+ +
+ \frac{1}{Fr^{2}} \textbf{g}
+\end{equation}
+
+\begin{equation} \label{especie quimica adimensional}
+ \frac{\partial c}{\partial t}
+ +
+ \textbf{v} \cdot \nabla c
+ =
+ \frac{1}{ReSc} \nabla^{2} c
+\end{equation}
+
+\medskip
+As Eqs.
+\ref{continuidade adimensional}, 
+\ref{navier-stokes adimensional} e 
+\ref{especie quimica adimensional}
+são a forma adimensional das equações
+da continuidade, Navier-Stokes e
+transporte de espécie química para um
+fluido newtoniano e incompressível respectivamente.
+

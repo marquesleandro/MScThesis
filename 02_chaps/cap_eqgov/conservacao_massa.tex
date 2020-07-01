@@ -1,0 +1,136 @@
+Conforme apresentado por Pontes e Mangiavacchi (2016) \cite{pontes2016}, o princípio
+de conservação da massa sem geração estabelece que:
+
+\medskip
+\begin{center}
+\textarray{A taxa de acumu-\\
+           lação de massa\\ 
+           dentro do volume}
+           $= -$ 
+\textarray{O fluxo líquido\\ 
+           de massa que cruza\\
+           a fronteira}
+\end{center}
+
+\newpage
+Matematicamente, a taxa de acumulação de 
+massa dentro do volume pode ser representada como:
+
+\begin{equation} \label{massa 1} 
+ \int_{V} \frac{\partial}{\partial t} dm
+\end{equation}
+
+\noindent onde a massa infinitesimal $dm$ é definida como
+$dm = \rho dV$. Substituindo-o na Eq. \ref{massa 1} e considerando
+que o volume de controle não varia com o tempo, temos:
+
+\begin{equation}
+ \int_{V} \frac{\partial}{\partial t} dm
+ =
+ \int_{V} \frac{\partial}{\partial t} \big( \rho dV \big)
+ = 
+ \int_{V} \frac{\partial \rho}{\partial t} dV
+ +
+ \int_{V} \rho \frac{\partial dV}{\partial t}
+ = 
+ \int_{V} \frac{\partial \rho}{\partial t} dV
+\end{equation}
+
+\medskip
+O fluxo líquido de massa que cruza a fronteira do volume pode ser
+representado matematicamente como:
+
+\begin{equation}  
+ \oint_{S} \rho \textbf{v} \cdot \textbf{n} dA
+\end{equation}
+
+\medskip
+\noindent Dessa forma, segundo o princípio de conservação da massa:
+
+\begin{equation}
+ \int_{V} \frac{\partial \rho}{\partial t} dV
+ = - 
+ \oint_{S} \rho \textbf{v} \cdot \textbf{n} dA
+\end{equation}
+
+\medskip
+\noindent Aplicando o \textit{Teorema de Gauss} na integral
+de área:
+
+\begin{equation}
+ \int_{V} \frac{\partial \rho}{\partial t} dV
+ = - 
+ \int_{V} \nabla \cdot \big( \rho \textbf{v} \big) dV
+\end{equation}
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation} \label{massa 2}
+ \int_{V} \Bigg[ \frac{\partial \rho}{\partial t}
+ + 
+ \nabla \cdot \big( \rho \textbf{v} \big) \Bigg] dV
+ = 0 
+\end{equation}
+
+\medskip
+\noindent 
+Considerando o fato de $dV \neq 0$,
+a Eq. \ref{massa 2} pode ser expressa como:
+
+\begin{equation} \label{continuity equation}
+ \frac{\partial \rho}{\partial t}
+ + 
+ \nabla \cdot \big( \rho \textbf{v} \big)
+ = 0 
+\end{equation}
+
+\medskip
+\noindent 
+onde $\rho$ é a massa específica, $\textbf{v}$ é o vetor
+velocidade cujas componentes são $\textbf{v} = \big[u,v\big]$,
+$\nabla$ é um operador diferencial cujas componentes são
+$\nabla = \big[ \partial/\partial x, \partial / \partial y \big]$,
+$x$ e $y$ são as componentes espaciais e
+$t$ é a componente temporal.
+A Eq. \ref{continuity equation} é conhecida
+como \textit{Equação da Continuidade}.
+Desenvolvendo a equação, temos:
+
+\begin{equation}
+ \frac{\partial \rho}{\partial t}
+ +
+ \textbf{v} \cdot \nabla \rho
+ +
+ \rho \nabla \cdot \textbf{v}
+ = 0
+\end{equation}
+
+\medskip
+Considerando a hipótese de incompressibilidade do fluido,
+a massa específica não depende do tempo e da posição. Dessa forma, as derivadas
+$\partial \rho / \partial t$ e $\nabla \rho$ são iguais a zero.
+Assim, a conservação de massa é reduzida a:
+
+\begin{equation} \label{massa 3}
+ \rho \nabla \cdot \textbf{v}
+ = 0 
+\end{equation}
+
+\medskip
+\noindent isto é:
+
+\begin{equation} \label{incompressible continuity equation}
+ \nabla \cdot \textbf{v}
+ = 0 
+\end{equation}
+
+\medskip
+\noindent Esta é a equação da continuidade para um fluido incompressível.
+
+
+\newpage
+
+
+

@@ -1,0 +1,65 @@
+Neste capítulo apresentaremos as principais características
+do código numérico desenvolvido em linguagem Python 2.7 \cite{python}
+utilizando o paradigma de orientação a objetos
+com o intuito da reutilização do código em outras
+simulações no futuro. 
+Todas as classes desenvolvidas são importadas
+no simulador (\textit{TriSim}) onde é exportado
+o resultado da simulação numérica conforme apresentado
+no \textit{Diagrama de Classes} (UML)
+simplificado da \ref{uml}.
+Inicialmente, é apresentado o
+\textit{script} que realiza a importação da malha
+computacional para a simulação. Em seguida, a montagem
+das matrizes globais é feita respeitando a correspondência
+entre os índices globais e locais. Mais a frente, apresentamos
+a aplicação das condições de contorno tanto de \textit{Dirichlet}
+quanto de \textit{Neumann}. E finalmente, é apresentado também,
+o algoritmo de solução da formulação corrente-vorticidade 
+com a equação de transferência de espécie química. 
+
+\vspace{0.5cm}
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=0.7pt]
+ \draw [rounded corners=10,line width=2pt] (0,0) rectangle ++(3,3);
+ \draw [line width=2pt] (0,2.4) -- (3,2.4);
+ \draw [line width=2pt] (0,1.6) -- (3,1.6);
+ \node (TriSim) at (1.5,2.7) {TriSim};
+
+ \draw [rounded corners=10,line width=2pt] (0,6) rectangle ++(3,3);
+ \draw [line width=2pt] (0,8.4) -- (3,8.4);
+ \draw [line width=2pt] (0,7.6) -- (3,7.6);
+ \node (TriMesh) at (1.5,8.7) {TriMesh};
+
+ \draw [rounded corners=10,line width=2pt] (6,0) rectangle ++(3,3);
+ \draw [line width=2pt] (6,2.4) -- (9,2.4);
+ \draw [line width=2pt] (6,1.6) -- (9,1.6);
+ \node (InOut) at (7.5,2.7) {InOut};
+
+ \draw [rounded corners=10,line width=2pt] (-6,0) rectangle ++(3,3);
+ \draw [line width=2pt] (-6,2.4) -- (-3,2.4);
+ \draw [line width=2pt] (-6,1.6) -- (-3,1.6);
+ \node (triBC) at (-4.5,2.7) {TriBC};
+
+ \draw [rounded corners=10,line width=2pt] (0,-6) rectangle ++(3,3);
+ \draw [line width=2pt] (0,-3.6) -- (3,-3.6);
+ \draw [line width=2pt] (0,-4.4) -- (3,-4.4);
+ \node (TElement) at (1.5,-3.3) {TElement};
+
+ \draw [rounded corners=10,line width=2pt] (6,-6) rectangle ++(3.5,3);
+ \draw [line width=2pt] (6,-3.6) -- (9.5,-3.6);
+ \draw [line width=2pt] (6,-4.4) -- (9.5,-4.4);
+ \node (FEMLinElement) at (7.8,-3.3) {FEMLinElem};
+
+ \draw [{Diamond}-,line width=2pt] (TriSim) -- (1.5,6);
+ \draw [{Diamond}-,line width=2pt] (0,1.5) -- (-3,1.5);
+ \draw [{Diamond}-,line width=2pt] (1.5,0) -- (1.5,-3);
+ \draw [{Diamond}-,line width=2pt] (3,1.5) -- (6,1.5);
+ \draw [<-,line width=2pt] (3,-4.5) -- (6,-4.5);
+
+\end{tikzpicture}
+\end{center}
+\caption{Diagrama de Classes Simplificado}
+\label{uml}
+\end{figure}

@@ -1,0 +1,184 @@
+O princípio de conservação de espécie química estabelece que:
+
+\medskip
+\begin{center}
+\textarray{A taxa de acumulação\\
+           da quantidade de\\ 
+           espécie química\\ 
+           dentro do volume\\
+           de controle}
+           $= -$ 
+\textarray{O fluxo líquido\\
+           da quantidade\\ 
+           de espécie\\
+           química que\\
+           cruza a fronteira}
+           $+$ 
+\textarray{A resultante da \\
+           taxa de geração \\ 
+           de espécie quí- \\
+           mica no volume}
+\end{center}
+
+\medskip
+Matematicamente, a taxa de acumulação da quantidade de espécie química
+dentro do volume de controle pode ser representada como:
+
+\begin{equation} \label{esp 1} 
+ \int_{V} \frac{\partial c}{\partial t} dV
+\end{equation}
+
+\medskip
+O fluxo líquido da quantidade de espécie
+química que cruza a fronteira do volume pode ser
+decomposto na soma de dois fluxos:
+
+\begin{equation}  
+ \oint_{S} c \textbf{v} \cdot \textbf{n} dA
+ -
+ \oint_{S} D \nabla c \cdot \textbf{n} dA
+\end{equation}
+
+\medskip
+\noindent
+onde $D$ é o coeficiente de difusão de espécie química.
+A resultante da taxa de geração de espécie química
+no volume pode ser representada por:
+
+\begin{equation} 
+ \int_{V} \overset{.}{R} dV
+\end{equation}
+
+\medskip
+\noindent
+Dessa forma, segundo o princípio de conservação de espécie
+química:
+
+\begin{equation}
+ \int_{V} \frac{\partial c}{\partial t} dV
+ = 
+ - 
+ \oint_{S} c \textbf{v} \cdot \textbf{n} dA
+ +
+ \oint_{S} D \nabla c \cdot \textbf{n} dA
+ +
+ \int_{V} \overset{.}{R} dV
+\end{equation}
+
+\medskip
+\noindent
+Aplicando o \textit{Teorema de Gauss} nas integrais
+de área:
+
+\begin{equation}
+ \int_{V} \frac{\partial c}{\partial t} dV
+ = 
+ - 
+ \int_{V} \nabla \cdot \big( c \textbf{v} \big) dV
+ +
+ \int_{V} \nabla \cdot \big( D \nabla c \big) dV
+ +
+ \int_{V} \overset{.}{R} dV
+\end{equation}
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation} \label{esp 2}
+ \int_{V} \Bigg[ \frac{\partial c}{\partial t}
+ + 
+ \nabla \cdot \big( c \textbf{v} \big)
+ -
+ \nabla \cdot \big( D \nabla c \big)
+ -
+ \overset{.}{R} \Bigg] dV = 0
+\end{equation}
+
+
+
+\medskip
+\noindent
+Considerando o fato de $dV \neq 0$,
+a Eq. \ref{esp 2} pode ser expressa como:
+
+\begin{equation}
+ \frac{\partial c}{\partial t}
+ + 
+ \nabla \cdot \big( c \textbf{v} \big)
+ -
+ \nabla \cdot \big( D \nabla c \big)
+ -
+ \overset{.}{R} = 0
+\end{equation}
+
+
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation}
+ \frac{\partial c}{\partial t}
+ +
+ \nabla \cdot \big( c \textbf{v} \big)
+ =
+ \nabla \cdot \big( D \nabla c \big)
+ +
+ \overset{.}{R}
+\end{equation}
+
+\medskip
+\noindent
+Desenvolvendo o lado esquerdo da equação, temos:
+
+\begin{equation}
+ \frac{\partial c}{\partial t}
+ +
+ \textbf{v} \cdot \nabla c
+ + 
+ c \nabla \cdot \textbf{v}
+ =
+ \nabla \cdot \big( D \nabla c \big)
+ +
+ \overset{.}{R}
+\end{equation}
+
+\medskip
+Vimos que o último termo do lado esquerdo
+é nulo devido a hipótese de incompressibilidade
+do fluido (Eq. \ref{incompressible continuity equation}),
+logo:
+
+\begin{equation}
+ \frac{\partial c}{\partial t}
+ +
+ \textbf{v} \cdot \nabla c
+ =
+ \nabla \cdot \big( D \nabla c \big)
+ +
+ \overset{.}{R}
+\end{equation}
+
+\newpage
+Considerando que o coeficiente de 
+difusão é constante e sem geração de
+espécie química, 
+a equação de conservação de espécie química
+pode ser reescrita como:
+
+\begin{equation} \label{chemical species}
+ \frac{\partial c}{\partial t}
+ +
+ \textbf{v} \cdot \nabla c
+ =
+ D \nabla^{2} c
+\end{equation}
+
+\medskip
+\noindent
+A Eq. \ref{chemical species} é conhecida como 
+\textit{Equação de Transporte de Espécie Química}
+para um fluido incompressível, com coeficiente
+de difusão constante e sem geração de espécie
+química.

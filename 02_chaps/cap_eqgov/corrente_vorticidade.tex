@@ -1,0 +1,250 @@
+A equação de Navier-Stokes possui um forte
+acoplamento entre o campo de pressão e o 
+campo das velocidades. Este acoplamento
+dificulta a implementação desta equação computacionalmente.
+O desacoplamento da pressão e 
+da velocidade é possível ao utilizar a \textit{formulação corrente-vorticidade}.
+Para isso, substituiremos na equação \ref{navier-stokes adimensional} a
+seguinte identidade vetorial:
+
+\begin{equation}
+ \textbf{v} \cdot \nabla \textbf{v}
+ = 
+ \nabla \frac{v^{2}}{2}
+ - 
+ \textbf{v} \times \nabla \times \textbf{v}
+\end{equation}
+
+\medskip
+\noindent
+Logo:
+
+\begin{equation}
+ \frac{\partial \textbf{v}}{\partial t} 
+ + 
+ \nabla \frac{v^{2}}{2}
+ - 
+ \textbf{v} \times \nabla \times \textbf{v}
+ =
+ -
+ \nabla p
+ +
+ \frac{1}{Re} \nabla^{2} \textbf{v}
+ +
+ \frac{1}{Fr^{2}} \textbf{g}
+\end{equation}
+
+\medskip
+\noindent
+Operando o rotacional em ambos os lados na equação acima:
+
+\begin{equation}
+ \nabla \times \frac{\partial \textbf{v}}{\partial t} 
+ + 
+ \nabla \times \nabla \frac{v^{2}}{2}
+ - 
+ \nabla \times \textbf{v} \times \nabla \times \textbf{v}
+ =
+ -
+ \nabla \times \nabla p
+ +
+ \frac{1}{Re} \nabla \times \nabla^{2} \textbf{v}
+ +
+ \frac{1}{Fr^{2}} \nabla \times \textbf{g}
+\end{equation}
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation}
+ \frac{\partial}{\partial t} \big[ \nabla \times \textbf{v} \big]
+ + 
+ \nabla \times \nabla \frac{v^{2}}{2}
+ - 
+ \nabla \times \big[ \textbf{v} \times \nabla \times \textbf{v} \big]
+ =
+ -
+ \nabla \times \nabla p
+ +
+ \frac{1}{Re} \nabla^{2} \big[ \nabla \times \textbf{v} \big]
+ +
+ \frac{1}{Fr^{2}} \nabla \times \textbf{g}
+\end{equation}
+
+\medskip
+Os termos que contêm o operador gradiente se anulam, 
+já que o rotacional do gradiente de um escalar
+é zero. O último termo também se anula pois as
+derivadas de uma constante, como no caso de \textbf{g},
+são iguais a zero. Dessa forma, temos:
+
+\begin{equation}
+ \frac{\partial}{\partial t} \big[ \nabla \times \textbf{v} \big]
+ - 
+ \nabla \times \big[ \textbf{v} \times \nabla \times \textbf{v} \big]
+ =
+ \frac{1}{Re} \nabla^{2} \big[ \nabla \times \textbf{v} \big]
+\end{equation}
+
+\medskip
+O vetor $\nabla \times \textbf{v}$ é conhecido
+como \textit{vorticidade} ($w$).
+Assim a equação pode ser representada como:
+
+\begin{equation} \label{vort 1}
+ \frac{\partial w}{\partial t}
+ - 
+ \nabla \times \big[ \textbf{v} \times w \big]
+ =
+ \frac{1}{Re} \nabla^{2} w
+\end{equation}
+
+\medskip
+O segundo termo do lado esquerdo da Eq. \ref{vort 1}
+pode ser substituido pela seguinte identidade vetorial:
+
+
+\begin{equation}
+ \nabla \times \big[ \textbf{v} \times w \big]
+ =
+ -
+ \textbf{v} \cdot \nabla w
+ +
+ w \cdot \nabla v
+\end{equation}
+
+\medskip
+\noindent
+Sendo assim a Eq. \ref{vort 1} se transforma:
+
+\begin{equation} \label{vort 2}
+ \frac{\partial w}{\partial t}
+ +
+ \textbf{v} \cdot \nabla w
+ - 
+ w \cdot \nabla \textbf{v}
+ =
+ \frac{1}{Re} \nabla^{2} w
+\end{equation}
+
+\medskip
+Para escoamentos bidimensionais, como no caso deste trabalho, a vorticidade é perpendicular
+ao vetor velocidade. Sendo assim, o produto $w \cdot \nabla \textbf{v}$
+se anulará como apresentado por Pontes e Mangiavacchi (2016) \cite{pontes2016}. Portanto:
+
+\begin{equation} \label{equacao vorticidade}
+ \frac{\partial w}{\partial t}
+ +
+ \textbf{v} \cdot \nabla w
+ =
+ \frac{1}{Re} \nabla^{2} w
+\end{equation}
+
+\medskip
+A Eq. \ref{equacao vorticidade} é conhecida como
+\textit{equação da vorticidade} para escoamentos
+bidimensionais de um fluido newtoniano
+e incompressível. Para um escoamento permanente e bidimensional
+de um fluido incompressível,
+a velocidade pode ser calculada a partir da vazão volumétrica.
+Desta forma, a velocidade é substituida por um escalar.
+Tal escalar é conhecido como \textit{função de corrente}
+($\psi$). 
+A relação entre as componentes da velocidade e
+a função de corrente é apresentado
+expandindo a equação da continuidade
+(Eq. \ref{incompressible continuity equation}):
+
+\begin{equation} \label{cor 1}
+ \frac{\partial u}{\partial x}
+ +
+ \frac{\partial v}{\partial y}
+ =
+ 0
+\end{equation}
+ 
+\medskip
+A seguinte relação entre a função de corrente
+e as componentes da velocidade pode ser definida
+de modo que a Eq. \ref{cor 1} seja satisfeita:
+
+\begin{equation} \label{cor 2}
+\begin{aligned}
+ u = \frac{\partial \psi}{\partial y}
+ \qquad
+ v = - \frac{\partial \psi}{\partial x}
+\end{aligned}
+\end{equation}
+
+\medskip
+A relação entre a função de corrente
+e a vorticidade é apresentada expandindo
+a operação $\nabla \times \textbf{v}$
+para o caso bidimensional:
+
+\begin{equation} \label{cor 3}
+ \nabla \times \textbf{v}
+ = 
+ \frac{\partial v}{\partial x}
+ - 
+ \frac{\partial u}{\partial y}
+\end{equation}
+
+\medskip
+\noindent
+Substituindo a Eq. \ref{cor 2} na Eq. \ref{cor 3},
+temos:
+
+\begin{equation}
+ w
+ =
+ - 
+ \frac{\partial}{\partial x} \frac{\partial v}{\partial x}
+ -
+ \frac{\partial}{\partial y} \frac{\partial u}{\partial y}
+\end{equation}
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation}
+ w
+ = 
+ -
+ \nabla^{2} \psi
+\end{equation}
+
+\medskip
+Dessa forma, as equações que governam o problema proposto
+em sua forma adimensional e com a formulação corrente-vorticidade são apresentadas
+abaixo:
+
+\begin{align}
+& \frac{\partial w}{\partial t}
+ +
+ \textbf{v} \cdot \nabla w
+ =
+ \frac{1}{Re} \nabla^{2} w \label{vorticidade}
+ \\[10pt] 
+& \nabla^{2} \psi
+ = 
+ - 
+ w \label{corrente} \\[10pt]
+& \textbf{v} = \textbf{D} \psi \label{continuidade} \\[10pt]
+& \frac{\partial c}{\partial t}
+ +
+ \textbf{v} \cdot \nabla c
+ =
+ \frac{1}{ReSc} \nabla^{2} c \label{especie quimica}
+\end{align}
+
+\medskip
+\noindent
+onde \textbf{D} é um operador diferencial
+cujas componentes são $\big[
+\partial / \partial y,
+- \partial / \partial x \big]$. 
+
+

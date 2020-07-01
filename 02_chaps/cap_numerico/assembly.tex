@@ -1,0 +1,109 @@
+Após a importação do arquivo \textit{.msh}
+foi realizado a montagem das matrizes globais.
+As mesmas foram inicializadas como matrizes
+esparsas pela biblioteca \textit{Scipy} \cite{scipy}
+e o seguinte \textit{script} foi usado para a montagem:
+
+
+%\begin{algorithm}[H]
+%\caption{Assembly Global Matrix}
+%\begin{algorithmic}
+% \For {e in range(0,ne)}
+%   \State Linear\_Element\\
+%   \For {i in range(0,3)}
+%    \State ii = IEN[e][i]\\
+%    \For {j in range(0,3)}
+%     \State jj = IEN[e][j]\\
+%     \State Kxx[ii][jj] += kxx\_element[i][j]
+%     \State Kxy[ii][jj] += kxy\_element[i][j]
+%    \State Kyx[ii][jj] += kyx\_element[i][j]
+%    \State Kyy[ii][jj] += kyy\_element[i][j]
+%    \State Gx[ii][jj] += gx\_element[i][j]
+%    \State Gy[ii][jj] += gy\_element[i][j]
+%    \State M[ii][jj] += mass\_element[i][j]\\
+%   \EndFor 
+%  \EndFor 
+% \EndFor 
+%\end{algorithmic}
+%\end{algorithm}
+
+
+\begin{verbatim}
+__________________________________________________________________________
+for e in range(0, ne):                 | loop sobre os elementos 
+ linear_element(e)                     | montagem das matrizes elementares
+                                         utilizando a quadratura gaussiana
+ for i in range(0,3):                  
+  ii = IEN[e][i]                       
+  
+  for j in range(0,3):                  
+   jj = IEN[e][j]
+                                       
+   Kxx[ii,jj] += kxx_element[i][j]     |
+   Kxy[ii,jj] += kxy_element[i][j]     |
+   Kyx[ii,jj] += kyx_element[i][j]     |
+   Kyy[ii,jj] += kyy_element[i][j]     | montagem das matrizes globais
+                                       | correspondendo os índices globais
+   Gx[ii,jj] += gx_element[i][j]       | e locais
+   Gy[ii,jj] += gy_element[i][j]       | 
+                                       |
+   M[ii,jj] += mass_element[i][j]      |
+__________________________________________________________________________
+\end{verbatim}
+
+
+\medskip
+A montagem das matrizes elementares é feita pelo módulo 
+\textit{linear\_element} cujo paramêtro requerido é o 
+número do elemento. Esse módulo faz parte da classe \textit{TElement}
+onde utiliza a quadratura gaussiana para o cálculo dos
+valores das matrizes elementares. Para o elemento triangular
+linear, é possível a utilização das matrizes elementares
+analíticas. Para mais detalhe consultar o trabalho de Lewis,
+Nithiarasu e Seetharamu (2004) \cite{lewis2004}.
+
+\newpage
+Em seguida, a matriz do lado esquerdo conhecida como 
+\textit{left hand side (LHS)} é criada para as
+equações da função de corrente,
+velocidade e concentração respectivamente:
+
+\begin{verbatim}
+__________________________________________________________________________
+LHS_psi = sps.lil_matrix.copy(K)
+LHS_vx = sps.lil_matrix.copy(M)
+LHS_vy = sps.lil_matrix.copy(M)
+LHS_c = sps.lil_matrix.copy(M)/dt
+__________________________________________________________________________
+\end{verbatim}
+
+A matriz \textit{LHS} para a equação da vorticidade
+é criada durante o loop do algoritmo de solução
+a fim de garantir que a mesma será sempre inicializada
+utilizando as matrizes globais originais.
+É necessário usarmos a função \textit{copy}
+porque queremos copiar os valores das matrizes globais
+e não referencia-los,
+para mais detalhe consultar o \textit{Scipy Community} \cite{numpycopy}.
+A \ref{tempo matrizes globais} apresenta o tempo de processamento para 
+para a montagem das matrizes globais em diversas
+malhas triangulares lineares não estruturadas.
+
+\vspace{0.5cm}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\textbf{N. Nós} & \textbf{N. Elementos} & \textbf{Tempo de Processamento} (s) \\
+\midrule
+10482 & 20142 & 72,9 \\
+40819 & 80005 & 254,3 \\
+249677 & 495289 & 1664,9 \\
+993091 & 2010501 & 69059,9 \\
+
+\bottomrule
+\end{tabular}
+\caption{Tempo de montagem das matrizes globais para diversas malhas triangulares não estruturadas}
+\label{tempo matrizes globais}
+\end{table}
+                

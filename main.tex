@@ -1,0 +1,242 @@
+                                                                                                                                                                                                                                                                                                                                  %% ----- PREAMBLE
+\documentclass[a4paper,12pt,oneside,openany,fleqn]{uerj}
+
+%% ----- FONTSTYLE
+ %\usepackage[adobe-utopia]{mathdesign} 
+\usepackage{fourier} % nicer math font style
+\newcommand{\textarray}[1]{\ensuremath{\left[ \mbox{\ttfamily\begin{tabular}{c} #1 \end{tabular}}\right]}}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage{relsize}
+\usetikzlibrary{shapes,arrows,arrows.meta,matrix}
+\usepackage{pdfpages}
+
+
+
+% # Remark: Uncomment these two lines below to have Arial font in the worst case 
+% 				   (UERJ's original horrible font). Owing to change of font, the footer of the title page 
+%                 might leak out from the page. 
+%\usepackage{helvet}
+%\renewcommand{\familydefault}{\sfdefault}
+
+%% ----- NOMENCLATURE (optional)
+% Remark: the code below sorts the nomenclature in subgroups. 
+%			    To have your symbols organized accordingly, use something 
+% 				like the following throughout the text, provided that 'g','r','u','d','x' 
+%				are kept as initial letters:
+%
+% 						\nomenclature[g]{$ \alpha $}{Some greek constant}
+% 						\nomenclature[r]{$ t $}{Some roman variable}
+% 						\nomenclature[x]{$ ( . , .) $}{Some roman variable}
+%
+% 				If a nomenclature section is not intended, comment all the lines. 
+%
+\makeindex
+\makenomenclature % nomenclature
+\RequirePackage{ifthen}
+ \renewcommand\nomgroup[1]{%
+   \ifthenelse{\equal{#1}{A}}{%
+    \item[\textbf{Acronyms}] }{% A - Acronyms
+     \ifthenelse{\equal{#1}{R}}{%
+      \item[\textbf{Roman letters}]}{% R - Roman
+       \ifthenelse{\equal{#1}{G}}{%
+        \item[\textbf{Greek letters }]}{% G - Greek
+         \ifthenelse{\equal{#1}{S}}{%
+          \item[\textbf{Superscripts}]}{{% S - Superscripts
+       \ifthenelse{\equal{#1}{U}}{%
+        \item[\textbf{Subscripts }]}{{% U - Subscripts
+         \ifthenelse{\equal{#1}{X}}{%
+          \item[\textbf{Symbols}]}% X - Other Symbols
+                    {{}}}}}}}}}} 
+
+    
+%% ----- TABLE FOOTNOTE COUNTER
+\newcounter{tablenote}[table]
+\newcommand{\itemx}[1]{
+    \stepcounter{tablenote}
+    \item[\thetablenote]\label{#1} }
+
+%% ----- CUSTOMIZATION
+\numberwithin{equation}{chapter}
+\theoremstyle{plain}
+
+% # Remark: options to redefine caption names, since Babel overwrites 
+%				   definitions inside file .cls. Comment, in case of Portuguese.
+%
+%				   Useful options:
+%								\appendixname	 Appendix
+%								\bibname	 		 Bibliography (report,book)
+%								\contentsname	 Contents
+%								\figurename	 	 Figure (for captions)
+%								\indexname	 	 Index
+%								\listfigurename	 List of Figures
+%								\listtablename	 List of Tables
+%\pagename	 	 	 Page (letter)
+%\refname	 	 	 References (article)
+%\seename	 		 see (makeidx package)
+%\tablename	 	 	Table (for caption)
+\captionsetup[figure]{name=Figura}
+\captionsetup[table]{name=Tabela}
+
+%% ----- SETUP FOR REFERENCES
+% 	# Remark: package 'cleveref' (pre-loaded) enables intelligent cross-referencing. 
+%					however it was buggy for figure environments. 
+%				    (See http://www.ctan.org/pkg/cleveref) 
+%
+% # Remark: the suggested use of cross-referencing is:
+% 				   \cref{} for equations, sections, subsections, and chapters;
+% 				   \ref{} for figures and tables;
+%
+% # Remark: appendices need to be written manually since the lettered 
+%				   titles are not optimized for cross-reference.
+%
+\crefname{equation}{Equation}{Equations} % {kind}{label_singular}{label_plural}
+\crefname{chapter}{Chapter}{Chapters}
+\crefname{appendix}{Appendix}{Appendices}
+\crefname{figure}{Figura}{Figuras}
+\crefname{section}{Section}{Sections}
+\crefname{subsection}{Subsection}{Subsections}
+
+%% -----  HYPERREF
+% Changing standard \autoref label printing:
+\renewcommand*{\tableautorefname}{Table}
+
+
+%% ----- USER-DEFINED COMMANDS
+% Here you may wish define your own commands
+\newcommand{\Etal}{\emph{et al.}}
+
+%% ----- HYPHENATION
+% Use this command to teach words to LaTex. 
+\hyphenation{en-ge-nha-ri-a}
+
+%% ----- BEGIN OF DOCUMENT
+
+\begin{document}
+
+%% ----- MARKUP REFERENCES SETUPS  
+% Change the values to have coloured links 
+% (maybe useful for draft version or correction purposes): 
+%			e.g. 'colorlinks=true', 'linkcolor=red', 'citecolor=blue', etc.
+\hypersetup{    
+    %colorlinks=false,    
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black,
+    linktoc=all,   
+}
+
+%% ----- PRE-TEXTUAL ELEMENTS  (SECTION 00)
+\thispagestyle{empty}\input{./00_pre/1cover}
+\pagebreak\thispagestyle{empty}\input{./00_pre/2titlePage}
+\pagebreak\thispagestyle{empty}\input{./00_pre/3catalogSheet}   
+\pagebreak\thispagestyle{empty}\input{./00_pre/4approvalSheet}
+%\pagebreak\thispagestyle{empty}\input{./00_pre/5dedication}
+\pagebreak\thispagestyle{empty}\input{./00_pre/6acks}
+%\pagebreak\thispagestyle{empty}\input{./00_pre/7epigraph}
+\pagebreak\thispagestyle{empty}\input{./00_pre/8abstract_pt}
+\pagebreak\thispagestyle{empty}\input{./00_pre/9abstract_en}
+
+\fancypagestyle{plain}{
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+\pagestyle{plain}
+
+\pagebreak
+
+%% ----- LISTS  
+
+%% LIST OF FIGURES
+\def\listfigurename{LISTA DE FIGURAS}\listoffigures
+
+%% LIST OF TABLES
+\def\listtablename{LISTA DE TABELAS}\listoftables
+
+%% LIST OF SYMBOLS {NOMENCLATURE}
+\input{./00_pre/10nomenclature.tex}  % optional
+%
+% Here goes a small tutorial to compile the nomenclature file correctly. You are encouraged to look at 
+% the package documentation (e.g., http://repositorios.cpai.unb.br/ctan/macros/latex/contrib/nomencl/nomencl.pdf) 
+% First of all, make sure you have the package 'nomencl' installed. If so, \usepackage{nomencl} should work fine.
+% Next, you should run the basic commands:
+% i)  run  'pdflatex' once to generate the index files;
+% ii) run the following command on terminal (or configure your IDE to do it): 
+%     'makeindex thesis.nlo -s nomencl.ist -o thesis.nls'
+%     ( or 'makeindex thesis.glo -s nomencl.ist -o thesis.gls', depending on your OS. Try this one if .nlo/.nls are unavailable.)
+% to build the index.
+% obs.: 'nomencl.ist' is the style file and it's not inside the running folder! You have to find it in your system. On Mac OS +
+% Tex Live, the standard location is like: "/usr/local/texlive/2013/texmf-dist/makeindex/nomencl/nomencl.ist". Thus, the 
+% previous command would be read as:
+%     'makeindex thesis.nlo -s /usr/local/texlive/2013/texmf-dist/makeindex/nomencl/nomencl.ist -o thesis.nls'
+% Then, 
+% iii) run 'pdflatex' again.
+% Afterwards, you should have the nomenclature compiled if all is OK. In case of problems, verify if you are calling the commands
+% to settle the nomenclature correctly; if you are appending the 'input' directives for the files where the nomenclatures are included;
+% if after calling 'makeindex', it outputs information about nomenclature entries found. 
+% That's all (about tex)! 
+
+
+%% ----------------------------------------------
+%%				   CONTENTS  
+%% ----------------------------------------------
+\def\contentsname{SUMÁRIO}\tableofcontents
+
+%% ----------------------------------------------
+%%				   CUSTOMISATION  
+%% ----------------------------------------------
+\fancypagestyle{plain}{
+\fancyhf{} % clear all header and footer fields
+\fancyhead[R]{\thepage}
+\setlength{\voffset}{-1cm}
+\setlength{\headsep}{1cm}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+\pagestyle{plain}
+
+\pagebreak
+%% -----  PEER-REVIEW STYLE  
+%\linenumbers % numbering lines here. Uncomment in the final version. 
+%\doublespacing % double spacing from here. Uncomment in the final version.
+
+%% ----- INTRODUCTION  (01)
+\addcontentsline{toc}{chapter}{\hspace{1.7cm}\bfseries INTRODUÇÃO}
+\input{./01_intro/intro.tex}
+
+%% ----- CHAPTERS  (02)
+\input{./02_chaps/review.tex}
+\input{./02_chaps/eqgov.tex}
+\input{./02_chaps/mef.tex}
+\input{./02_chaps/numerico.tex}
+\input{./02_chaps/validation.tex}
+\input{./02_chaps/solution.tex}
+
+%% ----- CONCLUSION  (03)
+\pagebreak
+\addcontentsline{toc}{chapter}{\hspace{1.7cm}\bfseries CONCLUSÃO}
+\input{./03_concl/concl.tex}
+
+%% ----- APPENDICES  (04) - optional
+%\pagebreak
+%\addcontentsline{toc}{chapter}{\hspace{1.7cm}\bfseries APPENDIX A - VITA}
+%\input{./04_app/vita.tex}
+
+%% ----- REFERENCES  
+\pagebreak
+\addcontentsline{toc}{chapter}{\hspace{1.7cm}\bfseries REFERÊNCIAS BIBLIOGRÁFICAS}
+\def\bibname{REFERÊNCIAS BIBLIOGRÁFICAS}
+
+%% ----- BIBTEX DATABASE
+\bibliographystyle{abnt-num}
+\bibliography{references}	 % bibtex entries or 
+%\bibliography{../../bib}	 % full path to bib database
+
+%% ----- APPENDICES  (04) - optional
+\pagebreak
+\addcontentsline{toc}{chapter}{\hspace{1.7cm}\bfseries APÊNDICE - PUBLICAÇÕES}
+\input{./04_app/app.tex}
+
+\end{document}
+%% -----END OF DOCUMENT
+

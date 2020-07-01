@@ -1,0 +1,240 @@
+Uma das grandes dificuldades da implementação da formulação corrente-vorticidade
+se encontra no algoritmo de solução e a implementação das condições de contorno
+da vorticidade. Resumidamente, o algoritmo de solução é:
+
+\vspace{0.5cm}
+% Define block styles
+\tikzstyle{block} = [rectangle, draw, 
+    text width=27em, text centered, rounded corners, fill=gray!45!, text=black!90!]
+\tikzstyle{line} = [draw, -latex']
+
+\begin{figure}[h!]
+\begin{center} 
+\begin{tikzpicture}[node distance = 1cm, auto]
+    % Place nodes
+    \node [block] (step1) {inicializar a vorticidade};
+    \node [block, below of=step1] (step2) {inicializar a função de corrente};
+    \node [block, below of=step2] (step3) {Calcular as condições de contorno da vorticidade};
+    \node [block, below of=step3] (step4) {Calcular a vorticidade};
+    \node [block, below of=step4] (step5) {Calcular a função de corrente};
+    \node [block, below of=step5] (step6) {Calcular a velocidade};
+    \node [block, below of=step6] (step7) {Calcular a concentração};
+    \node [draw=none, align=center] at (8.5,-4) {Repetir o procedimento \\ para o próximo passo \\ de tempo};
+    % Draw edges
+    \path [line] (step1) -- (step2);
+    \path [line] (step2) -- (step3);
+    \path [line] (step3) -- (step4);
+    \path [line] (step4) -- (step5);
+    \path [line] (step5) -- (step6);
+    \path [line] (step6) -- (step7);
+    \path [line,dashed] (step7) -- (6,-6) |- (step3);
+\end{tikzpicture}
+\end{center}
+\caption{Algoritmo de solução da formulação corrente-vorticidade com transporte de espécie química}
+\label{solution algorithm} 
+\end{figure}  
+
+
+\medskip
+Com o intuito de facilitar a implementação do mesmo em outra pesquisa,
+descreveremos cada passo do algoritmo detalhadamente. As equações estão
+em sua forma matricial:
+
+\begin{enumerate}
+ \item \textbf{Inicializar a vorticidade com a equação:}
+ \begin{equation}
+  Mw = G_{x}v - G_{y}u \notag
+ \end{equation}
+
+ \item \textbf{Inicializar a função de corrente com a equação:}
+  \begin{equation}
+  \Big[ K_{xx} + K_{yy} \Big] \psi = Mw \notag
+  \end{equation}
+  \textit{É necessário aplicar as condições de contorno de $\psi$ na matriz a esquerda da equação
+  zerando suas linhas e colunas e a contribuição das colunas dos índices de contorno 
+  no vetor a direita da equação, 
+  conforme explicado na seção \ref{tricond}.}
+
+
+ \item \textbf{Calcular as condições de contorno da vorticidade utilizando a equação:}
+ \begin{equation}
+  Mw = G_{x}v - G_{y}u \notag
+ \end{equation}
+ \textit{Após resolvermos esta equação, possuímos os valores de $w$ para todos
+ os nós do domínio, mas usaremos apenas os nós do contorno
+ para zerar as linhas e as colunas da matriz da equação da vorticidade 
+ e sua contribuição no lado direito. Deve-se garantir que a matriz LHS 
+ seja inicializada em sua forma original em cada passo de tempo. 
+ Para isso, é feito a cada passo de tempo:}
+
+\begin{verbatim}
+_____________________________________________________________________
+LHS_w = sps.lil_matrix.copy(M)/dt
+_____________________________________________________________________
+\end{verbatim}
+
+ \textit{O script para zerar as linhas e as colunas é
+ semelhante à aplicação da condição de Dirichlet
+ que foi explicado na seção \ref{tricond},
+ exceto à utilização do vetor auxiliar bc\_1 que
+ foi substituído pelo $w$ calculado na
+ equação $Mw = G_{x}v - G_{y}u$}
+
+\begin{verbatim}
+_____________________________________________________________________
+for mm in ibc:                   | loop sobre os nós do contorno de w
+ bc_dirichlet = LHS[:,mm]*w[mm]  | o vetor bc_1 é substituído por w
+ LHS[:,mm] = 0.0                     
+ LHS[mm,:] = 0.0                     
+ LHS[mm,mm] = 1.0                    
+ bc_dirichlet[mm] = w[mm]        | o vetor bc_1 é substituído por w
+_____________________________________________________________________
+\end{verbatim}
+
+ \item \textbf{Calcular a vorticidade pela equação:}
+  \begin{equation}
+  \begin{aligned}
+   \frac{M}{\Delta t} w^{n+1}
+   =  \frac{M}{\Delta t} w^{n}
+   - u \cdot G_x w^{n}
+   &- v \cdot G_y w^{n} 
+   - \frac{1}{\textit{Re}} \Big[ K_{xx} + K_{yy} \Big] w^{n}
+   \\
+   & - u
+   \frac{\Delta t}{2}
+   \big[
+   u K_{xx}
+   + v K_{yx}
+   \big]
+   w^{n} 
+   - v
+   \frac{\Delta t}{2}
+   \Big[
+   u K_{xy}
+   + v K_{yy}
+   \Big]
+   w^{n} \notag
+  \end{aligned}
+  \end{equation}
+  \textit{onde $w^{n}$ é a vorticidade calculada no passo de tempo anterior 
+  e $w^{n+1}$ é a vorticidade que será calculada no passo de tempo em análise. 
+  É necessário aplicar as condições de contorno de $w$ na matriz a esquerda da equação
+  zerando suas linhas e colunas e a contribuição das colunas dos índices de contorno 
+  no vetor a direita da equação,
+  como foi explicado no passo 3.}
+
+ \item \textbf{Calcular a função de corrente pela equação:}
+  \begin{equation}
+  \Big[ K_{xx} + K_{yy} \Big] \psi = Mw \notag
+  \end{equation}
+  \textit{É necessário aplicar as condições de contorno de $\psi$ na matriz a esquerda da equação
+  zerando suas linhas e colunas e a contribuição das colunas dos índices de contorno 
+  no vetor a direita da equação,
+  conforme explicado na seção \ref{tricond}.}
+
+
+ \item \textbf{Calcular a velocidade pela equação:}
+  \begin{align}
+   & Mu = G_{y}\psi  \notag \\
+   & Mv = -G_{x}\psi \notag
+  \end{align}
+  \textit{É necessário aplicar as condições de contorno de u e v em suas 
+  respectivas matrizes a esquerda de cada equação
+  zerando suas linhas e colunas e a contribuição das colunas dos índices de contorno 
+  no vetor a direita de cada equação,
+  conforme explicado na seção anterior.}
+
+
+ \item \textbf{Calcular a concentração pela equação:}
+  \begin{equation}
+  \begin{aligned}
+   \frac{M}{\Delta t} c^{n+1}
+   =  \frac{M}{\Delta t} c^{n}
+   - u \cdot G_x c^{n}
+   & - v \cdot G_y c^{n} 
+   - \frac{1}{\textit{ReSc}} \Big[ K_{xx} + K_{yy} \Big] c^{n}
+   \\
+   & - u
+   \frac{\Delta t}{2}
+   \big[
+   u K_{xx}
+   + v K_{yx}
+   \big]
+   c^{n} 
+   - v
+   \frac{\Delta t}{2}
+   \Big[
+   u K_{xy}
+   + v K_{yy}
+   \Big]
+   c^{n} \notag
+  \end{aligned}
+  \end{equation}
+  \textit{Onde $c^{n}$ é a concentração calculada no passo de tempo anterior 
+  e $c^{n+1}$ é a concentração que será calculada no passo de tempo em análise. 
+  É necessário aplicar as condições de contorno de c na matriz a esquerda da equação
+  zerando suas linhas e colunas e a contribuição das colunas dos índices de contorno 
+  no vetor a direita da equação,
+  conforme explicado na seção anterior.}
+
+
+ \item \textbf{Retornar ao passo 3 e repetir o procedimento para outro
+ passo de tempo.}
+\end{enumerate}
+
+\newpage
+\noindent
+Os passos 1 e 2 ficam fora do \textit{loop} do tempo, enquanto
+os passos de 3 a 7 encontram-se dentro do \textit{loop}.
+O procedimento para zerar as linhas e as colunas das matrizes globais
+pode ser feito antes do \textit{loop}, exceto para o caso
+da vorticidade em que a cada passo de tempo devemos zerar as linhas
+e as colunas das matrizes globais e atribuir a contribuição dessas colunas
+no vetor a direita da equação.
+
+\medskip
+\noindent
+A seguir será apresentado o \textit{script} usado na solução da equação da 
+vorticidade. A mesma ideia foi realizada para cada equação de governo,
+alterando apenas o vetor do lado direito e as contribuições das condições
+de contorno. Foi utilizado um método iterativo de solução para sistemas
+lineares conhecido como \textit{Gradientes Conjugados}.
+
+\begin{verbatim}
+_________________________________________________________________________
+ RHS = sps.lil_matrix.dot(np.copy(M)/dt,w)\ 
+     - np.multiply(vx,sps.lil_matrix.dot(Gx,w))\
+     - np.multiply(vy,sps.lil_matrix.dot(Gy,w))\
+     - (1.0/Re)*sps.lil_matrix((Kxx+Kyy),w)\
+     - (dt/2.0)*np.multiply(u,(np.multiply(u,sps.lil_matrix.dot(Kxx,w))\ 
+                             + np.multiply(v,sps.lil_matrix.dot(Kyx,w))))\
+     - (dt/2.0)*np.multiply(v,(np.multiply(u,sps.lil_matrix.dot(Kxy,w))\ 
+                             + np.multiply(v,sps.lil_matrix.dot(Kyy,w))))
+ 
+ RHS = RHS + (1/Re)*bc_neumann
+ RHS = np.multiply(RHS,bc_2)
+ RHS = RHS + bc_dirichlet
+ 
+ w = scipy.sparse.linalg.cg(LHS,RHS,w, maxiter=1.0e+05, tol=1.0e-05)
+ w = w[0].reshape((len(w[0]),1))
+__________________________________________________________________________
+\end{verbatim}
+
+\noindent
+Onde \textit{RHS} é o vetor do lado direito da equação e significa
+\textit{right hand side} e \textit{bc\_2} é um vetor auxiliar
+no qual garante que somente os nós sem condição de Dirichlet sejam
+resolvidos. Ele consiste em um vetor com dimensões \textit{np}
+onde possui o valor de 1 nos índices cujos nós não possuem
+condição de Dirichlet e o valor 0 nos índices restantes, isto é,
+os nós que possuem condição de Dirichlet. Vale ressaltar que o
+vetor \textit{bc\_2} é diferente para cada equação já que os
+contornos cuja condição é de Dirichlet variam de equação para equação,
+ou seja, o vetor \textit{bc\_2} da equação da vorticidade é
+diferente da equação de concentração. O primeiro bloco do \textit{script}
+acima consiste no lado direito da equação (\ref{final equation}).
+O segundo bloco refere-se a contribuição das condições de Neumann
+(para esta simulação é nula) e de Dirichlet, além da aplicação do vetor
+auxiliar \textit{bc\_2}. O terceiro bloco consiste na solução da
+equação pelo método iterativo dos \textit{Gradientes Conjugados}.
+

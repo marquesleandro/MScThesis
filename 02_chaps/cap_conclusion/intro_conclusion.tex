@@ -1,0 +1,63 @@
+Neste trabalho foi apresentado a equação Navier-Stokes
+utilizando a formulação corrente-vorticidade acoplada
+com a equação de transporte de espécie química numa abordagem
+do Método dos Elementos Finitos onde o esquema Taylor-Galerkin
+foi aplicado às equações de governo. Como a formulação corrente-vorticidade
+não apresenta o acoplamento entre a velocidade e pressão,
+podemos utilizar o elemento triangular linear sem restrição
+possibilitando assim uma facilidade na implementação do código
+númerico além das variáveis envolvidas serem escalares e não vetoriais
+como no caso das variáveis primitivas.
+
+\medskip
+O código numérico apresentou
+resultados satisfatórios comparados às soluções analíticas dos
+\textit{Escoamento de Couette}, \textit{Escoamento de Poiseuille}
+e \textit{Escoamento de Poiseuille em Meio Domínio} onde a condição
+de superfície livre escorregamento no eixo de simetria foi aplicada.
+Foi simulado, também, o escoamento numa cavidade com tampa móvel (\textit{lid-driven cavity flow})
+onde os resultados foram comparados com aqueles apresentados por \cite{ghia1982} e \cite{marchi2009}
+para vários números de Reynolds. 
+Por fim, foi apresentado a comparação
+entre os esquemas \textit{Galerkin} e \textit{Taylor-Galerkin} para um
+escoamento puramente convectivo de uma função parabólica onde foi
+possível observar a eficácia do esquema \textit{Taylor-Galerkin} 
+em comparação ao esquema \textit{Galerkin} para a redução das
+oscilações espúrias. Proporcionando, assim, a validação do código numérico
+para problemas bidimensionais em coordenadas cartesianas e submetido à condição de contorno de
+\textit{Dirichlet}.
+
+\medskip
+O objetivo desse trabalho é conhecer a dinâmica do escoamento
+sanguíneo em uma artéria coronária com aterosclerose e com 
+stent farmacológico implantado. Dessa forma, foi apresentado a simulação
+para quatro geometrias modeladas como bidimensionais e
+em coordenadas cartesianas. O perfil do campo de velocidade
+se mostrou diferente daquele apresentado por \cite{wang2017},
+onde as geometrias foram modeladas em coordenadas cilindricas,
+principalmente para as geometrias em que o stent farmacológico
+está presente. Tal desvio já era esperado porque, além de não usarmos
+as variáveis primitivas neste trabalho, as artérias foram modeladas
+como duas placas bidimensionais paralelas entre si e imóveis.
+Em um problema tridimensional, o perfil do campo de velocidade
+adquiria o formato matemático de uma calha e não um parabolóide
+como é encontrado nas coordenadas cilindricas. Portanto, embora
+o resultado qualitativo seja semelhante, o perfil do campo
+de velocidade e seus respectivos valores são diferentes.
+
+\medskip
+\noindent
+Para trabalhos futuros, destacamos três desenvolvimentos:
+
+\begin{itemize}
+ \item Utilização das variáveis primitivas na equação Navier-Stokes
+       e seu desenvolvimento em coordenadas cilindricas
+
+ \item Utilização do esquema \textit{Semi-Lagrangeano} para as derivadas materiais
+       em substituição do esquema \textit{Taylor-Galerkin} com os termos de segunda ordem
+       para a redução das oscilações espúrias  
+
+ \item Simular a transferência de espécie química na parede da artéria modelando
+       a mesma como um meio poroso e aplicando, assim, a \textit{Lei de Darcy}
+\end{itemize}
+

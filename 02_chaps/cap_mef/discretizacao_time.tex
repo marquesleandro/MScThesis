@@ -1,0 +1,407 @@
+Nesta seção discretizaremos as equações de governo no tempo,
+através da expansão em série de Taylor para a variável em questão 
+a fim de aproximar a derivada temporal. Com o intuito de simplificação,
+apresentaremos a discretização da equação da vorticidade.
+Um procedimento semelhante poderá ser feito para a equação de transporte de espécie química (Eq. \ref{especie quimica}).
+Sendo assim, expandindo os termos da equação da vorticidade (Eq. \ref{vorticidade}), temos:
+
+\begin{equation}
+ \frac{\partial w}{\partial t} 
+ + u\frac{\partial w}{\partial x}
+ + v\frac{\partial w}{\partial y} 
+ = \frac{1}{Re} \frac{\partial^{2} w}{\partial x^{2}}
+ + \frac{1}{Re} \frac{\partial^{2} w}{\partial y^{2}}
+\end{equation}
+
+\medskip
+\noindent
+isto é:
+
+\begin{equation} \label{vorticity expanded}
+ \frac{\partial w}{\partial t} 
+ = - u\frac{\partial w}{\partial x}
+ - v\frac{\partial w}{\partial y} 
+ + \frac{1}{Re} \frac{\partial^{2} w}{\partial x^{2}}
+ + \frac{1}{Re} \frac{\partial^{2} w}{\partial y^{2}}
+\end{equation}
+
+\noindent
+Multiplicando ambos os lado por $\partial /\partial t$, temos:
+
+\begin{equation} \label{vorticity expanded with dt}
+ \frac{\partial }{\partial t}
+ \Bigg[ 
+ \frac{\partial w}{\partial t} 
+ \Bigg]
+ = 
+ \frac{\partial }{\partial t}
+ \Bigg[ 
+ - u \frac{\partial w}{\partial x}
+ - v \frac{\partial w}{\partial y}
+ + \frac{1}{Re} \frac{\partial^2 w}{\partial x^2} 
+ + \frac{1}{Re} \frac{\partial^2 w}{\partial y^2} 
+ \Bigg]
+\end{equation}
+
+
+\noindent
+Desta forma, considerando a expansão de Taylor:
+\begin{equation}
+ w^{n+1} = \sum\limits_{k=0}^{\infty} 
+           \frac{\partial^k w^{n}}{\partial t^k} \frac{\Delta t^k}{k!}
+\end{equation}
+
+\medskip
+\noindent
+Desenvolvendo a série, temos:
+
+\begin{equation}
+ w^{n+1} = w^{n} 
+         + \frac{\partial w^{n}}{\partial t} \frac{\Delta t}{1!} 
+         + \frac{\partial^2 w^{n}}{\partial t^2} \frac{\Delta t^2}{2!}
+         + \frac{\partial^3 w^{n}}{\partial t^3} \frac{\Delta t^3}{3!}
+         + ...
+\end{equation}
+
+\medskip
+\noindent
+Caso os termos de ordem superior a dois forem omitidos, a equação fica 
+da forma:
+
+\begin{equation} \label{erro nao omitido}
+ w^{n+1} = w^{n} 
+         + \frac{\partial w^{n}}{\partial t}\Delta t 
+         + \frac{\partial^2 w^{n}}{\partial t^2} \frac{\Delta t^2}{2}
+         + O(\Delta t^3)
+\end{equation}
+
+\noindent
+onde \textit{O($\Delta t^3$)} é o erro devido o truncamento da série.
+Graficamente, esta aproximação pode ser representada como apresentado
+na \ref{erro vorticidade}, a seguir:
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=4]
+ \draw [->,thick] (0,0)--(0,1.5) node[left] {$w$};
+ \draw [->,thick] (0,0)--(2,0) node[below] {$t$};
+
+ \draw (0.4,0.47) to [bend left=0] (0.5,0.5);
+ \draw (0.5,0.5) to [bend left=10] (1.5,0.7);
+ \draw (1.5,0.7) to [bend left=0] (1.6,0.71);
+ 
+ \draw[dashed] (0.5,0.5) to [bend left=4] (1.5,0.7);
+ 
+ \draw[dotted] (0.5,0.5) to [bend left=0] (0.5,0);
+ \draw[dotted] (1.5,0.7) to [bend left=0] (1.5,0);
+ 
+ \draw (0.5,-0.01) to (0.5,-0.2);
+ \draw (1.5,-0.01) to (1.5,-0.2);
+ \draw [<->,thick] (0.5,-0.1)--(1.5,-0.1);
+ \node [draw=none] at (1,-0.2) {$\Delta t$};
+ 
+ \draw[dotted] (0.5,0.5) to [bend left=0] (0,0.5) node[left]{$w^{n}$};
+ \draw[dotted] (1.5,0.7) to [bend left=0] (0,0.7) node[left]{$w^{n+1}$};
+
+ \draw [->,thick] (0.8,0.9)--(0.9,0.65);
+ \node [draw=none] at (0.8,1) {$exata$};
+ \draw [->,thick] (1,0.35)--(0.95,0.57);
+ \node [draw=none] at (1.2,0.3) {$aproximada$};
+\end{tikzpicture}
+\end{center}
+\caption{Variação da vorticidade em um passo de tempo}
+\label{erro vorticidade}
+\end{figure}
+
+\noindent
+Omitindo o erro do truncamento, a derivada temporal (Eq. \ref{erro nao omitido}) pode ser aproximada a:
+
+\begin{equation}
+ w^{n+1} = w^{n} 
+         + \frac{\partial w^{n}}{\partial t}\Delta t 
+         + \frac{\partial^2 w^{n}}{\partial t^2} \frac{\Delta t^2}{2}
+\end{equation}
+
+
+\noindent
+onde $w^{n+1}$ é a vorticidade que será calculada
+e $w^{n}$ é a vorticidade que foi calculada no passo de tempo anterior.
+Substituindo a equação da vorticidade (Eq. \ref{vorticity expanded})
+e a equação da vorticidade multiplicada pela derivada temporal
+(Eq. \ref{vorticity expanded with dt}) na aproximação feita acima, temos:
+
+\begin{equation}
+\begin{aligned}
+ w^{n+1} = w^{n} 
+         + \Delta t 
+         \Bigg[
+         - & u \frac{\partial w^{n}}{\partial x}
+         - v \frac{\partial w^{n}}{\partial y}
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+         \\[5pt]
+         & + \frac{\Delta t^2}{2}
+         \Bigg[
+         \frac{\partial }{\partial t}
+         \Bigg[ 
+         - u \frac{\partial w^{n}}{\partial x}
+         - v \frac{\partial w^{n}}{\partial y}
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+         \Bigg]
+\end{aligned}
+\end{equation}
+
+\noindent
+Assumindo que \textit{u} e \textit{v} são constantes, temos:
+
+\begin{equation}
+\begin{aligned}
+ w^{n+1} = w^{n} 
+         + \Delta t &
+           \Bigg[
+         - u \frac{\partial w^{n}}{\partial x}
+         - v \frac{\partial w^{n}}{\partial y}
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+         \\[5pt]
+         & + \frac{\Delta t^2}{2}
+         \Bigg[
+         - u
+         \frac{\partial }{\partial t}
+         \frac{\partial w^{n}}{\partial x}
+         - v
+         \frac{\partial }{\partial t}
+         \frac{\partial w^{n}}{\partial y}
+         + \frac{1}{Re} \frac{\partial }{\partial t}
+         \frac{\partial^2 w^{n}}{\partial x^2} 
+         + \frac{1}{Re} \frac{\partial }{\partial t}
+         \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+\end{aligned}
+\end{equation}
+
+\noindent
+Invertendo as ordens de derivação do último termo, encontramos:
+
+\begin{equation}
+\begin{aligned}
+ w^{n+1} = w^{n} 
+         & + \Delta t 
+         \Bigg[
+         - u \frac{\partial w^{n}}{\partial x}
+         - v \frac{\partial w^{n}}{\partial x}
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+         \\[5pt]
+         & + \frac{\Delta t^2}{2}
+         \Bigg[
+         - u
+         \frac{\partial }{\partial x}
+         \frac{\partial w^{n}}{\partial t}
+         - v
+         \frac{\partial }{\partial y}
+         \frac{\partial w^{n}}{\partial t}
+         + \frac{1}{Re} \frac{\partial^2 }{\partial x^2}
+         \frac{\partial w^{n}}{\partial t} 
+         + \frac{1}{Re} \frac{\partial^2 }{\partial y^2}
+         \frac{\partial w^{n}}{\partial t} 
+         \Bigg]
+\end{aligned}
+\end{equation}
+
+\noindent
+Substituindo os termo $\partial w/ \partial t$ pela equação
+de vorticidade (Eq. \ref{vorticity expanded}), temos:
+
+\begin{equation}
+\begin{aligned}
+ w^{n+1} = w^{n} 
+         + \Delta t 
+         \Bigg[
+         & - u \frac{\partial w^{n}}{\partial x}
+         - v \frac{\partial w^{n}}{\partial x}
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+         \\[5pt]
+         + \frac{\Delta t^2}{2}
+         \Bigg[
+         & - u
+         \frac{\partial }{\partial x}
+         \Bigg[
+          - u \frac{\partial w^{n}}{\partial x}
+          - v \frac{\partial w^{n}}{\partial y}
+          + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+          + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+         \\[5pt]
+         & - v
+         \frac{\partial }{\partial y}
+         \Bigg[
+          - u \frac{\partial w^{n}}{\partial x}
+          - v \frac{\partial w^{n}}{\partial y}
+          + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+          + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+         \\[5pt]
+         & + \frac{\partial^2 }{\partial x^2}
+         \Bigg[
+          - u \frac{\partial w^{n}}{\partial x}
+          - v \frac{\partial w^{n}}{\partial y}
+          + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+          + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+         \\[5pt]
+         & + \frac{\partial^2 }{\partial y^2}
+         \Bigg[
+          - u \frac{\partial w^{n}}{\partial x}
+          - v \frac{\partial w^{n}}{\partial y}
+          + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+          + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+         \Bigg]
+\end{aligned}
+\end{equation}
+
+\medskip
+\noindent
+Truncando os termos de ordem superior a dois, obtemos:
+
+\begin{equation}
+\begin{aligned}
+ w^{n+1} & = w^{n} 
+          + \Delta t 
+         \Bigg[
+         - u \frac{\partial w^{n}}{\partial x}
+         - v \frac{\partial w^{n}}{\partial x}
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+         \\[5pt]
+         & + \frac{\Delta t^2}{2}
+         \Bigg[
+         - u
+         \frac{\partial }{\partial x}
+         \Bigg[
+          - u \frac{\partial w^{n}}{\partial x}
+          - v \frac{\partial w^{n}}{\partial y}
+         \Bigg]
+          - v
+         \frac{\partial }{\partial y}
+         \Bigg[
+          - u \frac{\partial w^{n}}{\partial x}
+          - v \frac{\partial w^{n}}{\partial y}
+         \Bigg]
+         \Bigg]
+         + O(\Delta t^3)
+\end{aligned}
+\end{equation}
+
+\medskip
+\noindent
+Omitindo novamente o erro de truncamento, possuímos
+a seguinte equação:
+
+\begin{equation}
+\begin{aligned}
+ w^{n+1} = w^{n} 
+         & + \Delta t 
+         \Bigg[
+         - u \frac{\partial w^{n}}{\partial x}
+         - v \frac{\partial w^{n}}{\partial x}
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+         + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+         \Bigg]
+         \\[5pt]
+         & + \frac{\Delta t^2}{2}
+         \Bigg[
+         - u
+         \frac{\partial }{\partial x}
+         \Bigg[
+          - u \frac{\partial w^{n}}{\partial x}
+          - v \frac{\partial w^{n}}{\partial y}
+         \Bigg]
+          - v
+         \frac{\partial }{\partial y}
+         \Bigg[
+          - u \frac{\partial w^{n}}{\partial x}
+          - v \frac{\partial w^{n}}{\partial y}
+         \Bigg]
+         \Bigg]
+\end{aligned}
+\end{equation}
+
+\noindent
+isto é:
+
+\begin{equation}
+\begin{aligned}
+ \Bigg[
+ \frac{w^{n+1} - w^{n}}{\Delta t}
+ \Bigg]
+ + u \frac{\partial w^{n}}{\partial x}
+ & + v \frac{\partial w^{n}}{\partial y}
+ = \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial x^2} 
+ + \frac{1}{Re} \frac{\partial^2 w^{n}}{\partial y^2} 
+ \\[5pt]
+ & + \frac{\Delta t}{2} u \frac{\partial }{\partial x}
+ \Bigg[
+   u \frac{\partial w^{n}}{\partial x}
+ + v \frac{\partial w^{n}}{\partial y}
+ \Bigg]
+ + \frac{\Delta t}{2} v \frac{\partial }{\partial y}
+ \Bigg[
+   u \frac{\partial w^{n}}{\partial x}
+ + v \frac{\partial w^{n}}{\partial y}
+ \Bigg]
+\end{aligned}
+\end{equation}
+
+\medskip
+\noindent
+Os dois últimos termos da equação acima são conhecidos como
+difusão artificial ou difusão numérica e são eles que atuam
+para a redução das oscilações espúrias que aparecem para 
+Reynolds moderados ou elevados.
+Outros esquemas são conhecidos na literatura para eliminar essas
+oscilações espúrias tais como \textit{Petrov-Galerkin} para
+equações em 1D e \textit{Streamline Upwind Petrov-Galerkin} (SUPG)
+para equações em 2D ambos em problemas permanentes. Nesses
+esquemas, as funções bases são modificadas para obter um efeito
+\textit{upwind}. Para problemas transientes, além do 
+\textit{Taylor-Galerkin} temos: \textit{Semi-Lagrangiano} e
+\textit{Galerkin Característico}. 
+Os esquemas \textit{Taylor-Galerkin} e 
+\textit{Galerkin Característico} possuem o mesmo resultado 
+quando a variável é escalar como apresentado por Lohner, Morgan e Zienkiewicz (1984) \cite{lohner1984}. 
+
+\medskip
+\noindent
+Na forma vetorial, as equações de governo discretizadas no tempo
+possuem a forma:
+
+\begin{align}
+& \overset{.}{w} + \textbf{v}.\nabla w = \frac{1}{Re} \nabla^2 w 
+ + \frac{\Delta t}{2} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla w \big] \label{vorticity taylor-galerkin} \\[10pt]
+& \nabla^2 \psi = - w \\[10pt]
+& \textbf{v} = \textbf{D}\psi \\[10pt]
+& \overset{.}{c} + \textbf{v}.\nabla c = \frac{1}{ReSc} \nabla^2 c
+ + \frac{\Delta t}{2} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla c \big] \label{concentration taylor-galerkin}
+\end{align}
+
+\noindent
+onde $\overset{.}{w}$ e
+$\overset{.}{c}$ são 
+$\big[ w^{n+1}-w^{n} \big] /\Delta t$ e
+$\big[ c^{n+1}-c^{n} \big] /\Delta t$ respectivamente,
+\textbf{v} é o vetor velocidade cujas componentes são
+$ \textbf{v} = [u,v]$
+e \textbf{D} é um operador diferencial com componentes
+$ \textbf{D} = [\partial/\partial y, -\partial/\partial x]$.
+
+\newpage

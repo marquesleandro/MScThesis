@@ -1,0 +1,47 @@
+O domínio consiste em uma malha não estruturada
+gerada pelo software livre \textit{GMSH} proposto por Geuzaine e Remacle (2009) \cite{gmsh} e foi importada
+à simulação pela classe \textit{TriMesh}.
+Inicialmente transformamos o arquivo \textit{.msh}
+em uma lista \textit{Python} pelo script abaixo:
+
+\begin{verbatim}
+__________________________________________________________________________
+malha = []                             | inicialização da lista Python
+with open("arquivo.msh") as mesh:       
+ for line in mesh:                     | loop sobre as linhas do arquivo
+  row = line.split()                   
+  malha.append(row[:])                 | adicionando a linha
+                                       | do arquivo na lista Python
+__________________________________________________________________________
+\end{verbatim}
+
+
+Em seguida, esta classe retorna informações
+importantes para a simulação tais como: 
+\textit{o número de nós do domínio} (\textbf{np}),
+\textit{o número de elementos do domínio} (\textbf{ne}),
+\textit{os vetores de coordenadas} (\textbf{x} e \textbf{y}), 
+\textit{a matriz de conectividade} (\textbf{IEN}) e 
+\textit{os nós contidos no contorno do domínio}.
+A \ref{tempo malha} apresenta o tempo de processamento para a 
+importação da malha em diversas
+malhas triangulares lineares não estruturadas.
+
+\vspace{0.5cm}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\textbf{N. Nós} & \textbf{N. Elementos} & \textbf{Tempo de Processamento} (s) \\
+\midrule
+10482 & 20142 & 0,6 \\
+40819 & 80005 & 2,6 \\
+249677 & 495289 & 16,6 \\
+993091 & 2010501 & 70,4 \\
+\bottomrule
+\end{tabular}
+\caption{Tempo de importação para diversas malhas triangulares não estruturadas}
+\label{tempo malha}
+\end{table}
+
+\newpage

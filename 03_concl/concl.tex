@@ -1,0 +1,83 @@
+\clearpage
+\noindent\textbf{CONCLUSÃO}
+$\!$\\
+
+Neste trabalho foi apresentado a equação de Navier-Stokes
+utilizando a formulação corrente-vorticidade
+com a equação de transporte de espécie química em uma abordagem
+do Método dos Elementos Finitos em que o esquema Taylor-Galerkin
+foi aplicado às equações de governo. Como a formulação corrente-vorticidade
+não apresenta o acoplamento entre a velocidade e pressão,
+podemos utilizar o elemento triangular linear sem restrição
+possibilitando assim uma facilidade na implementação do código
+númerico além das variáveis envolvidas serem escalares e não vetoriais
+como no caso das variáveis primitivas.
+
+\medskip
+Foi construído um código completo em linguagem de programação de alto nível 
+usando o paradigma de orientação de objetos e a partir do presente momento,
+possuímos uma plataforma de estudos de problemas de escoamento de fármacos
+em artérias. O simulador é capaz também de descrever em detalhes problemas
+envolvendo escoamento de fluidos newtonianos com transporte de natureza
+escalar (como na concentração e na temperatura) devido a construção 
+generalizada do código.
+
+\medskip
+O código numérico apresentou
+resultados satisfatórios comparados às soluções analíticas dos
+\textit{Escoamento de Couette}, \textit{Escoamento de Poiseuille}
+e \textit{Escoamento de Poiseuille em Meio Domínio} onde a condição
+de superfície livre escorregamento no eixo de simetria foi aplicada.
+Foi simulado, também, o escoamento em uma cavidade com tampa móvel (\textit{lid-driven cavity flow})
+onde os resultados foram comparados com aqueles apresentados por Ghia et al. (1982) \cite{ghia1982} e Marchi et al. (2009) \cite{marchi2009}
+para vários números de Reynolds.
+Por fim, foi apresentado a comparação
+entre os esquemas \textit{Galerkin} e \textit{Taylor-Galerkin} para um
+escoamento puramente convectivo de uma função parabólica onde foi
+possível observar a eficácia do esquema \textit{Taylor-Galerkin}
+em comparação ao esquema \textit{Galerkin} para a redução das
+oscilações espúrias. 
+Dessa forma, a validação do código numérico foi realizada
+para problemas convectivos-difusivos bidimensionais em coordenadas cartesianas e submetido à condição de contorno de
+\textit{Dirichlet}.
+
+\medskip
+O objetivo desse trabalho era conhecer a dinâmica do escoamento
+sanguíneo em uma artéria coronária com aterosclerose e com 
+stent farmacológico implantado. Dessa forma, foi apresentado a simulação
+para quatro geometrias modeladas como bidimensionais e
+em coordenadas cartesianas. 
+Foi apresentado o perfil do campo de velocidade para as quatro geometrias propostas onde foi
+possível observar o aumento da velocidade máxima quando o stent
+farmacológico estava implantado.  
+A simulação foi feita utilizando diversos números de \textit{Schmidt},
+tais como $Sc = 1$ e $10$. Foi possível verificar na simulação que o número de
+\textit{Schmidt} influencia diretamente no transporte do fármaco
+na corrente sanguínea. Para elevados valores do número de \textit{Schmidt},
+o transporte de espécie química torna-se puramente convectivo
+e sua influência na parede da artéria deve ser verificada.
+
+\vspace{0.7cm}
+\noindent
+Para trabalhos futuros, destacamos quatro desenvolvimentos:
+
+\begin{itemize}
+ \vspace{-0.3cm}
+ \item Utilização do esquema \textit{Semi-Lagrangeano} para as derivadas materiais
+       em substituição do esquema \textit{Taylor-Galerkin}
+       para a redução das oscilações espúrias  
+
+ \item Utilização das variáveis primitivas na equação de Navier-Stokes em uma abordagem 3D
+ 
+ \item Modelar o escoamento sanguíneo como um problema multifásico
+
+ \item Simular a transferência de espécie química na parede da artéria acoplado ao escoamento no lúmen.
+\end{itemize}
+
+
+
+
+
+
+
+
