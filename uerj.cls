@@ -266,7 +266,7 @@
 {\@arabic\c@equation}
 
 \newcounter{figure}% numeracao sequencial das figuras
-\def\figurename{Figura}
+\def\figurename{Figure}
 \renewcommand \thefigure{\figurename\space\@arabic\c@figure}% hifen apos numero da figura
 
 \def\fps@figure{tbp}
@@ -278,7 +278,7 @@
 \newenvironment{figure*}{\@dblfloat{figure}}{\end@dblfloat}
 
 \newcounter{table}% numeracao sequencial das tabelas
-\def\tablename{Tabela}
+\def\tablename{Table}
 \renewcommand \thetable{\tablename\space\@arabic\c@table} % hifen apos numero da tabela
 
 \def\fps@table{tbp}
