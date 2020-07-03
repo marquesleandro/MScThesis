@@ -1,11 +1,11 @@
-A equação de Navier-Stokes possui um forte
-acoplamento entre o campo de pressão e o 
-campo das velocidades. Este acoplamento
-dificulta a implementação desta equação computacionalmente.
-O desacoplamento da pressão e 
-da velocidade é possível ao utilizar a \textit{formulação corrente-vorticidade}.
-Para isso, substituiremos na equação \ref{navier-stokes adimensional} a
-seguinte identidade vetorial:
+The Navier-Stokes equation has a strong coupling between
+ the pressure field and the velocity field.
+ This coupling makes it difficult to implement this
+ equation computationally. The Decoupling of pressure
+ and velocity fields is possible by using the
+ \textit{Vorticity-Streamfunction Formulation}.
+ For this, we will replace in the equation
+ \ref{navier-stokes adimensional} the following vector identity:
 
 \begin{equation}
  \textbf{v} \cdot \nabla \textbf{v}
@@ -17,7 +17,7 @@ seguinte identidade vetorial:
 
 \medskip
 \noindent
-Logo:
+Therefore:
 
 \begin{equation}
  \frac{\partial \textbf{v}}{\partial t} 
@@ -36,7 +36,7 @@ Logo:
 
 \medskip
 \noindent
-Operando o rotacional em ambos os lados na equação acima:
+Computing the curl on both sides of the above equation:
 
 \begin{equation}
  \nabla \times \frac{\partial \textbf{v}}{\partial t} 
@@ -55,7 +55,7 @@ Operando o rotacional em ambos os lados na equação acima:
 
 \medskip
 \noindent
-isto é:
+that is:
 
 \begin{equation}
  \frac{\partial}{\partial t} \big[ \nabla \times \textbf{v} \big]
@@ -73,11 +73,10 @@ isto é:
 \end{equation}
 
 \medskip
-Os termos que contêm o operador gradiente se anulam, 
-já que o rotacional do gradiente de um escalar
-é zero. O último termo também se anula pois as
-derivadas de uma constante, como no caso de \textbf{g},
-são iguais a zero. Dessa forma, temos:
+The terms that contain the gradient operator cancel
+ each other out, since the curl of gradient of a scalar is zero.
+ The last term is also null because the derivatives of a constant,
+ as in the case of \textbf{g}, are equal to zero. Thus, we have:
 
 \begin{equation}
  \frac{\partial}{\partial t} \big[ \nabla \times \textbf{v} \big]
@@ -88,9 +87,9 @@ são iguais a zero. Dessa forma, temos:
 \end{equation}
 
 \medskip
-O vetor $\nabla \times \textbf{v}$ é conhecido
-como \textit{vorticidade} ($w$).
-Assim a equação pode ser representada como:
+The vector $\nabla \times \textbf{v}$ is known as
+\textit{vorticity} ($w$).
+Therby, the equation can be represented by:
 
 \begin{equation} \label{vort 1}
  \frac{\partial w}{\partial t}
@@ -101,8 +100,9 @@ Assim a equação pode ser representada como:
 \end{equation}
 
 \medskip
-O segundo termo do lado esquerdo da Eq. \ref{vort 1}
-pode ser substituido pela seguinte identidade vetorial:
+The second term of left side in 
+Eq. \ref{vort 1}
+can be replaced by following vectorial identity:
 
 
 \begin{equation}
@@ -116,7 +116,7 @@ pode ser substituido pela seguinte identidade vetorial:
 
 \medskip
 \noindent
-Sendo assim a Eq. \ref{vort 1} se transforma:
+Thus the Eq. \ref{vort 1} will be:
 
 \begin{equation} \label{vort 2}
  \frac{\partial w}{\partial t}
@@ -129,9 +129,11 @@ Sendo assim a Eq. \ref{vort 1} se transforma:
 \end{equation}
 
 \medskip
-Para escoamentos bidimensionais, como no caso deste trabalho, a vorticidade é perpendicular
-ao vetor velocidade. Sendo assim, o produto $w \cdot \nabla \textbf{v}$
-se anulará como apresentado por Pontes e Mangiavacchi (2016) \cite{pontes2016}. Portanto:
+For two-dimensional flows, as in the case of this work,
+ the vorticity is perpendicular to the velocity vector.
+ Thus, the product $w \cdot \nabla \textbf{v}$ will be canceled
+ as presented by Pontes and Mangiavacchi (2016) \cite{pontes2016}.
+ Therefore:
 
 \begin{equation} \label{equacao vorticidade}
  \frac{\partial w}{\partial t}
@@ -142,19 +144,16 @@ se anulará como apresentado por Pontes e Mangiavacchi (2016) \cite{pontes2016}.
 \end{equation}
 
 \medskip
-A Eq. \ref{equacao vorticidade} é conhecida como
-\textit{equação da vorticidade} para escoamentos
-bidimensionais de um fluido newtoniano
-e incompressível. Para um escoamento permanente e bidimensional
-de um fluido incompressível,
-a velocidade pode ser calculada a partir da vazão volumétrica.
-Desta forma, a velocidade é substituida por um escalar.
-Tal escalar é conhecido como \textit{função de corrente}
-($\psi$). 
-A relação entre as componentes da velocidade e
-a função de corrente é apresentado
-expandindo a equação da continuidade
-(Eq. \ref{incompressible continuity equation}):
+The Eq. \ref{equacao vorticidade} is known as
+ \textit{vorticity equation} for two-dimensional flows of
+ a Newtonian and incompressible fluid. For a steady and 
+ two-dimensional flow of incompressible fluid,
+ the velocity can be calculated from the volumetric flux.
+ Thereby, the velocity is replaced by a scalar.
+ Such a scalar is known as \textit{streamfunction} ($\psi$).
+ The relationship between the velocity components and
+ the streamfunction is presented by expanding the
+ continuity equation (Eq. \ref{incompressible continuity equation}):
 
 \begin{equation} \label{cor 1}
  \frac{\partial u}{\partial x}
@@ -165,9 +164,10 @@ expandindo a equação da continuidade
 \end{equation}
  
 \medskip
-A seguinte relação entre a função de corrente
-e as componentes da velocidade pode ser definida
-de modo que a Eq. \ref{cor 1} seja satisfeita:
+The following relationship between the streamfunction and
+ the velocity components can be defined so that
+ Eq. \ref{cor 1} is satisfied:
+
 
 \begin{equation} \label{cor 2}
 \begin{aligned}
@@ -178,10 +178,11 @@ de modo que a Eq. \ref{cor 1} seja satisfeita:
 \end{equation}
 
 \medskip
-A relação entre a função de corrente
-e a vorticidade é apresentada expandindo
-a operação $\nabla \times \textbf{v}$
-para o caso bidimensional:
+The relationship between streamfunction
+and vorticity is shown expanding the
+$\nabla \times \textbf{v}$ operation
+for the two-dimensional case:
+
 
 \begin{equation} \label{cor 3}
  \nabla \times \textbf{v}
@@ -193,8 +194,9 @@ para o caso bidimensional:
 
 \medskip
 \noindent
-Substituindo a Eq. \ref{cor 2} na Eq. \ref{cor 3},
-temos:
+Replacing the 
+Eq. \ref{cor 2} in Eq. \ref{cor 3},
+we that:
 
 \begin{equation}
  w
@@ -207,7 +209,7 @@ temos:
 
 \medskip
 \noindent
-isto é:
+that is:
 
 \begin{equation}
  w
@@ -217,9 +219,9 @@ isto é:
 \end{equation}
 
 \medskip
-Dessa forma, as equações que governam o problema proposto
-em sua forma adimensional e com a formulação corrente-vorticidade são apresentadas
-abaixo:
+Therefore, the equations that govern the proposed problem
+in its non-dimensional form and vorticity-streamfunction formulation
+are shown below:
 
 \begin{align}
 & \frac{\partial w}{\partial t}
@@ -242,8 +244,8 @@ abaixo:
 
 \medskip
 \noindent
-onde \textbf{D} é um operador diferencial
-cujas componentes são $\big[
+where \textbf{D} is a differential operator
+whose components are $\big[
 \partial / \partial y,
 - \partial / \partial x \big]$. 
 
