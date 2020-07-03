@@ -1,88 +1,111 @@
-A base matemática para o Método dos Elementos Finitos tem início em 1909 com
-Ritz em que um problema contínuo é substituído por um problema discreto
-com número finito de graus de liberdade onde as variáveis do problema eram aproximadas
-pelo produto entre as constantes a serem determinadas e as funções bases escolhidas de modo 
-a garantir a precisão do resultado.
-Tal procedimento fica conhecido como \textit{formulação variacional}.
-Anos mais tarde, Galerkin utiliza o Método do Resíduo Ponderado na determinação
-das constantes da formulação variacional onde as mesmas funções bases foram utilizadas
-nas funções peso. Este procedimento fica conhecido como \textit{Formulação de Galerkin}
-e é largamente utilizado até hoje.
+The mathematical basis for the Finite Element Method begins in 1909
+ with Ritz in which a continuous problem is replaced by 
+a discrete problem with a finite number of degrees of freedom
+ where the unknowns were approximated by the product between
+ the constants to be determined and the base functions chosen
+ in order to guarantee the accuracy of the result.
+ This procedure is known as \textit{variational formulation}.
+ Years later, Galerkin uses the Weighted Residual Method
+ to determine the constants of the variational formulation
+ where the same base functions were used in the weight functions.
+ This procedure is known as \textit{Galerkin's formulation} and
+ is widely used nowadays.
 
 \medskip
-Durante a década de 40, Courant (1943) \cite{courant1943} aplica a formulação variacional em um domínio discretizado
-por elementos triangulares. Em 1965, Zienkicwicz e Cheung \cite{zienkiewicz1965} apresentam
-que o Método do Resíduo Ponderado possui uma boa aproximação da solução e 
-o Método dos Elementos Finitos foi formalizado 
-para resolver diversos problemas. A abordagem matemática proposta é frequentemente utilizada nos dias atuais.
+During the 1940s, Courant (1943) \cite{courant1943} applied
+ variational formulation to a domain discretized by triangular elements.
+ In 1965, Zienkicwicz and Cheung \cite{zienkiewicz1965}
+ show that the Weighted Residual Method has a good approximation
+ of the solution and the Finite Element Method was formalized
+ to solve several problems. The proposed mathematical approach
+ is often used today.
 
 \medskip
-O Método dos Elementos Finitos se tornou uma ferramenta bastante eficaz na solução de diversos problemas e
-foi largamente utilizado em problemas da mecânica dos sólidos. Na mecânica dos fluidos, porém, seu uso só se tornou
-possível mais adiante devido às oscilações espúrias que surgiam quando o termo convectivo era superior ao termo
-difusivo. Tais oscilações estão presentes não apenas no Método dos Elementos Finitos mas
-foram observadas também no Método das Diferenças Finitas por Spalding em 1972 \cite{spalding1972}
-onde é apresentado que o efeito \textit{upwind} ajudava na redução dessas oscilações.  
+The Finite Element Method has become a very effective tool
+ in the solution of several problems and it has been widely
+ used in problems of the solids mechanics.
+ In fluid mechanics, however, its use became possible only
+ later due to the spurious oscillations that it can be seen
+ when the convective term is superior to the diffusive term.
+ Such oscillations are present not only in the Finite Element Method
+ but were also observed in the Finite Difference Method by
+ Spalding in 1972 \cite{spalding1972} where it is shown that
+ the \textit{upwind} effect helped to reduce these oscillations.
 
 \medskip
-Em 1976, Christie et al. \cite{christie1976} modificam as funções peso para funções assimétricas ou quadráticas 
-para contornar as oscilações espúrias
-em problemas unidimensionais do tipo difusão-convecção. Tais modificações produziam um efeito 
-\textit{upwind} na solução. 
-Este procedimento ficou conhecido como \textit{Formulação Petrov-Galerkin}. 
-No ano seguinte, Heinrich, Huyakorn e Zienkiewicz \cite{heinrich1977} generalizam o esquema para um problema bidimensional.
-As matrizes globais, porém, passaram a ser assimétricas diferentemente daquelas apresentadas
-no esquema Galerkin.
+In 1976, Christie et al. \cite{christie1976} modify weight
+ functions for asymmetric or quadratic functions to reduce
+ spurious oscillations in one-dimensional diffusion-convection problems.
+ Such modifications produced a \textit{upwind} effect on the solution.
+ This procedure became known as \textit{Petrov Galerkin Formulation}.
+ In the following year, Heinrich, Huyakorn and Zienkiewicz
+ \cite{heinrich1977} generalize the scheme to a two-dimensional problem.
+ The global matrices, however, became asymmetrical differently
+ from those presented in the Galerkin scheme.
 
 \medskip
-Em 1982, Brooks e Hughes \cite{brooks1982} propõem uma nova formulação que consiste em modificar as 
-funções peso de modo que o operador de
-difusão atue apenas na direção do escoamento. Este procedimento surge com o intuito de 
-eliminar o excesso de difusão perpendicular
-ao escoamento que o esquema Petrov-Galerkin apresentava em alguns casos. A formulação 
-não requer o uso de funções peso de 
-alta ordem e se apresentou eficiente na eliminação da difusão perpendicular. A formulação 
-recebeu o nome \textit{Streamline Upwind Petrov-Galerkin} (SUPG).
+In 1982, Brooks and Hughes \cite{brooks1982} proposed a
+ new formulation that consists of modifying the weight functions
+ so that the diffusion operator acts only in the flow direction.
+ This procedure appears in order to eliminate the excess of
+ diffusion perpendicular to the flow that
+ the Petrov-Galerkin scheme presented in some cases.
+ The formulation does not require the use of high-order
+ weight functions and was efficient in eliminating perpendicular
+ diffusion. The formulation received the name
+ \textit{Streamline Upwind Petrov-Galerkin} (SUPG).
+
 
 \medskip
-No mesmo ano, Pironneau \cite{pironneau1982} apresenta o Método das Curvas Características
-aplicado ao Método dos Elementos Finitos na resolução das equações de convecção-difusão transiente
-e Navier-Stokes. Dessa forma o autor foi capaz de derivar esquemas conservativos 
-do tipo \textit{upwind} com precisão de primeira e segunda ordem. 
-Como as matrizes são simétricas, esse esquema
-se apresentou vantajoso na resolução de sistemas lineares em comparação com outros esquemas \textit{upwind}.
-A implementação numérica, porém, requer uma integração numérica na montagem dos vetores
-do lado direito da equação. Este esquema dá início a diversos trabalhos e 
-fica conhecido mais adiante como \textit{Galerkin Característico}.
+In the same year, Pironneau \cite{pironneau1982} presented
+ the Characteristic Curves Method applied to the
+ Finite Element Method in solving the non-steady convection-diffusion
+ and Navier-Stokes equations. Thereby, the author was able
+ to derive conservative schemes of the type \textit{upwind}
+ with first and second order accurate. As the matrices are symmetric,
+ this scheme proved to be advantageous in solving linear
+ systems compared to other \textit{upwind} schemes.
+ Numerical implementation, however, requires numerical integration
+ in the assembly of the vectors on the right side of the equation.
+ This scheme initiates several works and is known later on as
+ \textit {Characteristic Galerkin}.
+
 
 \medskip
-Em 1984, Donea \cite{donea1984} apresenta uma alternativa para a resolução de problemas 
-convecção-difusão multidimensionais e transientes.
-Tal alternativa é conhecida como esquema \textit{Taylor-Galerkin}.
-O esquema consiste em utilizar os termos de alta ordem da expansão de Taylor 
-para atuar na redução das oscilações espúrias.
-Diferente dos esquemas upwind, no esquema Taylor-Galerkin não há a necessidade 
-de usar funções peso modificadas.
-O esquema é comparado com as formulações de Galerkin e Petrov-Galerkin 
-e apresentou alta precisão e com baixa difusão numérica.
-Embora os procedimentos de discretização dos esquemas Taylor-Galerkin e Galerkin Característico
-sejam distintos, o sistema de equações é idêntico para a equação de convecção-difusão, onde 
-a variável é um escalar como mencionado por Lohner \cite{lohner1984}. 
+In 1984, Donea \cite{donea1984} presents an alternative for
+ solving multidimensional and transient convection-diffusion
+ problems. This alternative is known as the
+ \textit{Taylor-Galerkin} scheme. The scheme consists of using
+ the high-order terms of the Taylor expansion to reduce
+ spurious oscillations. Unlike upwind schemes, in the
+ Taylor-Galerkin scheme there is no need to use modified
+ weight functions. The scheme is compared with the formulations
+ of Galerkin and Petrov Galerkin and showed high precision and
+ low numerical diffusion. Although the Taylor Galerkin and
+ Characteristic Galerkin discretization procedures are distinct,
+ the system of equations is identical for the convection-diffusion
+ equation, where the unknowns is a scalar as mentioned by
+ Lohner \cite{lohner1984}.
 
 \medskip
-Diversos pesquisadores têm analisado a estabilidade e convergência desses esquemas
-e até mesmo a implementação de esquemas mais eficientes tem surgido, como a simulação
-numérica apresentada por Anjos et at. em 2006 \cite{anjos2006}, 
-em que o esquema \textit{semi-Lagrangeano} é implementado
-na modelagem de escoamentos acoplados ao transporte de espécie química numa abordagem
-em Elementos Finitos. Este esquema era utilizado largamente na meteorologia e
-consiste em calcular a derivada substancial ao longo da trajetória característica.
-A discretização no tempo é feita por diferenças regressivas de primeira ordem
-enquanto a discretização no espaço é realizada segundo o esquema de Galerkin.
-Os resultados mostraram que o esquema semi-Lagrangeano é estável, não apresentando
-oscilações espúrias e difusão numérica excessiva mesmo para passos de tempos longos 
-e para elevados números de Reynolds e Schmidt. As oscilações espúrias nos esquemas Galerkin, SUPG e semi-Lagrangeano é comparado
-por Silva (2011) \cite{silva2011} e é apresentado na \ref{procedimentos oscilacoes espurias}.
+Several researchers have analyzed the stability and convergencei
+ of these schemes and even the implementation of more efficient
+ schemes has emerged, such as the numerical simulation presented
+ by Anjos et at. in 2006 \cite{anjos2006}, in which the
+ \textit{semi-Lagrangean} scheme is implemented in the modeling
+ of flows coupled to the transport of chemical species in
+ a Finite Element approach. This scheme was widely used in
+ meteorology and consists of calculating the material derivative
+ along the characteristic trajectory. The discretization in time
+ is done by first order backward differences while
+ the discretization in space is performed according to
+ the Galerkin scheme. The results showed that
+ the semi-Lagrangian scheme is stable, showing no spurious
+ oscillations and excessive numerical diffusion even
+ for long time steps and high Reynolds and Schmidt numbers.
+ Spurious oscillations in the Galerkin, SUPG and semi-Lagrangean
+ schemes are compared by Silva (2011) \cite{silva2011} and
+ theys are presented in \ref{spurious oscillations procedures}.
 
 \begin{figure}[H]
      \begin{minipage}{.32\linewidth}
@@ -101,32 +124,38 @@ por Silva (2011) \cite{silva2011} e é apresentado na \ref{procedimentos oscilac
       (c)
      \end{minipage}%
      \medskip
-     \caption{Comparativo das oscilações espúrias dos esquemas \cite{silva2011}:
+     \caption{Comparison between spurious oscillations \cite{silva2011}:
               (a) Galerkin,
               (b) SUPG e 
-              (c) semi-Lagrangeano.}
+              (c) semi-Lagrangian.}
      \label{procedimentos oscilacoes espurias}
 \end{figure}
 
 
 
 \medskip
-A escolha do esquema a ser usado para a redução das oscilações espúrias está relacionado
-às suas vantagens e desvantagens quando comparados aos outros esquemas.
-Em comparação aos esquemas Petrov-Galerkin e SUPG, os esquemas Taylor-Galerkin,
-Galerkin Característico e semi-Lagrangeano possuem a vantagem
-de gerar matrizes simétricas facilitando a implementação computacional.
-Enquanto isso, embora a eficácia do esquema semi-Lagrangeano seja bem conhecida, o mesmo necessita
-de um algoritmo eficiente de busca dos nós vizinhos para realizar a interpolação. Porém nos esquemas Taylor-Galerkin
-e Galerkin Característico essa necessidade não existe, assim a implementação computacional torna-se mais simples.
-Além disso, o sistema de equações lineares gerados pelo esquema Taylor-Galerkin 
-é semelhante àquele gerado pelo esquema Galerkin Característico quando as variáveis são escalares. 
-Dessa forma, a escolha entre esses dois esquemas é de cunho pessoal já que produzem
-resultados semelhantes embora o processo de discretização seja distinto.
+The scheme choice to be used to reduce spurious oscillations
+ is related to its advantages and disadvantages when compared
+ to other schemes. In comparison to the Petrov-Galerkin and
+ SUPG schemes, the Taylor-Galerkin, Characteristic and
+ semi-Lagrangian schemes have the advantage of generating
+ symmetric matrices facilitating computational implementation.
+ Whereas, although the effectiveness of the semi-Lagrangian scheme
+ is well known, it requires an efficient search algorithm for
+ neighboring nodes to perform the interpolation.
+ However, in Taylor-Galerkin and Characteristic Galerkin schemes,
+ this need does not exist, so computational implementation becomes
+ smooth. In addition, the system of linear equations generated by
+ the Taylor-Galerkin scheme is similar to that generated by
+ the Characteristic Galerkin scheme when the unknowns are scalar.
+ Thus, the choice between these two schemes does not matter because 
+ they produce similar results although the discretization process
+ is different.
 
 \medskip
-Todos os esquemas apresentados possuem resultados bastante satisfatórios
-e são bem conhecidos na literatura. Esses esquemas, portanto,
-possibilitaram a resolução dos problemas convectivos utilizando a abordagem de Elementos Finitos. 
-O esquema Taylor-Galerkin foi escolhido para as simulações apresentadas neste trabalho. 
-
+All the schemes presented have satisfactory results and
+they are well known in the literature.
+ These schemes, therefore, made it possible to solve
+ convective problems using the Finite Element Method.
+ In this work, the semi-Lagragina scheme was chosen for
+ the simulations.
