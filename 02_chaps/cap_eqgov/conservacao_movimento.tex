@@ -1,50 +1,41 @@
-O mesmo conceito da conservação de massa é aplicado para
-a conservação da quantidade de movimento linear. Dessa forma,
-o princípio de conservação da quantidade de movimento linear estabelece que:
+The same concept of mass conservation is applied to the
+linear momentum conservation. Therefore, the principle
+of linear momentum conservation establishes that:
 
 \medskip
 \begin{center}
-\textarray{A taxa de acumulação\\
-           da quantidade de\\ 
-           movimento linear\\ 
-           dentro do volume\\
-           de controle}
+\textarray{Linear momentum\\
+           accumulation rate\\ 
+           on control volume}
            $= -$ 
-\textarray{O fluxo líquido\\
-           da quantidade\\ 
-           de movimento\\
-           linear que\\
-           cruza a fronteira}
+\textarray{Linear momentum\\
+           flux crossing\\
+           the boundary}
            $+$ 
-\textarray{A resultante das \\
-           forças aplicadas \\ 
-           à superfície de \\
-           controle e as\\
-           forças de volume}
+\textarray{The resultant of \\
+           body force and \\ 
+           surface force}
 \end{center}
 
 \medskip
-Matematicamente, a taxa de acumulação da quantidade de movimento linear
-dentro do volume de controle pode ser representada como:
+Mathematically, linear momentum accumulation rate on control volume
+can be presented to represented by:
 
 \begin{equation} \label{qml 1} 
  \int_{V} \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) dV
 \end{equation}
 
 \medskip
-O fluxo líquido da quantidade de movimento
-linear que cruza a fronteira do volume pode ser
-representado matematicamente como:
+The linear momentum flux crossing the boundary
+can be represented mathematically by:
 
 \begin{equation}  
  \oint_{S} \rho \textbf{v} \textbf{v} \cdot \textbf{n} dA
 \end{equation}
 
 \medskip
-A resultante das forças é dividida nas forças aplicadas
-à superfície de controle e nas forças de volume.
-A resultante das forças aplicadas à superfície de controle
-pode ser representada por:
+The resultant force is consists of surface force and body force.
+The surface force can be represented by:
 
 \begin{equation}  
  \oint_{S} \sigma \cdot \textbf{n} dA
@@ -52,8 +43,8 @@ pode ser representada por:
 
 \medskip
 \noindent
-onde $\sigma$ é o tensor de tensões. A resultante
-das forças de volume é representada por:
+where $\sigma$ is the stress tensor. 
+Whereas, the body is represend by:
 
 \begin{equation} 
  \int_{V} \rho \textbf{g} dV
@@ -61,9 +52,8 @@ das forças de volume é representada por:
 
 \medskip
 \noindent
-onde $\textbf{g}$ é o vetor da aceleração da gravidade.
-Dessa forma, segundo o princípio de conservação da quantidade
-de movimento linear:
+where $\textbf{g}$ is gravity vector.
+Thereby, according to principle of linear momentum conservation:
 
 \begin{equation}
  \int_{V} \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) dV
@@ -77,8 +67,7 @@ de movimento linear:
 
 \medskip
 \noindent
-Aplicando o \textit{Teorema de Gauss} nas integrais
-de área:
+Applying the \textit{Gauss Theorem} on surface integrals:
 
 \begin{equation}
  \int_{V} \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) dV
@@ -92,7 +81,7 @@ de área:
 
 \medskip
 \noindent
-isto é:
+that is:
 
 \begin{equation} \label{qm 2}
  \int_{V} \Bigg[ \frac{\partial}{\partial t} \big( \rho \textbf{v} \big)
@@ -108,8 +97,10 @@ isto é:
 
 \medskip
 \noindent
-Considerando o fato de $dV \neq 0$,
-a Eq. \ref{qm 2} pode ser expressa como:
+Whereas the $dV \neq 0$,
+the Eq. \ref{qm 2} can be presented as:
+
+
 
 \begin{equation}
  \frac{\partial}{\partial t} \big( \rho \textbf{v} \big)
@@ -124,7 +115,7 @@ a Eq. \ref{qm 2} pode ser expressa como:
 
 \medskip
 \noindent
-isto é:
+that is:
 
 \begin{equation}
  \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) 
@@ -138,7 +129,7 @@ isto é:
 
 \medskip
 \noindent
-Desenvolvendo o lado esquerdo da equação, temos:
+Developing the left hand side of equation, we have:
 
 \begin{equation}
  \rho \frac{\partial \textbf{v}}{\partial t}
@@ -155,9 +146,9 @@ Desenvolvendo o lado esquerdo da equação, temos:
 \end{equation}
 
 \newpage
-Vimos que o último termo da equação acima
-é nulo pois trata-se da equação da continuidade (Eq. \ref{continuity equation}).
-Logo, a equação de conservação de momento pode ser reescrita como:
+The last term of above equation is null because
+ the \textit{continuity equation} (Eq. \ref{continuity equation}).
+Thus, the linear momentum equation can be rewritten as:
 
 \begin{equation} \label{qm 3}
  \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
@@ -169,8 +160,8 @@ Logo, a equação de conservação de momento pode ser reescrita como:
 
 \medskip
 \noindent
-O tensor de tensões $\sigma$ pode ser decomposto
-na soma de outros dois tensores:
+The stress tensor $\sigma$ can be split into
+two tensors:
 
 \begin{equation}
  \sigma = -p \textbf{I} + \tau
@@ -178,8 +169,9 @@ na soma de outros dois tensores:
 
 \medskip
 \noindent
-onde, $p$ é o campo de pressão, \textbf{I} é a matriz identidade e
-$\tau$ é o tensor desviatório. Substituindo na Eq. \ref{qm 3} temos:
+where, $p$ is pressure field, \textbf{I} is the identity matrix and
+$\tau$ id deviatoric stress. 
+Replacing them in Eq. \ref{qm 3}, we have:
 
 \begin{equation}
  \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
@@ -191,7 +183,7 @@ $\tau$ é o tensor desviatório. Substituindo na Eq. \ref{qm 3} temos:
 
 \medskip
 \noindent
-isto é:
+that is:
 
 \begin{equation} \label{qm 4}
  \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
@@ -205,11 +197,11 @@ isto é:
 \end{equation}
 
 \medskip
-O tensor desviatório $\tau$ depende da taxa do tensor deformação
-e podemos defini-lo relacionando as propriedades físicas do meio.
-Considerando um fluido homogêneo, isotrópico e
-o tensor desviatório como sendo uma função contínua e linear do
-gradiente de velocidade, temos:
+The deviatoric stress $\tau$ depends on strain tensor rate and
+we can define it relating to medium physical properties.
+Whereas a homogeneous, isotropic fluid and the deviatoric stress
+as a continuous and linear function of velocity gradient,
+we have:
 
 \begin{equation}
  \tau = \mu \big[ \nabla \textbf{v} + \big( \nabla \textbf{v} \big)^{T} \big]
@@ -218,10 +210,12 @@ gradiente de velocidade, temos:
 
 \medskip
 \noindent
-onde $\mu$ é a viscosidade dinâmica do fluido,
-$\lambda$ é conhecido como o segundo coeficiente
-de viscosidade e \textbf{I} é a matriz identidade.
-Substituindo na Eq. \ref{qm 4}, temos:
+where $\mu$ is dynamic viscosity of fluid,
+$\lambda$ is known as the second viscosity coefficient and
+\textbf{I} is identidy matrix.
+Replacing them in Eq. \ref{qm 4}, we have:
+
+
 
 \begin{equation} 
  \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
@@ -240,7 +234,7 @@ Substituindo na Eq. \ref{qm 4}, temos:
 
 \medskip
 \noindent
-isto é:
+that is:
 
 \begin{equation} 
  \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
@@ -258,7 +252,8 @@ isto é:
 
 \medskip
 \noindent
-Considerando que viscosidade dinâmica $\mu$ não depende da posição, temos:
+Whereas the dynamic viscosity $\mu$ does not depends on coordinates,
+we have:
 
 \begin{equation} 
  \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
@@ -275,7 +270,7 @@ Considerando que viscosidade dinâmica $\mu$ não depende da posição, temos:
 
 \medskip
 \noindent
-isto é:
+that is:
 
 \begin{equation} 
  \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
@@ -292,7 +287,7 @@ isto é:
 
 \medskip
 \noindent
-Segundo a Eq. \ref{incompressible continuity equation}, temos:
+According to Eq. \ref{incompressible continuity equation}, we have:
 
 \begin{equation} \label{navier-stokes}
  \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v}
@@ -307,10 +302,10 @@ Segundo a Eq. \ref{incompressible continuity equation}, temos:
 
 \medskip
 \noindent
-onde $\nu$ é o coeficiente de viscosidade
-cinemática do fluido. A Eq. \ref{navier-stokes} é conhecida como 
-\textit{Equação de Navier-Stokes} e é válida
-para um fluido homogêneo, isotrópico, incompressível
-e com viscosidade que não varie em função do espaço.
+where $\nu$ is the kinematic viscosity of fluid.
+ The Eq. \ref{navier-stokes} is known as
+\textit{Navier-Stokes Equation} and is valid for a
+homogeneous, isotropic, incompressible fluid
+and with viscosity that it does not depends on coordinates.
 
 \newpage

@@ -1,28 +1,29 @@
-Conforme apresentado por Pontes e Mangiavacchi (2016) \cite{pontes2016}, o princípio
-de conservação da massa sem geração estabelece que:
+As presented by Pontes and Mangiavacchi (2016) \cite{pontes2016},
+ the principle of mass conservation without source term
+ establishes that:
+
 
 \medskip
 \begin{center}
-\textarray{A taxa de acumu-\\
-           lação de massa\\ 
-           dentro do volume}
+\textarray{Mass accumulation rate\\
+           on control volume}
            $= -$ 
-\textarray{O fluxo líquido\\ 
-           de massa que cruza\\
-           a fronteira}
+\textarray{Mass flux crossing\\ 
+           the boundary}
 \end{center}
 
-\newpage
-Matematicamente, a taxa de acumulação de 
-massa dentro do volume pode ser representada como:
+\noindent Mathematically, the mass accumulation rate within on volume
+ can be represented by:
 
 \begin{equation} \label{massa 1} 
  \int_{V} \frac{\partial}{\partial t} dm
 \end{equation}
 
-\noindent onde a massa infinitesimal $dm$ é definida como
-$dm = \rho dV$. Substituindo-o na Eq. \ref{massa 1} e considerando
-que o volume de controle não varia com o tempo, temos:
+
+\noindent where the infinitesimal mass $dm$ is defined
+ as $dm = \rho dV$. Replacing it in Eq. \ref{massa 1}
+ and considering that the control volume does not vary over time,
+ we have:
 
 \begin{equation}
  \int_{V} \frac{\partial}{\partial t} dm
@@ -37,15 +38,15 @@ que o volume de controle não varia com o tempo, temos:
 \end{equation}
 
 \medskip
-O fluxo líquido de massa que cruza a fronteira do volume pode ser
-representado matematicamente como:
+\noindent The mass flux crossing boundary can be mathematically represented by:
+
 
 \begin{equation}  
  \oint_{S} \rho \textbf{v} \cdot \textbf{n} dA
 \end{equation}
 
 \medskip
-\noindent Dessa forma, segundo o princípio de conservação da massa:
+\noindent Thereby, according to mass conservation theorem:
 
 \begin{equation}
  \int_{V} \frac{\partial \rho}{\partial t} dV
@@ -54,8 +55,7 @@ representado matematicamente como:
 \end{equation}
 
 \medskip
-\noindent Aplicando o \textit{Teorema de Gauss} na integral
-de área:
+\noindent Applying the \textit{Gauss theorem} on surface integral:
 
 \begin{equation}
  \int_{V} \frac{\partial \rho}{\partial t} dV
@@ -65,7 +65,7 @@ de área:
 
 \medskip
 \noindent
-isto é:
+that is:
 
 \begin{equation} \label{massa 2}
  \int_{V} \Bigg[ \frac{\partial \rho}{\partial t}
@@ -76,8 +76,8 @@ isto é:
 
 \medskip
 \noindent 
-Considerando o fato de $dV \neq 0$,
-a Eq. \ref{massa 2} pode ser expressa como:
+Whereas the $dV \neq 0$,
+the Eq. \ref{massa 2} can be presented as:
 
 \begin{equation} \label{continuity equation}
  \frac{\partial \rho}{\partial t}
@@ -88,15 +88,15 @@ a Eq. \ref{massa 2} pode ser expressa como:
 
 \medskip
 \noindent 
-onde $\rho$ é a massa específica, $\textbf{v}$ é o vetor
-velocidade cujas componentes são $\textbf{v} = \big[u,v\big]$,
-$\nabla$ é um operador diferencial cujas componentes são
+where $\rho$ is density, $\textbf{v}$ is velocity field
+ whose components are $\textbf{v} = \big[u,v\big]$,
+$\nabla$ is Del operator whose components are 
 $\nabla = \big[ \partial/\partial x, \partial / \partial y \big]$,
-$x$ e $y$ são as componentes espaciais e
-$t$ é a componente temporal.
-A Eq. \ref{continuity equation} é conhecida
-como \textit{Equação da Continuidade}.
-Desenvolvendo a equação, temos:
+$x$ and $y$ are coordinates components and
+$t$ is time.
+The Eq. \ref{continuity equation} is known
+as \textit{Continuity Equation}.
+Developing the equation, we have:
 
 \begin{equation}
  \frac{\partial \rho}{\partial t}
@@ -108,10 +108,12 @@ Desenvolvendo a equação, temos:
 \end{equation}
 
 \medskip
-Considerando a hipótese de incompressibilidade do fluido,
-a massa específica não depende do tempo e da posição. Dessa forma, as derivadas
-$\partial \rho / \partial t$ e $\nabla \rho$ são iguais a zero.
-Assim, a conservação de massa é reduzida a:
+According to fluid incompressible assumption,
+the density does not depende on time and on coordinates.
+Thereby, the 
+$\partial \rho / \partial t$ e $\nabla \rho$ derivatives are 
+null values.
+Thus, the mass conservation is reduced to:
 
 \begin{equation} \label{massa 3}
  \rho \nabla \cdot \textbf{v}
@@ -119,7 +121,7 @@ Assim, a conservação de massa é reduzida a:
 \end{equation}
 
 \medskip
-\noindent isto é:
+\noindent that is:
 
 \begin{equation} \label{incompressible continuity equation}
  \nabla \cdot \textbf{v}
@@ -127,7 +129,7 @@ Assim, a conservação de massa é reduzida a:
 \end{equation}
 
 \medskip
-\noindent Esta é a equação da continuidade para um fluido incompressível.
+\noindent This equation is the \textit{continuity equation} for an incompressible flow.
 
 
 \newpage
