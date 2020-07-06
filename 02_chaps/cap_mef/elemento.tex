@@ -1,58 +1,38 @@
-Uma malha computacional pode ser estruturada ou não e 
-a escolha do elemento que constitui esta malha é de vital
-importância para uma boa precisão da solução. 
-Alguns parâmetros podem influenciar na escolha de um
-determinado grupo de elementos como por exemplo no caso onde existe uma condição
-de restrição como é encontrada na equação Navier-Stokes devido
-o forte acoplamento entre a velocidade e a pressão. Essa
-restrição é conhecida como \textit{Babuska-Brezzi}
-\cite{babuska1971}\cite{brezzi1974}.
-Quando possuímos essa restrição, precisamos ter diferentes números de nós para cada
-variável no mesmo elemento a fim de possuirmos estabilidade na
-solução. Sendo assim, precisamos utilizar um \textit{elemento quadrático ou cúbico}.
-Mas a formulação corrente-voticidade da equação Navier-Stokes não
-possui a restrição \textit{Babuska-Brezzi} já que não há
-o acoplamento entre a velocidade e a pressão. Desta forma,
-o uso de um \textit{elemento linear} não produz instabilidade,
-podendo ser utilizado sem problemas neste trabalho.
+A computational mesh can be structured or unstructured and 
+the choice of the element that constitutes this mesh is of 
+vital importance for a good accuracy of the solution. 
+Some parameters can influence the choice of a certain elements group, 
+for instance in the case where there is a restriction condition 
+as found in the Navier-Stokes equation due to the strong coupling 
+between velocity and pressure fields. 
+This restriction is known as \textit{Babuska-Brezzi} 
+\cite{babuska1971} \cite{brezzi1974}. 
+When we have this restriction, 
+we need to have different numbers of nodes for each unkowns 
+in the same element in order to have stability in the solution.
+Therefore, we need to use a \textit{quadratic or cubic element}. 
+This methodology is known as \textit{Mixed Finite Element Method}. 
+But the vorticity-streamfunction formulation sstisfies 
+the \textit{Babuska-Brezzi} restriction since there is no coupling 
+between velocity and pressure. 
+Thus, the use of a \textit{linear element} does not produce 
+instability and can be used without problems in this work.
 
 \medskip
-Abaixo apresentaremos a classificação dos elementos quanto à geometria
-e à ordem do polinômio interpolador conforme apresentado por Anjos (2007) \cite{anjos2007}:
-
-\begin{itemize}
- \item Geometria
-  \begin{itemize}
-   \item problemas unidimensionais - Reta
-   \item problemas bidimensionais - Triangulares e Retangulares 
-   \item problemas tridimensionais - Tetraedrais, hexaedrais e prismáticos
-  \end{itemize}
- \item Ordem do polinômio interpolador
-  \begin{itemize}
-   \item grau um - Linear
-   \item grau dois - Quadrática
-   \item grau três - Cúbica
-  \end{itemize}
-\end{itemize}
-
-\medskip
-Os elementos triangulares são os mais comuns no MEF porque possibilita
-uma boa discretização de superfícies irregulares devido a sua 
-simplicidade geométrica. Neste trabalho, utilizamos um elemento triangular
-com o polinômio interpolador de ordem um, isto é, linear.
-
-\vspace{0.5cm}
-Abaixo são apresentados alguns elementos triangulares com
-diferentes ordens do polinômio interpolador:
+Some triangular elements are presented with different orders of the interpolator polynomial below:
 
 \medskip
 \noindent
-\textbf{Elemento triangular linear:} Devido sua simplicidade, é o elemento
-mais utilizado em MEF quando não possuímos restrições. As matrizes elementares
-analíticas deste elemento são facilmente encontradas na literatura. Como se trata
-de um elemento linear, a ordem do polinômio interpolador é de grau um. Desta forma,
-suas funções de interpolação são planas. 
-Este elemento é representado pela \ref{elemento triangular linear}:
+\textbf{Linear Triangular Element:} 
+Due to its simplicity, 
+it is the element most commonly used element in FEM when 
+we have no restrictions. The analytical elementary matrices 
+of this element are easily found in the literature. 
+Since it is a linear element, the interpolation
+polynomial is first order. 
+In this way, its interpolation functions are plane. 
+This element is represented by the \ref{elemento triangular linear}:
+
 
 \begin{figure}[H]
 \begin{center}
@@ -67,7 +47,7 @@ Este elemento é representado pela \ref{elemento triangular linear}:
  \node[draw=none, scale=1.2] at (3.2,0.5) {$i = 1,2,3$};
 \end{tikzpicture}
 \end{center}
-\caption{Elemento triangular linear}
+\caption{Linear Triangular Element}
 \label{elemento triangular linear}
 \end{figure}
 
@@ -81,13 +61,17 @@ Este elemento é representado pela \ref{elemento triangular linear}:
 
 \medskip
 \noindent
-\textbf{Elemento triangular quadrático:} Geralmente este elemento é usado quando
-possuímos restrições que impedem o uso do elemento linear ou quando estamos buscando uma
-melhor aproximação do resultado. As matrizes elementares 
-deste elemento são calculadas pela quadratura gaussiana cujos parâmetros podem ser
-encontrados na literatura. Como se trata de um elemento quadrático, a ordem do polinômio 
-interpolador é de grau dois. Desta forma, suas funções de interpolação são parabólicas.
-Este elemento é representado pela \ref{elemento triangular quadrático}:
+\textbf{Quad Triangular Element:} 
+This element is generally used when we have restrictions that prevent 
+the use of the linear element or when we are interested in 
+a better accuracy of the result. The elementary matrices of 
+this element are calculated using the Gaussian Quadrature 
+whose parameters can be found in the literature. 
+Since it is a quadratic element, the interpolation polynomial is
+second order. 
+In this way, its interpolation functions are parabolic. 
+This element is represented by
+\ref{elemento triangular quadrático}:
 
 \begin{figure}[H]
 \begin{center}
@@ -108,20 +92,22 @@ Este elemento é representado pela \ref{elemento triangular quadrático}:
  \node[draw=none, scale=1.2] at (3.2,0.5) {$i = 1,2,3$};
 \end{tikzpicture}
 \end{center}
-\caption{Elemento triangular quadrático}
+\caption{Quad Triangular Element}
 \label{elemento triangular quadrático}
 \end{figure}
 
 \medskip
 \noindent
-\textbf{Elemento triangular cúbico:} Assim como o elemento quadrático, este elemento é usado quando
-possuímos restrições que impedem o uso do elemento linear ou quando estamos buscando uma
-melhor aproximação do resultado. Na literatura, este elemento é conhecido como \textit{elemento MINI}.
-Suas matrizes elementares também são calculadas pela quadratura gaussiana. 
-Como se trata de um elemento cúbico, a ordem do polinômio 
-interpolador é de grau três. Desta forma, suas funções de interpolação possui
-uma bolha no centro do elemento.
-Este elemento é representado pela \ref{elemento triangular cúbico}:
+\textbf{Mini Triangular Element:} 
+This element is used when we have restrictions that 
+prevent the use of the linear element or when we are interested in 
+a better accuracy of the result as well as quad element. 
+Their elementary matrices are also calculated using 
+the Gaussian Quadrature. Although it is an incomplete cubic element, 
+the interpolation polynomial is still of third order. 
+In this way, its interpolation functions have a bubble in the center 
+of the element. This element is represented by
+\ref{elemento triangular mini}:
 
 \begin{figure}[H]
 \begin{center}
@@ -138,9 +124,13 @@ Este elemento é representado pela \ref{elemento triangular cúbico}:
  \node[draw=none, scale=1.2] at (3.2,0.5) {$i = 1,2,3$};
 \end{tikzpicture}
 \end{center}
-\caption{Elemento triangular cúbico}
-\label{elemento triangular cúbico}
+\caption{Mini Triangular Element}
+\label{elemento triangular mini}
 \end{figure}
+
+
+
+
 
 %\begin{figure}[H]
 %  \centering
@@ -150,8 +140,13 @@ Este elemento é representado pela \ref{elemento triangular cúbico}:
 %\end{figure}
 
 \medskip
-\noindent
-As Eqs (\ref{vorticity pre matrix} a \ref{concentration pre matrix}) podem ser representadas matricialmente por:
+Triangular elements are the most common in 2D-FE Method because 
+it allows a good discretization of irregular surfaces 
+due to its geometric simplicity. In this work, we use a triangular 
+element with the interpolator polynomial of order one, that is, linear.
+Therefore, 
+the Eqs (\ref{vorticity pre matrix} to \ref{concentration pre matrix})
+can be represented in matrix form by:
 
 \begin{equation}
 \begin{aligned}
@@ -187,14 +182,14 @@ As Eqs (\ref{vorticity pre matrix} a \ref{concentration pre matrix}) podem ser r
 
 \medskip
 \noindent
-onde as matrizes \textbf{M}, \textbf{G\textsubscript{x}}, 
+where the \textbf{M}, \textbf{G\textsubscript{x}}, 
 \textbf{G\textsubscript{y}}, \textbf{K\textsubscript{xx}},
 \textbf{K\textsubscript{xy}},
 \textbf{K\textsubscript{yx}}, 
-\textbf{K\textsubscript{yy}}, 
-possuem dimensões \textbf{np} x \textbf{np}
-(isto é, número de nós por número de nós) e
-são definidas como:
+\textbf{K\textsubscript{yy}} matrices
+have \textbf{np} x \textbf{np} size
+(where \textit{np} is node number) and
+they are defined as:
 
 \begin{align}
   \textbf{M} & = \textbf{A} m^{e}\\
@@ -207,10 +202,10 @@ são definidas como:
 \end{align}
 
 \noindent
-onde \textbf{A} é um operador de montagem das
-matrizes elementares nas matrizes globais, 
-respeitando a correspondência entre os índices
-globais e locais e 
+where \textbf{A} is an assembly operator
+that it assembles the elementary matrix in
+global matrix, satisfying the local and global matrix index
+correspondence and the
 $m^{e}$, 
 $g^{e}_{x}$,
 $g^{e}_{y}$,
@@ -218,9 +213,10 @@ $k^{e}_{xx}$,
 $k^{e}_{xy}$,
 $k^{e}_{yx}$,
 $k^{e}_{yy}$
-são as matrizes elementares cuja dimensão para o 
-\textit{elemento triangular linear} é \textit{3}x\textit{3} e 
-são definidas por:
+are elementary matrices whose
+size for the  
+\textit{linear triangular element} is \textit{3}x\textit{3} and
+it is defined by:
 
 
 \begin{equation}
@@ -236,8 +232,8 @@ são definidas por:
 \end{equation}
 
 \medskip
-Sendo assim, as equações de governo em sua forma matricial discretizadas
-segundo o Método dos Elementos Finitos que usamos neste trabalho foram:
+Thus, the governing equations in matrix form according to 
+the Finite Element Method that we used in this work were:
 
 \begin{equation} \label{final equation}
 \begin{aligned}
