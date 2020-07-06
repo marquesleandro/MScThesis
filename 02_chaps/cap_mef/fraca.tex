@@ -1,17 +1,14 @@
-O resultado da ponderação da equação de
-governo integrada sobre o domínio
-é conhecida como
-\textbf{formulação fraca} como mencionado por Anjos (2007) \cite{anjos2007}.
-A seguir apresentaremos a formulação fraca
-para o problema de escoamento de um fluido monofásico,
-newtoniano e incompressível utilizando
-a formulação corrente-vorticidade com  
-equação de transporte de espécie química.
-Para mais detalhes, consultar o trabalho de Brenner e Scott (1994) \cite{brenner1994}.
-Como o objetivo é encontrar uma solução
-aproximada, é aceitável supor que seja produzido
-um \textbf{Resíduo R} nas equações de governo,
-isto é:
+The result of the weighted governing equations over the domain 
+is known as \textbf{Weak formulation} as mentioned by Anjos (2007) 
+\cite{anjos2007}. Next, we will present the weak formulation 
+for a single-phase, Newtonian and incompressible fluid using 
+the vorticity-streamfunction formulation with species transport equation. 
+For more details, see the work of Brenner and Scott (1994) 
+\cite{brenner1994}. 
+As the objective is to find an approximate solution, 
+it is acceptable to assume that a \textbf{Residue R} 
+is produced in the governing equations, that is:
+
 
 \begin{align}
 & \overset{.}{w} + \textbf{v}.\nabla w - \frac{1}{Re} \nabla^2 w 
@@ -26,8 +23,8 @@ isto é:
  = R_4
 \end{align}
 
-Buscaremos forçar o resíduo ser equivalente
-a zero em um sentido médio como mencionado por Finlayson (1972) \cite{finlayson1972}, logo:
+We will try to force the residue to be equivalent to zero 
+in a weighted sense as mentioned by Finlayson (1972) \cite{finlayson1972}, then:
 
 \begin{align}
  \int_{\Omega} R_1 \cdot \delta d\Omega &= 0 \\
@@ -39,11 +36,10 @@ a zero em um sentido médio como mencionado por Finlayson (1972) \cite{finlayson
 
 
 \noindent
-onde $\delta$, $\phi$, $\xi$ e $\eta$ são funções peso. A função peso
-é um conjunto de funções arbitrárias
-dentro de um espaço de funções que será
-discutido à frente. Possuímos, então,
-as seguintes integrais:
+where $\delta$, $\phi$, $\xi$ e $\eta$ are weight function.
+The weight functions are a set of arbitrary functions 
+that belong to a function space that will be discussed later. 
+We then have the following integrals:
 
 \begin{equation}
  \int_{\Omega} \Bigg\{ 
@@ -72,7 +68,7 @@ as seguintes integrais:
 
 
 \noindent
-Desenvolvendo a integral, temos:
+Developing the integrals, we have:
 
 \begin{equation} \label{diffusion_vorticity} 
    \int_{\Omega} \overset{.}{w} \delta d\Omega 
@@ -101,9 +97,10 @@ Desenvolvendo a integral, temos:
 \end{equation}
 
 \medskip
-No termo difusivo das equações (\ref{diffusion_vorticity}, \ref{diffusion_stream} e \ref{diffusion_concentration}),
-aplicaremos o teorema de Green com o intuito de diminuir a ordem
-da derivada e separar o termo avaliado no contorno. Assim o termo difusivo se transformará em:
+In the diffusive term of the equations (\ref{diffusion_vorticity}, \ref{diffusion_stream} and \ref{diffusion_concentration}),
+we will apply Green's theorem in order to decrease 
+the derivative order and separate the term evaluated in the boundary. 
+Thus the diffusive term will become:
 
 \begin{equation} \label{diffusion2_vorticity} 
  - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 w \delta d\Omega
@@ -124,13 +121,20 @@ da derivada e separar o termo avaliado no contorno. Assim o termo difusivo se tr
 \end{equation}
 
 \noindent
-onde \textbf{n} é o vetor normal orientado para fora do contorno $\Gamma$.
-O último termo das equações acima é conhecido como condição natural. Conforme apresentado na seção \ref{formulacao forte},
-para o problema proposto neste trabalho, possuímos apenas condições de contorno de Dirichlet 
-(conhecida como condição essencial). Desta forma, assumiremos por hipótese que
-$\delta = 0$, $\phi = 0$ e $\eta = 0$ nas equações (\ref{diffusion2_vorticity}, \ref{diffusion2_stream} e \ref{diffusion2_concentration})
-para todo contorno $\Gamma$. Portanto, a integral em $\Gamma$ é nula.
-Assim, o termo difusivo das equações (\ref{diffusion_vorticity}, \ref{diffusion_stream} e \ref{diffusion_concentration}) será:
+where \textbf{n} is the normal vector oriented outside the $\Gamma$. 
+The last term in the above equations is known as a natural condition. 
+As presented in the section \ref{formulacao forte}, 
+for the problem proposed in this work, we have only Dirichlet conditions 
+(known as an essential condition).
+
+Therefore,
+we will consider 
+$\delta = 0$, $\phi = 0$ and $\eta = 0$ assumptions in the equations (\ref{diffusion2_vorticity}, \ref{diffusion2_stream} and \ref{diffusion2_concentration})
+for all $\Gamma$. 
+Thereby, 
+the integral in $\Gamma$ will be null
+and the diffusive term of the equations 
+(\ref{diffusion_vorticity}, \ref{diffusion_stream} and \ref{diffusion_concentration}) become:
 
 \begin{equation}
  - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 w \delta d\Omega
@@ -148,10 +152,11 @@ Assim, o termo difusivo das equações (\ref{diffusion_vorticity}, \ref{diffusio
 \end{equation}
 
 \medskip
-Para o termo de difusividade numérica das equações
-(\ref{diffusion_vorticity} e \ref{diffusion_concentration}),
-aplicaremos um procedimento semelhante ao anterior. 
-Dessa forma, o termo de difusividade numérica será:
+For the numerical diffusivity term of the equations 
+(\ref{diffusion_vorticity} and \ref{diffusion_concentration}), 
+we will apply a procedure similar to the previous one. 
+Thus, the term of numerical diffusivity will be:
+
 
 \begin{equation}
  - \frac{\Delta t}{2} \int_{\Omega} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla w \big] \delta d\Omega
@@ -169,10 +174,10 @@ Dessa forma, o termo de difusividade numérica será:
 
 
 \newpage
-Da mesma forma, podemos anular o termo de condição
-natural segundo a hipótese adotada anteriormente.
-Portanto, o termo de difusividade numérica das
-equações (\ref{diffusion_vorticity} e \ref{diffusion_concentration}) será:
+In the same way, we can cancel the natural condition term 
+according to the assumption previously adopted. 
+Therefore, the numeric diffusivity term for the equations 
+(\ref{diffusion_vorticity} and \ref{diffusion_concentration}) will be:
 
 \begin{equation}
  - \frac{\Delta t}{2} \int_{\Omega} \textbf{v} \cdot \nabla \big[ \textbf{v} \cdot \nabla w \big] \delta d\Omega
@@ -188,7 +193,7 @@ equações (\ref{diffusion_vorticity} e \ref{diffusion_concentration}) será:
 
 \medskip
 \noindent
-Portanto, substituindo os novos termos difusivos nas equações de governo:
+Therefore, replacing the new diffusive terms in the governing equations:
 
 \begin{equation} \label{vorticity weak} 
    \int_{\Omega} \overset{.}{w} \delta d\Omega 
@@ -218,7 +223,7 @@ Portanto, substituindo os novos termos difusivos nas equações de governo:
 
 \medskip
 \noindent
-Se assumirmos que:
+If we consider that:
 
 \begin{equation}
  \begin{aligned}
@@ -241,7 +246,7 @@ Se assumirmos que:
 \end{equation}
 
 \noindent
-Então as equações podem ser apresentadas em sua respectiva forma fraca como:
+the equations, thus, can be shown in the weak form respectively:
 
 \begin{align}
  \textbf{$m_1$}(\overset{.}{w},\delta) + \textbf{$g_1$}(\textbf{v},\delta) 
@@ -254,7 +259,7 @@ Então as equações podem ser apresentadas em sua respectiva forma fraca como:
 
 
 \noindent
-Dados os conjuntos de funções bases:
+Considering the sets of basis functions:
 
 \begin{equation}
  \begin{aligned}
@@ -274,7 +279,7 @@ Dados os conjuntos de funções bases:
 \end{equation}
 
 \noindent
-E Dados os espaços de funções pesos:
+and the set of weight functions space:
 
 \begin{equation}
  \begin{aligned}
@@ -294,10 +299,11 @@ E Dados os espaços de funções pesos:
 \end{equation}
 
 \noindent
-A formulação fraca consiste em
-encontrarmos as soluções de $w \in \mathbb{W}$,
-$\psi \in \mathbb{P}$, $v \in \mathbb{V}$ e $c \in \mathbb{C}$
-tal que:
+The weak formulation consists 
+to find the solutions of 
+$w \in \mathbb{W}$,
+$\psi \in \mathbb{P}$, $v \in \mathbb{V}$ and $c \in \mathbb{C}$
+such that:
 
 \begin{align}
  \textbf{$m_1$}(\overset{.}{w},\delta) + \textbf{$g_1$}(\textbf{v},\delta) 
@@ -310,5 +316,5 @@ tal que:
 
 
 \noindent
-para todo $\delta \in \mathbb{D}$, $\phi \in \mathbb{F}$, 
-$\xi \in \mathbb{X}$ e $\eta \in \mathbb{N}$.
+for all $\delta \in \mathbb{D}$, $\phi \in \mathbb{F}$, 
+$\xi \in \mathbb{X}$ and $\eta \in \mathbb{N}$.
