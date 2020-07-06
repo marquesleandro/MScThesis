@@ -1,13 +1,11 @@
-As funções peso $\delta$, $\phi$, $\xi$ e $\eta$ são conjuntos
-de funções arbitrárias e possuem uma infinidade
-de escolhas.
-Neste trabalho para discretizarmos o domínio, 
-utilizaremos a formulação de \textbf{Galerkin}
-que consiste em utilizar as mesmas funções de forma
-para as funções peso e a função interpoladora da variável
-em questão ($w$,$\psi$,\textbf{v},$c$).
-Assim, as Eqs. \ref{vorticity weak} a \ref{concentration weak}
-podem ser apresentadas na forma expandida tais como:
+The weight functions $\delta$, $\phi$, $\xi$ and $\eta$ 
+are sets of arbitrary functions and it have a large number of choices. 
+In this work to discretize the domain, we will use the 
+\textbf{Galerkin Method} which considers the same shape functions 
+for the weight and interpolation functions of the unknowns 
+($w$, $\psi$, \textbf{v}, $c$). 
+Thus, Eqs. \ref{vorticity weak} to \ref{concentration weak} 
+can be presented in expanded form such as:
 
 \begin{equation} 
 \begin{aligned}
@@ -70,11 +68,10 @@ podem ser apresentadas na forma expandida tais como:
 \end{equation}
 
 \medskip
-Discretizaremos, agora, o domínio em \textit{ne} elementos
-e \textit{np} nós, onde \textit{ne} representa o número
-total de elementos e \textit{np} o número total de nós
-da malha computacional.
-Desta forma, temos:
+We will now discretize the domain in \textit{ne} elements and 
+\textit{np} nodes, where \textit{ne} represents the total number 
+of elements and \textit{np} the total number of nodes 
+in the computational mesh. Thus, we have:
 
 \begin{align}
  w(\textbf{x},t) & \simeq \sum\limits_{i=1}^{np} w_i(t) N_i(\textbf{x}) \\
@@ -85,30 +82,29 @@ Desta forma, temos:
 \end{align}
 
 \noindent
-onde 
+where 
 $w_i = [w_1,...,w_{np}]$,
 $\psi_i = [\psi_1,...,\psi_{np}]$,
 $u_i = [u_1,...,u_{np}]$,
 $v_i = [v_1,...,v_{np}]$,
 $c_i = [c_1,...,c_{np}]$ 
-são as incógnitas a serem encontradas.
-Como essas incógnitas dependem apenas do tempo,
-poderão sair das integrais sobre o domínio $\Omega$ e 
-$N_i = [N_1,...,N_{np}]$
-são as funções de aproximação conhecidas como
-funções base ou funções de interpolação. Essas funções podem ser escolhidas
-de modo arbitrário e devem respeitar as condições
-de contorno. Elas variam conforme a escolha do
-tipo de elemento usado na discretização.
-Conforme foi mencionado, neste trabalho usaremos o mesmo tipo de
-elemento para cada equação de governo, assim
-possuiremos as mesmas funções bases para todas as
-equações.
+are the unknowns to be found. 
+As these unknowns depend only on time, 
+they can leave the integrals on the domain 
+$\Omega$, whereas $N_i = [N_1, ..., N_{np}]$ 
+are the approximation functions known 
+as basis functions or interpolation functions. 
+These functions can be chosen arbitrarily and 
+must respect the boundary conditions. 
+They vary depending on the element type used for discretization. 
+As mentioned, in this work we will use the same type of element 
+for each governing equation, 
+so we will have the same basis functions for all equations.
+
 
 \medskip
-\noindent
-Na formulação de Galerkin, as funções peso assumem
-os valores das funções base, isto é:
+In Galerkin formulation, the weight functions assume 
+the values of the basis functions, that is:
 
 \begin{align}
  \delta(\textbf{x},t) & \simeq \sum\limits_{j=1}^{np} \delta_j(t) N_j(\textbf{x}) \\
@@ -118,8 +114,8 @@ os valores das funções base, isto é:
 \end{align}
 
 \noindent
-Desta forma, as equações de governo na forma 
-variacional discretizada no espaço serão:
+Thus, the governing equations in variational form 
+discretized in space will be:
 
 \begin{equation} \label{convection vorticity}
  \begin{aligned} 
@@ -212,19 +208,16 @@ variacional discretizada no espaço serão:
  \end{aligned}
 \end{equation}
 
-\noindent
-Podemos retirar as componentes da velocidade \textit{u} e \textit{v} da integral 
-no termo convectivo das equações \ref{convection vorticity} e \ref{convection concentration}
-já que as mesmas não serão tratadas como incógnitas, isto é, para a equação da vorticidade
-usaremos os valores das componentes \textit{u} e \textit{v} do passo de tempo
-anterior enquanto para a equação do transporte de espécie química, as componentes da velocidade
-são calculadas primeiramente. Dessa forma, essas equações transformam-se
-em equações lineares. 
-
-\medskip
-\noindent
-Colocando os símbolos de somatória para fora
-das integrais, temos:
+We can remove the velocity components \textit{u} and \textit{v} 
+from the integral in the convective term of 
+the equations \ref{convection vorticity} and 
+\ref{convection concentration} since they will not be treated as 
+unknowns, that is, for the vorticity equation we will use 
+the values of the \textit{u} and \textit{v} components 
+of the previous time step while for the species transport equation, 
+the velocity components are calculated firstly. 
+In this way, these equations are transformed into linear equations.
+Moving the sum symbols out of integrals, we have:
 
 \begin{equation}
  \begin{aligned} 
@@ -321,12 +314,12 @@ das integrais, temos:
 
 
 \noindent
-Sabendo que 
+Whereas
 $\sum\limits_{j=1}^{np} \delta_j \neq 0$,
 $\sum\limits_{j=1}^{np} \phi_j \neq 0$, 
-$\sum\limits_{j=1}^{np} \xi_j \neq 0$ e 
-$\sum\limits_{j=1}^{np} \eta_j \neq 0$ 
-então as equações de governo tornam-se:
+$\sum\limits_{j=1}^{np} \xi_j \neq 0$ and
+$\sum\limits_{j=1}^{np} \eta_j \neq 0$,
+thus the governing equations become:
 
 \begin{equation}
  \begin{aligned} 
@@ -424,7 +417,7 @@ então as equações de governo tornam-se:
 \end{equation}
 
 \noindent
-isto é:
+that is:
 
 \begin{equation} \label{vorticity pre matrix}
  \begin{aligned} 
