@@ -13,17 +13,16 @@ corresponds to the condition index of Dirichlet and we set the value
 of 1 on the main diagonal.
 
 \medskip
-Para exemplificar, consideraremos uma matriz 
-com dimensões (\textit{np x np})
-e o nó 2 como um nó localizado no
-contorno do domínio onde a condição proposta
-é de Dirichlet.
-Desta forma, o seguinte algoritmo é feito conforme apresentado por Anjos (2007) \cite{anjos2007}:
+For example, we will consider a matrix with (\textit{np x np}) size 
+and node 2 as a node located on the domain boundary where 
+the Dirichlet condition is proposed. 
+Thus, the following algorithm is done as presented by Anjos (2007) 
+\cite{anjos2007}:
 
 \begin{enumerate}
  
  \vspace{0.5cm}
- \item \textbf{Localiza-se o nó de condição de contorno na matriz:}
+ \item \textbf{The boundary condition is located in the matrix:}
 \medskip
 \begin{center}
 \begin{tikzpicture}
@@ -74,13 +73,14 @@ b_n \\
 };
 \end{scope}
  \draw[<-] (-1.5,-1.8) -- (-1.5,-2.5) -- (-1.1,-2.5);
- \node [draw=none, align=right] at (2.0,-2.5) {Identificar a coluna cujo índice é \\ condição de contorno de Dirichlet};
+ \node [draw=none, align=right] at (2.0,-2.5) {Identify the column whose index is \\ Dirichlet condition};
 \end{tikzpicture}
 \end{center}
 
  \vspace{0.5cm}
- \item \textbf{Subtrai-se o produto entre a coluna onde está situado o nó da matriz e o seu valor pré definido 
-com o vetor do lado direito da equação:}
+ \item \textbf{Subtract the product between the column where the matrix node is 
+located and its predefined value with the vector on the right hand side 
+of the equation:}
 \medskip
 \begin{center}
 \begin{tikzpicture}
@@ -132,7 +132,8 @@ b_n \\
 \end{scope}
  %text
  \draw[<-] (-1.5,-1.8) -- (-1.5,-2.5) -- (-1.1,-2.5);
- \node [draw=none, align=right] at (2.5,-2.5) {Subtrair o produto desta coluna com o \\ valor de $c_2$ no lado direito da equação};
+ \node [draw=none, align=right] at (2.5,-2.5) {Subtract the product from this column with the \\ $c_2$ value on 
+the right hand side of the equation};
  %block
  \draw[red] (-1.9,1.8) -- (-1.15,1.8) -- (-1.15,-1.7) -- (-1.9,-1.7) -- cycle;
  \draw[red] (3.9,0.95) -- (4.5,0.95) -- (4.5,0.45) -- (3.9,0.45) -- cycle;
@@ -140,7 +141,7 @@ b_n \\
 \end{center}
 
 \newpage
-isto é,
+that is,
 
 \medskip
 \begin{center}
@@ -224,7 +225,9 @@ a_{n2} \\
 \end{center}
 
  \vspace{0.5cm}
- \item \textbf{Preenche-se com zeros a coluna e a linha da matriz correspondente ao nó de condição de contorno:}
+ \item \textbf{
+The column and line of the boundary condition node index in matrix 
+are filled with zeros:}
 \medskip
 \begin{center}
 \begin{tikzpicture}
@@ -303,7 +306,8 @@ a_{n2} \\
 
 
  \vspace{0.5cm}
- \item \textbf{Coloca-se 1 na diagonal principal da matriz cujo índice é o nó de condição de contorno:}
+ \item \textbf{One is placed on the main diagonal of the matrix whose
+index is the boundary condition node:}
 \medskip
 \begin{center}
 \begin{tikzpicture}
@@ -381,43 +385,42 @@ a_{n2} \\
 \end{center}
 
  \vspace{0.5cm}
- \item \textbf{Localiza-se o próximo nó e executa-se o passo novamente.}
+ \item \textbf{The next nde is located and the step is performed again.}
 \end{enumerate}
 
 \newpage
 \noindent
-A implementação deste algoritmo foi realizado pelo seguinte \textit{script}:
+The implementation of this algorithm was performed by the following 
+\textit{script}:
+
 \begin{verbatim}
 __________________________________________________________________________
- for mm in ibc:                        | loop sobre os nós do contorno
-  bc_dirichlet -= LHS[:,mm]*bc_1[mm]   | passo 2
-  LHS[:,mm] = 0.0                      | passo 3 - zerar colunas
-  LHS[mm,:] = 0.0                      | passo 3 - zerar linhas
-  LHS[mm,mm] = 1.0                     | passo 4 - 1 na diagonal principal
-  bc_dirichlet[mm] = bc_1[mm]          | imputando o valor da condição
-                                       | de Dirichlet no índice
-                                       | correspondente
+ for mm in ibc:                        | boundary nodes loop
+  bc_dirichlet -= LHS[:,mm]*bc_1[mm]   | step 2
+  LHS[:,mm] = 0.0                      | step 3 - zero columns
+  LHS[mm,:] = 0.0                      | step 3 - zero rows
+  LHS[mm,mm] = 1.0                     | step 4 - one in main diagonal
+  bc_dirichlet[mm] = bc_1[mm]          | computing the Dirichlet condition
 __________________________________________________________________________
 \end{verbatim}
 
 \noindent
-onde \textit{ibc} é uma lista que contém todos os nós do contorno
-cuja condição é de Dirichlet e
-\textit{$bc\_1$} é um vetor auxiliar com dimensão \textit{np}
-onde o valor da condição de Dirichlet é imputada em cada índice correspondente.
-O símbolo -= garante que a contribuição de cada nó cuja
-condição seja de Dirichlet seja computada.
-Este procedimento deverá ser realizado para cada um das \textit{LHS}.
-A \ref{tempo contorno} apresenta o tempo de processamento para 
-a aplicação das condições de contorno de \textit{Dirichlet} em diversas
-malhas triangulares lineares não estruturadas.
+where \textit{ibc} is a list containing all the boundary nodes 
+whose condition is Dirichlet and \textit{$bc\_1$} is an auxiliary 
+vector with \textit{np} size where the value of the Dirichlet 
+condition is computed in each index correspondence. 
+The -= symbol ensures that the contribution of each node 
+whose Dirichlet condition is computed. This procedure must be 
+performed for each of the \textit{LHS}. The \ref{tempo contorno} 
+shows the average processing time for the \textit{Dirichlet} 
+condition apply in several unstructured linear triangular meshes.
 
 \vspace{0.5cm}
 \begin{table}[H]
 \centering
 \begin{tabular}{ccc}
 \toprule
-\textbf{N. Nós} & \textbf{N. Elementos} & \textbf{Tempo de Processamento} (s) \\
+\textbf{Nodes} & \textbf{Elements} & \textbf{AVG Processing Time} (s) \\
 \midrule
 10482 & 20142 & 6,8 \\
 40819 & 80005 & 37,5 \\
@@ -425,19 +428,20 @@ malhas triangulares lineares não estruturadas.
 993091 & 2010501 & 3720,6 \\
 \bottomrule
 \end{tabular}
-\caption{Tempo processamento para as condições de contorno para diversas malhas triangulares não estruturadas}
+\caption{Average processing time for Dirichlet condition in several unstrutured linear triangular meshes}
 \label{tempo contorno}
 \end{table}
  
 
 \medskip
-Outro tipo de condição de contorno muito comum é aquela onde existe um
-fluxo nos contornos do domínio. Essa condição de contorno é conhecida
-como \textit{Condição de Neumann} e na formulação variacional é chamada
-de \textit{Condição Natural}. Diferente da condição de Dirichlet,
-esse tipo de condição de contorno não afeta a matriz global do lado esquerdo quando
-o fluxo é constante. Devemos apenas somar a sua contribuição
-no vetor do lado direito da equação, isto é:
+Another type of very common boundary condition is one
+there is a flux in the domain boundaries. This boundary condition 
+is known as \textit{Neumann condition} and in variational 
+formulation it is called \textit{Natural condition}. 
+Unlike the Dirichlet condition, this type of boundary condition 
+does not affect the \textit{LHS} matrix when the flux is constant. 
+We should only add their contribution to the vector on the right hand 
+side of the equation, that is:
 
 \begin{center}
 \begin{tikzpicture}
@@ -541,10 +545,11 @@ ne_{n} \\
 \end{center}
 
 \medskip
-Como foi mencionado no capítulo \ref{metodo dos elementos finitos}, possuímos apenas condição de Dirichlet neste trabalho.
-A seguir, porém, apresentaremos a implementação desse tipo de condição.
-A fim de exemplificar, consideraremos o termo de contorno da equação
-\ref{diffusion2_concentration}, isto é:
+As mentioned in the chapter \ref{metodo dos elementos finitos}, 
+we have only Dirichlet condition in this work. Below, however, 
+we will present the implementation of this type of condition. 
+In order to exemplify, we will consider the boundary term 
+of the equation \ref{diffusion2_concentration}, that is:
 
 \begin{equation} 
  \frac{1}{\textit{ReSc}} \int_{\Gamma} \eta \nabla c \cdot \textbf{n} d\Gamma
@@ -552,9 +557,9 @@ A fim de exemplificar, consideraremos o termo de contorno da equação
 
 \medskip
 \noindent
-onde $\nabla c$ é o fluxo que será considerado constante. 
-Após a discretização pela formulação de Galerkin, 
-possuímos a seguinte expressão:
+where $\nabla c$ is the flux that will be considered constant. 
+After discretization by Galerkin formulation, we have the 
+following expression:
 
 \begin{equation} 
  \frac{1}{\textit{ReSc}} \int_{\Gamma} N_j \nabla c \cdot \textbf{n} d\Gamma
@@ -562,7 +567,7 @@ possuímos a seguinte expressão:
 
 \medskip
 \noindent
-isto é:
+that is:
 
 \begin{equation} 
  \frac{1}{\textit{ReSc}} \Bigg[ \frac{length  \nabla c}{2} \Bigg]
@@ -570,12 +575,13 @@ isto é:
 
 \medskip
 \noindent
-onde a variável \textit{$length$} é o comprimento da aresta do elemento. 
-Considerando um domínio bidimensional onde 
-\textit{$i$} é um nó no contorno deste domínio e
-\textit{$i-1$} e \textit{$i+1$} são seus vizinhos neste contorno,
-as arestas do nó \textit{$i$} podem ser
-representadas por:
+where the \textit{$length$} is the edge length of element. 
+Whereas a two-dimensional domain, where 
+\textit{$i$} is a boundary node, 
+\textit{$i-1$} and \textit{$i+1$} are its neighbors nodes,
+the edges of node
+\textit{$i$} can be
+shown as:
 
 \begin{figure}[h!]
 \begin{center}
@@ -601,49 +607,46 @@ representadas por:
  \draw [->,thick] (0.50,0.42)--(0.95,0.59);
  \draw [->,thick] (-0.3,-0.1)--(-0.3,0.5) node[left] {$y$};
  \draw [->,thick] (-0.4,0)--(0.2,0) node[below] {$x$};
- \node [draw=none] at (0.35,0.35) {$arestas$};
+ \node [draw=none] at (0.35,0.35) {$edges$};
 \end{tikzpicture}
 \end{center}
-\caption{Arestas vizinhas de um nó}
+\caption{Edges of a node}
 \end{figure}
 
 \newpage
 \noindent
-onde a aresta à esquerda do nó \textit{$i$} é constituída
-pelos nós \textit{$i-1$} e \textit{$i$}, enquanto a 
-aresta à direita é constituída pelos nós \textit{$i$} e \textit{$i+1$}. 
-Desta maneira podemos observar que o nó \textit{$i$} recebe
-contribuição das aresta a sua esquerda e a sua direita. 
-O \textit{script} a seguir é usado para a implementação
-da condição de contorno de Neumann quando requerida:
-
+where the left edge of the \textit{$i$} node is composed of 
+\textit {$i-1$} and \textit {$i$}, while the right edge is composed 
+of \textit {$i$} and \textit {$i+1$}. Thereby, we can observe 
+that the node \textit {$i$} receives contribution from the its 
+neighbors edges. The following \textit{script} is used to 
+implement the Neumann boundary condition when required:
 
 \begin{verbatim}
 __________________________________________________________________________
- for i in range(0, len(neumann_edges)):   | loop sobre as arestas neumann
+ for i in range(0, len(neumann_edges)):   | boundary nodes loop
  
-  p1 = neumann_edges[i][1]                | os nós que constituem
-  p2 = neumann_edges[i][2]                | uma aresta
+  p1 = neumann_edges[i][1]                | nodes of the edges
+  p2 = neumann_edges[i][2]                | 
 
-  x = x[p1] - x[p2]                       | calculo do comprimento
-  y = y[p1] - y[p2]                       | de uma aresta
+  x = x[p1] - x[p2]                       | 
+  y = y[p1] - y[p2]                       | edge length calculation
   length = numpy.sqrt(x**2 + y**2)        | 
 
-  bc_neumann[p1] += (length*nabla_c) / 2. | imputando o valor da condição
-  bc_neumann[p2] += (length*nabla_c) / 2. | de Neumann no índice
-                                          | correspondente.
+  bc_neumann[p1] += (length*nabla_c) / 2. | computing the Neumann
+  bc_neumann[p2] += (length*nabla_c) / 2. | condition 
 __________________________________________________________________________
 
 \end{verbatim}
 
 \noindent
-onde \textit{neumann\_edges} é uma lista que contém os nós presentes em
-uma aresta cuja condição é de Neumann, \textit{p1} e \textit{p2} são os nós 
-presentes na aresta, \textit{x} e \textit{y} são as coordenadas de cada nó,
-\textit{length} é o comprimento da aresta, \textit{nabla\_c} é o fluxo
-adimensional modelado no problema físico e \textit{numpy} é uma biblioteca
-numérica do \textit{Python} no qual estamos usando a função da raiz
-quadrada (\textit{numpy.sqrt}).
-O símbolo += garante que a contribuição das aresta à esquerda e
-à direita seja computada.
-               
+where \textit{neumann\_edges} is a list containing the nodes 
+presents on an edge whose condition is Neumann, \textit{p1} 
+and \textit{p2} are the nodes presents on the edge, 
+\textit{x} and \textit{y} are the coordinates of each node, 
+\textit{length} is the edge length, \textit {nabla\_c} is the 
+dimensionless flux modeled on the physical problem and 
+\textit{numpy} is a numerical library of \textit{Python} 
+in which we are using the square root function (\textit{numpy.sqrt}). 
+The += symbol ensures that the contribution of the left and right 
+edges is computed.
