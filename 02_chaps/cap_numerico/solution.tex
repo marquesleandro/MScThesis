@@ -1,25 +1,36 @@
-Uma das grandes dificuldades da implementação da formulação corrente-vorticidade
-se encontra no algoritmo de solução e a implementação das condições de contorno
-da vorticidade. Resumidamente, o algoritmo de solução é:
+The main difficulty in implementation of 
+vorticity-streamfunction formulation 
+is the boundary conditions of the vorticity. 
+Briefly, the solve algorithm used was:
 
 \vspace{0.5cm}
 % Define block styles
-\tikzstyle{block} = [rectangle, draw, 
-    text width=27em, text centered, rounded corners, fill=gray!45!, text=black!90!]
-\tikzstyle{line} = [draw, -latex']
+\tikzstyle{block} = [rectangle, draw, fill=gray!10!,
+    text width=25em, text centered, draw,scale=0.7,text=black!90!]
+\tikzstyle{line} = [draw, -latex',scale=0.75]
+
+
 
 \begin{figure}[h!]
-\begin{center} 
-\begin{tikzpicture}[node distance = 1cm, auto]
+\begin{center}
+\begin{tikzpicture}[node distance = 1.0cm,auto]
     % Place nodes
-    \node [block] (step1) {inicializar a vorticidade};
-    \node [block, below of=step1] (step2) {inicializar a função de corrente};
-    \node [block, below of=step2] (step3) {Calcular as condições de contorno da vorticidade};
-    \node [block, below of=step3] (step4) {Calcular a vorticidade};
-    \node [block, below of=step4] (step5) {Calcular a função de corrente};
-    \node [block, below of=step5] (step6) {Calcular a velocidade};
-    \node [block, below of=step6] (step7) {Calcular a concentração};
-    \node [draw=none, align=center] at (8.5,-4) {Repetir o procedimento \\ para o próximo passo \\ de tempo};
+    \node [block] (step1) {Import mesh};
+    \node [block, below of=step1] (step2) {Calculate Gaussian Quadradure and Assemble Matrix};
+    \node [block, below of=step2] (step3) {Inicialize Vorticity and Streamfunction};
+    \node [block, below of=step3] (step4) {Calculate Laplacian smoothing and ALE velocity};
+    \node [block, below of=step4] (step5) {Move Nodes};
+    \node [block, below of=step5] (step6) {Calculate Gaussian Quadradure and Assemble Matrix};
+    \node [block, below of=step6] (step7) {Calculate vorticity boundary condition};
+    \node [block, below of=step7] (step8) {Calculate semi-Lagrangian and Vorticity field};
+    \node [block, below of=step8] (step9) {Calculate streamfunction field};
+    \node [block, below of=step9] (step10) {Calculate velocity field};
+    \node [block, below of=step10] (step11) {Calculate concentration field};
+    \node [right of=step4, node distance=4cm] (initialLoop) {};
+    \node [right of=step11, node distance=4cm] (finalLoop) {};
+    \node [right of=step7, node distance=5.5cm] (textLoop) {};
+
+    \node [draw=none, align=center,scale=0.7,text=black!80!] at (textLoop) {Repeat the procedure \\ for the next time step \\ until the steady state};
     % Draw edges
     \path [line] (step1) -- (step2);
     \path [line] (step2) -- (step3);
@@ -27,33 +38,37 @@ da vorticidade. Resumidamente, o algoritmo de solução é:
     \path [line] (step4) -- (step5);
     \path [line] (step5) -- (step6);
     \path [line] (step6) -- (step7);
-    \path [line,dashed] (step7) -- (6,-6) |- (step3);
+    \path [line] (step7) -- (step8);
+    \path [line] (step8) -- (step9);
+    \path [line] (step9) -- (step10);
+    \path [line] (step10) -- (step11);
+    \path [line,dashed] (step11) -- (finalLoop) -- (initialLoop) |- (step4);
 \end{tikzpicture}
 \end{center}
-\caption{Algoritmo de solução da formulação corrente-vorticidade com transporte de espécie química}
+\caption{Solve algorithm for Vorticity-Streamfunction Formulation with Species Transport Equation}
 \label{solution algorithm} 
 \end{figure}  
 
 
 \medskip
-Com o intuito de facilitar a implementação do mesmo em outra pesquisa,
-descreveremos cada passo do algoritmo detalhadamente. As equações estão
-em sua forma matricial:
+In order to facilitate its implementation in other research, 
+we will describe each step of the algorithm in detail. 
+The equations are in their matrix form:
 
 \begin{enumerate}
- \item \textbf{Inicializar a vorticidade com a equação:}
+ \item \textbf{Inicialize Vorticity field:}
  \begin{equation}
   Mw = G_{x}v - G_{y}u \notag
  \end{equation}
 
- \item \textbf{Inicializar a função de corrente com a equação:}
+ \item \textbf{Inicialize Streamfuntion field:}
   \begin{equation}
   \Big[ K_{xx} + K_{yy} \Big] \psi = Mw \notag
   \end{equation}
-  \textit{É necessário aplicar as condições de contorno de $\psi$ na matriz a esquerda da equação
-  zerando suas linhas e colunas e a contribuição das colunas dos índices de contorno 
-  no vetor a direita da equação, 
-  conforme explicado na seção \ref{tricond}.}
+  \textit{
+It is necessary to apply the boundary conditions of $\psi $ in 
+the LHS matrix, its lines and columns must be zeros and 
+the contribution of the cboundary indices in the vector to the right of the equation, as explained in the section \ ref {tricond}.}
 
 
  \item \textbf{Calcular as condições de contorno da vorticidade utilizando a equação:}
