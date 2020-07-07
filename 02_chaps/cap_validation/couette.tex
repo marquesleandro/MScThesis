@@ -1,10 +1,9 @@
-Um escoamento monofásico, permanente e plenamente desenvolvido
-de um fluido newtoniano e incompressível 
-entre placas horizontais paralelas onde a placa inferior se desloca com velocidade \textit{$U_{bottom}$}
-enquanto a placa superior se desloca com velocidade \textit{$U_{top}$} é 
-conhecido como \textit{Escoamento de Couette}.
-A \ref{couette} apresenta esquematicamente este escoamento e
-o perfil do campo de velocidade esperado.
+A monophase, steady and fully developed flow of a 
+Newtonian and incompressible fluid between parallel horizontal 
+plates, where the lower plate moves with \textit{$U_{bottom}$} 
+velocity and the upper plate moves with \textit{$ U_{top}$}, 
+is known as \textit{Couette flow}. The \ref{couette} schematically
+ presents this flow and the profile of the expected velocity field.
 
 \begin{figure}[H]
 \begin{center}
@@ -30,14 +29,13 @@ o perfil do campo de velocidade esperado.
  \draw [->,thick] (2.5,0.65) to (2.8,0.65);
 \end{tikzpicture}
 \end{center}
-\caption{Escoamento de Couette}
+\caption{Couette Flow}
 \label{couette}
 \end{figure}
 
 
 \noindent
-O perfil de velocidade que este escoamento adquire 
-é dado pela equação abaixo:
+The velocity profile equation is shown below:
 
 \begin{equation}
  u = \big[ U_{top} - U_{bottom} \big] \frac{y}{L} + U_{bottom}
@@ -45,56 +43,49 @@ O perfil de velocidade que este escoamento adquire
 
 \medskip
 \noindent
-onde $U_{top}$ é a velocidade que a placa superior se desloca e seu valor é
+where $U_{top}$ is the top plate velocity and its value is
 $U_{top} = 1$, 
-$U_{bottom}$ é a velocidade que a placa inferior se desloca e seu valor é
+$U_{bottom}$ is the bottom plate velocity and its value is
 $U_{bottom} = -1$, 
-$L$ é a largura não dimensional
-entre as placas e seu valor é $L = 1$
-e $y$ é a distância entre as placas e varia entre $y = \big[ 0,1 \big]$.
-O domínio foi discretizado utilizando uma malha 
-triangular linear com 3835 nós e 7299 elementos. 
+$L$ is non-dimensional length
+beteween the plates and its value is $L = 1$
+and $y$ is the vertical coordinates and it varies beteween 
+$y = \big[ 0,1 \big]$.
+The domaian was discretizes using a linear triangula mesh with 
+3835 nodes and 7299 elements. 
 
 \medskip
 \noindent
-As condições de contorno utilizadas foram:
+The boundary conditions used was:
 
 \begin{itemize}
-     \item \textit{condição de entrada}: nenhum valor é especificado. As derivadas das
-      componentes tangencial e normal da velocidade e da função de corrente possuem o 
-      valor nulo, isto é,
-      $\partial u/\partial n = 0$,
-      $\partial v/\partial n = 0$ e
-      $\partial \psi/\partial n = 0$ respectivamente.
+     \item \textit{inflow}: no value specified. 
 
-     \item \textit{condição de movimentação da parede}: esta condição é utilizada na placa superior e inferior, 
-      onde todas as componentes da velocidade e da função de corrente são especificadas.
-      Para a parede superior, $u=U_{top}$, $v=0$ e $\psi=0$, onde $U_{top} = 1$.
-      Para a parede inferior, $u=U_{bottom}$, $v=0$ e $\psi=0$, onde $U_{bottom} = -1$.
+     \item \textit{moving plates}: this conditions is used in upper and lower plates, 
+      where all velocity componentes and streamfunction field are specified.
+      For top plate, 
+      $u=U_{top}$, $v=0$ and $\psi=0$, where $U_{top} = 1$.
+      For bottom plate, $u=U_{bottom}$, $v=0$ and $\psi=0$, where $U_{bottom} = -1$.
 
-     \item \textit{condição de saída}: assim como na entrada, nenhum valor é especificado. As derivadas das
-      componentes tangencial e normal da velocidade e da função de corrente possuem o 
-      valor nulo, isto é,
-      $\partial u/\partial n = 0$,
-      $\partial v/\partial n = 0$ e
-      $\partial \psi/\partial n = 0$ respectivamente.
+     \item \textit{outflow}: no value specified. 
 \end{itemize}
 
 
 \newpage
-A \ref{velocidade couette} apresenta a evolução 
-do perfil de velocidade no tempo quando o $Re=100$, além do comparativo
-entre a solução numérica e a solução analítica no estado permanente do
-problema proposto. É possível observar que a solução numérica converge
-para a solução analítica quando o escoamento torna-se permanente.
-
+The \ref{velocidade couette} shows the unsteady velocity profile
+when $Re=100$, in addition to the comparison between 
+the numerical solution and the analytical solution 
+in the steady state of the proposed problem. 
+It is possible to observe that the numerical solution 
+converges to the analytical solution when the flow becomes steady.
 
 \begin{figure}[H]
      \centering
      \includegraphics[scale=1]{./02_chaps/cap_validation/figure/couette_velocity.pdf}\\
      \medskip
-     \caption{Evolução do perfil de velocidade no tempo para $Re=100$ e
-     a comparação da solução numérica com a solução analítica para o Escoamento de Couette.}
+     \caption{Unsteady velocity profile when $Re=100$ and
+     the comparison beteween the numerical and analytical solution 
+     for Couette flow.}
      \label{velocidade couette}
 \end{figure}
 

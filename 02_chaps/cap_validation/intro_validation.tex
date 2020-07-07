@@ -1,29 +1,32 @@
-Apresentaremos neste capítulo os resultados obtidos
-de quatro casos com a simulação numérica da equação de Navier-Stokes
-utilizando a formulação corrente-vorticidade 
-com a equação de transporte de espécie química onde
-possuimos escoamentos bidimensionais incompressíveis e monofásicos
-para todos os casos.
-A primeira seção trata-se do \textit{Escoamento de Couette} e a solução
-numérica é comparada com a solução analítica.
-Já a segunda a seção trata-se do \textit{Escoamento de Poiseuille} e
-a solução numérica também é comparada com a solução analítica.
-A terceira seção refere-se ao escoamento de \textit{Poiseuille} 
-em meio domínio, onde a condição de livre escorregamento é aplicada
-sobre o eixo de simetria.
-A quarta seção refere-se ao escoamento em uma cavidade com tampa deslizante
-(\textit{lid-driven cavity flow}) e
-a solução é comparada com os resultados apresentados por Ghia et al. (1982) \cite{ghia1982} e Marchi et al. (2009) \cite{marchi2009}. 
-Já na quinta seção é apresentado a comparação dos 
-esquemas Galerkin e Taylor-Galerkin do transporte de
-um escalar submetido a um escoamento puramente convectivo.
+In this chapter, we will present the results obtained from 
+four cases with the numerical simulation of the Navier Stokes 
+equation using the vorticity-streamfunction formulation with 
+the species transport equation, where we have incompressible 
+and monophase two-dimensional flow for all cases. 
+The first section is about \textit{Couette flow} and 
+the numerical solution is compared with the analytical solution. 
+The second section is about the \textit{Poiseuille flow} 
+and the numerical solution is also compared with 
+the analytical solution. The third section refers to the flow 
+of \textit {Poiseuille} in the half domain, where the 
+free slip condition is applied on the axis of symmetry. 
+The fourth section refers to the flow in a cavity with 
+a moving lid (\textit{lid-driven cavity flow}) 
+and the solution is compared with the results presented 
+by Ghia et al. (1982) \cite{ghia1982} and 
+Marchi et al. (2009) \cite{marchi2009}. 
+In the fifth section, the comparison of the Galerkin and 
+Taylor-Galerkin Method for the transport of a scalar 
+submitted to a pure advection flow is presented.
 
 \medskip
-Todas as simulações numéricas foram realizadas nos computadores do \textit{Laboratório
-de Ensaios Numéricos (LEN)} do \textit{Grupo de Estudos e Simulações
-Ambientais em Reservatórios (GESAR)} com a seguinte configuração:
+All numerical simulations were performed on the computers 
+of \textit {Numerical Simulations Laboratory (LEN)} 
+of \textit {Environmental Simulations in Reservoirs and 
+Study Group (GESAR)} with the following configuration:
 
 \begin{itemize}
- \item AMD FX-8350 4GHz com 8 núcleos, 32Gb de Memória RAM, 1000Gb de HD.
-       Sistema operacional LINUX Ubuntu 16.04 LTS, utilizando a linguagem Python 2.7 
+ \item AMD FX-8350 4GHz with 8 core, 32Gb RAM Memory, 1000Gb of HD.
+       LINUX Ubuntu 16.04 LTS. The numerical code implementarion was
+       performed using Python 2.7 language
 \end{itemize}
