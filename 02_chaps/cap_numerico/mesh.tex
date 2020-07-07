@@ -9,24 +9,24 @@ convert the \textit{.msh} file to a
 
 \begin{verbatim}
 __________________________________________________________________________
-mesh = []                             | Python list inicialization
-with open("file.msh") as mesh:        | Open file 
- for line in mesh:                    | Loop file each line
-  row = line.split()                  | Split file line
-  mesh.append(row[:])                 | Add file line from python list 
+mesh = []                             | python list inicialization
+with open("file.msh") as mesh:        | open file 
+ for line in mesh:                    | loop file each line
+  row = line.split()                  | split file line
+  mesh.append(row[:])                 | add file line from python list 
 __________________________________________________________________________
 \end{verbatim}
 
 \noindent
 Then, this class returns important information for the simulation 
 such as:
-\textit{Nodes number} (\textbf{np}), 
-\textit{Elements number} (\textbf{ne}), 
-\textit{The coordinate vectors} (\textbf{x} and \textbf{y}), 
-\textit{The connectivity matrix} (\textbf{IEN}) and 
-\textit{The Boundary nodes}. 
+\textit{nodes number} (\textbf{np}), 
+\textit{elements number} (\textbf{ne}), 
+\textit{the coordinate vectors} (\textbf{x} and \textbf{y}), 
+\textit{the connectivity matrix} (\textbf{IEN}) and 
+\textit{the Boundary nodes}. 
 The \ref{tempo malha} shows the average processing time for 
-several unstructured linear triangular meshes import.
+mesh import in several unstructured linear triangular meshes import.
 
 \vspace{0.5cm}
 \begin{table}[H]
@@ -41,7 +41,7 @@ several unstructured linear triangular meshes import.
 993091 & 2010501 & 70,4 \\
 \bottomrule
 \end{tabular}
-\caption{Average processing time for several unstructured linear triangular mesh import}
+\caption{Average processing time for mesh import in several unstructured linear triangular meshes}
 \label{tempo malha}
 \end{table}
 

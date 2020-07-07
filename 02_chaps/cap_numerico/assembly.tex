@@ -1,9 +1,7 @@
-Após a importação do arquivo \textit{.msh}
-foi realizado a montagem das matrizes globais.
-As mesmas foram inicializadas como matrizes
-esparsas pela biblioteca \textit{Scipy} \cite{scipy}
-e o seguinte \textit{script} foi usado para a montagem:
-
+After importing the \textit{.msh} file, the global arrays 
+were assembled. They were initialized as sparse matrices by 
+the \textit{Scipy} library \cite{scipy} and the following 
+\textit{script} was used for the assembly:
 
 %\begin{algorithm}[H]
 %\caption{Assembly Global Matrix}
@@ -30,43 +28,43 @@ e o seguinte \textit{script} foi usado para a montagem:
 
 \begin{verbatim}
 __________________________________________________________________________
-for e in range(0, ne):                 | loop sobre os elementos 
- linear_element(e)                     | montagem das matrizes elementares
-                                         utilizando a quadratura gaussiana
- for i in range(0,3):                  
-  ii = IEN[e][i]                       
+for e in range(0, ne):                      | element loop 
+ linear_element(e)                          | elementary matrix
+                                              by gaussian quadrature
+
+ for i in range(0,3):                       
+  ii = IEN[e][i]                            
   
-  for j in range(0,3):                  
+  for j in range(0,3):                       
    jj = IEN[e][j]
-                                       
-   Kxx[ii,jj] += kxx_element[i][j]     |
-   Kxy[ii,jj] += kxy_element[i][j]     |
-   Kyx[ii,jj] += kyx_element[i][j]     |
-   Kyy[ii,jj] += kyy_element[i][j]     | montagem das matrizes globais
-                                       | correspondendo os índices globais
-   Gx[ii,jj] += gx_element[i][j]       | e locais
-   Gy[ii,jj] += gy_element[i][j]       | 
-                                       |
-   M[ii,jj] += mass_element[i][j]      |
+                                            
+   Kxx[ii,jj] += kxx_element[i][j]          |
+   Kxy[ii,jj] += kxy_element[i][j]          |
+   Kyx[ii,jj] += kyx_element[i][j]          |
+   Kyy[ii,jj] += kyy_element[i][j]          | globals matrices assembly
+                                            | with global and local 
+   Gx[ii,jj] += gx_element[i][j]            | index correspondence
+   Gy[ii,jj] += gy_element[i][j]            | 
+                                            |
+   M[ii,jj] += mass_element[i][j]           |
 __________________________________________________________________________
 \end{verbatim}
 
 
 \medskip
-A montagem das matrizes elementares é feita pelo módulo 
-\textit{linear\_element} cujo paramêtro requerido é o 
-número do elemento. Esse módulo faz parte da classe \textit{TElement}
-onde utiliza a quadratura gaussiana para o cálculo dos
-valores das matrizes elementares. Para o elemento triangular
-linear, é possível a utilização das matrizes elementares
-analíticas. Para mais detalhe consultar o trabalho de Lewis,
-Nithiarasu e Seetharamu (2004) \cite{lewis2004}.
+The assembly of the elementary matrices is done by the module 
+\textit{linear\_element} whose required parameter is the 
+element number. This module is part of the \textit{TElement} 
+class where it uses the Gaussian Quadrature to calculate 
+the values of the elementary matrices. For the linear 
+triangular element, it is also possible to use elementary 
+analytical matrices. For more details consult the work of Lewis, 
+Nithiarasu and Seetharamu (2004) \cite{lewis2004}.
 
 \newpage
-Em seguida, a matriz do lado esquerdo conhecida como 
-\textit{left hand side (LHS)} é criada para as
-equações da função de corrente,
-velocidade e concentração respectivamente:
+Then, the left hand matrix known as \textit {left hand side (LHS)} 
+is created for the streamfunction, velocity and concentration equations 
+respectively:
 
 \begin{verbatim}
 __________________________________________________________________________
@@ -77,24 +75,23 @@ LHS_c = sps.lil_matrix.copy(M)/dt
 __________________________________________________________________________
 \end{verbatim}
 
-A matriz \textit{LHS} para a equação da vorticidade
-é criada durante o loop do algoritmo de solução
-a fim de garantir que a mesma será sempre inicializada
-utilizando as matrizes globais originais.
-É necessário usarmos a função \textit{copy}
-porque queremos copiar os valores das matrizes globais
-e não referencia-los,
-para mais detalhe consultar o \textit{Scipy Community} \cite{numpycopy}.
-A \ref{tempo matrizes globais} apresenta o tempo de processamento para 
-para a montagem das matrizes globais em diversas
-malhas triangulares lineares não estruturadas.
+The \textit{LHS} matrix for the vorticity equation is created 
+during the solution algorithm loop to ensure that it will always 
+be initialized using the original global matrices. 
+It is necessary to use the function \textit{copy} because 
+we want to copy the values of the global arrays and not reference them, 
+for more details consult the \textit{Scipy Community} \cite{numpycopy}. 
+The \ref{tempo matrizes globais} shows the average processing time 
+for global matrices assembly in several unstructured linear 
+triangular meshes.
+
 
 \vspace{0.5cm}
 \begin{table}[H]
 \centering
 \begin{tabular}{ccc}
 \toprule
-\textbf{N. Nós} & \textbf{N. Elementos} & \textbf{Tempo de Processamento} (s) \\
+\textbf{Nodes} & \textbf{Elements} & \textbf{AVG Processing Time} (s) \\
 \midrule
 10482 & 20142 & 72,9 \\
 40819 & 80005 & 254,3 \\
@@ -103,7 +100,7 @@ malhas triangulares lineares não estruturadas.
 
 \bottomrule
 \end{tabular}
-\caption{Tempo de montagem das matrizes globais para diversas malhas triangulares não estruturadas}
+\caption{Average processing time for global matrices assembly in several unstrutured linear triangular meshes}
 \label{tempo matrizes globais}
 \end{table}
                 

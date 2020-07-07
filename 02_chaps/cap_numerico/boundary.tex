@@ -1,15 +1,16 @@
-Após a montagem das matrizes globais, as condições de contorno
-são aplicadas. Conforme foi dito na seção \ref{trimesh}, durante a importação
-da malha é possível identificarmos os nós que se encontram no
-contorno do domínio. A condição onde os nós possuem seus valores 
-pré definidos pelo problema em análise é conhecida como \textit{Condição 
-de Dirichlet}. Sendo assim, esses nós não devem ser alterados conforme
-a simulação acontece. Dessa maneira, o produto entre a coluna da matriz global cujo índice
-é um nó com condição de contorno Dirichlet e o seu valor pré definido
-como condição de contorno é subtraído ao vetor do
-lado direito da equação de governo. Em seguida, zeramos as linhas e colunas
-da matriz global que corresponde ao índice de condição de Dirichlet
-e colocamos o valor de 1 na diagonal principal.
+After the global matrices assembly, the boundary conditions are applied. 
+As was said in the section \ref{trimesh}, during the mesh import 
+it is possible to identify the nodes that they are in the boundary. 
+The condition where the nodes have their values predefined 
+by the problem is known as \textit{Dirichlet condition}. 
+Therefore, these nodes must not be changed as the simulation is 
+performed. In this way, the product between the column of the 
+global matrix whose index is a node with Dirichlet boundary condition 
+and its predefined value as boundary condition is subtracted from 
+the vector on the right side of the governing equation. 
+Then, we zero the rows and columns of the global matrix that 
+corresponds to the condition index of Dirichlet and we set the value 
+of 1 on the main diagonal.
 
 \medskip
 Para exemplificar, consideraremos uma matriz 
