@@ -1,22 +1,18 @@
-Neste capítulo apresentaremos as principais características
-do código numérico desenvolvido em linguagem Python 2.7 \cite{python}
-utilizando o paradigma de orientação a objetos
-com o intuito da reutilização do código em outras
-simulações no futuro. 
-Todas as classes desenvolvidas são importadas
-no simulador (\textit{TriSim}) onde é exportado
-o resultado da simulação numérica conforme apresentado
-no \textit{Diagrama de Classes} (UML)
-simplificado da \ref{uml}.
-Inicialmente, é apresentado o
-\textit{script} que realiza a importação da malha
-computacional para a simulação. Em seguida, a montagem
-das matrizes globais é feita respeitando a correspondência
-entre os índices globais e locais. Mais a frente, apresentamos
-a aplicação das condições de contorno tanto de \textit{Dirichlet}
-quanto de \textit{Neumann}. E finalmente, é apresentado também,
-o algoritmo de solução da formulação corrente-vorticidade 
-com a equação de transferência de espécie química. 
+In this chapter, we will present the main characteristics 
+of the computational code developed in Python 2.7 \cite{python} 
+using the object-oriented paradigm (OOP) in order to reuse the code 
+in other simulations in the future. All developed classes are imported 
+into the simulator (\textit{TriSim}), where the result of the 
+numerical simulation is exported as presented in the 
+simplified \textit{Class Diagram} (UML) of \ref{uml}. 
+Initially, the \textit{script} that performs the import 
+of the computational mesh for the simulation is presented. 
+Then, the assembly of the global matrices is done 
+respecting the correspondence between the global and local index. 
+Later on, we present the application of boundary conditions for 
+both \textit{Dirichlet} and \textit{Neumann}. 
+Finally, the solve algorithm for the vorticity-streamfunction 
+formulation with the species transport equation is presented.
 
 \vspace{0.5cm}
 \begin{figure}[H]
@@ -60,6 +56,6 @@ com a equação de transferência de espécie química.
 
 \end{tikzpicture}
 \end{center}
-\caption{Diagrama de Classes Simplificado}
+\caption{Simplified Class Diagram}
 \label{uml}
 \end{figure}
