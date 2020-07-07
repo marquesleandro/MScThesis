@@ -2,8 +2,8 @@ A monophase, steady and fully developed flow of a
 Newtonian and incompressible fluid between parallel horizontal 
 plates, where the lower plate moves with \textit{$U_{bottom}$} 
 velocity and the upper plate moves with \textit{$ U_{top}$}, 
-is known as \textit{Couette flow}. The \ref{couette} schematically
- presents this flow and the profile of the expected velocity field.
+is known as \textit{Couette flow}. The \ref{couette}
+ presents schematically this flow and the profile of the expected velocity field.
 
 \begin{figure}[H]
 \begin{center}
@@ -54,24 +54,7 @@ $y = \big[ 0,1 \big]$.
 The domaian was discretizes using a linear triangula mesh with 
 3835 nodes and 7299 elements. 
 
-\medskip
-\noindent
-The boundary conditions used was:
-
-\begin{itemize}
-     \item \textit{inflow}: no value specified. 
-
-     \item \textit{moving plates}: this conditions is used in upper and lower plates, 
-      where all velocity componentes and streamfunction field are specified.
-      For top plate, 
-      $u=U_{top}$, $v=0$ and $\psi=0$, where $U_{top} = 1$.
-      For bottom plate, $u=U_{bottom}$, $v=0$ and $\psi=0$, where $U_{bottom} = -1$.
-
-     \item \textit{outflow}: no value specified. 
-\end{itemize}
-
-
-\newpage
+\bigskip
 The \ref{velocidade couette} shows the unsteady velocity profile
 when $Re=100$, in addition to the comparison between 
 the numerical solution and the analytical solution 
