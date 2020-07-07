@@ -8,12 +8,12 @@ in each particular case in the validations and results sections:
 
 \begin{itemize}
  \item \textit{inflow condition}:
- this is specified when an mass inflow is desired.
- For such a condition, $u = u_{0}$
- and $v = v_{0}$.
+ this condition is specified when an mass inflow is desired.
+ For such a condition, $u = u_{o}$
+ and $v = v_{o}$.
 
  \item \textit{wall condition}:
- this is specified at wall boundaries (moving wall
+ this condition is specified at wall boundaries (moving wall
  and noslip conditions).
  All the velocity components are specified with 
  the same wall velocity values.
@@ -22,6 +22,16 @@ in each particular case in the validations and results sections:
  this condition represents a state where is close to a
  fully developed profile.
  Usually no value is specified for the unknowns.
+
+ \item \textit{free-slip condition}: 
+ this condition is specified at the symmetric axis.
+ The normal velocity component is null and the derivative of
+ the tangent component is also null value.
+
+ \item \textit{strut condition}: 
+ this condition is used on the stent. The normal and tangential
+ velocity components are specified with null value. 
+ The concentration field is specified as $c=c_{o}$.
 \end{itemize}
 
 As mentioned by Batchelor (1964) \textbf{reference},
@@ -34,8 +44,8 @@ bottom and top streamlines, because the difference
 between two $\psi$ values is equal to volume flow
 rate across inflow boundary. In this work, was set
 null value for bottom streamline. For top streamline,
-was calculated using $u_{0}$ and $v_{0}$ inflow velocity
-components, that is, $\psi_{2} = \int \left(u_{0}dy - v_{0}dx\right)$.
+was calculated using $u_{o}$ and $v_{o}$ inflow velocity
+components, that is, $\psi_{2} = \int \left(u_{o}dy - v_{o}dx\right)$.
 
 \medskip
 One of the main difficulties for
