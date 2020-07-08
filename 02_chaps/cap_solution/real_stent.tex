@@ -1,30 +1,36 @@
-Para este caso, o stent farmacológico é colocado na parte superior
-da artéria coronária real. O mesmo é modelado por 10 semi círculos uniformemente
-espaçado. Assim como no caso anterior, foi considerado uma obstrução
-de 40\% do canal devido a aterosclerose e o domínio foi
-discretizado com 11807 nós e 26426 elementos triangulares lineares. \par
-A \ref{velocity evolution real stent} apresenta o perfil
-de velocidade transiente ao longo da coordenada $y$ no
-meio do canal ($x=5R$). 
-Como podemos observar, o valor adimensional máximo do campo de velocidade chega
-a $u=2.65$ quando o stent é implantado, isto é, possuímos um aumento de apenas
-18\% quando comparado com a artéria sem o stent implantado como no caso anterior.
-Porém, esse aumento de velocidade pode variar de acordo com o perfil da geometria da artéria coronária
-para cada paciente.
+For this case, the drug-eluting stent is placed on top of 
+the curved channel. It is modeled by 10 uniformly spaced 
+semi-circles. As in the previous case, an channel obstruction of 
+40\% was considered due to atherosclerosis and the domain was 
+discretized using 11807 nodes and 26426 linear triangular elements. 
+
+\par 
+The \ref{velocity evolution real stent} shows the unsteady velocity 
+profile in the middle of the channel ($x=5R$). 
+As we can see, the maximum non-dimensional value of the velocity field 
+reaches $u=2.65$ when the stent is placed, that is, we have an 
+increase of $18$\% when compared to the artery with only 
+atherosclerosis as in the previous case 
+(see section \ref{canal real}).
+However, this increase of the velocity may vary according to the 
+coronary artery geometry for each patient.
 
 \begin{figure}[H]
      \centering
      \includegraphics[scale=1]{./02_chaps/cap_solution/figure/vel_RealStrut_evol.pdf}\\
-     \caption{Evolução no tempo do perfil da velocidade para o Canal Real com Stent Farmacológico.}
+     \caption{
+The unsteady velocity profile for real channel with drug-eluting stent.}
      \label{velocity evolution real stent}
 \end{figure}
 
 \newpage
-A \ref{velocity field real stent} apresenta a evolução no tempo e no espaço
-do campo de velocidade para a metade do domínio, pois os resultados são simétricos
-na direção $y$. O campo de velocidade é representado com os valores adimensionais
-onde a cor vermelha se refere ao valor $u=2.65$ e a cor azul $u=0$.
- 
+The \ref{velocity field real stent} presents the evolution in 
+time and space of the velocity field for half of the domain. 
+The velocity field is represented with non-dimensional values 
+where the red color refers to the $u=2.65$ value and the blue color 
+$u=0$ value. Conveting to dimensional values, 
+we have $u=31.8cm/s$ and $u=0cm/s$ respectively.
+
 \vspace{2cm}
 \begin{figure}[H]
      \begin{minipage}{.50\linewidth}
@@ -72,20 +78,24 @@ onde a cor vermelha se refere ao valor $u=2.65$ e a cor azul $u=0$.
       t = 10.0
      \end{minipage}
      \medskip
-     \caption{Evolução no tempo e no espaço do campo de velocidade para o Canal Real com Stent Farmacológico.}
+     \caption{
+Time and space evolution of the velocity field for real channel with
+drug-eluting stent.}
      \label{velocity field real stent}
 \end{figure}
 
 \vspace{1cm}
-A \ref{conc field real stent sc 1} e a \ref{conc field real stent sc 10} 
-apresentam a evolução no tempo e no espaço
-do campo de concentração para a metade do domínio devido a simetria para diversos números de \textit{Schmidt}
-tais como: $1$ e $10$, respectivamente. É possível observar a influência
-do aumento do número de \textit{Schmidt} na difusão do fármaco.
-A concentração é representada com os valores adimensionais
-onde a cor vermelha representa $100$\% e a cor azul representa $0$\% 
-da concentração que é difundida na corrente sanguínea. 
-
+The \ref{conc field real stent sc 1} and 
+\ref{conc field real stent sc 10} show the time and space evolution 
+of the concentration field for several \textit{Schmidt} number, 
+such as: $1$ and $10$ respectively. The concentration field is 
+represented with the non-dimensional values where the red color 
+represents $100$\% and the blue color represents $0$\% 
+of the diffused concentration in the bloodstream. 
+It is possible to observe that the \textit{Schmidt} number directly 
+influences the drug transport in the blood flow. 
+For high values of the \textit{Schmidt} number, 
+the transport of chemical species becomes purely convective.
 
 \begin{figure}[H]
      \begin{minipage}{.50\linewidth}
@@ -133,7 +143,9 @@ da concentração que é difundida na corrente sanguínea.
       t = 10.0
      \end{minipage}
      \medskip
-     \caption{Evolução no tempo e no espaço do campo de espécie química para o Canal Real com Stent Farmacológico com $Sc=1$.}
+     \caption{
+Time and space evolution of the concentration field for real channel 
+with drug-eluting stent when the $Sc=1$.}
      \label{conc field real stent sc 1}
 \end{figure}
 
@@ -184,7 +196,9 @@ da concentração que é difundida na corrente sanguínea.
       t = 10.0
      \end{minipage}
      \medskip
-     \caption{Evolução no tempo e no espaço do campo de espécie química para o Canal Real com Stent Farmacológico com $Sc=10$.}
+     \caption{
+ime and space evolution of the concentration field for real channel 
+with drug-eluting stent when the $Sc=10$.}
      \label{conc field real stent sc 10}
 \end{figure}
 
