@@ -1,30 +1,33 @@
-Para este caso, o stent farmacológico é colocado na parte superior 
-do canal curvado. O mesmo é modelado por 10 semi círculos uniformemente
-espaçados. Assim como no caso anterior, foi considerado uma obstrução
-de 40\% do canal devido a aterosclerose e o domínio foi
-discretizado com 15875 nós e 35408 elementos triangulares lineares. \par
-A \ref{velocity evolution curved stent} apresenta o perfil
-de velocidade transiente ao longo da coordenada $y$ no
-meio do canal ($x=5R$). 
-Como podemos observar, 
-o valor adimensional máximo do campo de velocidade
-chega a $u=3.6$ quando o stent é implantado, isto é,
-possuímos um aumento de $56$\% quando comparado com
-a artéria apenas com aterosclerose como no caso anterior (ver seção \ref{canal curvado}).
+For this case, the drug-eluting stent is placed on top of 
+the curved channel. It is modeled by 10 uniformly spaced 
+semi-circles. As in the previous case, an channel obstruction of 
+40\% was considered due to atherosclerosis and the domain was 
+discretized using 15875 nodes and 35408 linear triangular elements. 
+
+\par 
+The \ref{velocity evolution curved stent} shows the unsteady velocity 
+profile in the middle of the channel ($x=5R$). 
+As we can see, the maximum non-dimensional value of the velocity field 
+reaches $u=3.6$ when the stent is placed, that is, we have an 
+increase of $56$\% when compared to the artery with only 
+atherosclerosis as in the previous case 
+(see section \ref{canal curvado}).
 
 \begin{figure}[H]
      \centering
      \includegraphics[scale=1]{./02_chaps/cap_solution/figure/vel_CurvedStrut_evol.pdf}\\
-     \caption{Evolução no tempo do perfil da velocidade para o Canal Curvado com Stent Farmacológico.}
+     \caption{
+The unsteady velocity profile for curved channel with drug-eluting stent.}
      \label{velocity evolution curved stent}
 \end{figure}
 
 \newpage
-A \ref{velocity field curved stent} apresenta a evolução no tempo e no espaço
-do campo de velocidade para a metade do domínio já que os resultados são simétricos
-na direção $y$. O campo de velocidade é representado com os valores adimensionais
-onde a cor vermelha se refere ao valor $u=3.6$ e a cor azul $u=0$. 
-Transformando em valores dimensionais temos $u=43.2 cm/s$ e $u=0 cm/s$ respectivamente. 
+The \ref{velocity field curved stent} presents the evolution in 
+time and space of the velocity field for half of the domain. 
+The velocity field is represented with non-dimensional values 
+where the red color refers to the $u=3.6$ value and the blue color 
+$u=0$ value. Conveting to dimensional values, 
+we have $u=43.2cm/s$ and $u=0cm/s$ respectively.
 
 \vspace{2cm} 
 \begin{figure}[H]
@@ -73,23 +76,28 @@ Transformando em valores dimensionais temos $u=43.2 cm/s$ e $u=0 cm/s$ respectiv
       t = 10.0
      \end{minipage}
      \medskip
-     \caption{Evolução no tempo e no espaço do campo de velocidade para o Canal Curvado com Stent Farmacológico.}
+     \caption{
+Time and space evolution of the velocity field for curved channel with
+drug-eluting stent.}
      \label{velocity field curved stent}
 \end{figure}
 
 
 \vspace{1cm}
-Conforme mencionado por Lucena et al. (2017) \cite{lucena2017}, é estimado que $47$\% do fármaco é difundido na corrente sanguínea.
-A \ref{conc field curved stent sc 1} e a \ref{conc field curved stent sc 10} 
-apresentam a evolução no tempo e no espaço
-do campo da concentração para a metade do domínio devido a simetria para diversos números de \textit{Schmidt}
-tais como: $1$ e $10$ respectivamente.
-A concentração é representado com os valores adimensionais
-onde a cor vermelha representa $100$\% e a cor azul representa $0$\% 
-dessa concentração que é difundida na corrente sanguínea. 
-É possível observar que o número de Schmidt influencia
-diretamente no transporte do fármaco na corrente sanguínea. Para elevados valores do
-número de \textit{Schmidt}, o transporte de espécie química torna-se puramente convectivo.
+As mentioned by Lucena et al. (2017) \cite{lucena2017}, 
+it is estimated that $47$\% of the drug is diffused to the 
+lumem and it is lost to the bloodstream.
+The \ref{conc field curved stent sc 1} and 
+\ref{conc field curved stent sc 10} show the time and space evolution 
+of the concentration field for several \textit{Schmidt} number, 
+such as: $1$ and $10$ respectively. The concentration field is 
+represented with the non-dimensional values where the red color 
+represents $100$\% and the blue color represents $0$\% 
+of the diffused concentration in the bloodstream. 
+It is possible to observe that the \textit{Schmidt} number directly 
+influences the drug transport in the blood flow. 
+For high values of the \textit{Schmidt} number, 
+the transport of chemical species becomes purely convective.
 
 \begin{figure}[H]
      \begin{minipage}{.50\linewidth}
@@ -137,7 +145,8 @@ número de \textit{Schmidt}, o transporte de espécie química torna-se purament
       t = 10.0
      \end{minipage}
      \medskip
-     \caption{Evolução no tempo e no espaço do campo de espécie química para o Canal Curvado com Stent Farmacológico com $Sc=1$.}
+     \caption{
+Time and space evolution of the concentration fiel for curved channel with drug-eluting stent with $Sc=1$.}
      \label{conc field curved stent sc 1}
 \end{figure}
 
@@ -188,7 +197,8 @@ número de \textit{Schmidt}, o transporte de espécie química torna-se purament
       t = 10.0
      \end{minipage}
      \medskip
-     \caption{Evolução no tempo e no espaço do campo de espécie química para o Canal Curvado com Stent Farmacológico com $Sc=10$.}
+     \caption{
+Time and space evolution of the concentration fiel for curved channel with drug-eluting stent with $Sc=10$.}
      \label{conc field curved stent sc 10}
 \end{figure}
 
