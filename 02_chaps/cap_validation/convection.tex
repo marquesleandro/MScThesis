@@ -1,15 +1,17 @@
-O transporte de um escalar segundo uma função parabólica
-e submetido a um escoamento monofásico de um fluido
-newtoniano e incompressível com elevado número de \textit{Reynold} ($\textit{Re} \rightarrow \infty$)
-é conhecido como um \textit{Escoamento Puramente Convectivo}.
-Neste tipo de escoamento, espera-se que não ocorra difusão do escalar.
-Para os métodos de aproximação como \textit{MEF} e \textit{MDF},
-é possível observar a presença de oscilações espúrias. 
-Como mencionado anteriormente, diversos esquemas podem ser utilizados para reduzir essas
-oscilações. Apresentaremos nesta seção a utilização do esquema de
-\textit{Taylor-Galerkin} na redução das oscilações espúrias em comparação ao esquema \textit{Galerkin}.
-A \ref{conveccao} apresenta esquematicamente o problema e
-a dinâmica do transporte do escalar.
+The transport of a scalar according to a parabolic function and 
+submitted to a monophase flow of a Newtonian and incompressible fluid 
+with a high number of \textit{Reynolds} 
+($\textit{Re} \rightarrow \infty$) is known as a 
+\textit{Pure Advection flow}. In this type of flow, 
+it is expected that the scalar will not diffuse. 
+For approximation methods like \textit{FEM} and \textit{FDM}, 
+it is possible to observe the presence of spurious oscillations. 
+As mentioned earlier, several schemes can be used to reduce these 
+numerical oscillations. In this section, we will present the use 
+of the \textit{Taylor-Galerkin} scheme to reduce spurious oscillations 
+compared to the \textit{conventional Galerkin} Method. 
+The \ref{conveccao} presents schematically the problem and 
+the dynamics of scalar transport.
 
 \vspace{0.5cm}
 \begin{figure}[H]
@@ -28,15 +30,14 @@ a dinâmica do transporte do escalar.
 
 \end{tikzpicture}
 \end{center}
-\caption{Transporte de um escalar num Escoamento Puramente Convectivo}
+\caption{Transport of a scalar in Pure Advection Flow.}
 \label{conveccao}
 \end{figure}
 
 \medskip
-O domínio foi discretizado utilizando uma malha 
-triangular linear com 1231 nós e 2340 elementos. 
-A equação que governa o escoamento puramente convectivo
-de um escalar qualquer $c$ é definida como:
+\noindent
+The scalar transport $c$ for a pure advection flow is shown below:
+
 
 \begin{equation}
  \frac{\partial c}{\partial t} 
@@ -46,31 +47,28 @@ de um escalar qualquer $c$ é definida como:
 \end{equation}
 
 \noindent
-onde $\textbf{v} = (u,v)$ é o vetor velocidade e suas componentes 
-são definidas como: $u = -y$ e $v = x$. Portanto, espera-se que
-dado um campo escalar inicial, o mesmo seja deslocado pelo campo
-de velocidade sem que ocorra difusão, isto é, seu perfil não deve
-ser alterado enquanto o escoamento acontece. Qualquer alteração
-no perfil do campo escalar é considerado como erro numérico.
+where $\textbf{v} = (u,v)$ is velocity field and its components are
+defined as: $u = -y$ e $v = x$. 
+Therefore, it is expected that given an initial scalar field, 
+it will be displaced by the velocity field without diffusion, 
+that is, its profile should not be changed while the flow occurs. 
+Any change in the scalar field profile is considered a numerical error.
+For this numerical simulation, the domain was discretized using a 
+linear triangular mesh with 3835 nodes and 7299 elements. 
+In addition to the initial scalar field was defined by a parabolic
+profile $c = 1 - x^2 - y^2$, where $x$ and $y$ are space components.
+
+
 
 \medskip
-\noindent
-As condições de contorno e inicial utilizadas foram:
-
-\begin{itemize}
-     \item \textit{condição de contorno}: o campo escalar $c$ é especificado
-      com o valor $c=0$ no contorno da geometria.
-
-     \item \textit{condição inicial}: o campo escalar é definido segundo
-      a função parabólica $c = 1 - x^2 - y^2$.
-\end{itemize}
-
-\medskip
-A \ref{perfil c} apresenta a comparação do perfil do campo escalar $c$ para os esquemas Galerkin e
-Taylor-Galerkin em diferentes posições no eixo de rotação conforme o escoamente ocorre. É possível observar que em ambos
-os esquemas é apresentado oscilações espúrias. No esquema Taylor-Galerkin, porém, tais
-oscilações são amortecidas diferentemente do esquema Galerkin onde podemos observar que
-as oscilações espúrias aumentam e o perfil do campo escalar torna-se completamente distorcido. 
+The \ref{perfil c} presents the comparison between the scalar field
+profile $c$ for the Galerkin and Taylor-Galerkin methods in 
+several positions on the axis of rotation as the flow occurs. 
+It is possible to observe that in both methods the spurious oscillations 
+are presented. In the Taylor-Galerkin method, however, 
+such oscillations are dampened in contrast to the Galerkin method 
+where we can observe that spurious oscillations increase and 
+the scalar field profile becomes completely distorted.
 
 \begin{center}
 \begin{figure}[H]
@@ -96,22 +94,23 @@ as oscilações espúrias aumentam e o perfil do campo escalar torna-se completa
       (d)
      \end{minipage}
      \medskip
-     \caption{Comparação do perfil de $c$ para os esquemas Galerkin e Taylor-Galerkin em diferentes posições do eixo de rotação:
-     (a) ponto inicial, 
-     (b) 1/4 da rotação,
-     (c) 1/2 da rotação e
-     (d) 3/4 da rotação.}
+     \caption{Comparison of $c$ profile for the Galerkin e Taylor-Galerkinmethod in several positions on the axis of rotation: 
+     (a) initial, 
+     (b) 1/4 rotation,
+     (c) 1/2 rotation and
+     (d) 3/4 rotation.}
      \label{perfil c}
 \end{figure}
 \end{center}
 
 \vspace{-1cm}
-As \ref{galerkin} e \ref{taylor} apresentam a disposição espacial das oscilações espúrias
-para os esquemas Galerkin e Taylor-Galerkin respectivamente. Como mencionado anteriormente,
-as oscilações apresentadas no esquema Galerkin distorcem completamente o campo escalar $c$
-enquanto no esquema Taylor-Galerkin as mesmas são amortecidas como esperado. Portanto,
-para os problemas onde as oscilações espúrias estão presentes,
-o esquema Taylor-Galerkin é superior ao esquema Galerkin.
+The \ref{galerkin} and \ref{taylor} show the spatial arrangement 
+of spurious oscillations for the Galerkin and Taylor-Galerkin methods 
+respectively. As mentioned earlier, the oscillations presented 
+in the Galerkin method completely distort the scalar field $c$ 
+while in the Taylor-Galerkin method, they are dampened as expected. 
+Therefore, for problems where spurious oscillations are present, 
+the Taylor-Galerkin method is superior to the Galerkin method.
 
 \vspace{0.5cm}
 \begin{figure}[H]
@@ -137,11 +136,12 @@ o esquema Taylor-Galerkin é superior ao esquema Galerkin.
       (d)
      \end{minipage}
      \medskip
-     \caption{Oscilações espúrias para o esquema Galerkin em diferentes posições do eixo de rotação:
-     (a) ponto inicial, 
-     (b) 1/4 da rotação,
-     (c) 1/2 da rotação e
-     (d) 3/4 da rotação.}
+     \caption{
+Spurious oscillations for the Galerkin method in several positions of the axis of rotation:	
+     (a) initial, 
+     (b) 1/4 rotation,
+     (c) 1/2 rotation and
+     (d) 3/4 rotation.}
      \label{galerkin}
 \end{figure}
 
@@ -168,11 +168,12 @@ o esquema Taylor-Galerkin é superior ao esquema Galerkin.
       (d)
      \end{minipage}
      \medskip
-     \caption{Oscilações espúrias para o esquema Taylor-Galerkin em diferentes posições do eixo de rotação:
-     (a) ponto inicial, 
-     (b) 1/4 da rotação,
-     (c) 1/2 da rotação e
-     (d) 3/4 da rotação.}
+     \caption{
+Spurious oscillations for the Taylor-Galerkin method in several positions of the axis of rotation:	
+     (a) initial, 
+     (b) 1/4 rotation,
+     (c) 1/2 rotation and
+     (d) 3/4 rotation.}
      \label{taylor}
 \end{figure}
 
