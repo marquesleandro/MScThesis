@@ -1,33 +1,36 @@
-Para o caso onde a artéria coronária possui aterosclerose,
-o problema é modelado como um escoamento entre placas retas e paralelas
-e curvadas. A geometria utilizada promove uma redução suave
-da distância entre as paredes superior e inferior do canal.
-Foi considerado 40\% de obstrução do canal devido a aterosclerose e
-o domínio foi discretizado com 10261 nós e 23049 elementos triangulares lineares. \par
-A \ref{velocity evolution curved} apresenta o perfil
-de velocidade transiente ao longo da coordenada $y$ no
-meio do canal ($x=5R$).
-Como podemos observar, 
-o valor adimensional máximo do campo de velocidade
-chega a $u=2.3$ quando a artéria possui aterosclerose, isto é,
-há um aumento de $53$\% da velocidade máxima quando comparado com
-a artéria sem aterosclerose como apresentado na \ref{velocidade half poiseuille}.
+For the case where the coronary artery has atherosclerosis, 
+the problem is modeled as a flow between curved plates. 
+The geometry used promotes a smooth reduction of the 
+distance between the upper wall and symmetry axis of the channel. 
+Due to atherosclerosis, 40\% channel obstruction was considered 
+and the domain was discretized using 10261 nodes and 23049 
+linear triangular elements. 
+
+\par 
+The \ref{velocity evolution curved} shows the unsteady velocity 
+profile in the middle of the channel ($x=5R$). 
+As we can see, the maximum non-dimensional value of the velocity field 
+reaches $ u=2.3$ when the artery has atherosclerosis, that is, 
+there is an increase of $53$\% of the maximum velocity when 
+compared to the artery without atherosclerosis as shown in 
+\ref{velocidade half poiseuille}.
 
 
 
 \begin{figure}[H]
      \centering
      \includegraphics[scale=1]{./02_chaps/cap_solution/figure/vel_Curved_evol.pdf}\\
-     \caption{Evolução no tempo do perfil da velocidade para o Canal Curvado.}
+     \caption{The unsteady velocity profile for the curved channel.}
      \label{velocity evolution curved}
 \end{figure}
 
 \newpage
-A \ref{velocity field curved} apresenta a evolução no tempo e no espaço
-do campo de velocidade para a metade do domínio, pois os resultados são simétricos
-na direção $y$. O campo de velocidade é representado com os valores adimensionais
-onde a cor vermelha se refere ao valor $u=2.3$ e a cor azul $u=0$. Transformando em
-valores dimensionais temos $u=27.6 cm/s$ e $u=0 cm/s$ respectivamente.
+The \ref{velocity field curved} shows the evolution in time and space 
+of the velocity field for half of the domain
+The velocity field is represented with non-dimensional values 
+where the red color refers to the value $u=2.3$ and 
+the blue color $u=0$ approximately. Converting to dimensional values 
+we have $u=27.6cm/s$ and $u=0cm/s$ respectively.
 
 \vspace{2cm} 
 \begin{figure}[H]
@@ -76,8 +79,7 @@ valores dimensionais temos $u=27.6 cm/s$ e $u=0 cm/s$ respectivamente.
       t = 10.0
      \end{minipage}
      \medskip
-     \caption{Evolução no tempo e no espaço do campo de velocidade para o Canal Curvado.}
+     \caption{Time and space evolution of the velocity field for curved channel.}
      \label{velocity field curved}
 \end{figure}
 
-\newpage
