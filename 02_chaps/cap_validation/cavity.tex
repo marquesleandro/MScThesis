@@ -1,9 +1,12 @@
-Um escoamento em uma cavidade onde as parades laterais e inferior
-permanecem imóveis e a tampa se desloca com velocidade constante
-tal como \textit{$U_{top} = 1$} é conhecido como \textit{Escoamento em uma Cavidade de Tampa Móvel} 
-(\textit{lid-driven cavity flow}). 
-A \ref{cavity} apresenta esquematicamente este escoamento e
-o perfil do campo de velocidade esperado.
+A flow in a cavity where the side and bottom walls are fixes and 
+the cover moves at a constant velocity such as \textit{$U_{top}=1$} 
+is known as \textit {Lid-driven Cavity flow}.
+In addition to 
+yhe streamfunction is set null value in all boundary, 
+because there is no volumetric flux crossing the boundaries 
+in lid-driven cavity flow.
+The \ref{cavity} presents schematically this flow and 
+the expected velocity field.
 
 \vspace{1cm}
 \begin{figure}[H]
@@ -21,39 +24,21 @@ o perfil do campo de velocidade esperado.
 
 \end{tikzpicture}
 \end{center}
-\caption{Escoamento em uma Cavidade com tampa móvel}
+\caption{Lid-driven Cavity Flow}
 \label{cavity}
 \end{figure}
 
-\vspace{0.5cm}
-Foram simulados os escoamentos com
-os seguintes número de Reynolds (\textit{Re}): 10, 100, 400 e 1000. Os
-resultados obtidos foram comparados com Ghia et al. (1982) \cite{ghia1982} e Marchi et al. (2009) \cite{marchi2009}.
-O domínio foi discretizado utilizando uma malha 
-triangular linear com 1563 nós e 2988 elementos. 
-
-\medskip
-\noindent
-As condições de contorno utilizadas foram:
-
-\begin{itemize}
-     \item \textit{condição de não escorregamento}: esta condição é utilizada nas placas laterais e inferior, 
-      onde todas as componentes da velocidade são especificadas
-      com os valores $u=0$ e $v=0$.
-      A função de corrente também é espeficado com o valor de $\psi=0$.
-
-     \item \textit{condição de movimentação da parede}: esta condição é utilizada na placa superior, 
-      onde todas as componentes da velocidade são especificadas
-      com os valores $u=1$ e $v=0$.
-      A função de corrente também é espeficado com o valor de $\psi=0$.
-\end{itemize}
-
-
-\newpage
-As \ref{velocity vx cavity} e \ref{velocity vy cavity} apresentam 
-o perfil de $u$ e de $v$, respectivamente, em regime permanente para vários números de Reynolds.
-Os resultados obtidos são comparados com os resultados de Ghia et al. (1982) \cite{ghia1982} e Marchi et al. (2009)  \cite{marchi2009}.
-Na \ref{countours streamfunction}, é apresentado os contornos da função de corrente para os Reynolds analisados.
+\bigskip
+The benchmark problem were simulated with the following 
+Reynolds numbers (\textit{Re}): 10, 100, 400 and 1000.
+The \ref{velocity vx cavity} and \ref{velocity vy cavity} 
+prsent the profile of $u$ and $v$, respectively,
+for steady state in several Reynolds number. 
+They were compared with 
+Ghia et al. (1982) \cite{ghia1982} and 
+Marchi et al. (2009) \cite{marchi2009}. 
+The domain was discretized using a linear triangular mesh 
+with 1563 nodes and 2988 elements.
 
 \begin{center}
 \begin{figure}[H]
@@ -79,7 +64,7 @@ Na \ref{countours streamfunction}, é apresentado os contornos da função de co
       (d)
      \end{minipage}
      \medskip
-     \caption{Perfil de $u$ na linha central da cavidade ($x=0.5$) com diferentes Reynolds:
+     \caption{The tangential velocity $u$ profile in central line of cavity ($x=0.5$) for several Reynolds number:
      (a) 10
      (b) 100
      (c) 400
@@ -111,7 +96,7 @@ Na \ref{countours streamfunction}, é apresentado os contornos da função de co
       (d)
      \end{minipage}
      \medskip
-     \caption{Perfil de $v$ na linha central da cavidade ($y=0.5$) com diferentes Reynolds:
+     \caption{The normal velocity $v$ profile in central line of cavity ($y=0.5$) for several Reynolds number:
      (a) 10
      (b) 100
      (c) 400
@@ -119,36 +104,3 @@ Na \ref{countours streamfunction}, é apresentado os contornos da função de co
      \label{velocity vy cavity}
 \end{figure}
 
-\begin{figure}[H]
-     \centering
-     \begin{minipage}{.45\linewidth}
-      \centering
-      \includegraphics[scale=0.3]{./02_chaps/cap_validation/figure/Re_10_stream_countours.png}\\
-      (a)
-     \end{minipage}%
-     \begin{minipage}{.45\linewidth}
-      \centering
-      \includegraphics[scale=0.3]{./02_chaps/cap_validation/figure/Re_100_stream_countours.png}\\
-      (b)
-     \end{minipage}
-     \begin{minipage}{.45\linewidth}
-      \centering
-      \includegraphics[scale=0.3]{./02_chaps/cap_validation/figure/Re_400_stream_countours.png}\\
-      (c)
-     \end{minipage}%
-     \begin{minipage}{.45\linewidth}
-      \centering
-      \includegraphics[scale=0.3]{./02_chaps/cap_validation/figure/Re_1000_stream_countours.png}\\
-      (d)
-     \end{minipage}
-     \medskip
-     \caption{Os contornos da função de corrente para os Reynolds:
-     (a) 10
-     (b) 100
-     (c) 400
-     (d) 1000.}
-     \label{countours streamfunction}
-\end{figure}
-
-
-\newpage
