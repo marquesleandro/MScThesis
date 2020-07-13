@@ -1,14 +1,16 @@
 The mathematical basis for the Finite Element Method begins in 1909
- with Ritz in which a continuous problem is replaced by 
+ with Ritz \cite{ritz1909} in which a continuous problem is replaced by 
 a discrete problem with a finite number of degrees of freedom
  where the unknowns were approximated by the product between
- the constants to be determined and the base functions chosen
+ the constants and the base functions chosen
  in order to guarantee the accuracy of the result.
  This procedure is known as \textit{variational formulation}.
- Years later, Galerkin uses the Weighted Residual Method
+
+\medskip
+ Years later, Galerkin (1915) \cite{galerkin1915} uses the Weighted Residual Method
  to determine the constants of the variational formulation
  where the same base functions were used in the weight functions.
- This procedure is known as \textit{Galerkin's formulation} and
+ This procedure is known as \textit{Galerkin formulation} and
  is widely used nowadays.
 
 \medskip
@@ -58,18 +60,17 @@ In 1982, Brooks and Hughes \cite{brooks1982} proposed a
 
 \medskip
 In the same year, Pironneau \cite{pironneau1982} presented
- the Characteristic Curves Method applied to the
+ the \textit{Characteristic trajectory}
+ applied to the
  Finite Element Method in solving the non-steady convection-diffusion
  and Navier-Stokes equations. Thereby, the author was able
  to derive conservative schemes of the type \textit{upwind}
  with first and second order accurate. As the matrices are symmetric,
  this scheme proved to be advantageous in solving linear
  systems compared to other \textit{upwind} schemes.
- Numerical implementation, however, requires numerical integration
- in the assembly of the vectors on the right side of the equation.
- This scheme initiates several works and is known later on as
- \textit {Characteristic Galerkin}.
-
+ In addition to the method is unconditionally stable.
+ The numerical implementation, however, requires an complex searching
+ procedure. This method is known as \textit{semi-Lagrangian}.
 
 \medskip
 In 1984, Donea \cite{donea1984} presents an alternative for
@@ -80,82 +81,57 @@ In 1984, Donea \cite{donea1984} presents an alternative for
  spurious oscillations. Unlike upwind schemes, in the
  Taylor-Galerkin scheme there is no need to use modified
  weight functions. The scheme is compared with the formulations
- of Galerkin and Petrov Galerkin and showed high precision and
- low numerical diffusion. Although the Taylor Galerkin and
+ of Galerkin and Petrov Galerkin and it showed high precision and
+ low numerical diffusion. Although the Taylor-Galerkin method
+ is conditionally stable, the computational implementation is easy.
+
+
+\medskip
+In the same year, Lohner et al. \cite{lohner1984} 
+proposed a simpler alternative
+to avoid the complex searching procedure in the characteristic
+methods. This alternative involves to use the high-order terms of
+the Taylor expansion to approximate the departure point.
+The procedure is known as \textit{Characteristic Galerkin}.
+The main advantages of method are the symmetric global matrices
+as well as no searching procedure for each time step. However, the
+method is conditionally stable.
+Although the Taylor Galerkin and
  Characteristic Galerkin discretization procedures are distinct,
- the system of equations is identical for the convection-diffusion
- equation, where the unknowns is a scalar as mentioned by
- Lohner \cite{lohner1984}.
+ the system of equations is the same for the convection-diffusion
+ equation, where the unknown is a scalar.
+
 
 \medskip
 Several researchers have analyzed the stability and convergencei
- of these schemes and even the implementation of more efficient
- schemes has emerged, such as the numerical simulation presented
- by Anjos et at. in 2006 \cite{anjos2006}, in which the
- \textit{semi-Lagrangean} scheme is implemented in the modeling
- of flows coupled to the transport of chemical species in
- a Finite Element approach. This scheme was widely used in
- meteorology and consists of calculating the material derivative
- along the characteristic trajectory. The discretization in time
- is done by first order backward differences while
- the discretization in space is performed according to
- the Galerkin scheme. The results showed that
- the semi-Lagrangian scheme is stable, showing no spurious
- oscillations and excessive numerical diffusion even
- for long time steps and high Reynolds and Schmidt numbers.
- Spurious oscillations in the Galerkin, SUPG and semi-Lagrangean
- schemes are compared by Silva (2011) \cite{silva2011} and
- theys are presented in \ref{spurious oscillations procedures}.
-
-\begin{figure}[H]
-     \begin{minipage}{.32\linewidth}
-      \centering
-      \includegraphics[scale=0.15]{./02_chaps/cap_review/figure/galerkin.png}\\
-      (a)
-     \end{minipage}%
-     \begin{minipage}{.32\linewidth}
-      \centering
-      \includegraphics[scale=0.15]{./02_chaps/cap_review/figure/SUPG.png}\\
-      (b)
-     \end{minipage}%
-     \begin{minipage}{.35\linewidth}
-      \centering
-      \includegraphics[scale=0.15]{./02_chaps/cap_review/figure/semilagrangian.png}\\
-      (c)
-     \end{minipage}%
-     \medskip
-     \caption{Comparison between spurious oscillations \cite{silva2011}:
-              (a) Galerkin,
-              (b) SUPG e 
-              (c) semi-Lagrangian.}
-     \label{procedimentos oscilacoes espurias}
-\end{figure}
-
-
+ of these methods as the paper of Donea and Quartapelle (1992)
+\cite{donea1992}. In this paper, the authors present an analysis
+of several methods for solving unsteady problems governed by
+advection equations. 
+In comparison to the Petrov-Galerkin and
+ SUPG schemes, the Taylor-Galerkin, Characteristic Galerkin and
+ semi-Lagrangian methods have the advantage of matrices were
+ symmetric facilitating computational implementation.
+ In addition to the Taylor-Galerkin and Characteristic Galerkin methods
+ are of a much simpler implementation and can achieve a high order
+accuracy, but they are only conditionally stable.
+ For large time step, unlike, the semi-Lagrangian method is
+ more efficient because its unconditional stability.
+ However, the main disadvantage of this method is the complex 
+ searching procedure. It may lead to excessive computational cost
+ if it is not well designed.
 
 \medskip
-The scheme choice to be used to reduce spurious oscillations
- is related to its advantages and disadvantages when compared
- to other schemes. In comparison to the Petrov-Galerkin and
- SUPG schemes, the Taylor-Galerkin, Characteristic and
- semi-Lagrangian schemes have the advantage of generating
- symmetric matrices facilitating computational implementation.
- Whereas, although the effectiveness of the semi-Lagrangian scheme
- is well known, it requires an efficient search algorithm for
- neighboring nodes to perform the interpolation.
- However, in Taylor-Galerkin and Characteristic Galerkin schemes,
- this need does not exist, so computational implementation becomes
- smooth. In addition, the system of linear equations generated by
- the Taylor-Galerkin scheme is similar to that generated by
- the Characteristic Galerkin scheme when the unknowns are scalar.
- Thus, the choice between these two schemes does not matter because 
- they produce similar results although the discretization process
- is different.
-
-\medskip
-All the schemes presented have satisfactory results and
+All the methods presented have satisfactory results and
 they are well known in the literature.
- These schemes, therefore, made it possible to solve
- convective problems using the Finite Element Method.
- In this work, the semi-Lagragina scheme was chosen for
- the simulations.
+ These methods, therefore, made it possible to solve
+ convective problems using the Finite Element Method
+and they are presents in several complex problems today, 
+such as the numerical simulation for two-phase flows with
+dynamic boundaries presented
+ by Anjos, Mangiavacchi and Thome (2020) \cite{anjos2020}.
+ For current work, the semi-Lagrangian method was chosen for
+ decrease spurious oscillations and it will be described 
+in the following sections.
+
+
