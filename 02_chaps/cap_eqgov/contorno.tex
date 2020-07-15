@@ -34,7 +34,7 @@ in each particular case in the validations and results sections:
  The concentration field is specified as $c=c_{o}$.
 \end{itemize}
 
-As mentioned by Batchelor (1964) \textbf{reference},
+As mentioned by Batchelor (1967) \cite{batchelor1967},
 the $\psi$ is constant along a streamline, then
 the streamfunction boundary condition can be calculated by
 $\psi_{2} - \psi_{1} = \int \left(udy - vdx\right)$,
@@ -48,9 +48,10 @@ was calculated using $u_{o}$ and $v_{o}$ inflow velocity
 components, that is, $\psi_{2} = \int \left(u_{o}dy - v_{o}dx\right)$.
 
 \medskip
-One of the main difficulties for
-Streamfunction-Vorticity Formulation is due to absence of vorticity
-boundary condition, as shown in \textbf{references}.
-In this work, the vorticity boundary contition
-was calculated by $\omega =$ \textbf{curl\ v}
+The classical difficulty associated to the
+Streamfunction-Vorticity Formulation is due to the lack of vorticity
+boundary condition at a no-slip wall, as mentioned by Peyret (2013)
+ \cite{peyret2013}.
+Therefore, in this work, the vorticity boundary contition
+was calculated by $\omega = \nabla \times \textbf{v}$
 at each time step.
