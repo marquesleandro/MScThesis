@@ -30,7 +30,7 @@ The linear momentum flux crossing the boundary
 can be represented mathematically by:
 
 \begin{equation}  
- \oint_{S} \rho \textbf{v} \textbf{v} \cdot \textbf{n} dA
+ \oint_{S} \rho \textbf{v} \textbf{c} \cdot \textbf{n} dA
 \end{equation}
 
 \medskip
@@ -58,7 +58,7 @@ Thereby, according to principle of linear momentum conservation:
 \begin{equation}
  \int_{V} \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) dV
  = - 
- \oint_{S} \rho \textbf{v} \textbf{v} \cdot \textbf{n} dA
+ \oint_{S} \rho \textbf{v} \textbf{c} \cdot \textbf{n} dA
  +
  \oint_{S} \sigma \cdot \textbf{n} dA
  +
@@ -72,7 +72,7 @@ Applying the \textit{Gauss Theorem} on surface integrals:
 \begin{equation}
  \int_{V} \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) dV
  = - 
- \int_{V} \nabla \cdot \big( \rho \textbf{v} \textbf{v} \big) dV
+ \int_{V} \nabla \cdot \big( \rho \textbf{v} \textbf{c} \big) dV
  +
  \int_{V} \nabla \cdot \sigma dV
  +
@@ -86,7 +86,7 @@ that is:
 \begin{equation} \label{qm 2}
  \int_{V} \Bigg[ \frac{\partial}{\partial t} \big( \rho \textbf{v} \big)
  + 
- \nabla \cdot \big( \rho \textbf{v} \textbf{v} \big)
+ \nabla \cdot \big( \rho \textbf{v} \textbf{c} \big)
  -
  \nabla \cdot \sigma
  -
@@ -105,7 +105,7 @@ the Eq. \ref{qm 2} can be presented as:
 \begin{equation}
  \frac{\partial}{\partial t} \big( \rho \textbf{v} \big)
  + 
- \nabla \cdot \big( \rho \textbf{v} \textbf{v} \big)
+ \nabla \cdot \big( \rho \textbf{v} \textbf{c} \big)
  -
  \nabla \cdot \sigma
  -
@@ -120,7 +120,7 @@ that is:
 \begin{equation}
  \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) 
  +
- \nabla \cdot \big( \rho \textbf{v} \textbf{v} \big)
+ \nabla \cdot \big( \rho \textbf{v} \textbf{c} \big)
  =
  \nabla \cdot \sigma
  +
@@ -136,13 +136,13 @@ Developing the left hand side of equation, we have:
  +
  \textbf{v} \frac{\partial \rho}{\partial t}
  +
- \rho \textbf{v} \cdot \nabla \textbf{v}
+ \rho \textbf{c} \cdot \nabla \textbf{v}
  + 
- \textbf{v} \cdot \nabla \big( \rho \textbf{v} \big)
+ \textbf{v} \nabla \cdot \big( \rho \textbf{c} \big)
  =
  \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
  +
- \textbf{v} \Bigg[ \frac{\partial \rho}{\partial t} + \nabla \big( \rho \textbf{v} \big) \Bigg]
+ \textbf{v} \Bigg[ \frac{\partial \rho}{\partial t} + \nabla \cdot \big( \rho \textbf{c} \big) \Bigg]
 \end{equation}
 
 \newpage
@@ -151,7 +151,7 @@ The last term of above equation is null because
 Thus, the linear momentum equation can be rewritten as:
 
 \begin{equation} \label{qm 3}
- \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{c} \cdot \nabla \textbf{v} \Bigg]
  =
  \nabla \cdot \sigma
  +
@@ -174,7 +174,7 @@ $\tau$ id deviatoric stress.
 Replacing them in Eq. \ref{qm 3}, we have:
 
 \begin{equation}
- \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{c} \cdot \nabla \textbf{v} \Bigg]
  =
  \nabla \cdot \big[ -p \textbf{I} + \tau \big]
  +
@@ -186,7 +186,7 @@ Replacing them in Eq. \ref{qm 3}, we have:
 that is:
 
 \begin{equation} \label{qm 4}
- \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{c} \cdot \nabla \textbf{v} \Bigg]
  =
  -
  \nabla p
@@ -218,7 +218,7 @@ Replacing them in Eq. \ref{qm 4}, we have:
 
 
 \begin{equation} 
- \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{c} \cdot \nabla \textbf{v} \Bigg]
  =
  -
  \nabla p
@@ -237,7 +237,7 @@ Replacing them in Eq. \ref{qm 4}, we have:
 that is:
 
 \begin{equation} 
- \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{c} \cdot \nabla \textbf{v} \Bigg]
  =
  -
  \nabla p
@@ -256,7 +256,7 @@ Whereas the dynamic viscosity $\mu$ does not depends on coordinates,
 we have:
 
 \begin{equation} 
- \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{c} \cdot \nabla \textbf{v} \Bigg]
  =
  -
  \nabla p
@@ -273,7 +273,7 @@ we have:
 that is:
 
 \begin{equation} 
- \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v} \Bigg]
+ \rho \Bigg[ \frac{\partial \textbf{v}}{\partial t} + \textbf{c} \cdot \nabla \textbf{v} \Bigg]
  =
  -
  \nabla p
@@ -290,7 +290,7 @@ that is:
 According to Eq. \ref{incompressible continuity equation}, we have:
 
 \begin{equation} \label{navier-stokes}
- \frac{\partial \textbf{v}}{\partial t} + \textbf{v} \cdot \nabla \textbf{v}
+ \frac{\partial \textbf{v}}{\partial t} + \textbf{c} \cdot \nabla \textbf{v}
  =
  -
  \frac{1}{\rho} \nabla p
@@ -306,6 +306,8 @@ where $\nu$ is the kinematic viscosity of fluid.
  The Eq. \ref{navier-stokes} is known as
 \textit{Navier-Stokes Equation} and is valid for a
 homogeneous, isotropic, incompressible fluid
-and with viscosity that it does not depends on coordinates.
+and with viscosity that it does not depends on coordinates,
+according to the Arbitrary Lagrangian-Eulerian description
+\cite{donea1982}.
 
 \newpage
