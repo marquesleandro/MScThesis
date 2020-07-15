@@ -1,4 +1,4 @@
-As presented by Pontes and Mangiavacchi (2016) \cite{pontes2016},
+As presented by Batchelor (1967) \cite{batchelor1967},
  the principle of mass conservation without source term
  establishes that:
 
@@ -42,7 +42,7 @@ As presented by Pontes and Mangiavacchi (2016) \cite{pontes2016},
 
 
 \begin{equation}  
- \oint_{S} \rho \textbf{v} \cdot \textbf{n} dA
+ \oint_{S} \rho \left(\textbf{v} - \hat{\textbf{v}}\right) \cdot \textbf{n} dA
 \end{equation}
 
 \medskip
@@ -51,7 +51,7 @@ As presented by Pontes and Mangiavacchi (2016) \cite{pontes2016},
 \begin{equation}
  \int_{V} \frac{\partial \rho}{\partial t} dV
  = - 
- \oint_{S} \rho \textbf{v} \cdot \textbf{n} dA
+ \oint_{S} \rho \left(\textbf{v} - \hat{\textbf{v}}\right) \cdot \textbf{n} dA
 \end{equation}
 
 \medskip
@@ -60,7 +60,7 @@ As presented by Pontes and Mangiavacchi (2016) \cite{pontes2016},
 \begin{equation}
  \int_{V} \frac{\partial \rho}{\partial t} dV
  = - 
- \int_{V} \nabla \cdot \big( \rho \textbf{v} \big) dV
+ \int_{V} \nabla \cdot \left[ \rho \left(\textbf{v} - \hat{\textbf{v}}\right) \right] dV
 \end{equation}
 
 \medskip
@@ -68,9 +68,11 @@ As presented by Pontes and Mangiavacchi (2016) \cite{pontes2016},
 that is:
 
 \begin{equation} \label{massa 2}
- \int_{V} \Bigg[ \frac{\partial \rho}{\partial t}
+ \int_{V} \left[ \frac{\partial \rho}{\partial t}
  + 
- \nabla \cdot \big( \rho \textbf{v} \big) \Bigg] dV
+ \nabla \cdot 
+\left[ \rho \left(\textbf{v} - \hat{\textbf{v}}\right) \right] 
+\right] dV 
  = 0 
 \end{equation}
 
@@ -82,26 +84,29 @@ the Eq. \ref{massa 2} can be presented as:
 \begin{equation} \label{continuity equation}
  \frac{\partial \rho}{\partial t}
  + 
- \nabla \cdot \big( \rho \textbf{v} \big)
+ \nabla \cdot 
+\left[ \rho \left(\textbf{v} - \hat{\textbf{v}}\right) \right] 
  = 0 
 \end{equation}
 
 \medskip
 \noindent 
-where $\rho$ is density, $\textbf{v}$ is velocity field
- whose components are $\textbf{v} = \big[u,v\big]$,
+where $\rho$ is density, $\textbf{v}$ is material velocity
+ whose components are $\textbf{v} = \left[u,v\right]$,
+$\hat{\textbf{v}}$ is mesh velocity,
 $\nabla$ is Del operator whose components are 
-$\nabla = \big[ \partial/\partial x, \partial / \partial y \big]$,
+$\nabla = \left[ \partial/\partial x, \partial / \partial y \right]$,
 $x$ and $y$ are coordinates components and
 $t$ is time.
 The Eq. \ref{continuity equation} is known
-as \textit{Continuity Equation}.
+as \textit{Continuity Equation} 
+for Arbitrary Lagrangian-Eulerian description \cite{donea1982}.
 Developing the equation, we have:
 
 \begin{equation}
  \frac{\partial \rho}{\partial t}
  +
- \textbf{v} \cdot \nabla \rho
+ \left(\textbf{v} - \hat{\textbf{v}}\right) \cdot \nabla \rho
  +
  \rho \nabla \cdot \textbf{v}
  = 0
@@ -110,7 +115,7 @@ Developing the equation, we have:
 \medskip
 According to fluid incompressible assumption,
 the density does not depende on time and on coordinates.
-Thereby, the 
+Therefore, the 
 $\partial \rho / \partial t$ e $\nabla \rho$ derivatives are 
 null values.
 Thus, the mass conservation is reduced to:
