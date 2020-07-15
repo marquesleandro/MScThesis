@@ -20,7 +20,7 @@ Mathematically, chemical species accumulation on control volume
 can be represented by:
 
 \begin{equation} \label{esp 1} 
- \int_{V} \frac{\partial c}{\partial t} dV
+ \int_{V} \frac{\partial e}{\partial t} dV
 \end{equation}
 
 \medskip
@@ -28,9 +28,9 @@ The chemical species flux crossing the boundary
 can be splitted into two flux:
 
 \begin{equation}  
- \oint_{S} c \textbf{v} \cdot \textbf{n} dA
+ \oint_{S} e \textbf{c} \cdot \textbf{n} dA
  -
- \oint_{S} D \nabla c \cdot \textbf{n} dA
+ \oint_{S} D \nabla e \cdot \textbf{n} dA
 \end{equation}
 
 \medskip
@@ -48,12 +48,12 @@ on volume can be represented by:
 Thereby, acccording to species transport conservation:
 
 \begin{equation}
- \int_{V} \frac{\partial c}{\partial t} dV
+ \int_{V} \frac{\partial e}{\partial t} dV
  = 
  - 
- \oint_{S} c \textbf{v} \cdot \textbf{n} dA
+ \oint_{S} e \textbf{c} \cdot \textbf{n} dA
  +
- \oint_{S} D \nabla c \cdot \textbf{n} dA
+ \oint_{S} D \nabla e \cdot \textbf{n} dA
  +
  \int_{V} \overset{.}{R} dV
 \end{equation}
@@ -63,12 +63,12 @@ Thereby, acccording to species transport conservation:
 Applying the \textit{Gauss Theorem} on surface integrals:
 
 \begin{equation}
- \int_{V} \frac{\partial c}{\partial t} dV
+ \int_{V} \frac{\partial e}{\partial t} dV
  = 
  - 
- \int_{V} \nabla \cdot \big( c \textbf{v} \big) dV
+ \int_{V} \nabla \cdot \big( e \textbf{c} \big) dV
  +
- \int_{V} \nabla \cdot \big( D \nabla c \big) dV
+ \int_{V} \nabla \cdot \big( D \nabla e \big) dV
  +
  \int_{V} \overset{.}{R} dV
 \end{equation}
@@ -78,11 +78,11 @@ Applying the \textit{Gauss Theorem} on surface integrals:
 that is:
 
 \begin{equation} \label{esp 2}
- \int_{V} \Bigg[ \frac{\partial c}{\partial t}
+ \int_{V} \Bigg[ \frac{\partial e}{\partial t}
  + 
- \nabla \cdot \big( c \textbf{v} \big)
+ \nabla \cdot \big( e \textbf{c} \big)
  -
- \nabla \cdot \big( D \nabla c \big)
+ \nabla \cdot \big( D \nabla e \big)
  -
  \overset{.}{R} \Bigg] dV = 0
 \end{equation}
@@ -95,11 +95,11 @@ Whereas the $dV \neq 0$,
 the Eq. \ref{esp 2} can be represented by:
 
 \begin{equation}
- \frac{\partial c}{\partial t}
+ \frac{\partial e}{\partial t}
  + 
- \nabla \cdot \big( c \textbf{v} \big)
+ \nabla \cdot \big( e \textbf{c} \big)
  -
- \nabla \cdot \big( D \nabla c \big)
+ \nabla \cdot \big( D \nabla e \big)
  -
  \overset{.}{R} = 0
 \end{equation}
@@ -111,11 +111,11 @@ the Eq. \ref{esp 2} can be represented by:
 that is:
 
 \begin{equation}
- \frac{\partial c}{\partial t}
+ \frac{\partial e}{\partial t}
  +
- \nabla \cdot \big( c \textbf{v} \big)
+ \nabla \cdot \big( e \textbf{c} \big)
  =
- \nabla \cdot \big( D \nabla c \big)
+ \nabla \cdot \big( D \nabla e \big)
  +
  \overset{.}{R}
 \end{equation}
@@ -125,13 +125,13 @@ that is:
 Developing the left hand side of equation, we have:
 
 \begin{equation}
- \frac{\partial c}{\partial t}
+ \frac{\partial e}{\partial t}
  +
- \textbf{v} \cdot \nabla c
+ \textbf{v} \cdot \nabla e
  + 
- c \nabla \cdot \textbf{v}
+ e \nabla \cdot \textbf{c}
  =
- \nabla \cdot \big( D \nabla c \big)
+ \nabla \cdot \big( D \nabla e \big)
  +
  \overset{.}{R}
 \end{equation}
@@ -143,11 +143,11 @@ fluid incompressibility assumption
 thus:
 
 \begin{equation}
- \frac{\partial c}{\partial t}
+ \frac{\partial e}{\partial t}
  +
- \textbf{v} \cdot \nabla c
+ \textbf{c} \cdot \nabla e
  =
- \nabla \cdot \big( D \nabla c \big)
+ \nabla \cdot \big( D \nabla e \big)
  +
  \overset{.}{R}
 \end{equation}
@@ -159,11 +159,11 @@ generation,
 the species transport equation can rewritten as:
 
 \begin{equation} \label{chemical species}
- \frac{\partial c}{\partial t}
+ \frac{\partial e}{\partial t}
  +
- \textbf{v} \cdot \nabla c
+ \textbf{c} \cdot \nabla e
  =
- D \nabla^{2} c
+ D \nabla^{2} e
 \end{equation}
 
 \medskip
@@ -171,4 +171,5 @@ the species transport equation can rewritten as:
 The Eq. \ref{chemical species} is known as
 \textit{Species Transport Equation}
 for an incompressible fluid, with constant diffusion coefficient
-and without chemical species generation.
+and without chemical species generation for the
+Arbitrary Lagrangia-Eulerian description.
