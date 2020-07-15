@@ -14,7 +14,7 @@ The following parameters was used in non-dimensionalization:
  \end{aligned}
  \qquad
  \begin{aligned}
- c & = ( c_{s} - c_{0} ) c^{*} + c_{0}\\[10pt]
+ e & = ( e_{s} - e_{0} ) e^{*} + e_{0}\\[10pt]
  \textbf{g} & = g_{0} \textbf{g}^{*} \\
  \end{aligned}
  \qquad
@@ -62,7 +62,7 @@ Eq. \ref{navier-stokes}, that is:
 \begin{equation}
  \frac{U^{2}}{L} \frac{\partial \textbf{v$^{*}$}}{\partial t^{*}} 
  + 
- \frac{U^{2}}{L} \textbf{v$^{*}$} \cdot \nabla^{*} \textbf{v$^{*}$}
+ \frac{U^{2}}{L} \textbf{c$^{*}$} \cdot \nabla^{*} \textbf{v$^{*}$}
  =
  -
  \frac{U^{2}}{L} \frac{1}{\rho^{*}} \nabla^{*} p^{*}
@@ -79,7 +79,7 @@ Multiplying both sides by $L/U^{2}$:
 \begin{equation} \label{navier-stokes adimensional 2}
  \frac{\partial \textbf{v$^{*}$}}{\partial t^{*}} 
  + 
- \textbf{v$^{*}$} \cdot \nabla^{*} \textbf{v$^{*}$}
+ \textbf{c$^{*}$} \cdot \nabla^{*} \textbf{v$^{*}$}
  =
  -
  \frac{1}{\rho^{*}} \nabla^{*} p^{*}
@@ -96,7 +96,7 @@ that is:
 \begin{equation} \label{navier-stokes adimensional 1}
  \frac{\partial \textbf{v$^{*}$}}{\partial t^{*}} 
  + 
- \textbf{v$^{*}$} \cdot \nabla^{*} \textbf{v$^{*}$}
+ \textbf{c$^{*}$} \cdot \nabla^{*} \textbf{v$^{*}$}
  =
  -
  \nabla^{*} p^{*}
@@ -111,23 +111,23 @@ that is:
 In the Eq. \ref{chemical species}, a similar procedure is performed:
 
 \begin{equation}
- (c_{s}-c_{0}) \frac{U}{L} \frac{\partial c^{*}}{\partial t^{*}}
+ (e_{s}-e_{0}) \frac{U}{L} \frac{\partial e^{*}}{\partial t^{*}}
  +
- (c_{s}-c_{0}) \frac{U}{L} \textbf{v$^{*}$} \cdot \nabla^{*} c^{*}
+ (e_{s}-e_{0}) \frac{U}{L} \textbf{c$^{*}$} \cdot \nabla^{*} e^{*}
  =
- (c_{s}-c_{0}) \frac{D_{0}}{L^{2}} D^{*} \nabla^{*2} c^{*}
+ (e_{s}-e_{0}) \frac{D_{0}}{L^{2}} D^{*} \nabla^{*2} e^{*}
 \end{equation}
 
 \medskip
 \noindent
-Multiplying both sides by $L/U(c_{s}-c_{0})$, we have:
+Multiplying both sides by $L/U(e_{s}-e_{0})$, we have:
 
 \begin{equation} \label{especie quimica adimensional 2}
- \frac{\partial c^{*}}{\partial t^{*}}
+ \frac{\partial e^{*}}{\partial t^{*}}
  +
- \textbf{v$^{*}$} \cdot \nabla^{*} c^{*}
+ \textbf{c$^{*}$} \cdot \nabla^{*} e^{*}
  =
- \frac{D_{0}}{UL} D^{*} \nabla^{*2} c^{*}
+ \frac{D_{0}}{UL} D^{*} \nabla^{*2} e^{*}
 \end{equation}
 
 \medskip
@@ -135,66 +135,23 @@ Multiplying both sides by $L/U(c_{s}-c_{0})$, we have:
 that is
 
 \begin{equation} \label{especie quimica adimensional 1}
- \frac{\partial c^{*}}{\partial t^{*}}
+ \frac{\partial e^{*}}{\partial t^{*}}
  +
- \textbf{v$^{*}$} \cdot \nabla^{*} c^{*}
+ \textbf{c$^{*}$} \cdot \nabla^{*} e^{*}
  =
- \frac{D_{0}}{UL} \nabla^{*2} c^{*}
+ \frac{D_{0}}{UL} \nabla^{*2} e^{*}
 \end{equation}
 
-\newpage
-Important non-dimensional groups are found in
+\noindent
+where, important non-dimensional groups are found in
 Eqs. \ref{continuidade adimensional 1}, \ref{navier-stokes adimensional 1}
-and \ref{especie quimica adimensional 1}. 
-The description of theses groups are shown below:
-
-\begin{itemize}
- \item \textbf{Reynolds Number} ($Re$): 
- Is ratio of inertial forces to viscous forces that 
- it acts a moving fluid particle.
- It is represented by:
- \begin{equation}
-  Re = \frac{UL}{\nu_{0}}
- \end{equation}
- 
- where, $\nu_{0}$, $U$ and $L$ are kinematic viscosity of fluid, 
- the velocity field
- and characteristic length, respectively.
- The Reynolds number is often used to define the
- flow, where $Re < Re_{critical}$ is
- a laminar flow and $Re > Re_{critical}$
- is a turbulent flow \cite{fox2012}.
-
- \item \textbf{Froude number} ($Fr$): 
- Is ratio of inertial force to gravitational forces
- Is represented by:
- \begin{equation}
-  Fr = \frac{U}{\sqrt{g_{0}L}}
- \end{equation}
- 
- where, $g_{0}$ is the gravitational acceleration.
-
- \item \textbf{Mass Péclet number} ($Pe_{m}$): 
- Is ratio advective transport to diffusion transport
- Is represented by:
- \begin{equation}
-  Pe_{m} = \frac{D_{0}}{UL}
- \end{equation}
- 
- where, $D_{0}$ is diffusion coefficient of chemical species.
- The $Pe_{m}$ number is often
- shown as the product of two other non-dimensional groups: 
- the \textit{Reynolds number} and the \textit{Schmidt number}.
-
- \newpage
- \item \textbf{Schmidt number} ($Sc$): 
- Is ratio hydrodynamic buondary layer thickness to
- chemical species diffusion.
- Is represented by:
- \begin{equation}
-  Sc = \frac{\nu_{0}}{D_{0}}
- \end{equation}
-\end{itemize}
+and \ref{especie quimica adimensional 1}, such that:
+\item \textbf{Reynolds Number} ($Re$),
+\textbf{Froude number} ($Fr$) and
+\textbf{Mass Péclet number} ($Pe_{m}$).
+The $Pe_{m}$ number is often
+ shown as the product of
+ the \textit{Reynolds number} and the \textit{Schmidt number} $Sc$.
 
 \medskip
 Replacing these non-dimensional groups in Eqs.
@@ -209,7 +166,7 @@ removing the asterisk, we have:
 \begin{equation} \label{navier-stokes adimensional}
  \frac{\partial \textbf{v}}{\partial t} 
  + 
- \textbf{v} \cdot \nabla \textbf{v}
+ \textbf{c} \cdot \nabla \textbf{v}
  =
  -
  \nabla p
@@ -220,11 +177,11 @@ removing the asterisk, we have:
 \end{equation}
 
 \begin{equation} \label{especie quimica adimensional}
- \frac{\partial c}{\partial t}
+ \frac{\partial e}{\partial t}
  +
- \textbf{v} \cdot \nabla c
+ \textbf{c} \cdot \nabla e
  =
- \frac{1}{ReSc} \nabla^{2} c
+ \frac{1}{ReSc} \nabla^{2} e
 \end{equation}
 
 \medskip
@@ -234,5 +191,6 @@ The Eqs.
 \ref{especie quimica adimensional}
 are, respectively, non-dimensional form of Continuity,
 Navier-Stokes and Species Transport equations
-for a newtonian and incompressble flow.
+for a newtonian and incompressble flow in an
+Arbritary Lagrangian-Eulerian description.
 
