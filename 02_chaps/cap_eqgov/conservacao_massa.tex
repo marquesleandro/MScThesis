@@ -42,7 +42,7 @@ As presented by Batchelor (1967) \cite{batchelor1967},
 
 
 \begin{equation}  
- \oint_{S} \rho \left(\textbf{v} - \hat{\textbf{v}}\right) \cdot \textbf{n} dA
+ \oint_{S} \rho \textbf{c} \cdot \textbf{n} dA
 \end{equation}
 
 \medskip
@@ -51,7 +51,7 @@ As presented by Batchelor (1967) \cite{batchelor1967},
 \begin{equation}
  \int_{V} \frac{\partial \rho}{\partial t} dV
  = - 
- \oint_{S} \rho \left(\textbf{v} - \hat{\textbf{v}}\right) \cdot \textbf{n} dA
+ \oint_{S} \rho \textbf{c} \cdot \textbf{n} dA
 \end{equation}
 
 \medskip
@@ -60,7 +60,7 @@ As presented by Batchelor (1967) \cite{batchelor1967},
 \begin{equation}
  \int_{V} \frac{\partial \rho}{\partial t} dV
  = - 
- \int_{V} \nabla \cdot \left[ \rho \left(\textbf{v} - \hat{\textbf{v}}\right) \right] dV
+ \int_{V} \nabla \cdot \left( \rho \textbf{c} \right) dV
 \end{equation}
 
 \medskip
@@ -71,7 +71,7 @@ that is:
  \int_{V} \left[ \frac{\partial \rho}{\partial t}
  + 
  \nabla \cdot 
-\left[ \rho \left(\textbf{v} - \hat{\textbf{v}}\right) \right] 
+\left( \rho \textbf{c} \right) 
 \right] dV 
  = 0 
 \end{equation}
@@ -85,16 +85,19 @@ the Eq. \ref{massa 2} can be presented as:
  \frac{\partial \rho}{\partial t}
  + 
  \nabla \cdot 
-\left[ \rho \left(\textbf{v} - \hat{\textbf{v}}\right) \right] 
+\left( \rho \textbf{c} \right) 
  = 0 
 \end{equation}
 
 \medskip
 \noindent 
-where $\rho$ is density, $\textbf{v}$ is material velocity
- whose components are $\textbf{v} = \left[u,v\right]$,
-$\hat{\textbf{v}}$ is mesh velocity,
-$\nabla$ is Del operator whose components are 
+where $\rho$ is density, 
+$\textbf{c}$ is relative velocity and
+it is relationship between the
+material velocity $\textbf{v}$ and
+the computational mesh velocity $\hat{\textbf{v}}$,
+that is, $\textbf{c} = \textbf{v} - \hat{\textbf{v}}$.
+In addition, $\nabla$ is Del operator whose components are 
 $\nabla = \left[ \partial/\partial x, \partial / \partial y \right]$,
 $x$ and $y$ are coordinates components and
 $t$ is time.
@@ -106,7 +109,7 @@ Developing the equation, we have:
 \begin{equation}
  \frac{\partial \rho}{\partial t}
  +
- \left(\textbf{v} - \hat{\textbf{v}}\right) \cdot \nabla \rho
+ \textbf{c} \cdot \nabla \rho
  +
  \rho \nabla \cdot \textbf{v}
  = 0
