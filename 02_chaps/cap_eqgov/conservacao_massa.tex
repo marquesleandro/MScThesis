@@ -1,61 +1,23 @@
-As presented by Batchelor (1967) \cite{batchelor1967},
- the principle of mass conservation without source term
- establishes that:
+As presented by Panton (2013) \cite{panton2013},
+the mass conservation for a region with arbitrary motion is:
 
-
-\medskip
-\begin{center}
-\textarray{Mass accumulation rate\\
-           on control volume}
-           $= -$ 
-\textarray{Mass flux crossing\\ 
-           the boundary}
-\end{center}
-
-\noindent Mathematically, the mass accumulation rate within on volume
- can be represented by:
-
-\begin{equation} \label{massa 1} 
- \int_{V} \frac{\partial}{\partial t} dm
-\end{equation}
-
-
-\noindent where the infinitesimal mass $dm$ is defined
- as $dm = \rho dV$. Replacing it in Eq. \ref{massa 1}
- and considering that the control volume does not vary over time,
- we have:
-
-\begin{equation}
- \int_{V} \frac{\partial}{\partial t} dm
- =
- \int_{V} \frac{\partial}{\partial t} \big( \rho dV \big)
- = 
+\begin{equation} \label{mass arbitrary domain panton}
  \int_{V} \frac{\partial \rho}{\partial t} dV
- +
- \int_{V} \rho \frac{\partial dV}{\partial t}
- = 
- \int_{V} \frac{\partial \rho}{\partial t} dV
+ + 
+ \oint_{S} \rho 
+ \left( \textbf{v} - \hat{\textbf{v}} \right) 
+ \cdot \textbf{n} dA
+ = 0
 \end{equation}
 
 \medskip
-\noindent The mass flux crossing boundary can be mathematically represented by:
-
-
-\begin{equation}  
- \oint_{S} \rho \textbf{c} \cdot \textbf{n} dA
-\end{equation}
-
-\medskip
-\noindent Thereby, according to mass conservation theorem:
-
-\begin{equation}
- \int_{V} \frac{\partial \rho}{\partial t} dV
- = - 
- \oint_{S} \rho \textbf{c} \cdot \textbf{n} dA
-\end{equation}
-
-\medskip
-\noindent Applying the \textit{Gauss theorem} on surface integral:
+\noindent 
+where $\rho$ is density, 
+$\textbf{v}$ is material velocity,
+$\hat{\textbf{v}}$ the computational mesh velocity and
+the subtraction of these velocities is known as
+\textit{relative velocity} $\textbf{c}$.
+Applying the \textit{Gauss theorem} on surface integral:
 
 \begin{equation}
  \int_{V} \frac{\partial \rho}{\partial t} dV
@@ -90,20 +52,7 @@ the Eq. \ref{massa 2} can be presented as:
 \end{equation}
 
 \medskip
-\noindent 
-where $\rho$ is density, 
-$\textbf{c}$ is relative velocity and
-it is relationship between the
-material velocity $\textbf{v}$ and
-the computational mesh velocity $\hat{\textbf{v}}$,
-that is, $\textbf{c} = \textbf{v} - \hat{\textbf{v}}$.
-In addition, $\nabla$ is Del operator whose components are 
-$\nabla = \left[ \partial/\partial x, \partial / \partial y \right]$,
-$x$ and $y$ are coordinates components and
-$t$ is time.
-The Eq. \ref{continuity equation} is known
-as \textit{Continuity Equation} 
-for Arbitrary Lagrangian-Eulerian description \cite{donea1982}.
+\noindent
 Developing the equation, we have:
 
 \begin{equation}
@@ -137,7 +86,10 @@ Thus, the mass conservation is reduced to:
 \end{equation}
 
 \medskip
-\noindent This equation is the \textit{continuity equation} for an incompressible flow.
+\noindent 
+This equation is known as the \textit{continuity equation} 
+for an incompressible flow
+in an Arbitrary Lagrangian-Eulerian description \cite{donea1982}.
 
 
 \newpage
