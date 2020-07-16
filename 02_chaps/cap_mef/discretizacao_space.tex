@@ -9,25 +9,10 @@ Thus, Eqs. \ref{vorticity weak}, \ref{stream weak} and
 can be presented in expanded form such as:
 
 \begin{equation} 
-\begin{aligned}
-   \int_{\Omega} \overset{.}{w} \delta d\Omega 
- + & \int_{\Omega} u \frac{\partial w}{\partial x} \delta d\Omega 
- + \int_{\Omega} v \frac{\partial w}{\partial y} \delta d\Omega 
+   \int_{\Omega} \frac{D \omega}{Dt} \delta d\Omega 
  + \frac{1}{\textit{Re}} \int_{\Omega} \Bigg\{ \frac{\partial w}{\partial x} \frac{\partial \delta}{\partial x} 
  + \frac{\partial w}{\partial y} \frac{\partial \delta}{\partial y} \Bigg\} d\Omega 
- \\[5pt]
- & + \frac{\Delta t}{2} \int_{\Omega} u \frac{\partial \delta}{\partial x}
- \Bigg[
-   u \frac{\partial w}{\partial x}
- + v \frac{\partial w}{\partial y}
- \Bigg] d\Omega
- + \frac{\Delta t}{2} \int_{\Omega} v \frac{\partial \delta}{\partial y}
- \Bigg[
-   u \frac{\partial w}{\partial x}
- + v \frac{\partial w}{\partial y}
- \Bigg] d\Omega
  = 0
-\end{aligned}
 \end{equation}
 
 \begin{equation}
@@ -36,36 +21,11 @@ can be presented in expanded form such as:
  + \int_{\Omega} w \phi d\Omega = 0
 \end{equation}
 
-\begin{equation}
-   \int_{\Omega} u \xi d\Omega
- - \int_{\Omega} \frac{\partial \psi}{\partial y} \xi d\Omega = 0
-\end{equation}
-
-\begin{equation}
-   \int_{\Omega} v \xi d\Omega
- + \int_{\Omega} \frac{\partial \psi}{\partial x} \xi d\Omega = 0
-\end{equation}
-
 \begin{equation} 
-\begin{aligned} 
-   \int_{\Omega} \overset{.}{c} \eta d\Omega 
- + \int_{\Omega} & u \frac{\partial c}{\partial x} \eta d\Omega 
- + \int_{\Omega} v \frac{\partial c}{\partial y} \eta d\Omega 
- + \frac{1}{\textit{ReSc}} \int_{\Omega} \Bigg\{ \frac{\partial c}{\partial x} \frac{\partial \eta}{\partial x} 
- + \frac{\partial c}{\partial y} \frac{\partial \eta}{\partial y} \Bigg\} d\Omega
- \\[5pt]
- & + \frac{\Delta t}{2} \int_{\Omega} u \frac{\partial \eta}{\partial x}
- \Bigg[
-   u \frac{\partial c}{\partial x}
- + v \frac{\partial c}{\partial y}
- \Bigg] d\Omega
- + \frac{\Delta t}{2} \int_{\Omega} v \frac{\partial \eta}{\partial y}
- \Bigg[
-   u \frac{\partial c}{\partial x}
- + v \frac{\partial c}{\partial y}
- \Bigg] d\Omega
+   \int_{\Omega} \frac{D e}{Dt} \eta d\Omega 
+ + \frac{1}{\textit{ReSc}} \int_{\Omega} \Bigg\{ \frac{\partial e}{\partial x} \frac{\partial \eta}{\partial x} 
+ + \frac{\partial e}{\partial y} \frac{\partial \eta}{\partial y} \Bigg\} d\Omega
  = 0
-\end{aligned}
 \end{equation}
 
 \medskip
@@ -77,25 +37,23 @@ in the computational mesh. Thus, we have:
 \begin{align}
  w(\textbf{x},t) & \simeq \sum\limits_{i=1}^{np} w_i(t) N_i(\textbf{x}) \\
  \psi(\textbf{x},t) & \simeq \sum\limits_{i=1}^{np} \psi_i(t) N_i(\textbf{x}) \\
- u(\textbf{x},t) & \simeq \sum\limits_{i=1}^{np} u_i(t) N_i(\textbf{x}) \\
- v(\textbf{x},t) & \simeq \sum\limits_{i=1}^{np} v_i(t) N_i(\textbf{x}) \\
- c(\textbf{x},t) & \simeq \sum\limits_{i=1}^{np} c_i(t) N_i(\textbf{x})
+ e(\textbf{x},t) & \simeq \sum\limits_{i=1}^{np} e_i(t) N_i(\textbf{x})
 \end{align}
 
 \noindent
 where 
 $w_i = [w_1,...,w_{np}]$,
-$\psi_i = [\psi_1,...,\psi_{np}]$,
-$u_i = [u_1,...,u_{np}]$,
-$v_i = [v_1,...,v_{np}]$,
-$c_i = [c_1,...,c_{np}]$ 
-are the unknowns to be found. 
-As these unknowns depend only on time, 
+$\psi_i = [\psi_1,...,\psi_{np}]$ and
+$e_i = [c_1,...,c_{np}]$ 
+are the semi-discrete unknowns, that is, 
+these unknowns are continuous in time ($t$)
+and discrete in space ($\textbf{x}$). As they
+are only time dependent, then 
 they can leave the integrals on the domain 
-$\Omega$, whereas $N_i = [N_1, ..., N_{np}]$ 
+$\Omega$. In addition, $N_i = [N_1, ..., N_{np}]$ 
 are the approximation functions known 
 as basis functions or interpolation functions. 
-These functions can be chosen arbitrarily and 
+These functions can be chosen arbitrarily, however they 
 must respect the boundary conditions. 
 They vary depending on the element type used for discretization. 
 As mentioned, in this work we will use the same type of element 
@@ -110,7 +68,6 @@ the values of the basis functions, that is:
 \begin{align}
  \delta(\textbf{x},t) & \simeq \sum\limits_{j=1}^{np} \delta_j(t) N_j(\textbf{x}) \\
  \phi(\textbf{x},t) & \simeq \sum\limits_{j=1}^{np} \phi_j(t) N_j(\textbf{x}) \\
- \xi(\textbf{x},t) & \simeq \sum\limits_{j=1}^{np} \xi_j(t) N_j(\textbf{x}) \\
  \eta(\textbf{x},t) & \simeq \sum\limits_{j=1}^{np} \eta_j(t) N_j(\textbf{x})
 \end{align}
 
@@ -120,30 +77,15 @@ discretized in space will be:
 
 \begin{equation} \label{convection vorticity}
  \begin{aligned} 
-  \int_{\Omega} \sum\limits_{i=1}^{np} \overset{.}{w_i} N_i 
-                \sum\limits_{j=1}^{np} \delta_j N_j d\Omega 
-  & + u \int_{\Omega} \sum\limits_{i=1}^{np} \frac{\partial w_i N_i}{\partial x} 
-                    \sum\limits_{j=1}^{np} \delta_j N_j d\Omega 
-  + v \int_{\Omega} \sum\limits_{i=1}^{np} \frac{\partial w_i N_i}{\partial y} 
-                    \sum\limits_{j=1}^{np} \delta_j N_j d\Omega 
+  \int_{\Omega} \sum\limits_{i=1}^{np} \frac{D w_i}{Dt} N_i 
+                \sum\limits_{j=1}^{np} & \delta_j N_j d\Omega 
   \\[5pt]
-  + \frac{1}{\textit{Re}} \int_{\Omega} \Bigg\{ 
-                    \sum\limits_{i=1}^{np} & \frac{\partial w_i N_i}{\partial x} 
+  + & \frac{1}{\textit{Re}} \int_{\Omega} \Bigg\{ 
+                    \sum\limits_{i=1}^{np} \frac{\partial w_i N_i}{\partial x} 
                     \sum\limits_{j=1}^{np} \frac{\partial \delta_j N_j}{\partial x} 
   +                 \sum\limits_{i=1}^{np} \frac{\partial w_i N_i}{\partial y} 
                     \sum\limits_{j=1}^{np} \frac{\partial \delta_j N_j}{\partial y} \Bigg\}
- \\[5pt]
- + \frac{\Delta t}{2} & \int_{\Omega} u \sum\limits_{j=1}^{np} \frac{\partial \delta_j N_j}{\partial x}
- \Bigg[
-   u \sum\limits_{i=1}^{np} \frac{\partial w_i N_i}{\partial x}
- + v \sum\limits_{i=1}^{np} \frac{\partial w_i N_i}{\partial y}
- \Bigg] d\Omega
- \\[5pt] 
- + \frac{\Delta t}{2} & \int_{\Omega} v \sum\limits_{j=1}^{np} \frac{\partial \delta_j N_j}{\partial y}
- \Bigg[
-   u \sum\limits_{i=1}^{np} \frac{\partial w_i N_i}{\partial x}
- + v \sum\limits_{i=1}^{np} \frac{\partial w_i N_i}{\partial y}
- \Bigg] d\Omega = 0
+ = 0
  \end{aligned}
 \end{equation}
 
@@ -153,7 +95,7 @@ discretized in space will be:
                   \sum\limits_{i=1}^{np} \frac{\partial \psi_i N_i}{\partial x} 
                   \sum\limits_{j=1}^{np} \frac{\partial \phi_j N_j}{\partial x} 
   +               \sum\limits_{i=1}^{np} \frac{\partial \psi_i N_i}{\partial y} 
-                & \sum\limits_{j=1}^{np} \frac{\partial \phi_j N_j}{\partial y} 
+                  \sum\limits_{j=1}^{np} & \frac{\partial \phi_j N_j}{\partial y} 
   \Bigg\} d\Omega 
   \\[5pt]
   & + \int_{\Omega} \sum\limits_{i=1}^{np} w_i N_i 
@@ -161,51 +103,18 @@ discretized in space will be:
  \end{aligned}
 \end{equation}
 
-\begin{equation}
- \begin{aligned}
-   \int_{\Omega} \sum\limits_{i=1}^{np} u_i N_i 
-                 \sum\limits_{j=1}^{np} \xi_j N_j d\Omega
- - \int_{\Omega} \sum\limits_{i=1}^{np} \frac{\partial \psi_i N_i}{\partial y} 
-                 \sum\limits_{j=1}^{np} \xi_j N_j d\Omega = 0
- \end{aligned}
-\end{equation}
-
-\begin{equation}
- \begin{aligned}
-   \int_{\Omega} \sum\limits_{i=1}^{np} v_i N_i 
-                 \sum\limits_{j=1}^{np} \xi_j N_j d\Omega
- + \int_{\Omega} \sum\limits_{i=1}^{np} \frac{\partial \psi_i N_i}{\partial x} 
-                 \sum\limits_{j=1}^{np} \xi_j N_j d\Omega = 0
- \end{aligned}
-\end{equation}
-
 \medskip
 \begin{equation} \label{convection concentration}
  \begin{aligned} 
-  \int_{\Omega} \sum\limits_{i=1}^{np} \overset{.}{c_i} N_i 
-                \sum\limits_{j=1}^{np} \eta_j N_j d\Omega 
-  & + u \int_{\Omega} \sum\limits_{i=1}^{np} \frac{\partial c_i N_i}{\partial x} 
-                    \sum\limits_{j=1}^{np} \eta_j N_j d\Omega 
-  + v \int_{\Omega} \sum\limits_{i=1}^{np} \frac{\partial c_i N_i}{\partial y} 
-                    \sum\limits_{j=1}^{np} \eta_j N_j d\Omega 
+  \int_{\Omega} \sum\limits_{i=1}^{np} \frac{D e_i}{Dt} N_i 
+                \sum\limits_{j=1}^{np} & \eta_j N_j d\Omega 
   \\[5pt]
-  + \frac{1}{\textit{ReSc}} \int_{\Omega} \Bigg\{ 
-                    \sum\limits_{i=1}^{np} & \frac{\partial c_i N_i}{\partial x} 
+  + & \frac{1}{\textit{ReSc}} \int_{\Omega} \Bigg\{ 
+                    \sum\limits_{i=1}^{np} \frac{\partial e_i N_i}{\partial x} 
                     \sum\limits_{j=1}^{np} \frac{\partial \eta_j N_j}{\partial x} 
-  +                 \sum\limits_{i=1}^{np} \frac{\partial c_i N_i}{\partial y} 
+  +                 \sum\limits_{i=1}^{np} \frac{\partial e_i N_i}{\partial y} 
                     \sum\limits_{j=1}^{np} \frac{\partial \eta_j N_j}{\partial y} \Bigg\} d\Omega
- \\[5pt]
- + \frac{\Delta t}{2} & \int_{\Omega} u \sum\limits_{j=1}^{np} \frac{\partial \eta_j N_j}{\partial x}
- \Bigg[
-   u \sum\limits_{i=1}^{np} \frac{\partial c_i N_i}{\partial x}
- + v \sum\limits_{i=1}^{np} \frac{\partial c_i N_i}{\partial y}
- \Bigg] d\Omega
- \\[5pt] 
- + \frac{\Delta t}{2} & \int_{\Omega} v \sum\limits_{j=1}^{np} \frac{\partial \eta_j N_j}{\partial y}
- \Bigg[
-   u \sum\limits_{i=1}^{np} \frac{\partial c_i N_i}{\partial x}
- + v \sum\limits_{i=1}^{np} \frac{\partial c_i N_i}{\partial y}
- \Bigg] d\Omega = 0
+ = 0
  \end{aligned}
 \end{equation}
 

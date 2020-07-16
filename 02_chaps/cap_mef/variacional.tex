@@ -27,11 +27,11 @@ with the following boundary conditions:
  \begin{aligned}
   w = w_\Gamma \quad & \mbox{in $\Gamma_1$}\\
   \psi = \psi_\Gamma \quad & \mbox{in $\Gamma_2$}\\
-  c = c_\Gamma \quad & \mbox{in $\Gamma_4$}
+  e = e_\Gamma \quad & \mbox{in $\Gamma_4$}
 \end{aligned}
 \end{equation}
 
-\medskip
+\vspace{1cm}
 The result of the weighted governing equations over the domain 
 is known as \textbf{Weak formulation}.
 Then, the weak formulation 
@@ -190,7 +190,7 @@ Therefore, replacing the new diffusive terms in the governing equations:
 
 \begin{equation} \label{concentration weak} 
    \int_{\Omega} \frac{D e}{Dt} \eta d\Omega
- + \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla c \cdot \nabla \eta d\Omega 
+ + \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla e \cdot \nabla \eta d\Omega 
  = 0
 \end{equation}
 
@@ -202,14 +202,14 @@ If we consider that:
 \begin{equation}
  \begin{aligned}
   \textbf{$m_1$}(\frac{D \omega}{Dt},\delta) & = \int_{\Omega} \frac{D \omega}{Dt} \delta d\Omega \\ 
-  \textbf{$k_1$}(w,\delta) & = \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega \\
-  \textbf{$k_2$}(\psi,\phi) & = \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega \\
+  \textbf{$m_2$}(\psi,\phi) & = \int_{\Omega} w \phi d\Omega \\
+  \textbf{$m_3$}(\frac{De}{Dt},\eta) & = \int_{\Omega} \frac{De}{Dt} \eta d\Omega \\
  \end{aligned}
  \qquad
  \begin{aligned}  
-  \textbf{$m_3$}(\frac{De}{Dt},\eta) & = \int_{\Omega} \frac{De}{Dt} \eta d\Omega \\
+  \textbf{$k_1$}(w,\delta) & = \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega \\
+  \textbf{$k_2$}(\psi,\phi) & = \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega \\
   \textbf{$k_3$}(e,\eta) & = \int_{\Omega} \nabla e \cdot \nabla \eta d\Omega \\
-  \textbf{$m_2$}(\psi,\phi) & = \int_{\Omega} w \phi d\Omega \\
  \end{aligned}
 \end{equation}
 
