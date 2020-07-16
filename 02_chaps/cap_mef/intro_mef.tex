@@ -1,26 +1,19 @@
 In this chapter, we will describe the Finite Element Method (FEM). 
-While the Finite Difference Method (MDF) represents
- a direct approximation to the differential equations, 
-the proposal of the finite element procedure is 
+The mathematical basis for the Finite Element Method begins in 1910s
+ with Ritz \cite{ritz1909} and Galerkin (1915) \cite{galerkin1915}.
+The proposal of the finite element procedure is 
 an approximation applied to the terms of the 
-variational formulation as mentioned by Zienkiewicz and Cheung (1965) 
-\cite{zienkiewicz1965}. 
-For more details on the Finite Element Method see the works of 
-Zienkiewicz and Taylor (2000) \cite{zienkiewiczvol3}, 
-Hughes (2000) \cite{hughes2000} and 
-Fish and Belytschko (2007) \cite{fish2007}.
+variational formulation, 
+for more details on the Finite Element Method see the works of 
+Zienkiewicz and Taylor (2000) \cite{zienkiewiczvol3} and
+Hughes (2000) \cite{hughes2000}.
 \par
 
-First, we will discretize the governing equations in time 
-using the Taylor series approximation, keeping the second order 
-terms of the expansion in order to reduce the spurious oscillations 
-present in the convection-diffusion equations as 
-in the case of the vorticity and concentration equations. 
-Then, we will present the strong formulation of them. 
-That done, the weak formulation of the governing equations is 
-presented and they are discretized in space using Galerkin's Method 
+First, we will present the strong formulation of the
+governing equations. 
+Then, the weak formulation of them is 
+presented and they are discretized in space using Galerkin Method 
 with a linear triangular element. 
-Therefore, the government equations in the matrix form 
-according to the \textit{Taylor-Galerkin} Method are presented. 
-For more details on the scheme, see the work of 
-Donea (1984) \cite{donea1984}.
+Finally, the semi-Lagrangian Method is used to discretize
+the governing equations over time and the matrix form
+of them are presented.
