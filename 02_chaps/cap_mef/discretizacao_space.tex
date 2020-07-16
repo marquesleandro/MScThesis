@@ -10,15 +10,15 @@ can be presented in expanded form such as:
 
 \begin{equation} 
    \int_{\Omega} \frac{D \omega}{Dt} \delta d\Omega 
- + \frac{1}{\textit{Re}} \int_{\Omega} \Bigg\{ \frac{\partial w}{\partial x} \frac{\partial \delta}{\partial x} 
- + \frac{\partial w}{\partial y} \frac{\partial \delta}{\partial y} \Bigg\} d\Omega 
+ + \frac{1}{\textit{Re}} \int_{\Omega} \Bigg\{ \frac{\partial \omega}{\partial x} \frac{\partial \delta}{\partial x} 
+ + \frac{\partial \omega}{\partial y} \frac{\partial \delta}{\partial y} \Bigg\} d\Omega 
  = 0
 \end{equation}
 
 \begin{equation}
  - \int_{\Omega} \Bigg\{ \frac{\partial \psi}{\partial x} \frac{\partial \phi}{\partial x} 
  + \frac{\partial \psi}{\partial y} \frac{\partial \phi}{\partial y} \Bigg\} d\Omega
- + \int_{\Omega} w \phi d\Omega = 0
+ + \int_{\Omega} \omega \phi d\Omega = 0
 \end{equation}
 
 \begin{equation} 
@@ -35,14 +35,14 @@ of elements and \textit{np} the total number of nodes
 in the computational mesh. Thus, we have:
 
 \begin{align}
- w(\textbf{x},t) & \simeq \sum\limits_{i=1}^{np} w_i(t) N_i(\textbf{x}) \\
+ \omega(\textbf{x},t) & \simeq \sum\limits_{i=1}^{np} \omega_i(t) N_i(\textbf{x}) \\
  \psi(\textbf{x},t) & \simeq \sum\limits_{i=1}^{np} \psi_i(t) N_i(\textbf{x}) \\
  e(\textbf{x},t) & \simeq \sum\limits_{i=1}^{np} e_i(t) N_i(\textbf{x})
 \end{align}
 
 \noindent
 where 
-$w_i = [w_1,...,w_{np}]$,
+$\omega_i = [\omega_1,...,\omega_{np}]$,
 $\psi_i = [\psi_1,...,\psi_{np}]$ and
 $e_i = [c_1,...,c_{np}]$ 
 are the semi-discrete unknowns, that is, 
@@ -77,13 +77,13 @@ discretized in space will be:
 
 \begin{equation} \label{convection vorticity}
  \begin{aligned} 
-  \int_{\Omega} \sum\limits_{i=1}^{np} \frac{D w_i}{Dt} N_i 
+  \int_{\Omega} \sum\limits_{i=1}^{np} \frac{D \omega_i}{Dt} N_i 
                 \sum\limits_{j=1}^{np} & \delta_j N_j d\Omega 
   \\[5pt]
   + & \frac{1}{\textit{Re}} \int_{\Omega} \Bigg\{ 
-                    \sum\limits_{i=1}^{np} \frac{\partial w_i N_i}{\partial x} 
+                    \sum\limits_{i=1}^{np} \frac{\partial \omega_i N_i}{\partial x} 
                     \sum\limits_{j=1}^{np} \frac{\partial \delta_j N_j}{\partial x} 
-  +                 \sum\limits_{i=1}^{np} \frac{\partial w_i N_i}{\partial y} 
+  +                 \sum\limits_{i=1}^{np} \frac{\partial \omega_i N_i}{\partial y} 
                     \sum\limits_{j=1}^{np} \frac{\partial \delta_j N_j}{\partial y} \Bigg\}
  = 0
  \end{aligned}
@@ -98,12 +98,11 @@ discretized in space will be:
                   \sum\limits_{j=1}^{np} & \frac{\partial \phi_j N_j}{\partial y} 
   \Bigg\} d\Omega 
   \\[5pt]
-  & + \int_{\Omega} \sum\limits_{i=1}^{np} w_i N_i 
+  & + \int_{\Omega} \sum\limits_{i=1}^{np} \omega_i N_i 
                   \sum\limits_{j=1}^{np} \phi_j N_j d\Omega = 0
  \end{aligned}
 \end{equation}
 
-\medskip
 \begin{equation} \label{convection concentration}
  \begin{aligned} 
   \int_{\Omega} \sum\limits_{i=1}^{np} \frac{D e_i}{Dt} N_i 
@@ -118,48 +117,30 @@ discretized in space will be:
  \end{aligned}
 \end{equation}
 
-We can remove the velocity components \textit{u} and \textit{v} 
-from the integral in the convective term of 
-the equations \ref{convection vorticity} and 
-\ref{convection concentration} since they will not be treated as 
-unknowns, that is, for the vorticity equation we will use 
-the values of the \textit{u} and \textit{v} components 
-of the previous time step while for the species transport equation, 
-the velocity components are calculated firstly. 
-In this way, these equations are transformed into linear equations.
+\medksip
+\noindent
 Moving the sum symbols out of integrals, we have:
 
 \begin{equation}
  \begin{aligned} 
   \sum\limits_{j=1}^{np} \delta_j \Bigg[
-  \sum\limits_{i=1}^{np} \overset{.}{w_i} \int_{\Omega} N_i N_j d\Omega 
-   + \sum\limits_{i=1}^{np} w_i \Bigg[
-    u \int_{\Omega} & \frac{\partial N_i}{\partial x} N_j d\Omega 
-  + v \int_{\Omega} \frac{\partial N_i}{\partial y} N_j d\Omega
+  \sum\limits_{i=1}^{np} \frac{D \omega_i}{Dt} 
+  \int_{\Omega} N_i N_j d\Omega & 
   \\[5pt]
-  + \frac{1}{\textit{Re}} \int_{\Omega} \Bigg\{ 
-                    \frac{\partial N_i}{\partial x} 
-                    \frac{\partial N_j}{\partial x} 
-   +                 \frac{\partial N_i}{\partial y} 
-                    \frac{\partial N_j}{\partial y} 
-  \Bigg\} d\Omega
- & + \frac{\Delta t}{2} \int_{\Omega} u \frac{\partial N_j}{\partial x}
- \Bigg[
-   u \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
- \\[5pt]
- & + \frac{\Delta t}{2} \int_{\Omega} v \frac{\partial N_j}{\partial y}
- \Bigg[
-   u \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
+   + & \sum\limits_{i=1}^{np} \omega_i \Bigg[
+   + \frac{1}{\textit{Re}} i
+   \int_{\Omega} \Bigg\{ 
+   \frac{\partial N_i}{\partial x} 
+   \frac{\partial N_j}{\partial x} 
+   + 
+   \frac{\partial N_i}{\partial y} 
+   \frac{\partial N_j}{\partial y} 
+   \Bigg\} d\Omega
  \Bigg] \Bigg] = 0
  \end{aligned}
 \end{equation}
 
 \begin{equation}
- \begin{aligned}
   \sum\limits_{j=1}^{np} \phi_j \Bigg[
   \sum\limits_{i=1}^{np} \psi_i \Bigg[
   - \int_{\Omega} \Bigg\{ 
@@ -168,101 +149,54 @@ Moving the sum symbols out of integrals, we have:
   +               \frac{\partial N_i}{\partial y} 
                   \frac{\partial N_j}{\partial y} 
   \Bigg\} d\Omega
-  + w_i \int_{\Omega} N_i N_j d\Omega
+  + \omega_i \int_{\Omega} N_i N_j d\Omega
   \Bigg] \Bigg] = 0
- \end{aligned}
-\end{equation}
-
-\begin{equation}
- \begin{aligned}
-  \sum\limits_{j=1}^{np} \xi_j \Bigg[
-  \sum\limits_{i=1}^{np} u_i \Bigg[
-   \int_{\Omega} N_i N_j d\Omega
- - \psi_i \int_{\Omega} \frac{\partial N_i}{\partial y} N_j d\Omega
-  \Bigg] \Bigg] = 0
- \end{aligned}
-\end{equation}
-
-\begin{equation}
- \begin{aligned}
-  \sum\limits_{j=1}^{np} \xi_j \Bigg[
-  \sum\limits_{i=1}^{np} v_i \Bigg[
-   \int_{\Omega} N_i N_j d\Omega
- + \psi_i \int_{\Omega} \frac{\partial N_i}{\partial x} N_j d\Omega
-  \Bigg] \Bigg] = 0
- \end{aligned}
 \end{equation}
 
 \begin{equation}
  \begin{aligned} 
   \sum\limits_{j=1}^{np} \eta_j \Bigg[
-  \sum\limits_{i=1}^{np} \overset{.}{c_i} \int_{\Omega} N_i N_j d\Omega 
-  + \sum\limits_{i=1}^{np} c_i \Bigg[
-    u \int_{\Omega} & \frac{\partial N_i}{\partial x} N_j d\Omega 
-  + v \int_{\Omega} \frac{\partial N_i}{\partial y} N_j d\Omega 
+  \sum\limits_{i=1}^{np} \frac{D e_i}{Dt} 
+  \int_{\Omega} N_i N_j d\Omega & 
   \\[5pt]
-  + \frac{1}{\textit{ReSc}} \int_{\Omega} \Bigg\{ 
-                    \frac{\partial N_i}{\partial x} 
-                    \frac{\partial N_j}{\partial x} 
-  +                 \frac{\partial N_i}{\partial y} 
-                    \frac{\partial N_j}{\partial y} 
-  \Bigg\} d\Omega 
- & + \frac{\Delta t}{2} \int_{\Omega} u \frac{\partial N_j}{\partial x}
- \Bigg[
-   u \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
- \\[5pt]
- & + \frac{\Delta t}{2} \int_{\Omega} v \frac{\partial N_j}{\partial y}
- \Bigg[
-   u \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
-  \Bigg] \Bigg] = 0
+   + & \sum\limits_{i=1}^{np} e_i \Bigg[
+   + \frac{1}{\textit{ReSc}} 
+   \int_{\Omega} \Bigg\{ 
+   \frac{\partial N_i}{\partial x} 
+   \frac{\partial N_j}{\partial x} 
+   + 
+   \frac{\partial N_i}{\partial y} 
+   \frac{\partial N_j}{\partial y} 
+   \Bigg\} d\Omega
+ \Bigg] \Bigg] = 0
  \end{aligned}
 \end{equation}
 
 
 \noindent
-Whereas
+Taking into account that
 $\sum\limits_{j=1}^{np} \delta_j \neq 0$,
-$\sum\limits_{j=1}^{np} \phi_j \neq 0$, 
-$\sum\limits_{j=1}^{np} \xi_j \neq 0$ and
+$\sum\limits_{j=1}^{np} \phi_j \neq 0$ and
 $\sum\limits_{j=1}^{np} \eta_j \neq 0$,
 thus the governing equations become:
 
 \begin{equation}
- \begin{aligned} 
-  \sum\limits_{j=1}^{np} 
-  \sum\limits_{i=1}^{np} \overset{.}{w_i} \int_{\Omega} N_i N_j d\Omega 
-  + \sum\limits_{j=1}^{np} 
-    \sum\limits_{i=1}^{np} w_i \Bigg[
-    u \int_{\Omega} & \frac{\partial N_i}{\partial x} N_j d\Omega 
-  + v \int_{\Omega} \frac{\partial N_i}{\partial y} N_j d\Omega
-  \\[5pt]
-  + \frac{1}{\textit{Re}} \int_{\Omega} \Bigg\{ 
-                    \frac{\partial N_i}{\partial x} 
-                    \frac{\partial N_j}{\partial x} 
-  +                 \frac{\partial N_i}{\partial y} 
-                    \frac{\partial N_j}{\partial y} 
-  \Bigg\} d\Omega 
- & + \frac{\Delta t}{2} \int_{\Omega} u \frac{\partial N_j}{\partial x}
- \Bigg[
-   u \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
- \\[5pt]
- & + \frac{\Delta t}{2} \int_{\Omega} v \frac{\partial N_j}{\partial y}
- \Bigg[
-   u \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
-  \Bigg] = 0
- \end{aligned}
+  \sum\limits_{j=1}^{np}
+  \sum\limits_{i=1}^{np} \frac{D \omega_i}{Dt} 
+  \int_{\Omega} N_i N_j d\Omega 
+   + \sum\limits_{i=1}^{np} \omega_i \Bigg[
+   + \frac{1}{\textit{Re}} i
+   \int_{\Omega} \Bigg\{ 
+   \frac{\partial N_i}{\partial x} 
+   \frac{\partial N_j}{\partial x} 
+   + 
+   \frac{\partial N_i}{\partial y} 
+   \frac{\partial N_j}{\partial y} 
+   \Bigg\} d\Omega
+ \Bigg] \Bigg] = 0
 \end{equation}
 
 \begin{equation}
- \begin{aligned}
   \sum\limits_{j=1}^{np}
   \sum\limits_{i=1}^{np} \psi_i \Bigg[
   - \int_{\Omega} \Bigg\{ 
@@ -271,60 +205,27 @@ thus the governing equations become:
   +               \frac{\partial N_i}{\partial y} 
                   \frac{\partial N_j}{\partial y} 
   \Bigg\} d\Omega
-  + w_i \int_{\Omega} N_i N_j d\Omega
-  \Bigg] = 0
- \end{aligned}
+  + \omega_i \int_{\Omega} N_i N_j d\Omega
+  \Bigg] \Bigg] = 0
 \end{equation}
 
 \begin{equation}
- \begin{aligned}
   \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} u_i \Bigg[
-   \int_{\Omega} N_i N_j d\Omega
- - \psi_i \int_{\Omega} \frac{\partial N_i}{\partial y} N_j d\Omega
-  \Bigg] = 0
- \end{aligned}
+  \sum\limits_{i=1}^{np} \frac{D e_i}{Dt} 
+  \int_{\Omega} N_i N_j d\Omega & 
+   + \sum\limits_{i=1}^{np} e_i \Bigg[
+   + \frac{1}{\textit{ReSc}} 
+   \int_{\Omega} \Bigg\{ 
+   \frac{\partial N_i}{\partial x} 
+   \frac{\partial N_j}{\partial x} 
+   + 
+   \frac{\partial N_i}{\partial y} 
+   \frac{\partial N_j}{\partial y} 
+   \Bigg\} d\Omega
+ \Bigg] \Bigg] = 0
 \end{equation}
 
-\begin{equation}
- \begin{aligned}
-  \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} v_i \Bigg[
-   \int_{\Omega} N_i N_j d\Omega
- + \psi_i \int_{\Omega} \frac{\partial N_i}{\partial x} N_j d\Omega
-  \Bigg] = 0
- \end{aligned}
-\end{equation}
 
-\begin{equation}
- \begin{aligned} 
-  \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} \overset{.}{c_i} \int_{\Omega} N_i N_j d\Omega 
-  + \sum\limits_{j=1}^{np}
-    \sum\limits_{i=1}^{np} c_i \Bigg[
-    u \int_{\Omega} & \frac{\partial N_i}{\partial x} N_j d\Omega 
-  + v \int_{\Omega} \frac{\partial N_i}{\partial y} N_j d\Omega
-  \\[5pt]
-  + \frac{1}{\textit{ReSc}} \int_{\Omega} \Bigg\{ 
-                    \frac{\partial N_i}{\partial x} 
-                    \frac{\partial N_j}{\partial x} 
-  +                 \frac{\partial N_i}{\partial y} 
-                    \frac{\partial N_j}{\partial y} 
-  \Bigg\} d\Omega 
- & + \frac{\Delta t}{2} \int_{\Omega} u \frac{\partial N_j}{\partial x}
- \Bigg[
-   u \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
- \\[5pt]
- & + \frac{\Delta t}{2} \int_{\Omega} v \frac{\partial N_j}{\partial y}
- \Bigg[
-   u \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
- \Bigg] = 0
- \end{aligned}
-\end{equation}
 
 \noindent
 that is:
@@ -332,9 +233,9 @@ that is:
 \begin{equation} \label{vorticity pre matrix}
  \begin{aligned} 
   \sum\limits_{j=1}^{np} 
-  \sum\limits_{i=1}^{np} \overset{.}{w_i} \int_{\Omega} N_i N_j d\Omega 
+  \sum\limits_{i=1}^{np} \overset{.}{\omega_i} \int_{\Omega} N_i N_j d\Omega 
   + \sum\limits_{j=1}^{np} 
-    \sum\limits_{i=1}^{np} w_i \Bigg[
+    \sum\limits_{i=1}^{np} \omega_i \Bigg[
   & u \int_{\Omega}  \frac{\partial N_i}{\partial x} N_j d\Omega 
   + v \int_{\Omega} \frac{\partial N_i}{\partial y} N_j d\Omega
   \\[5pt]
@@ -369,7 +270,7 @@ that is:
   +               \frac{\partial N_i}{\partial y} 
                   \frac{\partial N_j}{\partial y} 
   \Bigg\} d\Omega
-  + w_i \int_{\Omega} N_i N_j d\Omega
+  + \omega_i \int_{\Omega} N_i N_j d\Omega
   \Bigg] = 0
  \end{aligned}
 \end{equation}
