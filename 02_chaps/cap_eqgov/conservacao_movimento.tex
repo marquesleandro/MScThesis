@@ -1,59 +1,8 @@
 The same concept of mass conservation is applied to the
-linear momentum conservation. Therefore, the principle
-of linear momentum conservation establishes that:
+linear momentum conservation. 
+Therefore, the linear momentum conservation 
+for a region with arbitrary motion is:
 
-\medskip
-\begin{center}
-\textarray{Linear momentum\\
-           accumulation rate\\ 
-           on control volume}
-           $= -$ 
-\textarray{Linear momentum\\
-           flux crossing\\
-           the boundary}
-           $+$ 
-\textarray{The resultant of \\
-           body force and \\ 
-           surface force}
-\end{center}
-
-\medskip
-Mathematically, linear momentum accumulation rate on control volume
-can be presented to represented by:
-
-\begin{equation} \label{qml 1} 
- \int_{V} \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) dV
-\end{equation}
-
-\medskip
-The linear momentum flux crossing the boundary
-can be represented mathematically by:
-
-\begin{equation}  
- \oint_{S} \rho \textbf{v} \textbf{c} \cdot \textbf{n} dA
-\end{equation}
-
-\medskip
-The resultant force is consists of surface force and body force.
-The surface force can be represented by:
-
-\begin{equation}  
- \oint_{S} \sigma \cdot \textbf{n} dA
-\end{equation}
-
-\medskip
-\noindent
-where $\sigma$ is the stress tensor. 
-Whereas, the body is represend by:
-
-\begin{equation} 
- \int_{V} \rho \textbf{g} dV
-\end{equation}
-
-\medskip
-\noindent
-where $\textbf{g}$ is gravity vector.
-Thereby, according to principle of linear momentum conservation:
 
 \begin{equation}
  \int_{V} \frac{\partial}{\partial t} \big( \rho \textbf{v} \big) dV
@@ -67,6 +16,8 @@ Thereby, according to principle of linear momentum conservation:
 
 \medskip
 \noindent
+where $\sigma$ is the stress tensor and 
+$\textbf{g}$ is gravity vector.
 Applying the \textit{Gauss Theorem} on surface integrals:
 
 \begin{equation}
@@ -97,7 +48,7 @@ that is:
 
 \medskip
 \noindent
-Whereas the $dV \neq 0$,
+In view of the $dV \neq 0$,
 the Eq. \ref{qm 2} can be presented as:
 
 
@@ -145,7 +96,7 @@ Developing the left hand side of equation, we have:
  \textbf{v} \Bigg[ \frac{\partial \rho}{\partial t} + \nabla \cdot \big( \rho \textbf{c} \big) \Bigg]
 \end{equation}
 
-\newpage
+\medskip
 The last term of above equation is null because
  the \textit{continuity equation} (Eq. \ref{continuity equation}).
 Thus, the linear momentum equation can be rewritten as:
@@ -252,7 +203,8 @@ that is:
 
 \medskip
 \noindent
-Whereas the dynamic viscosity $\mu$ does not depends on coordinates,
+Taking into consideration that the dynamic viscosity 
+$\mu$ does not depends on coordinates,
 we have:
 
 \begin{equation} 
@@ -310,4 +262,3 @@ and with viscosity that it does not depends on coordinates,
 according to the Arbitrary Lagrangian-Eulerian description
 \cite{donea1982}.
 
-\newpage

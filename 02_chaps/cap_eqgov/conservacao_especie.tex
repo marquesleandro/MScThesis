@@ -1,51 +1,7 @@
-The species transport conservation establish that:
+Similarly to the previous sections, 
+the species transport conservation
+for a region with arbitrary motion is:
 
-\medskip
-\begin{center}
-\textarray{Chemical species\\
-           accumulation rate\\ 
-           on control volume}
-           $= -$ 
-\textarray{Chemical species\\
-           flux crossing\\ 
-           the boundary}
-           $+$ 
-\textarray{The resultant of \\
-           chemical species\\ 
-           source rate }
-\end{center}
-
-\medskip
-Mathematically, chemical species accumulation on control volume
-can be represented by:
-
-\begin{equation} \label{esp 1} 
- \int_{V} \frac{\partial e}{\partial t} dV
-\end{equation}
-
-\medskip
-The chemical species flux crossing the boundary
-can be splitted into two flux:
-
-\begin{equation}  
- \oint_{S} e \textbf{c} \cdot \textbf{n} dA
- -
- \oint_{S} D \nabla e \cdot \textbf{n} dA
-\end{equation}
-
-\medskip
-\noindent
-where $D$ is coefficient of chemical species diffusion. 
-The resultant of chemical species source rate
-on volume can be represented by:
-
-\begin{equation} 
- \int_{V} \overset{.}{R} dV
-\end{equation}
-
-\medskip
-\noindent
-Thereby, acccording to species transport conservation:
 
 \begin{equation}
  \int_{V} \frac{\partial e}{\partial t} dV
@@ -60,6 +16,8 @@ Thereby, acccording to species transport conservation:
 
 \medskip
 \noindent
+where $D$ is coefficient of chemical species diffusion and 
+$\overset{.}{R}$ is the chemical species source rate.
 Applying the \textit{Gauss Theorem} on surface integrals:
 
 \begin{equation}
@@ -91,7 +49,7 @@ that is:
 
 \medskip
 \noindent
-Whereas the $dV \neq 0$,
+In view of the $dV \neq 0$,
 the Eq. \ref{esp 2} can be represented by:
 
 \begin{equation}
@@ -152,8 +110,8 @@ thus:
  \overset{.}{R}
 \end{equation}
 
-\newpage
-Considering the diffusion coefficient
+\medskip
+Taking into consideration that the diffusion coefficient
 is constant and without chemical species
 generation,
 the species transport equation can rewritten as:
@@ -167,7 +125,6 @@ the species transport equation can rewritten as:
 \end{equation}
 
 \medskip
-\noindent
 The Eq. \ref{chemical species} is known as
 \textit{Species Transport Equation}
 for an incompressible fluid, with constant diffusion coefficient
