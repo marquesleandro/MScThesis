@@ -231,15 +231,34 @@ are shown below:
  +
  \textbf{c} \cdot \nabla w
  =
+ \frac{1}{Re} \nabla^{2} w
+ \\[10pt] 
+& \nabla^{2} \psi
+ = 
+ - 
+ w \\[10pt]
+& \frac{\partial e}{\partial t}
+ +
+ \textbf{c} \cdot \nabla e
+ =
+ \frac{1}{ReSc} \nabla^{2} e
+\end{align}
+
+\medskip
+For further development using bt the semi-Lagragian Method,
+the equations above will be shown with the substantive derivative,
+thus:
+
+\begin{align}
+& \frac{D w}{D t}
+ =
  \frac{1}{Re} \nabla^{2} w \label{vorticidade}
  \\[10pt] 
 & \nabla^{2} \psi
  = 
  - 
  w \label{corrente} \\[10pt]
-& \frac{\partial e}{\partial t}
- +
- \textbf{c} \cdot \nabla e
+& \frac{D e}{Dt}
  =
  \frac{1}{ReSc} \nabla^{2} e \label{especie quimica}
 \end{align}
@@ -249,5 +268,3 @@ are shown below:
 where material velocity field \textbf{v} is calculated by:
 $u = \partial \psi / \partial y$ and 
 $v = - \partial \psi / \partial x$. 
-
-

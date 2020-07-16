@@ -1,0 +1,289 @@
+Governing equations in differential form 
+with boundary conditions are known as \textbf{Strong Formulation}. 
+Thus, the strong formulation for the proposed problem is:
+
+\begin{align}
+& \frac{D w}{D t}
+ =
+ \frac{1}{Re} \nabla^{2} w
+ \\[10pt] 
+& \nabla^{2} \psi
+ = 
+ - 
+ w \\[10pt]
+& \frac{D e}{Dt}
+ =
+ \frac{1}{ReSc} \nabla^{2} e
+\end{align}
+
+
+\medskip
+\noindent
+These equations are valid in 
+$\Omega \subset \mathbb{R}^2$ domain
+with the following boundary conditions:
+
+\begin{equation} \label{bc}
+ \begin{aligned}
+  w = w_\Gamma \quad & \mbox{in $\Gamma_1$}\\
+  \psi = \psi_\Gamma \quad & \mbox{in $\Gamma_2$}\\
+  c = c_\Gamma \quad & \mbox{in $\Gamma_4$}
+\end{aligned}
+\end{equation}
+
+\medskip
+The result of the weighted governing equations over the domain 
+is known as \textbf{Weak formulation}.
+Then, the weak formulation 
+for a single-phase, Newtonian and incompressible fluid using 
+the vorticity-streamfunction formulation with species transport equation
+will be shown, for more details see the work of Brenner and Scott (1994) 
+\cite{brenner1994}. 
+Therefore, as the objective is to find an approximate solution, 
+it is acceptable to assume that a Residue \textbf{R} 
+is produced in the governing equations, that is:
+
+
+\begin{align}
+& \frac{D w}{D t}
+ -
+ \frac{1}{Re} \nabla^{2} w
+ = R_1 \\[10pt] 
+& \nabla^{2} \psi
+ + 
+ w 
+ = R_2 \\[10pt]
+& \frac{D e}{Dt}
+ -
+ \frac{1}{ReSc} \nabla^{2} e
+ = R_3
+\end{align}
+
+\medskip
+We will force the residue to be equivalent to zero 
+in a weighted sense, as mentioned by Finlayson (1972) \cite{finlayson1972}, then:
+
+\begin{align}
+ \int_{\Omega} R_1 \cdot \delta d\Omega &= 0 \\
+ \int_{\Omega} R_2 \cdot \phi d\Omega &= 0 \\
+ \int_{\Omega} R_3 \cdot \eta d\Omega &= 0
+\end{align}
+
+
+
+\noindent
+where $\delta$, $\phi$ and $\eta$ are weight function.
+The weight functions are a set of arbitrary functions 
+that belong to a function space that will be discussed later. 
+We then have the following integrals:
+
+\begin{equation}
+ \int_{\Omega} \Bigg\{ 
+ \frac{D w}{D t}
+ -
+ \frac{1}{Re} \nabla^{2} w
+\Bigg\} \cdot \delta d\Omega = 0
+\end{equation}
+
+\begin{equation}
+ \int_{\Omega} \big\{ \nabla^2 \psi + w \big\} \cdot \phi d\Omega = 0
+\end{equation}
+
+\begin{equation}
+ \int_{\Omega} \Bigg\{ 
+ \frac{D e}{Dt}
+ -
+ \frac{1}{ReSc} \nabla^{2} e
+ \Bigg\} \cdot \eta d\Omega = 0
+\end{equation}
+
+
+
+\noindent
+Developing the integrals, we have:
+
+\begin{equation} \label{diffusion_vorticity} 
+   \int_{\Omega} \frac{D \omega}{Dt} \delta d\Omega 
+ - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 w \delta d\Omega
+ = 0
+\end{equation}
+
+\begin{equation} \label{diffusion_stream}
+   \int_{\Omega} \nabla^2 \psi \phi d\Omega
+ + \int_{\Omega} w \phi d\Omega = 0
+\end{equation}
+
+\begin{equation} \label{diffusion_concentration} 
+   \int_{\Omega} \frac{D e}{Dt} \eta d\Omega
+ - \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla^2 e \eta d\Omega 
+ = 0
+\end{equation}
+
+\medskip
+In the diffusive term of the equations (\ref{diffusion_vorticity}, \ref{diffusion_stream} and \ref{diffusion_concentration}),
+we will apply Green's theorem in order to decrease 
+the derivative order and separate the term evaluated in the boundary. 
+Thus the diffusive term will become:
+
+\begin{equation} \label{diffusion2_vorticity} 
+ - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 w \delta d\Omega
+ = \frac{1}{\textit{Re}} \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega
+ - \frac{1}{\textit{Re}} \int_{\Gamma} \delta \nabla w \cdot \textbf{n} d\Gamma
+\end{equation}
+
+\begin{equation} \label{diffusion2_stream} 
+ \int_{\Omega} \nabla^2 \psi \phi d\Omega
+ = - \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega
+   + \int_{\Gamma} \phi \nabla \psi \cdot \textbf{n} d\Gamma
+\end{equation}
+
+\begin{equation} \label{diffusion2_concentration} 
+ - \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla^2 e \eta d\Omega
+ = \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla e \cdot \nabla \eta d\Omega
+ - \frac{1}{\textit{ReSc}} \int_{\Gamma} \eta \nabla e \cdot \textbf{n} d\Gamma
+\end{equation}
+
+\noindent
+where \textbf{n} is the normal vector oriented outside the $\Gamma$. 
+The last term in the above equations is known as a natural condition. 
+As previously mentioned, 
+the problem proposed in this work has only Dirichlet conditions 
+(known as an essential condition).
+Therefore,
+we will consider the assumptions
+$\delta = 0$, $\phi = 0$ and $\eta = 0$ in the equations (\ref{diffusion2_vorticity}, \ref{diffusion2_stream} and \ref{diffusion2_concentration})
+for all $\Gamma$. 
+Thus, 
+the integral in $\Gamma$ will be null
+and the diffusive term of the equations 
+(\ref{diffusion_vorticity}, \ref{diffusion_stream} and \ref{diffusion_concentration}) become:
+
+\begin{equation}
+ - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 w \delta d\Omega
+ = \frac{1}{\textit{Re}} \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega
+\end{equation}
+
+\begin{equation} 
+ \int_{\Omega} \nabla^2 \psi \phi d\Omega
+ = - \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega
+\end{equation}
+
+\begin{equation} 
+ - \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla^2 e \eta d\Omega
+ = \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla e \cdot \nabla \eta d\Omega
+\end{equation}
+
+\medskip
+\noindent
+Therefore, replacing the new diffusive terms in the governing equations:
+
+\begin{equation} \label{diffusion_vorticity} 
+   \int_{\Omega} \frac{D \omega}{Dt} \delta d\Omega 
+ + \frac{1}{\textit{Re}} \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega 
+ = 0
+\end{equation}
+
+\begin{equation} \label{diffusion_stream}
+ - \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega
+ + \int_{\Omega} w \phi d\Omega = 0
+\end{equation}
+
+\begin{equation} \label{diffusion_concentration} 
+   \int_{\Omega} \frac{D e}{Dt} \eta d\Omega
+ + \frac{1}{\textit{ReSc}} \int_{\Omega} \nabla c \cdot \nabla \eta d\Omega 
+ = 0
+\end{equation}
+
+
+\medskip
+\noindent
+If we consider that:
+
+\begin{equation}
+ \begin{aligned}
+  \textbf{$m_1$}(\frac{D \omega}{Dt},\delta) & = \int_{\Omega} \frac{D \omega}{Dt} \delta d\Omega \\ 
+  \textbf{$k_1$}(w,\delta) & = \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega \\
+  \textbf{$k_2$}(\psi,\phi) & = \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega \\
+ \end{aligned}
+ \qquad
+ \begin{aligned}  
+  \textbf{$m_3$}(\frac{De}{Dt},\eta) & = \int_{\Omega} \frac{De}{Dt} \eta d\Omega \\
+  \textbf{$k_3$}(e,\eta) & = \int_{\Omega} \nabla e \cdot \nabla \eta d\Omega \\
+  \textbf{$m_2$}(\psi,\phi) & = \int_{\Omega} w \phi d\Omega \\
+ \end{aligned}
+\end{equation}
+
+\noindent
+The equations, thus, can be shown in the weak form respectively:
+
+\begin{align}
+ \textbf{$m_1$}(\frac{D \omega}{Dt},\delta) 
+ + \frac{1}{\textit{Re}}\textbf{$k_1$}(w,\delta) 
+ & = 0 \\
+ - \textbf{$k_2$}(\psi,\phi) 
+ + \textbf{$m_2$}(\psi,\phi) 
+ & = 0 \\
+ \textbf{$m_3$}(\frac{De}{De},\eta) 
+ + \frac{1}{\textit{ReSc}}\textbf{$k_3$}(e,\eta) 
+ & = 0
+\end{align}
+
+
+\noindent
+Assuming that the sets of basis functions are:
+
+\begin{equation}
+ \begin{aligned}
+  \mathbb{W} &= \{w \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega w^2 d\Omega < \infty 
+  ; w = w_\Gamma\} \\
+  \mathbb{P} &= \{\psi \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega \psi^2 d\Omega < \infty 
+  ; \psi = \psi_\Gamma\} \\
+  \mathbb{E} &= \{e \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega e^2 d\Omega < \infty 
+  ; e = e_\Gamma\}
+ \end{aligned}
+\end{equation}
+
+\noindent
+and the set of weight functions space:
+
+\begin{equation}
+ \begin{aligned}
+  \mathbb{D} &= \{\delta \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega \delta^2 d\Omega < \infty
+  ; \delta_\Gamma = 0\} \\
+  \mathbb{F} &= \{\phi \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega \phi^2 d\Omega < \infty 
+  ; \phi_\Gamma = 0\} \\
+  \mathbb{N} &= \{\eta \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega \eta^2 d\Omega < \infty 
+  ; \eta_\Gamma = 0\}
+ \end{aligned}
+\end{equation}
+
+\noindent
+The weak formulation consists 
+to find the solutions of 
+$w \in \mathbb{W}$,
+$\psi \in \mathbb{P}$, and $e \in \mathbb{E}$
+such that:
+
+\begin{align}
+ \textbf{$m_1$}(\frac{D \omega}{Dt},\delta) 
+ + \frac{1}{\textit{Re}}\textbf{$k_1$}(w,\delta) 
+ & = 0 \\
+ - \textbf{$k_2$}(\psi,\phi) 
+ + \textbf{$m_2$}(\psi,\phi) 
+ & = 0 \\
+ \textbf{$m_3$}(\frac{De}{De},\eta) 
+ + \frac{1}{\textit{ReSc}}\textbf{$k_3$}(e,\eta) 
+ & = 0
+\end{align}
+
+\noindent
+for all $\delta \in \mathbb{D}$, 
+$\phi \in \mathbb{F}$ and 
+$\eta \in \mathbb{N}$.
+
