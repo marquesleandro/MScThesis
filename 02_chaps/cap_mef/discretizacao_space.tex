@@ -141,7 +141,7 @@ Moving the sum symbols out of integrals, we have:
 \end{equation}
 
 \begin{equation}
-  \sum\limits_{j=1}^{np} \phi_j \Bigg[
+  \sum\limits_{j=1}^{np} \phi_j
   \sum\limits_{i=1}^{np} \psi_i \Bigg[
   - \int_{\Omega} \Bigg\{ 
                   \frac{\partial N_i}{\partial x} 
@@ -150,7 +150,7 @@ Moving the sum symbols out of integrals, we have:
                   \frac{\partial N_j}{\partial y} 
   \Bigg\} d\Omega
   + \omega_i \int_{\Omega} N_i N_j d\Omega
-  \Bigg] \Bigg] = 0
+  \Bigg] = 0
 \end{equation}
 
 \begin{equation}
@@ -178,7 +178,8 @@ Taking into account that
 $\sum\limits_{j=1}^{np} \delta_j \neq 0$,
 $\sum\limits_{j=1}^{np} \phi_j \neq 0$ and
 $\sum\limits_{j=1}^{np} \eta_j \neq 0$,
-thus the governing equations become:
+then the governing equations discretized
+by Galerkin method are:
 
 \begin{equation}
   \sum\limits_{j=1}^{np}
@@ -224,106 +225,5 @@ thus the governing equations become:
    \Bigg\} d\Omega
  \Bigg] \Bigg] = 0
 \end{equation}
-
-
-
-\noindent
-that is:
-
-\begin{equation} \label{vorticity pre matrix}
- \begin{aligned} 
-  \sum\limits_{j=1}^{np} 
-  \sum\limits_{i=1}^{np} \overset{.}{\omega_i} \int_{\Omega} N_i N_j d\Omega 
-  + \sum\limits_{j=1}^{np} 
-    \sum\limits_{i=1}^{np} \omega_i \Bigg[
-  & u \int_{\Omega}  \frac{\partial N_i}{\partial x} N_j d\Omega 
-  + v \int_{\Omega} \frac{\partial N_i}{\partial y} N_j d\Omega
-  \\[5pt]
-  + \frac{1}{\textit{Re}} \int_{\Omega} \Bigg\{ 
-                    \frac{\partial N_i}{\partial x} 
-                    \frac{\partial N_j}{\partial x} 
-  +                 \frac{\partial N_i}{\partial y} 
-                    \frac{\partial N_j}{\partial y} 
-  \Bigg\} d\Omega 
- & + \frac{\Delta t}{2} \int_{\Omega} u
- \Bigg[
-   u \frac{\partial N_j}{\partial x} \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_j}{\partial x} \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
- \\[5pt]
- & + \frac{\Delta t}{2} \int_{\Omega} v
- \Bigg[
-   u \frac{\partial N_j}{\partial y} \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_j}{\partial y} \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
-  \Bigg] = 0
- \end{aligned}
-\end{equation}
-
-\begin{equation}
- \begin{aligned}
-  \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} \psi_i \Bigg[
-  - \int_{\Omega} \Bigg\{ 
-                  \frac{\partial N_i}{\partial x} 
-                  \frac{\partial N_j}{\partial x} 
-  +               \frac{\partial N_i}{\partial y} 
-                  \frac{\partial N_j}{\partial y} 
-  \Bigg\} d\Omega
-  + \omega_i \int_{\Omega} N_i N_j d\Omega
-  \Bigg] = 0
- \end{aligned}
-\end{equation}
-
-\begin{equation}
- \begin{aligned}
-  \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} u_i \Bigg[
-   \int_{\Omega} N_i N_j d\Omega
- - \psi_i \int_{\Omega} \frac{\partial N_i}{\partial y} N_j d\Omega
-  \Bigg] = 0
- \end{aligned}
-\end{equation}
-
-\begin{equation}
- \begin{aligned}
-  \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} v_i \Bigg[
-   \int_{\Omega} N_i N_j d\Omega
- + \psi_i \int_{\Omega} \frac{\partial N_i}{\partial x} N_j d\Omega
-  \Bigg] = 0
- \end{aligned}
-\end{equation}
-
-\begin{equation} \label{concentration pre matrix}
-\begin{aligned} 
- \sum\limits_{j=1}^{np}
- \sum\limits_{i=1}^{np} \overset{.}{c_i} \int_{\Omega} N_i N_j d\Omega 
-  + \sum\limits_{j=1}^{np}
-    \sum\limits_{i=1}^{np} c_i  \Bigg[
-    u \int_{\Omega} & \frac{\partial N_i}{\partial x} N_j d\Omega 
-  + v \int_{\Omega} \frac{\partial N_i}{\partial y} N_j d\Omega
-  \\[5pt]
-  + \frac{1}{\textit{ReSc}} \int_{\Omega} \Bigg\{ 
-                    \frac{\partial N_i}{\partial x} 
-                    \frac{\partial N_j}{\partial x} 
-  +                 \frac{\partial N_i}{\partial y} 
-                    \frac{\partial N_j}{\partial y} 
-  \Bigg\} d\Omega 
- & + \frac{\Delta t}{2} \int_{\Omega} u
- \Bigg[
-   u \frac{\partial N_j}{\partial x} \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_j}{\partial x} \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
- \\[5pt]
-  + & \frac{\Delta t}{2} \int_{\Omega} v
- \Bigg[
-   u \frac{\partial N_j}{\partial y} \frac{\partial N_i}{\partial x}
- + v \frac{\partial N_j}{\partial y} \frac{\partial N_i}{\partial y}
- \Bigg] d\Omega
- \Bigg] = 0
-\end{aligned}
-\end{equation}
-
 
 

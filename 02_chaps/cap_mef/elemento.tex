@@ -1,5 +1,5 @@
 A computational mesh can be structured or unstructured and 
-the choice of the element that constitutes this mesh is of 
+its the choice is of
 vital importance for a good accuracy of the solution. 
 Some parameters can influence the choice of a certain elements group, 
 for instance in the case where there is a restriction condition 
@@ -10,11 +10,11 @@ This restriction is known as \textit{Babuska-Brezzi}
 When we have this restriction, 
 we need to have different numbers of nodes for each unkowns 
 in the same element in order to have stability in the solution.
-Therefore, we need to use a \textit{quadratic or cubic element}. 
+Therefore, we need to use a \textit{quadratic or cubic elements}. 
 This methodology is known as \textit{Mixed Finite Element Method}. 
-But the vorticity-streamfunction formulation sstisfies 
+But the vorticity-streamfunction formulation satisfies 
 the \textit{Babuska-Brezzi} restriction since there is no coupling 
-between velocity and pressure. 
+between velocity and pressure fields. 
 Thus, the use of a \textit{linear element} does not produce 
 instability and can be used without problems in this work.
 
@@ -145,7 +145,9 @@ it allows a good discretization of irregular surfaces
 due to its geometric simplicity. In this work, we use a triangular 
 element with the interpolator polynomial of order one, that is, linear.
 Therefore, 
-the Eqs (\ref{vorticity pre matrix} to \ref{concentration pre matrix})
+the Eqs. \ref{vorticity pre matrix}, 
+\ref{stream pre matrix} and 
+\ref{concentration pre matrix}
 can be represented in matrix form by:
 
 \begin{equation}
