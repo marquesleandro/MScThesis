@@ -19,15 +19,24 @@ $\omega_{i}^{n+1}$ is the vorticity field calculated in current time step at the
 $\omega_{d}^{n}$ is the vorticity field calculated in previous time step at the departure node position.
 
 \smallskip
-The departure node is found by solving equation $\mathbf{x}_{d}^{n} = \mathbf{x}_{i}^{n+1} - \mathbf{v} \Delta t$, using the initial condition $\mathbf{x}_{i}^{n+1} = \mathbf{x}(t^{n+1})$ as shown in Figure \ref{semi-lagrangian figure}a. 
-A algorithm must be used to find the element that the departure node be, then the vorticity field in departure node ($\omega_{d}^{n}$) is calculed by barycenter coordinates interpolation between nodes of element found.
-As shown in Figure \ref{semi-lagrangian figure}b, three situations may occur depending on the trajectory: the first and the second situations are similar, differentiating only the trajectory length. 
-In the first situation, the departure node is inside near element from current node, while the second situation the departure node is inside far element from current node. 
-The third situation, the departure node is outside domain then the vorticity field in departure node receives the boundary condition value of nearest node to departure node.
+The departure node is found by solving equation 
+$\mathbf{x}_{d}^{n} = \mathbf{x}_{i}^{n+1} - \mathbf{v} \Delta t$, 
+using the initial condition $\mathbf{x}_{i}^{n+1} = \mathbf{x}(t^{n+1})$
+ as shown in \ref{semi-lagrangian figure}a. 
+A algorithm must be used to find the element that the departure node be, 
+then the vorticity field in departure node ($\omega_{d}^{n}$) is 
+calculed by barycenter coordinates interpolation between nodes of 
+element found.
+As shown in \ref{semi-lagrangian figure}b, three situations may 
+occur depending on the trajectory: the first and the second 
+situations are similar, differentiating only the trajectory length. 
+In the first situation, the departure node is inside near 
+element from current node, while the second situation 
+the departure node is inside far element from current node. 
+The third situation, the departure node is outside domain 
+then the vorticity field in departure node receives the 
+boundary condition value of nearest node to departure node.
 
-
-\bigskip
-\textbf{\red{REMAKE FIG (a)}}
 \begin{figure}[H]
 \begin{center}
 
@@ -78,9 +87,9 @@ The third situation, the departure node is outside domain then the vorticity fie
  % -------------------------------------------------------------------
  % FIGURE B
  % boundary 
- \draw[line width=0.2mm] (2.5,1.6) -- (4.0,1.6);
- \draw[line width=0.2mm] (2.5,1.6) -- (2.5,0.5);
- \draw[line width=0.2mm] (2.5,0.5) -- (4.0,0.5);
+ \draw (2.5,1.6) -- (4.0,1.6);
+ \draw (2.5,1.6) -- (2.5,0.5);
+ \draw (2.5,0.5) -- (4.0,0.5);
 
  % nodes
  \coordinate (A) at (2.500,0.5000) {};
@@ -124,47 +133,47 @@ The third situation, the departure node is outside domain then the vorticity fie
  
 
  % draw nodes
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (A) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (B) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (C) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (D) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (E) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (F) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (G) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (H) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (I) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (J) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (K) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (L) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (M) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (N) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (O) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (P) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (A) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (B) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (C) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (D) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (E) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (F) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (G) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (H) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (I) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (J) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (K) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (L) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (M) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (N) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (O) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (P) {};
 
 
  % arrow
- \draw[dashed,line width=0.02cm] (J) edge (2.95,0.65);
- \draw[dashed,line width=0.02cm] (J) edge (2.90,1.45);
- \draw[dashed,line width=0.02cm] (J) edge (2.4,1.05) ;
+ \draw[dashed,line width=0.03cm] (J) edge (2.95,0.65);
+ \draw[dashed,line width=0.03cm] (J) edge (2.90,1.45);
+ \draw[dashed,line width=0.03cm] (J) edge (2.4,1.05) ;
 
- \node[circle, fill=black, inner sep=0pt, minimum size=4pt] at (J) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (J) {};
 
  % departure nodes
- \node[circle, fill=white, draw, inner sep=0pt, minimum size=4pt] at (2.95,0.65) {};
- \node[circle, fill=white, draw, inner sep=0pt, minimum size=4pt] at (2.90,1.45) {};
- \node[circle, fill=white, draw, inner sep=0pt, minimum size=4pt] at (2.4,1.05) {};
+ \node[circle, fill=white, draw, inner sep=0pt, minimum size=5.2pt] at (2.95,0.65) {};
+ \node[circle, fill=white, draw, inner sep=0pt, minimum size=5.2pt] at (2.90,1.45) {};
+ \node[circle, fill=white, draw, inner sep=0pt, minimum size=5.2pt] at (2.4,1.05) {};
 
 
  
  % legend
- \node[draw=none, scale=0.8] at (3.23,0.97) {\small $\omega_{i}$};
+ \node[draw=none, scale=0.9] at (3.23,0.97) {\small $\omega_{i}$};
  
- \node[draw=none, scale=0.8] at (3.05,0.64) {$1$};
- \node[draw=none, scale=0.8] at (3.00,1.45) {$2$};
- \node[draw=none, scale=0.8] at (2.4,1.15) {$3$};
- 
- \node[draw=none, scale=0.9] at (3.7,1.0) {\small $domain$};
- \node[draw=none, scale=0.9] at (3.8,1.65) {\small $boundary$};
+ \node[draw=none, scale=0.9] at (3.05,0.64) {$1$};
+ \node[draw=none, scale=0.9] at (3.00,1.45) {$2$};
+ \node[draw=none, scale=0.9] at (2.4,1.15) {$3$};
+
+ \node[draw=none, scale=1.0] at (3.7,1.0) {\small $domain$};
+ \node[draw=none, scale=1.0] at (3.8,1.65) {\small $boundary$};
 
 
 
@@ -173,9 +182,92 @@ The third situation, the departure node is outside domain then the vorticity fie
 
 \end{tikzpicture}
 \end{center}
-\caption{Semi-Lagrangian Scheme}
+\caption{In (a), an one-dimensional space scheme
+ where the departure node $x_{d}$ is found by integrating the 
+mesh backward time. In (b), a two-dimensional space scheme
+where three situations may occur in searching procedure.}
 \label{semi-lagrangian figure}
 \end{figure}
+
+
+\medskip
+Therefore, the Eqs. 
+\ref{vorticity galerkin},
+\ref{stream galerkin} and
+\ref{species galerkin} 
+can be shown 
+in an
+implicit semi-Lagragian 
+discretization as:
+
+
+\begin{equation}
+  \sum\limits_{j=1}^{np}
+  \sum\limits_{i=1}^{np} \left[
+  \frac{\omega_{i}^{n+1} - \omega_{d}^{i}}{\Delta t} 
+  \right]
+  \int_{\Omega} N_i N_j d\Omega 
+   + \sum\limits_{i=1}^{np} \omega_i \Bigg[
+   + \frac{1}{\textit{Re}}
+   \int_{\Omega} \Bigg\{ 
+   \frac{\partial N_i}{\partial x} 
+   \frac{\partial N_j}{\partial x} 
+   + 
+   \frac{\partial N_i}{\partial y} 
+   \frac{\partial N_j}{\partial y} 
+   \Bigg\} d\Omega
+ \Bigg] \Bigg] = 0
+\end{equation}
+
+\begin{equation}
+  \sum\limits_{j=1}^{np}
+  \sum\limits_{i=1}^{np} \psi_i \Bigg[
+  - \int_{\Omega} \Bigg\{ 
+                  \frac{\partial N_i}{\partial x} 
+                  \frac{\partial N_j}{\partial x} 
+  +               \frac{\partial N_i}{\partial y} 
+                  \frac{\partial N_j}{\partial y} 
+  \Bigg\} d\Omega
+  + \omega_i \int_{\Omega} N_i N_j d\Omega
+  \Bigg] \Bigg] = 0
+\end{equation}
+
+\begin{equation}
+  \sum\limits_{j=1}^{np}
+  \sum\limits_{i=1}^{np} \frac{D e_i}{Dt} 
+  \int_{\Omega} N_i N_j d\Omega & 
+   + \sum\limits_{i=1}^{np} e_i \Bigg[
+   + \frac{1}{\textit{ReSc}} 
+   \int_{\Omega} \Bigg\{ 
+   \frac{\partial N_i}{\partial x} 
+   \frac{\partial N_j}{\partial x} 
+   + 
+   \frac{\partial N_i}{\partial y} 
+   \frac{\partial N_j}{\partial y} 
+   \Bigg\} d\Omega
+ \Bigg] \Bigg] = 0
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 The Streamfunction-Vorticity formulation in matrix form, 

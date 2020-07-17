@@ -1,7 +1,11 @@
-A computational mesh can be structured or unstructured and 
+In the Finite Element context, the domain is discretized into
+several elements forming a computational mesh 
+and the governing equations are applied to each of these elements.
+The computational mesh can be structured or unstructured and 
 its the choice is of
 vital importance for a good accuracy of the solution. 
-Some parameters can influence the choice of a certain elements group, 
+Moreover, some parameters can influence the choice of 
+a certain elements group, 
 for instance in the case where there is a restriction condition 
 as found in the Navier-Stokes equation due to the strong coupling 
 between velocity and pressure fields. 
@@ -144,128 +148,66 @@ Triangular elements are the most common in 2D-FE Method because
 it allows a good discretization of irregular surfaces 
 due to its geometric simplicity. In this work, we use a triangular 
 element with the interpolator polynomial of order one, that is, linear.
-Therefore, 
-the Eqs. \ref{vorticity pre matrix}, 
-\ref{stream pre matrix} and 
-\ref{concentration pre matrix}
-can be represented in matrix form by:
-
-\begin{equation}
-\begin{aligned}
- M \overset{.}{w} + u \cdot G_x w  + v \cdot G_y w & + \frac{1}{\textit{Re}} \Big[ K_{xx} + K_{yy} \Big] w
- \\[5pt]
- & + \frac{\Delta t}{2} u \Big[ u K_{xx} + v K_{yx} \Big] w 
- + \frac{\Delta t}{2} v \Big[ u K_{xy} + v K_{yy} \Big] w 
- = 0 \label{vorticity matrix}
-\end{aligned}
-\end{equation}
-
-\begin{equation}
- - \Big[ K_{xx} + K_{yy} \Big] \psi + Mw = 0
-\end{equation}
-
-\begin{equation}
- Mu - G_y \psi = 0
-\end{equation}
-
-\begin{equation}
- Mv + G_x \psi = 0
-\end{equation}
-
-\begin{equation}
-\begin{aligned}
- M \overset{.}{c} + u \cdot G_x c + v \cdot G_y c & + \frac{1}{\textit{ReSc}} \Big[ K_{xx} + K_{yy} \Big] c
- \\[5pt]
- & + \frac{\Delta t}{2} u \Big[ u K_{xx} + v K_{xy} \Big] c
- + \frac{\Delta t}{2} v \Big[ u K_{yx} + v K_{yy} \Big] c 
- = 0 \label{concentration matrix}
-\end{aligned} 
-\end{equation}
-
-\medskip
-\noindent
-where the \textbf{M}, \textbf{G\textsubscript{x}}, 
-\textbf{G\textsubscript{y}}, \textbf{K\textsubscript{xx}},
-\textbf{K\textsubscript{xy}},
-\textbf{K\textsubscript{yx}}, 
-\textbf{K\textsubscript{yy}} matrices
-have \textbf{np} x \textbf{np} size
-(where \textit{np} is node number) and
-they are defined as:
-
-\begin{align}
-  \textbf{M} & = \textbf{A} m^{e}\\
-  \textbf{G\textsubscript{x}} & = \textbf{A} g_{x}^{e}\\
-  \textbf{G\textsubscript{y}} & = \textbf{A} g_{y}^{e} \\
-  \textbf{K\textsubscript{xx}} & = \textbf{A} k_{xx}^{e} \\
-  \textbf{K\textsubscript{xy}} & = \textbf{A} k_{xy}^{e} \\
-  \textbf{K\textsubscript{yx}} & = \textbf{A} k_{yx}^{e} \\
-  \textbf{K\textsubscript{yy}} & = \textbf{A} k_{yy}^{e}
-\end{align}
-
-\noindent
-where \textbf{A} is an assembly operator
-that it assembles the elementary matrix in
-global matrix, satisfying the local and global matrix index
-correspondence and the
-$m^{e}$, 
-$g^{e}_{x}$,
-$g^{e}_{y}$,
-$k^{e}_{xx}$,
-$k^{e}_{xy}$,
-$k^{e}_{yx}$,
-$k^{e}_{yy}$
-are elementary matrices whose
-size for the  
-\textit{linear triangular element} is \textit{3}x\textit{3} and
-they are defined by:
+Therefore, the elementary matrices can be defined by:
 
 
 \begin{equation}
  \begin{aligned}
   m^{e} & = \int_{\Omega^{e}} N_{i}^{e} N_{j}^{e} d\Omega \\
-  g_{x}^{e} & = \int_{\Omega^{e}} \frac{\partial N_{i}^{e}}{\partial x} N_{j}^{e} d\Omega \\
-  g_{y}^{e} & = \int_{\Omega^{e}} \frac{\partial N_{i}^{e}}{\partial y} N_{j}^{e} d\Omega \\
   k_{xx}^{e} & = \int_{\Omega^{e}} \frac{\partial N_{i}^{e}}{\partial x} \frac{\partial N_{j}^{e}}{\partial x} \\
-  k_{xy}^{e} & = \int_{\Omega^{e}} \frac{\partial N_{i}^{e}}{\partial x} \frac{\partial N_{j}^{e}}{\partial y} \\
-  k_{yx}^{e} & = \int_{\Omega^{e}} \frac{\partial N_{i}^{e}}{\partial y} \frac{\partial N_{j}^{e}}{\partial x} \\
   k_{yy}^{e} & = \int_{\Omega^{e}} \frac{\partial N_{i}^{e}}{\partial y} \frac{\partial N_{j}^{e}}{\partial y}
  \end{aligned}
 \end{equation}
 
 \medskip
-Thus, the governing equations in matrix form according to 
+\noindent
+where the
+$m^{e}$,
+$k^{e}_{xx}$ and
+$k^{e}_{yy}$
+are mass and stiffness elementary matrices respectively and
+the size is $3 \times 3$ for the linear triangular element.
+The contribution of each elementary matrix is guaranteed by
+the assembly operator \textbf{A}
+that it assembles the elementary matrix in
+global matrix, satisfying the local and global matrix index
+correspondence. Thus, the global matrix are defined as:
+
+
+\begin{align}
+  \textit{M} & = \textbf{A} m^{e}\\
+  \textit{K\textsubscript{xx}} & = \textbf{A} k_{xx}^{e} \\
+  \textit{K\textsubscript{yy}} & = \textbf{A} k_{yy}^{e}
+\end{align}
+
+
+\medskip
+\noindent
+where the
+$M$,
+$K_{xx}$ and
+$K_{yy}$
+are mass and stiffness global matrices respectively and
+the size is \textit{np} $\times$ \textit{np}, that is,
+node number by node number. 
+Finally, the governing equations in matrix form according to 
 the Finite Element Method that we used in this work were:
 
-\begin{equation} \label{final equation}
-\begin{aligned}
- \frac{M}{\Delta t} w^{n+1} = \frac{M}{\Delta t} w^{n} - u \cdot G_x w^{n} & - v \cdot G_y w^{n} 
- - \frac{1}{\textit{Re}} \Big[ K_{xx} + K_{yy} \Big] w^{n}  
- \\[5pt]
- & - \frac{\Delta t}{2} u \Big[ u K_{xx} + v K_{yx} \Big] w^{n} 
- - \frac{\Delta t}{2} v \Big[ u K_{xy} + v K_{yy} \Big] w^{n} 
-\end{aligned}
-\end{equation}
-
 
 \begin{equation}
- \Big[ K_{xx} + K_{yy} \Big] \psi = Mw
+ M \frac{D \omega}{Dt} 
+ + \frac{1}{\textit{Re}} \Big[ K_{xx} + K_{yy} \Big] \omega
+ = 0 \label{vorticity matrix}
 \end{equation}
 
 \begin{equation}
- Mu = G_y \psi
+ - \Big[ K_{xx} + K_{yy} \Big] \psi + M \omega = 0
 \end{equation}
 
 \begin{equation}
- Mv = - G_x \psi
+ M \frac{De}{Dt} 
+ + \frac{1}{\textit{ReSc}} \Big[ K_{xx} + K_{yy} \Big] e
+ = 0 \label{concentration matrix}
 \end{equation}
 
-\begin{equation}
-\begin{aligned}
- \frac{M}{\Delta t} c^{n+1} = \frac{M}{\Delta t} c^{n}  - u \cdot G_x c^{n} - v & \cdot G_y c^{n} 
- - \frac{1}{\textit{ReSc}} \Big[ K_{xx} + K_{yy} \Big] c^{n}  
- \\[5pt]
- & - \frac{\Delta t}{2} u \Big[ u K_{xx} + v K_{yx} \Big] c^{n} 
- - \frac{\Delta t}{2} v \Big[ u K_{xy} + v K_{yy} \Big] c^{n} 
-\end{aligned}
-\end{equation}
+
