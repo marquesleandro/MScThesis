@@ -192,116 +192,89 @@ where three situations may occur in searching procedure.}
 
 \medskip
 Therefore, the Eqs. 
-\ref{vorticity galerkin},
-\ref{stream galerkin} and
-\ref{species galerkin} 
+\ref{vorticity matrix},
+\ref{stream matrix} and
+\ref{concentrarion matrix} 
 can be shown 
 in an
 implicit semi-Lagragian 
 discretization as:
 
-
 \begin{equation}
-  \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} \left[
-  \frac{\omega_{i}^{n+1} - \omega_{d}^{i}}{\Delta t} 
-  \right]
-  \int_{\Omega} N_i N_j d\Omega 
-   + \sum\limits_{i=1}^{np} \omega_i \Bigg[
-   + \frac{1}{\textit{Re}}
-   \int_{\Omega} \Bigg\{ 
-   \frac{\partial N_i}{\partial x} 
-   \frac{\partial N_j}{\partial x} 
-   + 
-   \frac{\partial N_i}{\partial y} 
-   \frac{\partial N_j}{\partial y} 
-   \Bigg\} d\Omega
- \Bigg] \Bigg] = 0
+ M \left[ \frac{\omega^{n+1}_{i} - \omega^{n}_{d}}{\Delta t} \right] 
+ + \frac{1}{\textit{Re}} \left[ K_{xx} + K_{yy} \right] \omega^{n+1}_{i}
+ = 0
 \end{equation}
 
 \begin{equation}
-  \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} \psi_i \Bigg[
-  - \int_{\Omega} \Bigg\{ 
-                  \frac{\partial N_i}{\partial x} 
-                  \frac{\partial N_j}{\partial x} 
-  +               \frac{\partial N_i}{\partial y} 
-                  \frac{\partial N_j}{\partial y} 
-  \Bigg\} d\Omega
-  + \omega_i \int_{\Omega} N_i N_j d\Omega
-  \Bigg] \Bigg] = 0
+ - \left[ K_{xx} + K_{yy} \right] \psi + M \omega = 0
 \end{equation}
 
 \begin{equation}
-  \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} \frac{D e_i}{Dt} 
-  \int_{\Omega} N_i N_j d\Omega & 
-   + \sum\limits_{i=1}^{np} e_i \Bigg[
-   + \frac{1}{\textit{ReSc}} 
-   \int_{\Omega} \Bigg\{ 
-   \frac{\partial N_i}{\partial x} 
-   \frac{\partial N_j}{\partial x} 
-   + 
-   \frac{\partial N_i}{\partial y} 
-   \frac{\partial N_j}{\partial y} 
-   \Bigg\} d\Omega
- \Bigg] \Bigg] = 0
+ M \left[ \frac{e^{n+1}_{i} - e^{n}_{d}}{\Delta t} \right]
+ + \frac{1}{\textit{ReSc}} \left[ K_{xx} + K_{yy} \right] e^{n+1}_{i}
+ = 0
 \end{equation}
 
 
+\medskip
+\noindent
+that is,
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-The Streamfunction-Vorticity formulation in matrix form, 
-after semi-Lagrangian discretization method, used in this paper were:
-
-\begin{equation} \label{vorticity SL}
- \bigg[ \frac{M}{\Delta t} + \frac{1}{Re} \Big[ K_{xx} + K_{yy} \Big] \bigg] \omega_{i}^{n+1} =
- \frac{M}{\Delta t} \omega_{d}^{n}
+\begin{equation}
+ \frac{M}{\Delta t} \omega^{n+1}_{i}
+ + \frac{1}{\textit{Re}} \left[ K_{xx} + K_{yy} \right] \omega^{n+1}_{i}
+ = \frac{M}{\Delta t} \omega^{n}_{d}
 \end{equation}
 
-\begin{equation} \label{streamfunction SL}
- \Big[ K_{xx} + K_{yy} \Big] \psi = M \omega
+\begin{equation}
+ \left[ K_{xx} + K_{yy} \right] \psi 
+ =  M \omega
+\end{equation}
+
+\begin{equation}
+ \frac{M}{\Delta t} e^{n+1}_{i}
+ + \frac{1}{\textit{ReSc}} \left[ K_{xx} + K_{yy} \right] e^{n+1}_{i}
+ = \frac{M}{\Delta t} e^{n}_{d}
 \end{equation}
 
 
-\vspace{1cm}
-Moreover, the velocity and pressure equations were:
+\medskip
+Therefore, the Vorticity-Streamfunction Formulation with
+Species Transport Equation discretized by \textit{Galerkin}
+and \textit{semi-Lagrangian Methods} in an ALE-FE context
+can be presented in matrix form as:
+
+\begin{equation}
+ \left[
+ \frac{M}{\Delta t} 
+ + \frac{1}{\textit{Re}} \left[ K_{xx} + K_{yy} \right]
+ \right] 
+ \omega^{n+1}_{i}
+ = \frac{M}{\Delta t} \omega^{n}_{d}
+\end{equation}
+
+\begin{equation}
+ \left[ K_{xx} + K_{yy} \right] \psi 
+ =  M \omega
+\end{equation}
+
+\begin{equation}
+ \left[
+ \frac{M}{\Delta t} 
+ + \frac{1}{\textit{ReSc}} \left[ K_{xx} + K_{yy} \right]
+ \right] 
+ e^{n+1}_{i}
+ = \frac{M}{\Delta t} e^{n}_{d}
+\end{equation}
+
+\medskip
+\noindent
+whereas material velocity field \textbf{v} is calculated by:
+$u =   G_{y} \psi$ and 
+$v = - G_{x} \psi$, 
+where 
+$G_{y}$ and 
+$G_{x}$ are the \textit{Gradient global matrix}.
  
-\begin{equation} \label{Velocity Equation}
-\begin{aligned}
- Mu = G_{y} \psi
- \qquad
- Mv = - G_{x} \psi
-\end{aligned}
-\end{equation}
-
-\vspace{-0.4cm}
-\begin{equation} \label{streamfunction SL}
- - \bigg[ K_{xx} + K_{yy} \bigg] p = 
- 2 \bigg[ \Big[K_{xx} \psi \Big] \Big[ K_{yy} \psi \Big] - \Big[ K_{xy} \psi \Big]^{2} \bigg] 
-\end{equation}
-
-
-
- 
-
 
