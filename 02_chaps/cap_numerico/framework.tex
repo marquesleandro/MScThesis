@@ -33,7 +33,7 @@ mesh import in several unstructured linear triangular meshes.
 \end{table}
 
 \medskip
-After importing the \textit{.msh} file, the elementary and global arrays 
+After importing the \textit{.msh} file, the elementary and global matrices 
 were assembled. 
 They are created by the \textit{GaussianQuadrature} class, where it is enabled to assemble the linear, quadratic or cubic triangular element.
 For the linear 
@@ -106,13 +106,14 @@ condition apply in several unstructured linear triangular meshes.
 \medskip
 After boundary condition applied, the time loop is started and
 the updating mesh is done by the \textit{MeshUpdate} class.
-Subsequently, the coordinate vectores and the global matrices
+Subsequently, the coordinate vectors and the global matrices
 must be reassembled, in addition to the boundary conditions apply.
 The \ref{tempo mesh update} 
 shows the average processing time for the \textit{mesh update procedure}
 in several unstructured linear triangular meshes.
 This processing time does not take into account the global matrices assembly and
-boundary conditions apply.
+boundary conditions apply. These process are performed by the
+Assemble and BoundaryCondition classes, as previously mentioned. 
 
 \vspace{0.5cm}
 \begin{table}[H]
@@ -182,9 +183,9 @@ shows for the \textit{semi-Lagragian} Method.
 
 
 \medskip
-At the end of time step, is done the convergence and steady state check.
-In addition, is printed the parameters of simulation and
-is exported the VTK file to perform the post-processing by
+At the end of time step, the convergence and steady state checks are done.
+In addition, the parameters of simulation is printed and
+the VTK file is exported to perform the post-processing by
 \textit{PARAVIEW} open source \cite{paraview}. 
 The \ref{tempo export vtk} 
 shows the average processing time for the \textit{VTK file export}
@@ -206,5 +207,82 @@ in several unstructured linear triangular meshes.
 \caption{Average processing time for VTK file export in several unstrutured linear triangular meshes}
 \label{tempo export vtk}
 \end{table}
+
+\medskip
+Therefore, the \ref{solution algorithm} shows schematically the procedure used
+in this numerical simulation.
+Moreover, the \ref{time ratio} shows the average time ratio
+of the numerical code process for the 12345 linear triangular elements. 
+It can be seen that 
+the assembly process is the highest processing time
+and to improve the code performance, improvements are expected.
+
+
+
+\vspace{0.5cm}
+% Define block styles
+\tikzstyle{block} = [rectangle, draw, fill=gray!10!,
+    text width=25em, text centered, draw,scale=0.7,text=black!90!]
+\tikzstyle{line} = [draw, -latex',scale=0.75]
+
+
+
+\begin{figure}[h!]
+\begin{center}
+\begin{tikzpicture}[node distance = 1.0cm,auto]
+    % Place nodes
+    \node [block] (step1) {Import mesh};
+    \node [block, below of=step1] (step2) {Calculate Gaussian Quadradure and Assemble Matrix};
+    \node [block, below of=step2] (step3) {Inicialize Vorticity and Streamfunction};
+    \node [block, below of=step3] (step4) {Calculate Laplacian smoothing and ALE velocity};
+    \node [block, below of=step4] (step5) {Move Nodes};
+    \node [block, below of=step5] (step6) {Calculate Gaussian Quadradure and Assemble Matrix};
+    \node [block, below of=step6] (step7) {Calculate vorticity boundary condition};
+    \node [block, below of=step7] (step8) {Calculate semi-Lagrangian and Vorticity field};
+    \node [block, below of=step8] (step9) {Calculate streamfunction field};
+    \node [block, below of=step9] (step10) {Calculate velocity field};
+    \node [block, below of=step10] (step11) {Calculate concentration field};
+    \node [right of=step4, node distance=4cm] (initialLoop) {};
+    \node [right of=step11, node distance=4cm] (finalLoop) {};
+    \node [right of=step7, node distance=5.5cm] (textLoop) {};
+
+    \node [draw=none, align=center,scale=0.7,text=black!80!] at (textLoop) {Repeat the procedure \\ for the next time step \\ until the steady state};
+    % Draw edges
+    \path [line] (step1) -- (step2);
+    \path [line] (step2) -- (step3);
+    \path [line] (step3) -- (step4);
+    \path [line] (step4) -- (step5);
+    \path [line] (step5) -- (step6);
+    \path [line] (step6) -- (step7);
+    \path [line] (step7) -- (step8);
+    \path [line] (step8) -- (step9);
+    \path [line] (step9) -- (step10);
+    \path [line] (step10) -- (step11);
+    \path [line,dashed] (step11) -- (finalLoop) -- (initialLoop) |- (step4);
+\end{tikzpicture}
+\end{center}
+\caption{Solve algorithm for Vorticity-Streamfunction Formulation with Species Transport Equation}
+\label{solution algorithm} 
+\end{figure}  
+
+
+
+\vspace{0.5cm}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\textbf{Process} & \textbf{AVG Time Ratio} (\%) \\
+\midrule
+10482 & 6,8 \\
+40819 & 37,5 \\
+249677 & 467,7 \\
+993091 & 3720,6 \\
+\bottomrule
+\end{tabular}
+\caption{Average time ratio of the numerical code process for 12345 linear triangular elements.}
+\label{time ratio}
+\end{table}
+
 
 
