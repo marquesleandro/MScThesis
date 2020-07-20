@@ -72,7 +72,7 @@ triangular meshes.
 Then, the boundary conditions are applied by \textit{BoundaryConditions} class
 that contains the boundary conditions
 for each benchmark problems of this
-work, such that:
+work, namely:
 \textit{Couette Flow}, 
 \textit{Poiseuille Flow}, 
 \textit{Half Poiseuille Flow}, 
@@ -103,4 +103,84 @@ condition apply in several unstructured linear triangular meshes.
 \label{tempo contorno}
 \end{table}
  
+\medskip
+After boundary condition applied, the time loop is started and
+the updating mesh is done by the \textit{MeshUpdate} class.
+Subsequently, the coordinate vectores and the global matrices
+must be reassembled, in addition to the boundary conditions apply.
+The \ref{tempo mesh update} 
+shows the average processing time for the \textit{mesh update procedure}
+in several unstructured linear triangular meshes.
+This processing time does not take into account the global matrices assembly and
+boundary conditions apply.
 
+\vspace{0.5cm}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\textbf{Nodes} & \textbf{Elements} & \textbf{AVG Processing Time} (s) \\
+\midrule
+10482 & 20142 & 6,8 \\
+40819 & 80005 & 37,5 \\
+249677 & 495289 & 467,7 \\
+993091 & 2010501 & 3720,6 \\
+\bottomrule
+\end{tabular}
+\caption{Average processing time for mesh update procedure in several unstrutured linear triangular meshes}
+\label{tempo mesh update}
+\end{table}
+
+
+\medskip
+Finally, the Vorticity-Streamfunction solver is done. 
+The simulator is enabled to solver the equations using the
+\textit{Taylor-Galerkin} and \textit{semi-Lagrangian} Methods.
+As previously mentioned, the boundary condition of the vorticity
+is calculated for each time step and 
+the linear equations system is solver by Scipy Conjugate Gradient.
+The simulator is enabled to solver for linear, quadratic and cubic
+triangular elements. The \ref{tempo vorticity solver} 
+shows the average processing time for the \textit{Vorticity Solver}
+and the \ref{tempo semi Lagrangian} 
+shows for the \textit{semi-Lagragian} Method.
+
+\vspace{0.5cm}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\textbf{Nodes} & \textbf{Elements} & \textbf{AVG Processing Time} (s) \\
+\midrule
+10482 & 20142 & 6,8 \\
+40819 & 80005 & 37,5 \\
+249677 & 495289 & 467,7 \\
+993091 & 2010501 & 3720,6 \\
+\bottomrule
+\end{tabular}
+\caption{Average processing time for Vorticity Solver in several unstrutured linear triangular meshes}
+\label{tempo vorticity solver}
+\end{table}
+
+
+\vspace{0.5cm}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\textbf{Nodes} & \textbf{Elements} & \textbf{AVG Processing Time} (s) \\
+\midrule
+10482 & 20142 & 6,8 \\
+40819 & 80005 & 37,5 \\
+249677 & 495289 & 467,7 \\
+993091 & 2010501 & 3720,6 \\
+\bottomrule
+\end{tabular}
+\caption{Average processing time for the semi-Lagrangian method in several unstrutured linear triangular meshes}
+\label{tempo semi lagrangian}
+\end{table}
+
+
+
+
+ 
