@@ -66,4 +66,31 @@ triangular meshes.
 \caption{Average processing time for global matrices assembly in several unstrutured linear triangular meshes}
 \label{tempo matrizes globais}
 \end{table}
+
+
+\medskip
+Then, the boundary conditions are applied by \textit{BoundaryConditions} class
+that contains the boundary conditions
+for each benchmark problems of this
+work. The \ref{tempo contorno} 
+shows the average processing time for the \textit{Dirichlet} 
+condition apply in several unstructured linear triangular meshes.
+
+\vspace{0.5cm}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\textbf{Nodes} & \textbf{Elements} & \textbf{AVG Processing Time} (s) \\
+\midrule
+10482 & 20142 & 6,8 \\
+40819 & 80005 & 37,5 \\
+249677 & 495289 & 467,7 \\
+993091 & 2010501 & 3720,6 \\
+\bottomrule
+\end{tabular}
+\caption{Average processing time for Dirichlet condition in several unstrutured linear triangular meshes}
+\label{tempo contorno}
+\end{table}
  
+
