@@ -145,8 +145,12 @@ The \ref{tempo mesh update}
 shows the average processing time for the \textit{mesh update procedure}
 in several unstructured linear triangular meshes.
 This processing time does not take into account the global matrices assembly and
-boundary conditions apply. These process are performed by the
+boundary conditions apply, only the nodes mesh moving. 
+These process are performed by the
 Assemble and BoundaryCondition classes, as previously mentioned. 
+As can be seen, the processing time increases fourteen times 
+while the mesh changes from 105656 to 295036 elements 
+(about three times). 
 
 \vspace{0.5cm}
 \begin{table}[H]
@@ -256,11 +260,12 @@ in several unstructured linear triangular meshes.
 \medskip
 Therefore, the \ref{solution algorithm} shows schematically the procedure used
 in this numerical simulation.
-Moreover, the \ref{time ratio} shows the average time ratio
-of the numerical code process for the 12345 linear triangular elements. 
-It can be seen that 
-the assembly process is the highest processing time
-and to improve the code performance, improvements are expected.
+In addition, the \ref{time ratio} shows the average computational
+cost ratio
+of the numerical code process for several linear triangular elements. 
+As can be seen,
+the assembly process is the highest computational cost
+and improvements are expected to improve the code performance.
 
 
 
