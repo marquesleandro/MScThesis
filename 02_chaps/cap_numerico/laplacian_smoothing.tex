@@ -1,0 +1,48 @@
+As previously mentioned, the computational mesh velocity assumes 
+different values of velocity from the Eulerian and Lagrangean 
+description. Thus, it can be represented as a linear 
+combination of other speeds, such as:
+
+\begin{equation}
+\hat{\texbf{v}} 
+= \beta_{1}\textbf{v_{1}}
++ \beta_{2}\textbf{v_{2}}
+\end{equation}
+
+where,
+$\textbf{v_{1}}$ is the Lagrangian velocity,
+$\textbf{v_{2}}$ is the Laplacian smoothing velocity,
+$\beta_{1}$ is a parameters controls the Lagragian motion and
+.
+
+The choice of these speeds and their parameters must 
+be in order to improve the result of the numerical 
+simulation and to avoid the degradation of the 
+computational elements, especially near the domain boundary, 
+where the elements are compressed making the simulation unstable.
+
+Lagrangean velocity is the material flow velocity. 
+This portion makes the nodes of the computational 
+mesh move in the same direction and feeling as the flow. 
+The intensity is proportional to the value of parameter B1, 
+depending on the chosen value, the insertion and deletion 
+of nodes are required.
+
+The speed of Laplacian smoothing is the speed that nodes 
+acquire due to their topological redistribution. 
+Considering a knot in a non-uniform mesh, it will be 
+moved so that it is centered in consideration of the 
+neighbors' 1-ring. With this, it is expected that the 
+mesh is smoothed converging to a more uniform 
+distribution, as we can see in figure 2.
+
+According to [22] ... copy
+
+ EQ
+
+It is possible to choose several strategies to calculate 
+the weight of this equation. In this work, the weight was 
+calculated as 1 / e, where e is the distance ... copy. 
+Thus the speed due to Laplacian smoothing can be calculated as:
+
+EQ
