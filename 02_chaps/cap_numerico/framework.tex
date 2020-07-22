@@ -45,9 +45,16 @@ Nithiarasu and Seetharamu (2004) \cite{lewis2004}.
 The global matrix assembly was performed by \textit{Assemble} class, satisfying the local and global matrices index correspondence.
 They were initialized as sparse matrices by 
 the \textit{Scipy} library \cite{scipy} and 
-the \ref{tempo matrizes globais} shows the average processing time 
-for global matrices assembly in several unstructured linear 
-triangular meshes.
+the \ref{tempo matrizes globais gauss} shows the average processing time 
+for global matrices assembly using gaussian quadrature 
+with three gauss points in several unstructured linear 
+triangular meshes. Whereas, the \ref{tempo matrizes globais analytical}
+shows the average processing time for assembly using the analytical
+elementary matrices as proposed by \cite{lewis2004}. As can be seen,
+the global matrices assembly using analytical elementary matrices is
+about three times faster than the gaussian quadrature. However, the gaussian quadrature
+can be used on quadratic or cubic elements, where calculating
+the elementary matrices is more costly.
 
 \vspace{0.5cm}
 \begin{table}[H]
@@ -65,9 +72,30 @@ triangular meshes.
 
 \bottomrule
 \end{tabular}
-\caption{Average processing time for global matrices assembly in several unstrutured linear triangular meshes}
-\label{tempo matrizes globais}
+\caption{Average processing time for global matrices assembly using gaussian quadrature in several unstrutured linear triangular meshes}
+\label{tempo matrizes globais gauss}
 \end{table}
+
+\vspace{0.5cm}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\textbf{Nodes} & \textbf{Elements} & \textbf{AVG Processing Time} (s) \\
+\midrule
+3436 & 6670 & 4.8 \\
+13745 & 26548 & 22.9 \\
+53229 & 105656 & 98.1 \\
+148187 & 295036 & 264.8 \\
+
+
+
+\bottomrule
+\end{tabular}
+\caption{Average processing time for global matrices assembly using analytica elementary matrices in several unstrutured linear triangular meshes}
+\label{tempo matrizes globais gauss}
+\end{table}
+
 
 
 \medskip
@@ -289,15 +317,18 @@ and to improve the code performance, improvements are expected.
 \centering
 \begin{tabular}{ccc}
 \toprule
-\textbf{Process} & \textbf{AVG Time Ratio} (\%) \\
+\textbf{Process} & \textbf{AVG Computational Cost} (\%) \\
 \midrule
-10482 & 6,8 \\
-40819 & 37,5 \\
-249677 & 467,7 \\
-993091 & 3720,6 \\
+Mesh import & 1.24 \\
+Assembly & 73.87 \\
+BC Apply & 6.70 \\
+Mesh update & 10.05 \\
+Vorticity Solver & 5.51 \\
+Semi-Lagrangian & 2.27 \\
+VTK export & 0.36 \\
 \bottomrule
 \end{tabular}
-\caption{Average time ratio of the numerical code process for 12345 linear triangular elements.}
+\caption{Average computational cost for several linear triangular elements.}
 \label{time ratio}
 \end{table}
 
