@@ -272,14 +272,14 @@ and improvements are expected to improve the code performance.
 \vspace{0.5cm}
 % Define block styles
 \tikzstyle{block} = [rectangle, draw, fill=gray!10!,
-    text width=25em, text centered, draw,scale=0.7,text=black!90!]
-\tikzstyle{line} = [draw, -latex',scale=0.75]
+    text width=28em, text centered, draw,scale=1.0,text=black!90!]
+\tikzstyle{line} = [draw, -latex',scale=1.0]
 
 
 
 \begin{figure}[h!]
 \begin{center}
-\begin{tikzpicture}[node distance = 1.0cm,auto]
+\begin{tikzpicture}[node distance = 1.1cm,auto]
     % Place nodes
     \node [block] (step1) {Import mesh};
     \node [block, below of=step1] (step2) {Calculate Gaussian Quadradure and Assemble Matrix};
@@ -292,11 +292,11 @@ and improvements are expected to improve the code performance.
     \node [block, below of=step8] (step9) {Calculate streamfunction field};
     \node [block, below of=step9] (step10) {Calculate velocity field};
     \node [block, below of=step10] (step11) {Calculate concentration field};
-    \node [right of=step4, node distance=4cm] (initialLoop) {};
-    \node [right of=step11, node distance=4cm] (finalLoop) {};
-    \node [right of=step7, node distance=5.5cm] (textLoop) {};
+    \node [right of=step4, node distance=6.5cm] (initialLoop) {};
+    \node [right of=step11, node distance=6.5cm] (finalLoop) {};
+    \node [right of=step7, node distance=8.7cm] (textLoop) {};
 
-    \node [draw=none, align=center,scale=0.7,text=black!80!] at (textLoop) {Repeat the procedure \\ for the next time step \\ until the steady state};
+    \node [draw=none, align=center,scale=1.0,text=black!80!] at (textLoop) {Repeat the procedure \\ for the next time step \\ until the steady state};
     % Draw edges
     \path [line] (step1) -- (step2);
     \path [line] (step2) -- (step3);
@@ -308,7 +308,7 @@ and improvements are expected to improve the code performance.
     \path [line] (step8) -- (step9);
     \path [line] (step9) -- (step10);
     \path [line] (step10) -- (step11);
-    \path [line,dashed] (step11) -- (finalLoop) -- (initialLoop) |- (step4);
+    \path [line,dashed] (step11) -- (finalLoop) -- (initialLoop) -- (step4);
 \end{tikzpicture}
 \end{center}
 \caption{Solve algorithm for Vorticity-Streamfunction Formulation with Species Transport Equation}
