@@ -39,7 +39,102 @@ Thereby, it is expected the smoothing procedure
 converges to a more uniform point distribution,
 as shown in figure 2.
 
-FIG
+\vspace{0.5cm}
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=6]
+
+ % FIGURE A
+ % nodes
+ \coordinate (E) at (1.233,0.6830) {};
+ \coordinate (F) at (1.333,1.0500) {};
+ \coordinate (I) at (1.566,0.5500) {};
+ \coordinate (J) at (1.7,0.7660) {};
+ \coordinate (K) at (1.650,1.2330) {};
+ \coordinate (N) at (1.833,0.6830) {};
+ \coordinate (O) at (1.900,1.0000) {};
+
+
+
+ % elements
+ \draw (E) -- (J) -- (F) -- cycle;
+ \draw (J) -- (K) -- (F) -- cycle;
+ \draw (I) -- (N) -- (J) -- cycle;
+ \draw (N) -- (O) -- (J) -- cycle;
+ \draw (J) -- (O) -- (K) -- cycle;
+ \draw (I) -- (J) -- (E) -- cycle;
+ 
+
+ % draw nodes
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (E) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (F) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (I) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (J) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (K) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (N) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (O) {};
+
+
+
+ % -----------------------------------------------------------------
+ % FIGURE B
+ % nodes
+ \coordinate (E) at (2.433,0.6830) {};
+ \coordinate (F) at (2.533,1.0500) {};
+ \coordinate (I) at (2.766,0.5500) {};
+ \coordinate (J) at (2.8,0.8660) {};
+ \coordinate (K) at (2.850,1.2330) {};
+ \coordinate (N) at (3.033,0.6830) {};
+ \coordinate (O) at (3.100,1.0000) {};
+
+ % elements
+ \draw (E) -- (J) -- (F) -- cycle;
+ \draw (J) -- (K) -- (F) -- cycle;
+ \draw (I) -- (N) -- (J) -- cycle;
+ \draw (N) -- (O) -- (J) -- cycle;
+ \draw (J) -- (O) -- (K) -- cycle;
+ \draw (I) -- (J) -- (E) -- cycle;
+ 
+
+ % draw nodes
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (E) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (F) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (I) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (J) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (K) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (N) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (O) {};
+
+
+ % arrow and legend
+ \draw[dashed,line width=0.03cm,-stealth] (1.85,0.55) -- (1.71,0.73);
+ \draw[dashed,line width=0.03cm] (1.85,0.55) -- (2.015,0.55);
+ \node[draw=none, scale=0.9] at (2.08,0.55) {\small $\textbf{x}_{i}$};
+ 
+ \draw[dashed,line width=0.03cm,-stealth] (2.95,0.55) -- (2.81,0.83);
+ \draw[dashed,line width=0.03cm] (2.95,0.55) -- (3.15,0.55);
+ \node[draw=none, scale=0.9] at (3.2,0.55) {\small $\hat{\textbf{x}_{i}}$};
+ 
+ \draw[dashed,line width=0.03cm,-stealth] (1.9,1.18) -- (1.78,1.12);
+ \draw[dashed,line width=0.03cm] (1.9,1.18) -- (2.0,1.18);
+ \node[draw=none,align=center,scale=0.8] at (2.23,1.18) {1-Ring Neighbors};
+
+ \node[draw=none, scale=0.8] at (1.6,0.4) {\large (a)};
+ \node[draw=none, scale=0.8] at (2.8,0.4) {\large (b)};
+
+
+ 
+\end{tikzpicture}
+\end{center}
+\caption{Laplacian smoothing in 2-dimensional space: 
+(a) initial point position and
+(b) final point position after successively smoothing steps.
+}
+\label{semi-lagrangian figure}
+\end{figure}
+
+
+
 
 \medskip
 According to [22], the new node position 
