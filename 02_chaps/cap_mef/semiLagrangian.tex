@@ -9,13 +9,13 @@ domain at the $x_{i}$ node by an explicit first order scheme:
 
 \vspace{-0.4cm}
 \begin{equation}
- \frac{D \omega}{D t} = 
+ \frac{D \omega}{D t} \approx 
  \frac{\omega_{i}^{n+1} - \omega_{d}^{n}}{\Delta t}
 \end{equation}
 
 \vspace{-0.8cm}
 \begin{equation}
- \frac{D e}{D t} = 
+ \frac{D e}{D t} \approx
  \frac{e_{i}^{n+1} - e_{d}^{n}}{\Delta t}
 \end{equation}
 
@@ -64,7 +64,7 @@ that is:
 
 \medskip
 \noindent
-Considering the relative velocity picewise constant,
+Considering the relative velocity picewise constant in time,
 the departure point can be calculated by:
 
 \begin{equation} \label{final characteristic}
@@ -73,7 +73,7 @@ the departure point can be calculated by:
 \end{equation}
 
 \medskip
-The \ref{semi-lagrangian figure} shown 
+The \ref{characteristic trajectory fig} shown 
 the 1-dimensional characteristic trajectory of
 the material point in a moving computational mesh,
 where the white square is the material point and
@@ -139,7 +139,7 @@ the departure point $x_d$ position in $t^{n}$.
 \caption{An one-dimensional space scheme
  where the departure node $x_{d}$ is found by 
  the characteristic trajectory in a moving mesh.}
-\label{semi-lagrangian figure}
+\label{characteristic trajectory fig}
 \end{figure}
 
 
@@ -153,7 +153,7 @@ If it is not found, the procedure continues with the nearest
 neighbor node until it finds the departure point. 
 This procedure has presented an acceptable computational cost, 
 in addition to the advantage of finding the nodes 
-even in concave domains as can be seen in the \ref{searching procedure}:
+even in concave domains as can be seen in the \ref{searching procedure fig}:
 
 \vspace{-0.5cm}
 \begin{figure}[H]
@@ -251,39 +251,133 @@ the red line is the searching procedure path,
 the $x_{d}$ is the departure point and
 the $x_{i}$ is the initial point.
 }
-\label{searching procedure}
+\label{searching procedure fig}
 \end{figure}
 
 
-
-
-
-
-
-
-
-
-using the initial condition $\mathbf{x}_{i}^{n+1} = \mathbf{x}(t^{n+1})$
- as shown in \ref{semi-lagrangian figure}a. 
-A algorithm must be used to find the element that the departure node be, 
-then the vorticity field in departure node ($\omega_{d}^{n}$) is 
-calculed by barycenter coordinates interpolation between nodes of 
-element found.
-As shown in \ref{semi-lagrangian figure}b, three situations may 
-occur depending on the trajectory: the first and the second 
+\medskip
+During the searching procedure, three situations may 
+occur depending on the trajectory, 
+as shown in \ref{three situations fig}: the first and the second 
 situations are similar, differentiating only the trajectory length. 
 In the first situation, the departure node is inside near 
 element from current node, while the second situation 
 the departure node is inside far element from current node. 
+After the departure point is found, the vorticity ($\omega_{d}$) and 
+concentration ($e_{d}$) fields are interpolated by the shape functions
+presented in the section \ref{elemento}.
 The third situation, the departure node is outside domain 
-then the vorticity field in departure node receives the 
-boundary condition value of nearest node to departure node.
+then the vorticity and concentration fields receive 
+the boundary condition value of nearest node to departure node.
+
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=5]
+ \draw (2.5,1.6) -- (4.0,1.6);
+ \draw (2.5,1.6) -- (2.5,0.5);
+ \draw (2.5,0.5) -- (4.0,0.5);
+
+ % nodes
+ \coordinate (A) at (2.500,0.5000) {};
+ \coordinate (B) at (2.500,0.8667) {};
+ \coordinate (C) at (2.500,1.2330) {};
+ \coordinate (D) at (2.500,1.6000) {};
+ \coordinate (E) at (2.733,0.6830) {};
+ \coordinate (F) at (2.833,1.0500) {};
+ \coordinate (G) at (2.733,1.4160) {};
+ \coordinate (H) at (3.000,1.6000) {};
+ \coordinate (I) at (3.066,0.5000) {};
+ \coordinate (J) at (3.166,0.8660) {};
+ \coordinate (K) at (3.150,1.3330) {};
+ \coordinate (L) at (3.333,1.6000) {};
+ \coordinate (M) at (3.500,0.5000) {};
+ \coordinate (N) at (3.333,0.6830) {};
+ \coordinate (O) at (3.400,1.0000) {};
+ \coordinate (P) at (3.500,1.2300) {};
+
+ % elements
+ \draw (A) -- (E) -- (B) -- cycle;
+ \draw (A) -- (I) -- (E) -- cycle;
+ \draw (E) -- (J) -- (F) -- cycle;
+ \draw (E) -- (F) -- (B) -- cycle;
+ \draw (B) -- (F) -- (C) -- cycle;
+ \draw (J) -- (K) -- (F) -- cycle;
+ \draw (F) -- (K) -- (G) -- cycle;
+ \draw (C) -- (F) -- (G) -- cycle;
+ \draw (C) -- (G) -- (D) -- cycle;
+ \draw (G) -- (H) -- (D) -- cycle;
+ \draw (I) -- (N) -- (J) -- cycle;
+ \draw (I) -- (M) -- (N) -- cycle;
+ \draw (N) -- (O) -- (J) -- cycle;
+ \draw (J) -- (O) -- (K) -- cycle;
+ \draw (P) -- (L) -- (K) -- cycle;
+ \draw (K) -- (L) -- (H) -- cycle;
+ \draw (O) -- (P) -- (K) -- cycle;
+ \draw[red,line width=2pt] (I) -- (J) -- (E) -- cycle;
+ \draw[red,line width=2pt] (B) -- (C);
+ \draw[red,line width=2pt] (G) -- (K) -- (H) -- cycle;
+ 
+
+ % draw nodes
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (A) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (B) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (C) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (D) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (E) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (F) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (G) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (H) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (I) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (J) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (K) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (L) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (M) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (N) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (O) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (P) {};
+
+
+ % arrow
+ \draw[dashed,line width=0.03cm]  (2.95,0.65) -- (J) ;
+ \draw[dashed,line width=0.03cm]  (2.90,1.45) -- (J) ;
+ \draw[dashed,line width=0.03cm]  (2.4,1.05)  -- (J) ;
+
+
+ % departure nodes
+ \node[square, fill=white, draw, inner sep=0pt, minimum size=7.8pt] at (2.95,0.65) {};
+ \node[square, fill=white, draw, inner sep=0pt, minimum size=7.8pt] at (2.90,1.45) {};
+ \node[square, fill=white, draw, inner sep=0pt, minimum size=7.8pt] at (2.4,1.05) {};
+ \node[square, fill=white, draw, inner sep=0pt, minimum size=7.8pt] at (J) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (J) {};
+
+
+ 
+ % legend
+ \node[draw=none, scale=0.9] at (3.23,0.95) {\small $x_{i}$};
+ 
+ \node[draw=none, scale=0.9] at (3.05,0.64) {$1$};
+ \node[draw=none, scale=0.9] at (3.00,1.45) {$2$};
+ \node[draw=none, scale=0.9] at (2.4,1.15) {$3$};
+
+ \node[draw=none, scale=1.0] at (3.7,1.0) {\small $domain$};
+ \node[draw=none, scale=1.0] at (3.8,1.65) {\small $boundary$};
+
+\end{tikzpicture}
+\end{center}
+\caption{
+A two-dimensional space scheme
+where three situations may occur in the searching procedure.
+}
+\label{three situations fig}
+\end{figure}
+
 
 \medskip
 Therefore, the Eqs. 
 \ref{vorticity matrix},
 \ref{stream matrix} and
-\ref{concentrarion matrix} 
+\ref{concentration matrix} 
 can be shown 
 in an
 implicit semi-Lagragian 
