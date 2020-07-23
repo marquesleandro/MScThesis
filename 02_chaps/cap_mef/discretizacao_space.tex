@@ -128,7 +128,7 @@ Moving the sum symbols out of integrals, we have:
   \int_{\Omega} N_i N_j d\Omega & 
   \\[5pt]
    + & \sum\limits_{i=1}^{np} \omega_i \Bigg[
-   + \frac{1}{\textit{Re}}
+   \frac{1}{\textit{Re}}
    \int_{\Omega} \Bigg\{ 
    \frac{\partial N_i}{\partial x} 
    \frac{\partial N_j}{\partial x} 
@@ -141,15 +141,16 @@ Moving the sum symbols out of integrals, we have:
 \end{equation}
 
 \begin{equation}
-  \sum\limits_{j=1}^{np} \phi_j
-  \sum\limits_{i=1}^{np} \psi_i \Bigg[
-  - \int_{\Omega} \Bigg\{ 
+  \sum\limits_{j=1}^{np} \phi_j \Bigg[
+  - \sum\limits_{i=1}^{np} \psi_i 
+   \int_{\Omega} \Bigg\{ 
                   \frac{\partial N_i}{\partial x} 
                   \frac{\partial N_j}{\partial x} 
   +               \frac{\partial N_i}{\partial y} 
                   \frac{\partial N_j}{\partial y} 
   \Bigg\} d\Omega
-  + \omega_i \int_{\Omega} N_i N_j d\Omega
+  + \sum\limits_{i=1}^{np} \omega_i 
+   \int_{\Omega} N_i N_j d\Omega
   \Bigg] = 0
 \end{equation}
 
@@ -160,7 +161,7 @@ Moving the sum symbols out of integrals, we have:
   \int_{\Omega} N_i N_j d\Omega & 
   \\[5pt]
    + & \sum\limits_{i=1}^{np} e_i \Bigg[
-   + \frac{1}{\textit{ReSc}} 
+   \frac{1}{\textit{ReSc}} 
    \int_{\Omega} \Bigg\{ 
    \frac{\partial N_i}{\partial x} 
    \frac{\partial N_j}{\partial x} 
@@ -183,10 +184,10 @@ by Galerkin method are:
 
 \begin{equation} \label{vorticity galerkin}
   \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} \frac{D \omega_i}{Dt} 
+  \sum\limits_{i=1}^{np} \Bigg[ \frac{D \omega_i}{Dt} 
   \int_{\Omega} N_i N_j d\Omega 
-   + \sum\limits_{i=1}^{np} \omega_i \Bigg[
-   + \frac{1}{\textit{Re}}
+   + \omega_i
+   \frac{1}{\textit{Re}}
    \int_{\Omega} \Bigg\{ 
    \frac{\partial N_i}{\partial x} 
    \frac{\partial N_j}{\partial x} 
@@ -194,28 +195,30 @@ by Galerkin method are:
    \frac{\partial N_i}{\partial y} 
    \frac{\partial N_j}{\partial y} 
    \Bigg\} d\Omega
- \Bigg] \Bigg] = 0
+ \Bigg] = 0
 \end{equation}
 
 \begin{equation} \label{stream galerkin}
   \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} \psi_i \Bigg[
-  - \int_{\Omega} \Bigg\{ 
+  \sum\limits_{i=1}^{np} \Bigg[
+  - \psi_i \int_{\Omega} \Bigg\{ 
                   \frac{\partial N_i}{\partial x} 
                   \frac{\partial N_j}{\partial x} 
   +               \frac{\partial N_i}{\partial y} 
                   \frac{\partial N_j}{\partial y} 
   \Bigg\} d\Omega
-  + \omega_i \int_{\Omega} N_i N_j d\Omega
-  \Bigg] \Bigg] = 0
+  + \omega_i 
+   \int_{\Omega} N_i N_j d\Omega
+  \Bigg] = 0
 \end{equation}
 
 \begin{equation} \label{species galerkin}
   \sum\limits_{j=1}^{np}
-  \sum\limits_{i=1}^{np} \frac{D e_i}{Dt} 
+  \sum\limits_{i=1}^{np} \Bigg[
+  \frac{D e_i}{Dt} 
   \int_{\Omega} N_i N_j d\Omega & 
-   + \sum\limits_{i=1}^{np} e_i \Bigg[
-   + \frac{1}{\textit{ReSc}} 
+   + e_i
+   \frac{1}{\textit{ReSc}} 
    \int_{\Omega} \Bigg\{ 
    \frac{\partial N_i}{\partial x} 
    \frac{\partial N_j}{\partial x} 
@@ -223,7 +226,7 @@ by Galerkin method are:
    \frac{\partial N_i}{\partial y} 
    \frac{\partial N_j}{\partial y} 
    \Bigg\} d\Omega
- \Bigg] \Bigg] = 0
+ \Bigg] = 0
 \end{equation}
 
 

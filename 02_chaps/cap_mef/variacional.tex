@@ -3,14 +3,14 @@ with boundary conditions are known as \textbf{Strong Formulation}.
 Thus, the strong formulation for the proposed problem is:
 
 \begin{align}
-& \frac{D w}{D t}
+& \frac{D \omega}{D t}
  =
  \frac{1}{Re} \nabla^{2} w
  \\[10pt] 
 & \nabla^{2} \psi
  = 
  - 
- w \\[10pt]
+ \omega \\[10pt]
 & \frac{D e}{Dt}
  =
  \frac{1}{ReSc} \nabla^{2} e
@@ -25,7 +25,7 @@ with the following boundary conditions:
 
 \begin{equation} \label{bc}
  \begin{aligned}
-  w = w_\Gamma \quad & \mbox{in $\Gamma_1$}\\
+  \omega = \omega_\Gamma \quad & \mbox{in $\Gamma_1$}\\
   \psi = \psi_\Gamma \quad & \mbox{in $\Gamma_2$}\\
   e = e_\Gamma \quad & \mbox{in $\Gamma_4$}
 \end{aligned}
@@ -45,13 +45,13 @@ is produced in the governing equations, that is:
 
 
 \begin{align}
-& \frac{D w}{D t}
+& \frac{D \omega}{D t}
  -
- \frac{1}{Re} \nabla^{2} w
+ \frac{1}{Re} \nabla^{2} \omega
  = R_1 \\[10pt] 
 & \nabla^{2} \psi
  + 
- w 
+ \omega
  = R_2 \\[10pt]
 & \frac{D e}{Dt}
  -
@@ -79,14 +79,14 @@ We then have the following integrals:
 
 \begin{equation}
  \int_{\Omega} \Bigg\{ 
- \frac{D w}{D t}
+ \frac{D \omega}{D t}
  -
- \frac{1}{Re} \nabla^{2} w
+ \frac{1}{Re} \nabla^{2} \omega
 \Bigg\} \cdot \delta d\Omega = 0
 \end{equation}
 
 \begin{equation}
- \int_{\Omega} \big\{ \nabla^2 \psi + w \big\} \cdot \phi d\Omega = 0
+ \int_{\Omega} \big\{ \nabla^2 \psi + \omega \big\} \cdot \phi d\Omega = 0
 \end{equation}
 
 \begin{equation}
@@ -104,13 +104,13 @@ Developing the integrals, we have:
 
 \begin{equation} \label{diffusion_vorticity} 
    \int_{\Omega} \frac{D \omega}{Dt} \delta d\Omega 
- - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 w \delta d\Omega
+ - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 \omega \delta d\Omega
  = 0
 \end{equation}
 
 \begin{equation} \label{diffusion_stream}
    \int_{\Omega} \nabla^2 \psi \phi d\Omega
- + \int_{\Omega} w \phi d\Omega = 0
+ + \int_{\Omega} \omega \phi d\Omega = 0
 \end{equation}
 
 \begin{equation} \label{diffusion_concentration} 
@@ -126,9 +126,9 @@ the derivative order and separate the term evaluated in the boundary.
 Thus the diffusive term will become:
 
 \begin{equation} \label{diffusion2_vorticity} 
- - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 w \delta d\Omega
- = \frac{1}{\textit{Re}} \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega
- - \frac{1}{\textit{Re}} \int_{\Gamma} \delta \nabla w \cdot \textbf{n} d\Gamma
+ - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 \omega \delta d\Omega
+ = \frac{1}{\textit{Re}} \int_{\Omega} \nabla \omega \cdot \nabla \delta d\Omega
+ - \frac{1}{\textit{Re}} \int_{\Gamma} \delta \nabla \omega \cdot \textbf{n} d\Gamma
 \end{equation}
 
 \begin{equation} \label{diffusion2_stream} 
@@ -159,8 +159,8 @@ and the diffusive term of the equations
 (\ref{diffusion_vorticity}, \ref{diffusion_stream} and \ref{diffusion_concentration}) become:
 
 \begin{equation}
- - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 w \delta d\Omega
- = \frac{1}{\textit{Re}} \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega
+ - \frac{1}{\textit{Re}} \int_{\Omega} \nabla^2 \omega \delta d\Omega
+ = \frac{1}{\textit{Re}} \int_{\Omega} \nabla \omega \cdot \nabla \delta d\Omega
 \end{equation}
 
 \begin{equation} 
@@ -179,13 +179,13 @@ Therefore, replacing the new diffusive terms in the governing equations:
 
 \begin{equation} \label{vorticity weak} 
    \int_{\Omega} \frac{D \omega}{Dt} \delta d\Omega 
- + \frac{1}{\textit{Re}} \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega 
+ + \frac{1}{\textit{Re}} \int_{\Omega} \nabla \omega \cdot \nabla \delta d\Omega 
  = 0
 \end{equation}
 
 \begin{equation} \label{stream weak}
  - \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega
- + \int_{\Omega} w \phi d\Omega = 0
+ + \int_{\Omega} \omega \phi d\Omega = 0
 \end{equation}
 
 \begin{equation} \label{concentration weak} 
@@ -202,12 +202,12 @@ If we consider that:
 \begin{equation}
  \begin{aligned}
   \textbf{$m_1$}(\frac{D \omega}{Dt},\delta) & = \int_{\Omega} \frac{D \omega}{Dt} \delta d\Omega \\ 
-  \textbf{$m_2$}(\psi,\phi) & = \int_{\Omega} w \phi d\Omega \\
+  \textbf{$m_2$}(\omega,\phi) & = \int_{\Omega} \omega \phi d\Omega \\
   \textbf{$m_3$}(\frac{De}{Dt},\eta) & = \int_{\Omega} \frac{De}{Dt} \eta d\Omega \\
  \end{aligned}
  \qquad
  \begin{aligned}  
-  \textbf{$k_1$}(w,\delta) & = \int_{\Omega} \nabla w \cdot \nabla \delta d\Omega \\
+  \textbf{$k_1$}(\omega,\delta) & = \int_{\Omega} \nabla \omega \cdot \nabla \delta d\Omega \\
   \textbf{$k_2$}(\psi,\phi) & = \int_{\Omega} \nabla \psi \cdot \nabla \phi d\Omega \\
   \textbf{$k_3$}(e,\eta) & = \int_{\Omega} \nabla e \cdot \nabla \eta d\Omega \\
  \end{aligned}
@@ -218,10 +218,10 @@ The equations, thus, can be shown in the weak form respectively:
 
 \begin{align}
  \textbf{$m_1$}(\frac{D \omega}{Dt},\delta) 
- + \frac{1}{\textit{Re}}\textbf{$k_1$}(w,\delta) 
+ + \frac{1}{\textit{Re}}\textbf{$k_1$}(\omega,\delta) 
  & = 0 \\
  - \textbf{$k_2$}(\psi,\phi) 
- + \textbf{$m_2$}(\psi,\phi) 
+ + \textbf{$m_2$}(\omega,\phi) 
  & = 0 \\
  \textbf{$m_3$}(\frac{De}{De},\eta) 
  + \frac{1}{\textit{ReSc}}\textbf{$k_3$}(e,\eta) 
@@ -234,9 +234,9 @@ Assuming that the sets of basis functions are:
 
 \begin{equation}
  \begin{aligned}
-  \mathbb{W} &= \{w \in \Omega \rightarrow \mathbb{R}^2
-  : \int_\Omega w^2 d\Omega < \infty 
-  ; w = w_\Gamma\} \\
+  \mathbb{W} &= \{\omega \in \Omega \rightarrow \mathbb{R}^2
+  : \int_\Omega \omega^2 d\Omega < \infty 
+  ; \omega = \omega_\Gamma\} \\
   \mathbb{P} &= \{\psi \in \Omega \rightarrow \mathbb{R}^2
   : \int_\Omega \psi^2 d\Omega < \infty 
   ; \psi = \psi_\Gamma\} \\
@@ -266,16 +266,16 @@ and the set of weight functions space:
 \noindent
 The weak formulation consists 
 to find the solutions of 
-$w \in \mathbb{W}$,
+$\omega \in \mathbb{W}$,
 $\psi \in \mathbb{P}$, and $e \in \mathbb{E}$
 such that:
 
 \begin{align}
  \textbf{$m_1$}(\frac{D \omega}{Dt},\delta) 
- + \frac{1}{\textit{Re}}\textbf{$k_1$}(w,\delta) 
+ + \frac{1}{\textit{Re}}\textbf{$k_1$}(\omega,\delta) 
  & = 0 \\
  - \textbf{$k_2$}(\psi,\phi) 
- + \textbf{$m_2$}(\psi,\phi) 
+ + \textbf{$m_2$}(\omega,\phi) 
  & = 0 \\
  \textbf{$m_3$}(\frac{De}{De},\eta) 
  + \frac{1}{\textit{ReSc}}\textbf{$k_3$}(e,\eta) 

@@ -89,15 +89,15 @@ The terms that contain the gradient operator cancel
 \medskip
 \noindent
 The vector $\nabla \times \textbf{v}$ is known as
-\textit{vorticity} ($w$).
+\textit{vorticity} ($\omega$).
 Therby, the equation can be represented by:
 
 \begin{equation} \label{vort 1}
- \frac{\partial w}{\partial t}
+ \frac{\partial \omega}{\partial t}
  - 
- \nabla \times \big[ \textbf{c} \times w \big]
+ \nabla \times \big[ \textbf{c} \times \omega \big]
  =
- \frac{1}{Re} \nabla^{2} w
+ \frac{1}{Re} \nabla^{2} \omega
 \end{equation}
 
 \medskip
@@ -108,12 +108,12 @@ can be replaced by following vectorial identity:
 
 
 \begin{equation}
- \nabla \times \big[ \textbf{c} \times w \big]
+ \nabla \times \big[ \textbf{c} \times \omega \big]
  =
  -
- \textbf{c} \cdot \nabla w
+ \textbf{c} \cdot \nabla \omega
  +
- w \cdot \nabla \textbf{c}
+ \omega \cdot \nabla \textbf{c}
 \end{equation}
 
 \medskip
@@ -121,28 +121,28 @@ can be replaced by following vectorial identity:
 Thus the Eq. \ref{vort 1} will be:
 
 \begin{equation} \label{vort 2}
- \frac{\partial w}{\partial t}
+ \frac{\partial \omega}{\partial t}
  +
- \textbf{c} \cdot \nabla w
+ \textbf{c} \cdot \nabla \omega
  - 
- w \cdot \nabla \textbf{c}
+ \omega \cdot \nabla \textbf{c}
  =
- \frac{1}{Re} \nabla^{2} w
+ \frac{1}{Re} \nabla^{2} \omega
 \end{equation}
 
 \medskip
 For two-dimensional flows, as in the case of this work,
  the vorticity is perpendicular to the velocity vector.
- Thus, the product $w \cdot \nabla \textbf{c}$ will be canceled
+ Thus, the product $\omega \cdot \nabla \textbf{c}$ will be canceled
  as presented by Pontes and Mangiavacchi (2016) \cite{pontes2016}.
  Therefore:
 
 \begin{equation} \label{equacao vorticidade}
- \frac{\partial w}{\partial t}
+ \frac{\partial \omega}{\partial t}
  +
- \textbf{c} \cdot \nabla w
+ \textbf{c} \cdot \nabla \omega
  =
- \frac{1}{Re} \nabla^{2} w
+ \frac{1}{Re} \nabla^{2} \omega
 \end{equation}
 
 \medskip
@@ -202,7 +202,7 @@ Eq. \ref{cor 2} in Eq. \ref{cor 3},
 we have:
 
 \begin{equation}
- w
+ \omega
  =
  - 
  \frac{\partial}{\partial x} \frac{\partial v}{\partial x}
@@ -215,7 +215,7 @@ we have:
 that is:
 
 \begin{equation}
- w
+ \omega
  = 
  -
  \nabla^{2} \psi
@@ -229,14 +229,14 @@ are shown below:
 \begin{align}
 & \frac{\partial w}{\partial t}
  +
- \textbf{c} \cdot \nabla w
+ \textbf{c} \cdot \nabla \omega
  =
- \frac{1}{Re} \nabla^{2} w
+ \frac{1}{Re} \nabla^{2} \omega
  \\[10pt] 
 & \nabla^{2} \psi
  = 
  - 
- w \\[10pt]
+ \omega \\[10pt]
 & \frac{\partial e}{\partial t}
  +
  \textbf{c} \cdot \nabla e
@@ -250,14 +250,14 @@ the equations above will be shown with the substantive derivative,
 thus:
 
 \begin{align}
-& \frac{D w}{D t}
+& \frac{D \omega}{D t}
  =
- \frac{1}{Re} \nabla^{2} w \label{vorticidade}
+ \frac{1}{Re} \nabla^{2} \omega \label{vorticidade}
  \\[10pt] 
 & \nabla^{2} \psi
  = 
  - 
- w \label{corrente} \\[10pt]
+ \omega \label{corrente} \\[10pt]
 & \frac{D e}{Dt}
  =
  \frac{1}{ReSc} \nabla^{2} e \label{especie quimica}

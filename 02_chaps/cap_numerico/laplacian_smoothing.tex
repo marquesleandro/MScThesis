@@ -37,7 +37,7 @@ Considering a node in a non-uniform mesh, it will be
 moved to the centroid of the 1-ring neighbors. 
 Thereby, it is expected the smoothing procedure
 converges to a more uniform point distribution,
-as shown in figure 2.
+as shown in \ref{laplacian smoothing space}.
 
 \vspace{0.5cm}
 \begin{figure}[H]
@@ -130,7 +130,7 @@ as shown in figure 2.
 (a) initial point position and
 (b) final point position after successively smoothing steps.
 }
-\label{semi-lagrangian figure}
+\label{laplacian smoothing space}
 \end{figure}
 
 
@@ -152,12 +152,13 @@ of the 1-ring neighbors of a node:
 \noindent
 where, 
 $w_{ij}$ is the weight and it can be calculated in several ways,
+$np$ is number of computational mesh node,
 $N_{1}$ is the 1-ring neighbors of a node,
 $\textbf{x}_{j}$ is the coordinate vector of neighbor node and
 $\textbf{x}_{i}$ is the coordinate vector of node in previous step that will be moved.
 It is possible to choose several strategies to calculate 
 the weight of this equation. In this work, the weight was 
-calculated as the inverse distance from its neighbor vertices,
+calculated as the sum of the inverse distance from its neighbor vertices,
 that is:
 \begin{equation}
 w_{ij} = \sum_{i}^{np} \sum_{j}^{N_1}
@@ -166,7 +167,8 @@ w_{ij} = \sum_{i}^{np} \sum_{j}^{N_1}
 
 \medskip
 \noindent
-Therefore, the Laplacian smoothing velocity can be calculated as:
+Then, the Laplacian smoothing velocity can be calculated as:
+
 
 \begin{equation}
 \textbf{v}_{2}
@@ -174,4 +176,33 @@ Therefore, the Laplacian smoothing velocity can be calculated as:
 \frac{\left( \textbf{x}_{j} - \textbf{x}_{i} \right)}{\Delta t}
 \end{equation}
 
+\medskip
+In \ref{laplacian smoothing fig} is shown 
+the Laplacian smoothing application in a moving boundary problem
+when maximum compression state.
+As can be seen, the elements close to the boundary are compressed 
+tending to collapse (\ref{laplacian smoothing fig}a). 
+However, this effect is not seen when 
+Laplacian smoothing is applied (\ref{laplacian smoothing fig}b). 
+In these cases, Laplacian smoothing becomes essential 
+to perform the numerical simulation.
 
+\begin{figure}[H]
+     \centering
+     \begin{minipage}{.5\linewidth}
+      \centering
+      \includegraphics[scale=0.2]{./02_chaps/cap_numerico/figure/noLaplacian.png}\\
+      (a)
+     \end{minipage}%
+     \begin{minipage}{.5\linewidth}
+      \centering
+      \includegraphics[scale=0.2]{./02_chaps/cap_numerico/figure/withLaplacian.png}\\
+      (b)
+     \end{minipage}
+     \medskip
+     \caption{Moving boundary problem
+     (a) no Laplacian smoothing and
+     (b) with Laplacian smoothing.
+}
+     \label{laplacian smoothing fig}
+\end{figure}
