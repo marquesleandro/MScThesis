@@ -2,25 +2,79 @@ The Semi-Lagrangian Scheme in centred difference was proposed by \cite{sawyer196
 However, because of a limited computer capability, the use of such methodology to model several fluid flow problems, with high order differences and fine mesh, came latter in the 1980's throught the work of \cite{robert1981} and \cite{pironneau1982}, where the semi-lagrangian scheme would be able to run models faster than the Eulerian scheme, besides be unconditionally stable and only symmetric linear systems to solve. 
 Basically, the semi-lagrangian scheme takes into account the fact that the Eulerian derivative is replaced by the material derivative, then it is discretized and computed along the trajectory characteristic:
 
+The material derivate of the Eqs. \ref{vorticity matrix} and \ref{concentration matrix} may be discretized in the time
+domain at the $x_{i}$ node by an explicit first order scheme:
+
+
+
 \vspace{-0.4cm}
 \begin{equation}
- \frac{\partial \omega}{\partial t} + \mathbf{v} \cdot \nabla \omega = 
  \frac{D \omega}{D t} = 
  \frac{\omega_{i}^{n+1} - \omega_{d}^{n}}{\Delta t}
 \end{equation}
 
+\vspace{-0.8cm}
+\begin{equation}
+ \frac{D e}{D t} = 
+ \frac{e_{i}^{n+1} - e_{d}^{n}}{\Delta t}
+\end{equation}
+
+
+\medskip
 \noindent
 where, 
-the left-hand side equation is the Eulerian derivative,
-$D\omega/Dt$ is material derivative and
-the right-hand side equation is material derivative discretized using first order backward difference scheme.
-The variable $t$ is time, 
-$\omega_{i}^{n+1}$ is the vorticity field calculated in current time step at the current node position and
-$\omega_{d}^{n}$ is the vorticity field calculated in previous time step at the departure node position.
+the variable $\Delta t$ is time step, 
+$\omega_{i}^{n+1}$ and $e_{i}^{n+1}$ are the vorticity and 
+concentration fields calculated in current time step at the current 
+node position and
+$\omega_{d}^{n}$ and $e_{d}^{n}$ are the vorticity and 
+concentration fields calculated in previous time step 
+at the departure node position.
+The departure node is calculated by solving characteristic equation:
 
-\smallskip
-The departure node is found by solving equation 
-$\mathbf{x}_{d}^{n} = \mathbf{x}_{i}^{n+1} - \mathbf{v} \Delta t$, 
+\begin{equation} \label{characteristic}
+\frac{d\textbf{x}_{d}}{dt} = \textbf{c}
+\end{equation}
+
+\medskip
+\noindent
+where,
+$\textbf{c}$ is the relative velocity and
+$t$ is time variable and 
+it is varies between $t \in \left[t^{n},t^{n+1}\right]$.
+Assuming that in the current time the mesh computational nodes
+are known, so the initial condition for the Eq. \ref{characteristic}
+can be represented by $\textbf{x}_{d}(t^{n+1}) = \textbf{x}_{i}^{n+1}$,
+thus solving the equation:
+
+\begin{equation} 
+\textbf{x}_{d}^{n+1} - \textbf{x}_{d}^{n} 
+= \int_{t^{n}}^{t^{n+1}} \textbf{c} dt, 
+\end{equation}
+
+\medskip
+\noindent
+that is:
+
+\begin{equation} 
+\textbf{x}_{d}^{n} = \textbf{x}_{i}^{n+1} 
+- \int_{t^{n}}^{t^{n+1}} \textbf{c}  dt, 
+\end{equation}
+
+
+\medskip
+\noindent
+Considering the relative velocity picewise constant,
+the departure point can be calculated by:
+
+\begin{equation} 
+\textbf{x}_{d}^{n} = \textbf{x}_{i}^{n+1} 
+- \textbf{c} \Delta t, 
+\end{equation}
+
+
+The
+
 using the initial condition $\mathbf{x}_{i}^{n+1} = \mathbf{x}(t^{n+1})$
  as shown in \ref{semi-lagrangian figure}a. 
 A algorithm must be used to find the element that the departure node be, 
