@@ -67,34 +67,28 @@ that is:
 Considering the relative velocity picewise constant,
 the departure point can be calculated by:
 
-\begin{equation} 
+\begin{equation} \label{final characteristic}
 \textbf{x}_{d}^{n} = \textbf{x}_{i}^{n+1} 
 - \textbf{c} \Delta t, 
 \end{equation}
 
+\medskip
+The \ref{semi-lagrangian figure} shown 
+the 1-dimensional characteristic trajectory of
+the material point in a moving computational mesh,
+where the white square is the material point and
+the black point is computational mesh.
+The dashed line is the characteristic trajectory
+that is represented by the Eq. \ref{final characteristic}.
+According to this scheme, the initial point $x_i$ in $t^{n+1}$ is known
+and therefore it is used to find 
+the departure point $x_d$ position in $t^{n}$.
 
-The
 
-using the initial condition $\mathbf{x}_{i}^{n+1} = \mathbf{x}(t^{n+1})$
- as shown in \ref{semi-lagrangian figure}a. 
-A algorithm must be used to find the element that the departure node be, 
-then the vorticity field in departure node ($\omega_{d}^{n}$) is 
-calculed by barycenter coordinates interpolation between nodes of 
-element found.
-As shown in \ref{semi-lagrangian figure}b, three situations may 
-occur depending on the trajectory: the first and the second 
-situations are similar, differentiating only the trajectory length. 
-In the first situation, the departure node is inside near 
-element from current node, while the second situation 
-the departure node is inside far element from current node. 
-The third situation, the departure node is outside domain 
-then the vorticity field in departure node receives the 
-boundary condition value of nearest node to departure node.
-
+\vspace{0.5cm}
 \begin{figure}[H]
 \begin{center}
-
-\begin{tikzpicture}[scale=4]
+\begin{tikzpicture}[scale=6]
 
  % FIGURE A
  % grid
@@ -102,8 +96,15 @@ boundary condition value of nearest node to departure node.
  \draw (0.5,1.0) -- (2.0,1.0);
  \draw (0.5,1.2) -- (2.0,1.2);
 
+ \draw (0.60,0.7) -- (0.64,1.0) -- (0.60,1.2);
+ \draw (1.20,0.7) -- (1.12,1.0) -- (1.10,1.2);
+ \draw (1.54,0.7) -- (1.64,1.0) -- (1.50,1.2);
+ \draw (1.85,0.7) -- (1.90,1.0) -- (1.90,1.2);
+
+
+
  % material points
- \draw[dashed] (0.8,0.7) -- (1.12,1.0);
+ \draw[dashed,-stealth] (1.12,1.0) -- (0.85,0.75);
  \node[square, fill=white, draw, inner sep=0pt, minimum size=9.4pt] at (0.8,0.7) {};
  \node[square, fill=white, draw, inner sep=0pt, minimum size=9.4pt] at (1.12,1.0) {};
  
@@ -137,112 +138,33 @@ boundary condition value of nearest node to departure node.
  \node[draw=none, scale=1.0] at (1.22,0.55) {\small $\mathbf{x}_{i}$};
  \node[draw=none, scale=1.0] at (1.64,0.55) {\small $\mathbf{x}_{i+1}$};
 
-
- % -------------------------------------------------------------------
- % FIGURE B
- % boundary 
- \draw (2.5,1.6) -- (4.0,1.6);
- \draw (2.5,1.6) -- (2.5,0.5);
- \draw (2.5,0.5) -- (4.0,0.5);
-
- % nodes
- \coordinate (A) at (2.500,0.5000) {};
- \coordinate (B) at (2.500,0.8667) {};
- \coordinate (C) at (2.500,1.2330) {};
- \coordinate (D) at (2.500,1.6000) {};
- \coordinate (E) at (2.733,0.6830) {};
- \coordinate (F) at (2.833,1.0500) {};
- \coordinate (G) at (2.733,1.4160) {};
- \coordinate (H) at (3.000,1.6000) {};
- \coordinate (I) at (3.066,0.5000) {};
- \coordinate (J) at (3.166,0.8660) {};
- \coordinate (K) at (3.150,1.3330) {};
- \coordinate (L) at (3.333,1.6000) {};
- \coordinate (M) at (3.500,0.5000) {};
- \coordinate (N) at (3.333,0.6830) {};
- \coordinate (O) at (3.400,1.0000) {};
- \coordinate (P) at (3.500,1.2300) {};
-
- % elements
- \draw (A) -- (E) -- (B) -- cycle;
- \draw (A) -- (I) -- (E) -- cycle;
- \draw (E) -- (J) -- (F) -- cycle;
- \draw (E) -- (F) -- (B) -- cycle;
- \draw (B) -- (F) -- (C) -- cycle;
- \draw (J) -- (K) -- (F) -- cycle;
- \draw (F) -- (K) -- (G) -- cycle;
- \draw (C) -- (F) -- (G) -- cycle;
- \draw (C) -- (G) -- (D) -- cycle;
- \draw (G) -- (H) -- (D) -- cycle;
- \draw (I) -- (N) -- (J) -- cycle;
- \draw (I) -- (M) -- (N) -- cycle;
- \draw (N) -- (O) -- (J) -- cycle;
- \draw (J) -- (O) -- (K) -- cycle;
- \draw (P) -- (L) -- (K) -- cycle;
- \draw (K) -- (L) -- (H) -- cycle;
- \draw (O) -- (P) -- (K) -- cycle;
- \draw[red,line width=0.04cm] (I) -- (J) -- (E) -- cycle;
- \draw[red,line width=0.04cm] (B) -- (C);
- \draw[red,line width=0.04cm] (G) -- (K) -- (H) -- cycle;
- 
-
- % draw nodes
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (A) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (B) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (C) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (D) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (E) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (F) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (G) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (H) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (I) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (J) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (K) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (L) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (M) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (N) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (O) {};
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (P) {};
-
-
- % arrow
- \draw[dashed,line width=0.03cm] (J) edge (2.95,0.65);
- \draw[dashed,line width=0.03cm] (J) edge (2.90,1.45);
- \draw[dashed,line width=0.03cm] (J) edge (2.4,1.05) ;
-
- \node[circle, fill=black, inner sep=0pt, minimum size=5.2pt] at (J) {};
-
- % departure nodes
- \node[circle, fill=white, draw, inner sep=0pt, minimum size=5.2pt] at (2.95,0.65) {};
- \node[circle, fill=white, draw, inner sep=0pt, minimum size=5.2pt] at (2.90,1.45) {};
- \node[circle, fill=white, draw, inner sep=0pt, minimum size=5.2pt] at (2.4,1.05) {};
-
-
- 
- % legend
- \node[draw=none, scale=0.9] at (3.23,0.97) {\small $\omega_{i}$};
- 
- \node[draw=none, scale=0.9] at (3.05,0.64) {$1$};
- \node[draw=none, scale=0.9] at (3.00,1.45) {$2$};
- \node[draw=none, scale=0.9] at (2.4,1.15) {$3$};
-
- \node[draw=none, scale=1.0] at (3.7,1.0) {\small $domain$};
- \node[draw=none, scale=1.0] at (3.8,1.65) {\small $boundary$};
-
-
-
- \node[draw=none, scale=0.8] at (1.23,0.3) {\large (a)};
- \node[draw=none, scale=0.8] at (3.25,0.3) {\large (b)};
-
 \end{tikzpicture}
 \end{center}
-\caption{In (a), an one-dimensional space scheme
- where the departure node $x_{d}$ is found by integrating the 
-mesh backward time. In (b), a two-dimensional space scheme
-where three situations may occur in searching procedure.}
+\caption{An one-dimensional space scheme
+ where the departure node $x_{d}$ is found by 
+ the characteristic trajectory in a moving mesh.}
 \label{semi-lagrangian figure}
 \end{figure}
 
+
+
+
+
+using the initial condition $\mathbf{x}_{i}^{n+1} = \mathbf{x}(t^{n+1})$
+ as shown in \ref{semi-lagrangian figure}a. 
+A algorithm must be used to find the element that the departure node be, 
+then the vorticity field in departure node ($\omega_{d}^{n}$) is 
+calculed by barycenter coordinates interpolation between nodes of 
+element found.
+As shown in \ref{semi-lagrangian figure}b, three situations may 
+occur depending on the trajectory: the first and the second 
+situations are similar, differentiating only the trajectory length. 
+In the first situation, the departure node is inside near 
+element from current node, while the second situation 
+the departure node is inside far element from current node. 
+The third situation, the departure node is outside domain 
+then the vorticity field in departure node receives the 
+boundary condition value of nearest node to departure node.
 
 \medskip
 Therefore, the Eqs. 
