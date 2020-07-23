@@ -1,7 +1,21 @@
-The Semi-Lagrangian Scheme in centred difference was proposed by \cite{sawyer1963} for atmospheric flow numerical simulation using vorticity-advection equation, allowing to use large time steps without numerical instability. 
-However, because of a limited computer capability, the use of such methodology to model several fluid flow problems, with high order differences and fine mesh, came latter in the 1980's throught the work of \cite{robert1981} and \cite{pironneau1982}, where the semi-lagrangian scheme would be able to run models faster than the Eulerian scheme, besides be unconditionally stable and only symmetric linear systems to solve. 
-Basically, the semi-lagrangian scheme takes into account the fact that the Eulerian derivative is replaced by the material derivative, then it is discretized and computed along the trajectory characteristic:
+For the numerical simulation of the 
+non-steady convection-diffusion equation 
+in an Finite Element context, several methods can be chosen, 
+such as upwind, taylor series in time and 
+the characteristic trajectory as is the case of the semi-Lagrangian.
 
+\medskip
+The semi-Lagrangian method was initially proposed by 
+Sawyer (1963) \cite{sawyer1963} for a numerical simulation 
+of atmospheric flow in a finite difference context. 
+However, it was only in the 1980s that the 
+semi-Lagrangian Method was presented according to 
+the Finite Element approach by 
+Pironneau (1982) \cite{pironneau1982},
+where it is shown the unconditional stability of the method and 
+symmetric linear systems to solve. 
+
+\medskip
 The material derivate of the Eqs. \ref{vorticity matrix} and \ref{concentration matrix} may be discretized in the time
 domain at the $x_{i}$ node by an explicit first order scheme:
 
@@ -144,6 +158,9 @@ the departure point $x_d$ position in $t^{n}$.
 
 
 \medskip
+The main advantages of the semi-Lagrangian Method are
+the unconditional stability and the symmetric linear system to solve.
+Hovewer, the method has a disadvantage: the searching procedure.
 The searching procedure in a 2-dimensional context may
 lead to excessive computational cost if it is not
 well designed. In this work, this iterative procedure is implemented
