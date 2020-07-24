@@ -179,58 +179,58 @@ Then, the Laplacian smoothing velocity can be calculated as:
 \medskip
 In \ref{laplacian smoothing fig} is shown 
 the Laplacian smoothing application in a moving boundary problem
-when maximum compression state.
+when it tends to the maximum compression state.
 As can be seen, the elements close to the boundary are compressed 
-tending to collapse (\ref{laplacian smoothing fig}a). 
+until they leave the domain (\ref{laplacian smoothing fig}a). 
 However, this effect is not seen when 
 Laplacian smoothing is applied (\ref{laplacian smoothing fig}b). 
 In these cases, Laplacian smoothing becomes essential 
 to perform the numerical simulation.
 
 
-\vspace{2cm} 
 \begin{figure}[H]
      \begin{minipage}{.50\linewidth}
       \centering
-      \includegraphics[scale=0.2]{./02_chaps/cap_numerico/figure/no1.png}\\
+      \includegraphics[scale=0.19]{./02_chaps/cap_numerico/figure/no1.png}\\
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
       \centering
-      \includegraphics[scale=0.2]{./02_chaps/cap_numerico/figure/with1.png}\\
+      \includegraphics[scale=0.19]{./02_chaps/cap_numerico/figure/with1.png}\\
      \end{minipage}
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
-      \includegraphics[scale=0.2]{./02_chaps/cap_numerico/figure/no2.png}\\
+      \includegraphics[scale=0.19]{./02_chaps/cap_numerico/figure/no2.png}\\
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
-      \includegraphics[scale=0.2]{./02_chaps/cap_numerico/figure/with2.png}\\
+      \includegraphics[scale=0.19]{./02_chaps/cap_numerico/figure/with2.png}\\
+     \end{minipage}\\[7pt]
+     \begin{minipage}{.50\linewidth}
+      \centering
+      \includegraphics[scale=0.19]{./02_chaps/cap_numerico/figure/no3.png}\\
+     \end{minipage}%
+     \begin{minipage}{.50\linewidth}
+      \centering
+      \includegraphics[scale=0.19]{./02_chaps/cap_numerico/figure/with3.png}\\
      \end{minipage}
      \begin{minipage}{.50\linewidth}
-      \centering
-      \includegraphics[scale=0.2]{./02_chaps/cap_numerico/figure/no3.png}\\
-     \end{minipage}%
-     \begin{minipage}{.50\linewidth}
-      \centering
-      \includegraphics[scale=0.2]{./02_chaps/cap_numerico/figure/with3.png}\\
-     \end{minipage}
-     \begin{minipage}{.50\linewidth}
      \medskip
       \centering
-      \includegraphics[scale=0.2]{./02_chaps/cap_numerico/figure/no4.png}\\
+      \includegraphics[scale=0.19]{./02_chaps/cap_numerico/figure/no4.png}\\
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
-      \includegraphics[scale=0.2]{./02_chaps/cap_numerico/figure/with4.png}\\
+      \includegraphics[scale=0.19]{./02_chaps/cap_numerico/figure/with4.png}\\
      \end{minipage}
      \medskip
      \caption{
-Moving boundary problem
+The comparison for the same time step between 
      (a) no Laplacian smoothing and
-     (b) with Laplacian smoothing.
+     (b) with Laplacian smoothing
+in a moving boundary problem.
 }
      \label{laplacian smoothing fig}
 \end{figure}
