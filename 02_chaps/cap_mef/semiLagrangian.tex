@@ -22,13 +22,13 @@ domain at the $x_{i}$ node by an explicit first order scheme:
 
 
 \vspace{-0.4cm}
-\begin{equation}
+\begin{equation} \label{material vorticity discretization}
  \frac{D \omega}{D t} \approx 
  \frac{\omega_{i}^{n+1} - \omega_{d}^{n}}{\Delta t}
 \end{equation}
 
 \vspace{-0.8cm}
-\begin{equation}
+\begin{equation} \label{material concentration discretization}
  \frac{D e}{D t} \approx
  \frac{e_{i}^{n+1} - e_{d}^{n}}{\Delta t}
 \end{equation}
@@ -280,9 +280,6 @@ situations are similar, differentiating only the trajectory length.
 In the first situation, the departure node is inside near 
 element from current node, while the second situation 
 the departure node is inside far element from current node. 
-After the departure point is found, the vorticity ($\omega_{d}$) and 
-concentration ($e_{d}$) fields are interpolated by the shape functions
-presented in the section \ref{elemento}.
 The third situation, the departure node is outside domain 
 then the vorticity and concentration fields receive 
 the boundary condition value of nearest node to departure node.
@@ -391,6 +388,17 @@ where three situations may occur in the searching procedure.
 
 
 \medskip
+After the departure point is found, the vorticity ($\omega_{d}$) and 
+concentration ($e_{d}$) fields are interpolated by the shape functions
+presented in the section \ref{elemento}.
+This interpolation procedure, which is typical in the
+Eulerian and Arbitrary Lagrangian-Eulerian descriptions,
+causes the numerical diffusion.
+To decrease the numerical diffusion, high-order elements
+can be used as the quadratic or cubic elements.
+Another way is to improve the discretization accuracy of the Eqs.
+\ref{material vorticity discretization} and
+\ref{material concentration discretization}.
 Therefore, the Eqs. 
 \ref{vorticity matrix},
 \ref{stream matrix} and
