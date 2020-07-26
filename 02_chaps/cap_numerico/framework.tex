@@ -1,5 +1,157 @@
-For the numerical code framework, several classes were created in 
-order to reuse the code in further simulations. 
+In order to reuse the numerical code in further simulations,
+the object-oriented paradigm (OOP) was used. 
+In the \ref{uml}, the \textit{UML Diagram} of 
+the code framework is shown.
+
+\vspace{0.5cm}
+\begin{figure}[H] \label{uml}
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+ \draw [line width=1pt] (0,-0.5) rectangle ++(3,3.5);
+ \draw [line width=1pt] (0,2.4) -- (3,2.4);
+ \draw [line width=1pt] (0,1.6) -- (3,1.6);
+ \node (Simulator) at (1.5,2.7) {\small \textbf{Simulator}};
+ \node[align=left] (Simulator) at (1.0,0.4) {\scriptsize + getBC()\\[-12pt]
+                                              \scriptsize + solver()\\[-12pt]                                                        
+                                              \scriptsize + check()\\[-12pt]                                                        
+                                              \scriptsize + relatory()\\[-12pt]                                                        
+
+};
+
+
+\draw [line width=1pt] (-3.2,5.5) rectangle ++(3.8,3.6);
+ \draw [line width=1pt] (-3.2,8.4) -- (0.6,8.4);
+ \draw [line width=1pt] (-3.2,7.6) -- (0.6,7.6);
+ \node (ImportMSH) at (-1.3,8.7) {\small \textbf{ImportMSH}};
+ \node[align=left] (ImportMSH) at (-1.5,6.3) {\scriptsize + coordinates()\\[-12pt]
+                                          \scriptsize + IEN()\\[-12pt]                                                        
+                                          \scriptsize + neighborsNodes()\\[-12pt]                                                        
+                                          \scriptsize + boundaryNodes()\\[-12pt]                                                        
+
+};
+
+
+ \draw [line width=1pt] (3.2,5.5) rectangle ++(4.1,3.6);
+ \draw [line width=1pt] (3.2,8.4) -- (7.3,8.4);
+ \draw [line width=1pt] (3.2,7.6) -- (7.3,7.6);
+ \node (MeshUpdate) at (5.3,8.7) {\small \textbf{MeshUpdate}};
+ \node[align=left] (meshUpdate) at (5.2,6.3) {\scriptsize + lagrangian()\\[-12pt]
+                                          \scriptsize + laplacianSmoothing()\\[-12pt]                                                        
+                                          \scriptsize + meshVelocity()\\[-12pt]                                                        
+                                          \scriptsize + moveMesh()\\[-12pt]                                                        
+
+};
+
+
+
+
+ \draw [line width=1pt] (5.8,1) rectangle ++(3.2,3.2);
+ \draw [line width=1pt] (5.8,3.4) -- (9,3.4);
+ \draw [line width=1pt] (5.8,2.6) -- (9,2.6);
+ \node (ExportVTK) at (7.5,3.7) {\small \textbf{ExportVTK}};
+ \node[align=left] (ExportVTK) at (6.7,1.6) {\scriptsize + scalar()\\[-12pt]
+                                          \scriptsize + vector()\\[-12pt]                                                        
+                                          \scriptsize + save()\\[-12pt]                                                        
+};
+ 
+
+
+ \draw [line width=1pt] (4.7,-4) rectangle ++(4.3,3.2);
+ \draw [line width=1pt] (4.7,-1.6) -- (9.0,-1.6);
+ \draw [line width=1pt] (4.7,-2.4) -- (9.0,-2.4);
+ \node (SemiLagrangian) at (7.0,-1.2) {\small \textbf{SemiLagrangian}};
+ \node[align=left] (SemiLagrangian) at (6.2,-3.2) {\scriptsize + searching()\\[-12pt]
+                                          \scriptsize + interpolation()\\[-12pt]                                                        
+};
+ 
+
+
+
+ \draw [line width=1pt] (-6.0,-1.5) rectangle ++(3.1,4.9);
+ \draw [line width=1pt] (-6,2.7) -- (-2.9,2.7);
+ \draw [line width=1pt] (-6,1.9) -- (-2.9,1.9);
+ \node (ApplyBC) at (-4.5,3.1) {\textbf{\small ApplyBC}};
+ \node[align=left] (ApplyBC) at (-4.5,0.0) {\scriptsize + couette()\\[-12pt]
+                                          \scriptsize + poiseulle()\\[-12pt]                                                        
+                                          \scriptsize + halfpoiseulle()\\[-12pt]                                                        
+                                          \scriptsize + cavity()\\[-12pt]                                                        
+                                          \scriptsize + backwardStep()\\[-12pt]                                                        
+                                          \scriptsize + pulsation()\\[-12pt]                                                        
+                                          \scriptsize + stent()\\[-12pt]                                                        
+
+};
+
+
+
+
+ \draw [line width=1pt] (-0.1,-6.5) rectangle ++(3.1,3.1);
+ \draw [line width=1pt] (-0.1,-4.1) -- (3,-4.1);
+ \draw [line width=1pt] (-0.1,-4.9) -- (3,-4.9);
+ \node (Assembly) at (1.5,-3.8) {\small \textbf{Assembly}};
+ \node[align=left] (Assembly) at (1.2,-5.5) {\scriptsize + getTriangle()\\[-12pt]
+
+};
+
+
+
+
+
+ \draw [line width=1pt] (-6,-6.5) rectangle ++(3.9,3.5);
+ \draw [line width=1pt] (-6,-3.6) -- (-2.1,-3.6);
+ \draw [line width=1pt] (-6,-4.4) -- (-2.1,-4.4);
+ \node (GQuadrature) at (-4.1,-3.3) {\small \textbf{GQuadrature}};
+ \node[align=left] (GQuadrature) at (-5.0,-5.6) {\scriptsize + linear()\\[-12pt]
+                                            \scriptsize + quad()\\[-12pt]                                                        
+                                            \scriptsize + mini()\\[-12pt]                                                        
+                                            \scriptsize + cubic()\\[-12pt]                                                        
+
+};
+
+
+
+
+ %ImportMSH
+ \draw [{Diamond}-,line width=1pt] (1.0,3.0) -- (1.0,4.0);
+ \draw [line width=1pt] (1.0,4.0) -- (-1.0,4.0);
+ \draw [line width=1pt] (-1.0,4.0) -- (-1.0,5.5) ;
+
+ %MeshUpdate
+ \draw [{Diamond}-,line width=1pt] (2.0,3.0) -- (2.0,4.0);
+ \draw [line width=1pt] (2.0,4.0) -- (5.0,4.0);
+ \draw [line width=1pt] (5.0,4.0) -- (5.0,5.5) ;
+
+
+ %Benchmark
+ \draw [{Diamond}-,line width=1pt] (0,1.5) -- (-1.5,1.5);
+ \draw [line width=1pt] (-1.5,1.5) -- (-1.5,0.1);
+ \draw [line width=1pt] (-1.5,0.1) -- (-2.9,0.1) ;
+
+
+ %ExportVTK
+ \draw [{Diamond}-,line width=1pt] (3,1.5) -- (4.5,1.5);
+ \draw [line width=1pt] (4.5,1.5) -- (4.5,2.5);
+ \draw [line width=1pt] (4.5,2.5) -- (5.8,2.5) ;
+
+ %SemiLagrangian
+ \draw [{Diamond}-,line width=1pt] (2,-0.5) -- (2,-2);
+ \draw [line width=1pt] (2,-2) -- (4.7,-2);
+
+
+ %Assembly
+ \draw [{Diamond}-,line width=1pt] (1.0,-0.5) -- (1.0,-3.4);
+
+ %GaussianQuad
+ \draw [{Diamond}-,line width=1pt] (-0.1,-5.5) -- (-2.1,-5.5);
+
+\end{tikzpicture}
+\end{center}
+\caption{Simplified Class Diagram}
+\label{uml}
+\end{figure}
+
+
+
+\medskip
 Initially, the triangular unstructured mesh generated by GMSH \cite{gmsh}
 was imported into the numerical code by the \textit{ImportMSH} class.
 This class returns important information for the simulation 
@@ -35,14 +187,15 @@ mesh import in several unstructured linear triangular meshes.
 \medskip
 After importing the \textit{.msh} file, the elementary and global matrices 
 were assembled. 
-They are created by the \textit{GaussianQuadrature} class, where it is enabled to assemble the linear, quadratic or cubic triangular element.
+The elementary matrices are created by the \textit{GQuadrature} class, 
+where it is enabled to assemble the linear, quadratic or cubic triangular element.
 For the linear 
 triangular element, it is also possible to use elementary 
 analytical matrices. For more details consult the work of Lewis, 
 Nithiarasu and Seetharamu (2004) \cite{lewis2004}.
 
 \medskip
-The global matrix assembly was performed by \textit{Assemble} class, satisfying the local and global matrices index correspondence.
+The global matrix assembly was performed by \textit{Assembly} class, satisfying the local and global matrices index correspondence.
 They were initialized as sparse matrices by 
 the \textit{Scipy} library \cite{scipy} and 
 the \ref{tempo matrizes globais gauss} shows the average processing time 
@@ -50,11 +203,11 @@ for global matrices assembly using gaussian quadrature
 with three gauss points in several unstructured linear 
 triangular meshes. Whereas, the \ref{tempo matrizes globais analytical}
 shows the average processing time for assembly using the analytical
-elementary matrices as proposed by \cite{lewis2004}. As can be seen,
+elementary matrices. As can be seen,
 the global matrices assembly using analytical elementary matrices is
 about three times faster than the gaussian quadrature. However, the gaussian quadrature
 can be used on quadratic or cubic elements, where calculating
-the elementary matrices is more costly.
+the analytical elementary matrices is more costly.
 
 \vspace{0.5cm}
 \begin{table}[H]
@@ -92,14 +245,14 @@ the elementary matrices is more costly.
 
 \bottomrule
 \end{tabular}
-\caption{Average processing time for global matrices assembly using analytica elementary matrices in several unstrutured linear triangular meshes}
-\label{tempo matrizes globais gauss}
+\caption{Average processing time for global matrices assembly using analytical elementary matrices in several unstrutured linear triangular meshes}
+\label{tempo matrizes globais analytical}
 \end{table}
 
 
 
 \medskip
-Then, the boundary conditions are applied by \textit{BoundaryConditions} class
+Then, the boundary conditions are applied by \textit{ApplyBC} class
 that contains the boundary conditions
 for each benchmark problems of this
 work, namely:
@@ -139,15 +292,19 @@ condition apply in several unstructured linear triangular meshes.
 \medskip
 After boundary condition applied, the time loop is started and
 the updating mesh is done by the \textit{MeshUpdate} class.
-Subsequently, the coordinate vectors and the global matrices
-must be reassembled, in addition to the boundary conditions apply.
+In this class, the mesh velocity is calculated by the
+linear combination of Lagrangian and Laplacian smoothing velocities.
+Subsequently, the mesh is moved and 
+the coordinate vectors and the global matrices
+must be reassembled, in addition to the boundary conditions reapplied.
 The \ref{tempo mesh update} 
 shows the average processing time for the \textit{mesh update procedure}
 in several unstructured linear triangular meshes.
 This processing time does not take into account the global matrices assembly and
-boundary conditions apply, only the nodes mesh moving. 
-These process are performed by the
-Assemble and BoundaryCondition classes, as previously mentioned. 
+boundary conditions apply (they are performed by Assembly and ApplyBC
+ as previously mentioned), 
+only the calculate mesh velocity and nodes mesh moving
+are considered. 
 As can be seen, the processing time increases fourteen times 
 while the mesh changes from 105656 to 295036 elements 
 (about three times). 
@@ -172,40 +329,15 @@ while the mesh changes from 105656 to 295036 elements
 \label{tempo mesh update}
 \end{table}
 
-
 \medskip
-Finally, the Vorticity-Streamfunction solver is done. 
-The simulator is enabled to solver the equations using the
-\textit{Taylor-Galerkin} and \textit{semi-Lagrangian} Methods.
-As previously mentioned, the boundary condition of the vorticity
-is calculated for each time step and 
-the linear equations system is solver by Scipy Conjugate Gradient.
-The simulator is enabled to solver for linear, quadratic and cubic
-triangular elements. The \ref{tempo vorticity solver} 
-shows the average processing time for the \textit{Vorticity Solver}
-and the \ref{tempo semi Lagrangian} 
-shows for the \textit{semi-Lagragian} Method.
-
-\vspace{0.5cm}
-\begin{table}[H]
-\centering
-\begin{tabular}{ccc}
-\toprule
-\textbf{Nodes} & \textbf{Elements} & \textbf{AVG Processing Time} (s) \\
-\midrule
-3436 & 6670 & 1.3 \\
-13745 & 26548 & 5.4 \\
-53229 & 105656 & 21.2 \\
-148187 & 295036 & 63.5 \\
-
-
-
-\bottomrule
-\end{tabular}
-\caption{Average processing time for Vorticity Solver in several unstrutured linear triangular meshes}
-\label{tempo vorticity solver}
-\end{table}
-
+Before solving the linear system, the semi-Lagrangian Method is applied
+by \textit{SemiLagrangian} class. In this class, the searching procedure
+of the departure point and 
+the interpolation of the $\omega_{d}^{n}$ and $e_{d}^{n}$ is done.
+This class is enabled for the linear, quadratic and cubic triangular
+elements.
+The \ref{tempo semi lagrangian} 
+shows the average processing time for the \textit{semi-Lagragian} Method.
 
 \vspace{0.5cm}
 \begin{table}[H]
@@ -228,9 +360,44 @@ shows for the \textit{semi-Lagragian} Method.
 \end{table}
 
 
+
+
 \medskip
-At the end of time step, the convergence and steady state checks are done.
-In addition, the parameters of simulation is printed and
+Finally, the Vorticity-Streamfunction with species transport solver 
+is done.  
+As previously mentioned, the boundary condition of the vorticity
+is calculated for each time step and 
+the linear equations system is solver by Scipy Conjugate Gradient
+and the end of time step, 
+the convergence and steady state checks are done.
+The simulator is enabled to solver for linear, quadratic and cubic
+triangular elements. The \ref{tempo vorticity solver} 
+shows the average processing time for the \textit{Vorticity Solver}.
+
+\vspace{0.5cm}
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+\toprule
+\textbf{Nodes} & \textbf{Elements} & \textbf{AVG Processing Time} (s) \\
+\midrule
+3436 & 6670 & 1.3 \\
+13745 & 26548 & 5.4 \\
+53229 & 105656 & 21.2 \\
+148187 & 295036 & 63.5 \\
+
+
+
+\bottomrule
+\end{tabular}
+\caption{Average processing time for Vorticity Solver in several unstrutured linear triangular meshes}
+\label{tempo vorticity solver}
+\end{table}
+
+
+
+\medskip
+Lastly, the parameters of simulation is printed and
 the VTK file is exported to perform the post-processing by
 \textit{PARAVIEW} open source \cite{paraview}. 
 The \ref{tempo export vtk} 
@@ -257,64 +424,15 @@ in several unstructured linear triangular meshes.
 \label{tempo export vtk}
 \end{table}
 
+
+
 \medskip
-Therefore, the \ref{solution algorithm} shows schematically the procedure used
-in this numerical simulation.
 In addition, the \ref{time ratio} shows the average computational
 cost ratio
 of the numerical code process for several linear triangular elements. 
 As can be seen,
 the assembly process is the highest computational cost
 and improvements are expected to improve the code performance.
-
-
-
-\vspace{0.5cm}
-% Define block styles
-\tikzstyle{block} = [rectangle, draw, fill=gray!10!,
-    text width=28em, text centered, draw,scale=1.0,text=black!90!]
-\tikzstyle{line} = [draw, -latex',scale=1.0]
-
-
-
-\begin{figure}[h!]
-\begin{center}
-\begin{tikzpicture}[node distance = 1.1cm,auto]
-    % Place nodes
-    \node [block] (step1) {Import mesh};
-    \node [block, below of=step1] (step2) {Calculate Gaussian Quadradure and Assemble Matrix};
-    \node [block, below of=step2] (step3) {Inicialize Vorticity and Streamfunction};
-    \node [block, below of=step3] (step4) {Calculate Laplacian smoothing and ALE velocity};
-    \node [block, below of=step4] (step5) {Move Nodes};
-    \node [block, below of=step5] (step6) {Calculate Gaussian Quadradure and Assemble Matrix};
-    \node [block, below of=step6] (step7) {Calculate vorticity boundary condition};
-    \node [block, below of=step7] (step8) {Calculate semi-Lagrangian and Vorticity field};
-    \node [block, below of=step8] (step9) {Calculate streamfunction field};
-    \node [block, below of=step9] (step10) {Calculate velocity field};
-    \node [block, below of=step10] (step11) {Calculate concentration field};
-    \node [right of=step4, node distance=6.5cm] (initialLoop) {};
-    \node [right of=step11, node distance=6.5cm] (finalLoop) {};
-    \node [right of=step7, node distance=8.7cm] (textLoop) {};
-
-    \node [draw=none, align=center,scale=1.0,text=black!100!] at (textLoop) {Repeat the procedure \\ for the next time step \\ until the steady state};
-    % Draw edges
-    \path [line] (step1) -- (step2);
-    \path [line] (step2) -- (step3);
-    \path [line] (step3) -- (step4);
-    \path [line] (step4) -- (step5);
-    \path [line] (step5) -- (step6);
-    \path [line] (step6) -- (step7);
-    \path [line] (step7) -- (step8);
-    \path [line] (step8) -- (step9);
-    \path [line] (step9) -- (step10);
-    \path [line] (step10) -- (step11);
-    \path [line,dashed] (step11) -- (finalLoop) -- (initialLoop) -- (step4);
-\end{tikzpicture}
-\end{center}
-\caption{Solve algorithm for Vorticity-Streamfunction Formulation with Species Transport Equation}
-\label{solution algorithm} 
-\end{figure}  
-
 
 
 \vspace{0.5cm}
@@ -328,14 +446,68 @@ Mesh import & 1.24 \\
 Assembly & 73.87 \\
 BC Apply & 6.70 \\
 Mesh update & 10.05 \\
-Vorticity Solver & 5.51 \\
 Semi-Lagrangian & 2.27 \\
+Vorticity Solver & 5.51 \\
 VTK export & 0.36 \\
 \bottomrule
 \end{tabular}
 \caption{Average computational cost for several linear triangular elements.}
 \label{time ratio}
 \end{table}
+
+
+\medskip
+Therefore, the \ref{solution algorithm} shows schematically the procedure used
+in this numerical simulation.
+
+\vspace{0.5cm}
+% Define block styles
+\tikzstyle{block} = [rectangle, draw, fill=gray!10!,
+    text width=28em, text centered, draw,scale=1.0,text=black!90!]
+\tikzstyle{line} = [draw, -latex',scale=1.0]
+
+
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[node distance = 1.1cm,auto]
+    % Place nodes
+    \node [block] (step1) {Import mesh};
+    \node [block, below of=step1] (step2) {Calculate Gaussian Quadradure and Assemble Matrix};
+    \node [block, below of=step2] (step3) {Apply Boundary Conditions};
+    \node [block, below of=step3] (step4) {Calculate Laplacian smoothing and ALE velocity};
+    \node [block, below of=step4] (step5) {Move Nodes};
+    \node [block, below of=step5] (step6) {Calculate semi-Lagrangian Method};
+    \node [block, below of=step6] (step7) {Calculate Gaussian Quadrature and Assemble Matrix};
+    \node [block, below of=step7] (step8) {Apply Boundary Conditions};
+    \node [block, below of=step8] (step9) {Calculate vorticity field};
+    \node [block, below of=step9] (step10) {Calculate streamfunction field};
+    \node [block, below of=step10] (step11) {Calculate velocity field};
+    \node [block, below of=step11] (step12) {Calculate concentration field};
+    \node [right of=step4, node distance=6.5cm] (initialLoop) {};
+    \node [right of=step12, node distance=6.5cm] (finalLoop) {};
+    \node [right of=step8, node distance=8.7cm] (textLoop) {};
+
+    \node [draw=none, align=center,scale=1.0,text=black!100!] at (textLoop) {Repeat the procedure \\ for the next time step \\ until the steady state};
+    % Draw edges
+    \path [line] (step1) -- (step2);
+    \path [line] (step2) -- (step3);
+    \path [line] (step3) -- (step4);
+    \path [line] (step4) -- (step5);
+    \path [line] (step5) -- (step6);
+    \path [line] (step6) -- (step7);
+    \path [line] (step7) -- (step8);
+    \path [line] (step8) -- (step9);
+    \path [line] (step9) -- (step10);
+    \path [line] (step10) -- (step11);
+    \path [line] (step11) -- (step12);
+    \path [line,dashed] (step12) -- (finalLoop) -- (initialLoop) -- (step4);
+\end{tikzpicture}
+\end{center}
+\caption{Solve algorithm for Vorticity-Streamfunction Formulation with Species Transport Equation using the semi-Lagrangian Method in an ALE context}
+\label{solution algorithm} 
+\end{figure}  
+
 
 
 
