@@ -7,7 +7,7 @@ namely Lagrangian and Eulerian.
 \medskip
 The Lagrangian description is one where each computational mesh node 
 moves at the same velocity as the material point, as can be seen in
- Fig. (3.1a). Thus, for each time step, we have a new computational mesh. 
+\ref{ale fig}a. Thus, for each time step, we have a new computational mesh. 
 The main advantage of this description is that the value of the 
 computational mesh node will have the same value as the material point
  and thus, numerical diffusion will not be observed. In addition, 
@@ -18,7 +18,7 @@ node algorithm for computational mesh.
 
 \medskip
 The Eulerian description is the one where the computational mesh node 
-remains fixed for each time step, as can be seen in Fig. (3.1b).
+remains fixed for each time step, as can be seen in \ref{ale fig}b.
 Thus, the computational mesh node value will be an interpolation 
 of the material point, causing the presence of numerical diffusion 
 in the solution. However, the computational cost is relatively 
@@ -31,7 +31,7 @@ most appropriate. In this context that the Arbitrary
 Lagrangian-Eulerian description (ALE) was developed. 
 This description considers that the velocity field of computational 
 mesh is unlike than the material point and null value, as can be seen 
-in Fig. (3.1c). In this way, it can be calculated as a 
+in \ref{ale fig}c. In this way, it can be calculated as a 
 linear combination of other velocity fields, so that we have an 
 optimal relationship between numerical diffusion and mesh deformation. 
 In addition, it is possible to assign several velocity values to 
@@ -42,7 +42,7 @@ accuracy of the solution.
 
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=2]
+\begin{tikzpicture}[scale=1.7]
 
  % (a) Lagrangian
  % -------------------------------------------------------------------
@@ -251,6 +251,7 @@ accuracy of the solution.
 \end{tikzpicture}
 \end{center}
 \caption{One-dimensional examples of the (a) Lagrangian description, (b) Eulerian description and (c) ALE description, where the white square is the material point, the black point is the mesh node, the dashed line is the characteristic trajectory and the continuous line is mesh nodes trajectory.}
+\label{ale fig}
 \end{figure}
 
 
@@ -262,16 +263,59 @@ and was subsequently adopted in the finite elements context,
 as presented by Donea (1982) \cite{donea1982}. In this description, 
 the referential domain that describes the computational mesh moving 
 is different from the material domain and the spatial domain, 
-as shown in figure 1. However, it is possible to correlate these 
-frameworks. For instance, if the operator Z is equal to the 
+as shown in the \ref{referential domain}. 
+However, it is possible to correlate these 
+frameworks. For instance, if the $\Phi$ operator is equal to the 
 identity matrix (\textbf{I}), then the referential and material domain 
 is the same and, subsequently, the node velocity of the 
 computational mesh 
 is equivalent to the material points velocity (Lagrangian description). 
-But, if the operator Y is equal to \textbf{I}, the computational mesh
+But, if the $\Psi$ operator is equal to \textbf{I}, the computational mesh
 velocity is equivalent to null value and then the Eulerian description is
 obtained. For more details, it is possible to consult the works 
 of Donea (2004) \cite{donea2004} and Hughes (1981) \cite{hughes1981}.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tikzpicture}[scale=2.4]
+ \draw[line width=1pt] (-1.5,0) ellipse(0.8cm and 0.5cm);
+ \draw[line width=1pt] (1.5,0.5) ellipse(0.8cm and 0.5cm);
+ \draw[line width=1pt] (0,-1.5) ellipse(0.8cm and 0.5cm);
+ 
+ \node[circle, fill=black, inner sep=0pt, minimum size=5pt] at (-0.2,-1.2) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5pt] at (-1.1,-0.2) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5pt] at (1.1,0.3) {};
+
+ \node at (0.0,-1.6) {\small $\hat{\textbf{x}}=[\hat{x}_{1},\ldots,\hat{x}_{n}]$};
+ \node at (-1.5,0.2) {\small $\textbf{X}=[X_{1},\ldots,X_{n}]$};
+ \node at (1.5,0.7) {\small $\textbf{x}=[x_{1},\ldots,x_{n}]$};
+
+ \draw[dashed,-stealth] (-0.2,-1.2) to[bend left=30]  (-1.10,-0.25);
+ \draw[dashed,-stealth] (-0.2,-1.2) to[bend right=30] (1.10, 0.25);
+ \draw[dashed,-stealth] (-1.1,-0.2) to[bend left=30]  (1.05, 0.30);
+
+ \node at (-1.0,-0.85) {$\Phi$};
+ \node at (1.0,-0.50) {$\Psi$};
+ \node at (0.0,0.6) {$\Lambda$};
+
+ \node at (-1.7,0.7) {Material domain};
+ \node at (1.5,1.15) {Spatial domain};
+ \node at (0.0,-2.2) {Referential domain};
+
+
+
+\end{tikzpicture}
+\end{center}
+\caption{
+Material, Spatial and Referential domains for the Artibratiry Lagrangian-Eulerian description.
+}
+\label{referential domain}
+\end{figure}
+
+
+
+
+
 
 %\medskip
 %Therefore, the material point velocity that travels from 
