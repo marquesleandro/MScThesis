@@ -21,32 +21,106 @@ formulation with the species transport equation is presented.
  \draw [line width=1pt] (0,0) rectangle ++(3,3);
  \draw [line width=1pt] (0,2.4) -- (3,2.4);
  \draw [line width=1pt] (0,1.6) -- (3,1.6);
- \node (TriSim) at (1.5,2.7) {\textbf{TriSim}};
+ \node (Simulator) at (1.5,2.7) {\small \textbf{Simulator}};
+ \node[align=left] (Simulator) at (1.0,0.9) {\scriptsize + solver()\\[-12pt]
+                                              \scriptsize + relatory()\\[-12pt]                                                        
 
- \draw [line width=1pt] (0,6) rectangle ++(3,3);
- \draw [line width=1pt] (0,8.4) -- (3,8.4);
- \draw [line width=1pt] (0,7.6) -- (3,7.6);
- \node (TriMesh) at (1.5,8.7) {\textbf{TriMesh}};
+};
 
- \draw [line width=1pt] (6,0) rectangle ++(3,3);
- \draw [line width=1pt] (6,2.4) -- (9,2.4);
- \draw [line width=1pt] (6,1.6) -- (9,1.6);
- \node (InOut) at (7.5,2.7) {\textbf{InOut}};
 
- \draw [line width=1pt] (-6,0) rectangle ++(3,3);
- \draw [line width=1pt] (-6,2.4) -- (-3,2.4);
- \draw [line width=1pt] (-6,1.6) -- (-3,1.6);
- \node (triBC) at (-4.5,2.7) {\textbf{TriBC}};
 
- \draw [line width=1pt] (0,-6) rectangle ++(3,3);
- \draw [line width=1pt] (0,-3.6) -- (3,-3.6);
- \draw [line width=1pt] (0,-4.4) -- (3,-4.4);
- \node (TElement) at (1.5,-3.3) {\textbf{TElement}};
 
- \draw [line width=1pt] (6,-6) rectangle ++(3.5,3);
- \draw [line width=1pt] (6,-3.6) -- (9.5,-3.6);
- \draw [line width=1pt] (6,-4.4) -- (9.5,-4.4);
- \node (FEMLinElement) at (7.8,-3.3) {\textbf{FEMLinElem}};
+ \draw [line width=1pt] (-3.2,5.5) rectangle ++(3.8,3.6);
+ \draw [line width=1pt] (-3.2,8.4) -- (0.6,8.4);
+ \draw [line width=1pt] (-3.2,7.6) -- (0.6,7.6);
+ \node (ImportMSH) at (-1.3,8.7) {\small \textbf{ImportMSH}};
+ \node[align=left] (ImportMSH) at (-1.5,6.3) {\scriptsize + coordinates()\\[-12pt]
+                                          \scriptsize + IEN()\\[-12pt]                                                        
+                                          \scriptsize + neighborsNodes()\\[-12pt]                                                        
+                                          \scriptsize + boundaryNodes()\\[-12pt]                                                        
+
+};
+
+
+ \draw [line width=1pt] (3.2,5.5) rectangle ++(4.1,3.6);
+ \draw [line width=1pt] (3.2,8.4) -- (7.3,8.4);
+ \draw [line width=1pt] (3.2,7.6) -- (7.3,7.6);
+ \node (MeshUpdate) at (5.3,8.7) {\small \textbf{MeshUpdate}};
+ \node[align=left] (meshUpdate) at (5.2,6.3) {\scriptsize + lagrangian()\\[-12pt]
+                                          \scriptsize + laplacianSmoothing()\\[-12pt]                                                        
+                                          \scriptsize + meshVelocity()\\[-12pt]                                                        
+                                          \scriptsize + moveMesh()\\[-12pt]                                                        
+
+};
+
+
+
+
+
+ \draw [line width=1pt] (5.8,1) rectangle ++(3.2,3.2);
+ \draw [line width=1pt] (5.8,3.4) -- (9,3.4);
+ \draw [line width=1pt] (5.8,2.6) -- (9,2.6);
+ \node (ExportVTK) at (7.5,3.7) {\small \textbf{ExportVTK}};
+ \node[align=left] (ExportVTK) at (6.7,1.5) {\scriptsize + scalar()\\[-12pt]
+                                          \scriptsize + vector()\\[-12pt]                                                        
+                                          \scriptsize + save()\\[-12pt]                                                        
+};
+ 
+
+
+ \draw [line width=1pt] (5.8,-4) rectangle ++(4.3,3.2);
+ \draw [line width=1pt] (5.8,-1.6) -- (10.1,-1.6);
+ \draw [line width=1pt] (5.8,-2.4) -- (10.1,-2.4);
+ \node (SemiLagrangian) at (8.1,-1.2) {\small \textbf{SemiLagrangian}};
+ \node[align=left] (SemiLagrangian) at (7.0,-3) {\scriptsize + searching()\\[-12pt]
+};
+ 
+
+
+
+ \draw [line width=1pt] (-6.0,-1.9) rectangle ++(3.1,4.9);
+ \draw [line width=1pt] (-6,2.4) -- (-3.1,2.4);
+ \draw [line width=1pt] (-6,1.6) -- (-3.1,1.6);
+ \node (BCApply) at (-4.5,2.7) {\textbf{\small BCApply}};
+ \node[align=left] (BCApply) at (-4.5,-0.4) {\scriptsize + couette()\\[-12pt]
+                                          \scriptsize + poiseulle()\\[-12pt]                                                        
+                                          \scriptsize + halfpoiseulle()\\[-12pt]                                                        
+                                          \scriptsize + cavity()\\[-12pt]                                                        
+                                          \scriptsize + backwardStep()\\[-12pt]                                                        
+                                          \scriptsize + pulsation()\\[-12pt]                                                        
+                                          \scriptsize + stent()\\[-12pt]                                                        
+
+};
+
+ \draw [line width=1pt] (-0.1,-7) rectangle ++(3.1,4.1);
+ \draw [line width=1pt] (-0.1,-3.6) -- (3,-3.6);
+ \draw [line width=1pt] (-0.1,-4.4) -- (3,-4.4);
+ \node (Assembly) at (1.5,-3.3) {\small \textbf{Assembly}};
+ \node[align=left] (Assembly) at (1.0,-6.0) {\scriptsize + analytic()\\[-12pt]
+                                            \scriptsize + linear()\\[-12pt]                                                        
+                                            \scriptsize + quad()\\[-12pt]                                                        
+                                            \scriptsize + mini()\\[-12pt]                                                        
+                                            \scriptsize + cubic()\\[-12pt]                                                        
+
+};
+
+
+
+
+
+ \draw [line width=1pt] (-6,-6.1) rectangle ++(3.9,3.1);
+ \draw [line width=1pt] (-6,-3.6) -- (-2.1,-3.6);
+ \draw [line width=1pt] (-6,-4.4) -- (-2.1,-4.4);
+ \node (GaussianQuad) at (-4.1,-3.3) {\small \textbf{GaussianQuad}};
+ \node[align=left] (GaussianQuad) at (-4.6,-5.5) {\scriptsize + getMass()\\[-12pt]
+                                                 \scriptsize + getStiffness()\\[-12pt]                                                        
+                                                 \scriptsize + getGradient()\\[-12pt]                                                        
+
+};
+
+
+
+
 
  \draw [{Diamond}-,line width=1pt] (TriSim) -- (1.5,6);
  \draw [{Diamond}-,line width=1pt] (0,1.5) -- (-3,1.5);
@@ -59,3 +133,5 @@ formulation with the species transport equation is presented.
 \caption{Simplified Class Diagram}
 \label{uml}
 \end{figure}
+
+
