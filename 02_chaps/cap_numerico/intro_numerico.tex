@@ -17,12 +17,12 @@ formulation with the species transport equation is presented.
 \vspace{0.5cm}
 \begin{figure}[H]
 \begin{center}
-\begin{tikzpicture}[scale=0.7pt]
+\begin{tikzpicture}[scale=0.8]
  \draw [line width=1pt] (0,0) rectangle ++(3,3);
  \draw [line width=1pt] (0,2.4) -- (3,2.4);
  \draw [line width=1pt] (0,1.6) -- (3,1.6);
  \node (Simulator) at (1.5,2.7) {\small \textbf{Simulator}};
- \node[align=left] (Simulator) at (1.0,0.9) {\scriptsize + solver()\\[-12pt]
+ \node[align=left] (Simulator) at (1.0,0.8) {\scriptsize + solver()\\[-12pt]
                                               \scriptsize + relatory()\\[-12pt]                                                        
 
 };
@@ -121,12 +121,38 @@ formulation with the species transport equation is presented.
 
 
 
+ %ImportMSH
+ \draw [{Diamond}-,line width=1pt] (1.0,3.0) -- (1.0,4.0);
+ \draw [line width=1pt] (1.0,4.0) -- (-1.0,4.0);
+ \draw [line width=1pt] (-1.0,4.0) -- (-1.0,5.5) ;
 
- \draw [{Diamond}-,line width=1pt] (TriSim) -- (1.5,6);
- \draw [{Diamond}-,line width=1pt] (0,1.5) -- (-3,1.5);
- \draw [{Diamond}-,line width=1pt] (1.5,0) -- (1.5,-3);
- \draw [{Diamond}-,line width=1pt] (3,1.5) -- (6,1.5);
- \draw [<-,line width=1pt] (3,-4.5) -- (6,-4.5);
+ %MeshUpdate
+ \draw [{Diamond}-,line width=1pt] (2.0,3.0) -- (2.0,4.0);
+ \draw [line width=1pt] (2.0,4.0) -- (5.0,4.0);
+ \draw [line width=1pt] (5.0,4.0) -- (5.0,5.5) ;
+
+
+ %BCApply
+ \draw [{Diamond}-,line width=1pt] (0,1.5) -- (-1.5,1.5);
+ \draw [line width=1pt] (-1.5,1.5) -- (-1.5,0.1);
+ \draw [line width=1pt] (-1.5,0.1) -- (-2.9,0.1) ;
+
+
+ %ExportVTK
+ \draw [{Diamond}-,line width=1pt] (3,1.5) -- (4.5,1.5);
+ \draw [line width=1pt] (4.5,1.5) -- (4.5,2.5);
+ \draw [line width=1pt] (4.5,2.5) -- (5.8,2.5) ;
+
+ %SemiLagrangian
+ \draw [{Diamond}-,line width=1pt] (2,0) -- (2,-2);
+ \draw [line width=1pt] (2,-2) -- (5.8,-2);
+
+
+ %Assembly
+ \draw [{Diamond}-,line width=1pt] (1.0,0) -- (1.0,-2.9);
+
+ %GaussianQuad
+ \draw [{Diamond}-,line width=1pt] (-0.1,-5.0) -- (-2.1,-5.0);
 
 \end{tikzpicture}
 \end{center}
