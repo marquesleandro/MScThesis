@@ -18,19 +18,19 @@ formulation with the species transport equation is presented.
 \begin{figure}[H]
 \begin{center}
 \begin{tikzpicture}[scale=0.8]
- \draw [line width=1pt] (0,0) rectangle ++(3,3);
+ \draw [line width=1pt] (0,-0.5) rectangle ++(3,3.5);
  \draw [line width=1pt] (0,2.4) -- (3,2.4);
  \draw [line width=1pt] (0,1.6) -- (3,1.6);
  \node (Simulator) at (1.5,2.7) {\small \textbf{Simulator}};
- \node[align=left] (Simulator) at (1.0,0.8) {\scriptsize + solver()\\[-12pt]
+ \node[align=left] (Simulator) at (1.0,0.4) {\scriptsize + applyBC()\\[-12pt]
+                                              \scriptsize + solver()\\[-12pt]                                                        
+                                              \scriptsize + check()\\[-12pt]                                                        
                                               \scriptsize + relatory()\\[-12pt]                                                        
 
 };
 
 
-
-
- \draw [line width=1pt] (-3.2,5.5) rectangle ++(3.8,3.6);
+\draw [line width=1pt] (-3.2,5.5) rectangle ++(3.8,3.6);
  \draw [line width=1pt] (-3.2,8.4) -- (0.6,8.4);
  \draw [line width=1pt] (-3.2,7.6) -- (0.6,7.6);
  \node (ImportMSH) at (-1.3,8.7) {\small \textbf{ImportMSH}};
@@ -56,33 +56,33 @@ formulation with the species transport equation is presented.
 
 
 
-
  \draw [line width=1pt] (5.8,1) rectangle ++(3.2,3.2);
  \draw [line width=1pt] (5.8,3.4) -- (9,3.4);
  \draw [line width=1pt] (5.8,2.6) -- (9,2.6);
  \node (ExportVTK) at (7.5,3.7) {\small \textbf{ExportVTK}};
- \node[align=left] (ExportVTK) at (6.7,1.5) {\scriptsize + scalar()\\[-12pt]
+ \node[align=left] (ExportVTK) at (6.7,1.6) {\scriptsize + scalar()\\[-12pt]
                                           \scriptsize + vector()\\[-12pt]                                                        
                                           \scriptsize + save()\\[-12pt]                                                        
 };
  
 
 
- \draw [line width=1pt] (5.8,-4) rectangle ++(4.3,3.2);
- \draw [line width=1pt] (5.8,-1.6) -- (10.1,-1.6);
- \draw [line width=1pt] (5.8,-2.4) -- (10.1,-2.4);
- \node (SemiLagrangian) at (8.1,-1.2) {\small \textbf{SemiLagrangian}};
- \node[align=left] (SemiLagrangian) at (7.0,-3) {\scriptsize + searching()\\[-12pt]
+ \draw [line width=1pt] (4.7,-4) rectangle ++(4.3,3.2);
+ \draw [line width=1pt] (4.7,-1.6) -- (9.0,-1.6);
+ \draw [line width=1pt] (4.7,-2.4) -- (9.0,-2.4);
+ \node (SemiLagrangian) at (7.0,-1.2) {\small \textbf{SemiLagrangian}};
+ \node[align=left] (SemiLagrangian) at (6.2,-3.2) {\scriptsize + searching()\\[-12pt]
+                                          \scriptsize + interpolation()\\[-12pt]                                                        
 };
  
 
 
 
- \draw [line width=1pt] (-6.0,-1.9) rectangle ++(3.1,4.9);
- \draw [line width=1pt] (-6,2.4) -- (-3.1,2.4);
- \draw [line width=1pt] (-6,1.6) -- (-3.1,1.6);
- \node (BCApply) at (-4.5,2.7) {\textbf{\small BCApply}};
- \node[align=left] (BCApply) at (-4.5,-0.4) {\scriptsize + couette()\\[-12pt]
+ \draw [line width=1pt] (-6.0,-1.5) rectangle ++(3.1,4.9);
+ \draw [line width=1pt] (-6,2.7) -- (-2.9,2.7);
+ \draw [line width=1pt] (-6,1.9) -- (-2.9,1.9);
+ \node (Benchmark) at (-4.5,3.1) {\textbf{\small Benchmark}};
+ \node[align=left] (Benchmark) at (-4.5,0.0) {\scriptsize + couette()\\[-12pt]
                                           \scriptsize + poiseulle()\\[-12pt]                                                        
                                           \scriptsize + halfpoiseulle()\\[-12pt]                                                        
                                           \scriptsize + cavity()\\[-12pt]                                                        
@@ -92,15 +92,14 @@ formulation with the species transport equation is presented.
 
 };
 
- \draw [line width=1pt] (-0.1,-7) rectangle ++(3.1,4.1);
- \draw [line width=1pt] (-0.1,-3.6) -- (3,-3.6);
- \draw [line width=1pt] (-0.1,-4.4) -- (3,-4.4);
- \node (Assembly) at (1.5,-3.3) {\small \textbf{Assembly}};
- \node[align=left] (Assembly) at (1.0,-6.0) {\scriptsize + analytic()\\[-12pt]
-                                            \scriptsize + linear()\\[-12pt]                                                        
-                                            \scriptsize + quad()\\[-12pt]                                                        
-                                            \scriptsize + mini()\\[-12pt]                                                        
-                                            \scriptsize + cubic()\\[-12pt]                                                        
+
+
+
+ \draw [line width=1pt] (-0.1,-6.5) rectangle ++(3.1,3.1);
+ \draw [line width=1pt] (-0.1,-4.1) -- (3,-4.1);
+ \draw [line width=1pt] (-0.1,-4.9) -- (3,-4.9);
+ \node (Assembly) at (1.5,-3.8) {\small \textbf{Assembly}};
+ \node[align=left] (Assembly) at (1.2,-5.5) {\scriptsize + getTriangle()\\[-12pt]
 
 };
 
@@ -108,13 +107,14 @@ formulation with the species transport equation is presented.
 
 
 
- \draw [line width=1pt] (-6,-6.1) rectangle ++(3.9,3.1);
+ \draw [line width=1pt] (-6,-6.5) rectangle ++(3.9,3.5);
  \draw [line width=1pt] (-6,-3.6) -- (-2.1,-3.6);
  \draw [line width=1pt] (-6,-4.4) -- (-2.1,-4.4);
- \node (GaussianQuad) at (-4.1,-3.3) {\small \textbf{GaussianQuad}};
- \node[align=left] (GaussianQuad) at (-4.6,-5.5) {\scriptsize + getMass()\\[-12pt]
-                                                 \scriptsize + getStiffness()\\[-12pt]                                                        
-                                                 \scriptsize + getGradient()\\[-12pt]                                                        
+ \node (GQuadrature) at (-4.1,-3.3) {\small \textbf{GQuadrature}};
+ \node[align=left] (GQuadrature) at (-5.0,-5.6) {\scriptsize + linear()\\[-12pt]
+                                            \scriptsize + quad()\\[-12pt]                                                        
+                                            \scriptsize + mini()\\[-12pt]                                                        
+                                            \scriptsize + cubic()\\[-12pt]                                                        
 
 };
 
@@ -132,7 +132,7 @@ formulation with the species transport equation is presented.
  \draw [line width=1pt] (5.0,4.0) -- (5.0,5.5) ;
 
 
- %BCApply
+ %Benchmark
  \draw [{Diamond}-,line width=1pt] (0,1.5) -- (-1.5,1.5);
  \draw [line width=1pt] (-1.5,1.5) -- (-1.5,0.1);
  \draw [line width=1pt] (-1.5,0.1) -- (-2.9,0.1) ;
@@ -144,15 +144,15 @@ formulation with the species transport equation is presented.
  \draw [line width=1pt] (4.5,2.5) -- (5.8,2.5) ;
 
  %SemiLagrangian
- \draw [{Diamond}-,line width=1pt] (2,0) -- (2,-2);
- \draw [line width=1pt] (2,-2) -- (5.8,-2);
+ \draw [{Diamond}-,line width=1pt] (2,-0.5) -- (2,-2);
+ \draw [line width=1pt] (2,-2) -- (4.7,-2);
 
 
  %Assembly
- \draw [{Diamond}-,line width=1pt] (1.0,0) -- (1.0,-2.9);
+ \draw [{Diamond}-,line width=1pt] (1.0,-0.5) -- (1.0,-3.4);
 
  %GaussianQuad
- \draw [{Diamond}-,line width=1pt] (-0.1,-5.0) -- (-2.1,-5.0);
+ \draw [{Diamond}-,line width=1pt] (-0.1,-5.5) -- (-2.1,-5.5);
 
 \end{tikzpicture}
 \end{center}
