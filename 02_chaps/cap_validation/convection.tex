@@ -8,8 +8,8 @@ For approximation methods like \textit{FEM} and \textit{FDM},
 it is possible to observe the presence of spurious oscillations. 
 As mentioned earlier, several schemes can be used to reduce these 
 numerical oscillations. In this section, we will present the use 
-of the \textit{semi-Lagrangian} scheme to reduce spurious oscillations 
-compared to the \textit{Taylor-Galerkin} Method. 
+of the \textit{Taylor-Galerkin} scheme to reduce spurious oscillations 
+compared to the \textit{conventional Galerkin} Method. 
 The \ref{conveccao} presents schematically the problem and 
 the dynamics of scalar transport.
 
@@ -36,35 +36,33 @@ the dynamics of scalar transport.
 
 \medskip
 \noindent
-The scalar transport $\alpha$ for a pure advection flow is shown below:
+The scalar transport $c$ for a pure advection flow is shown below:
 
 
 \begin{equation}
- \frac{\partial \alpha}{\partial t} 
+ \frac{\partial c}{\partial t} 
  + 
- \textbf{c} \cdot \nabla \alpha
+ \textbf{v} \cdot \nabla c
  = 0
 \end{equation}
 
 \noindent
-where is relative velocity and it is calculated by 
-$\textbf{c} = \textbf{v} - \hat{\textbf{v}}$,
-$\textbf{v}$ is material velocity field and its components are
-defined as: $u = -y$ e $v = x$,
-$\hat{\textbf{v}}$ is the mesh velocity and it is calculated
-by the Eq. \ref{mesh velocity eq}. 
+where $\textbf{v} = (u,v)$ is velocity field and its components are
+defined as: $u = -y$ e $v = x$. 
 Therefore, it is expected that given an initial scalar field, 
 it will be displaced by the velocity field without diffusion, 
 that is, its profile should not be changed while the flow occurs. 
 Any change in the scalar field profile is considered a numerical error.
-The initial scalar field was defined by a parabolic
-profile $c = 1 - x^2 - y^2$, where $x$ and $y$ are the spatial components.
+For this numerical simulation, the domain was discretized using a 
+linear triangular mesh with 3835 nodes and 7299 elements. 
+In addition to the initial scalar field was defined by a parabolic
+profile $c = 1 - x^2 - y^2$, where $x$ and $y$ are space components.
 
 
 
 \medskip
 The \ref{perfil c} presents the comparison between the scalar field
-profile $c$ for the semi-Lagrangian and Taylor-Galerkin methods in 
+profile $c$ for the Galerkin and Taylor-Galerkin methods in 
 several positions on the axis of rotation as the flow occurs. 
 It is possible to observe that in both methods the spurious oscillations 
 are presented. In the Taylor-Galerkin method, however, 
