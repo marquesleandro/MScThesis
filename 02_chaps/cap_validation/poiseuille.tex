@@ -49,19 +49,17 @@ The domain was discretized using a linear triangular mesh
 with 3835 nodes and 7299 elements.
 
 \bigskip
-The \ref{velocidade poiseuille} shows the unsteady velocity profile
-when $Re=100$, in addition to the comparison between the 
-numerical and analytical solutions in the steady state of
-proposed problem. It is possible to observe that the numerical
-solution converges to the analytical solution when the flow
-becomes steady state.
+The \ref{velocidade poiseuille} shows the steady state velocity profile
+when $Re=100$.
+It is possible to observe that the numerical
+solution converges to the analytical solution.
 
 \begin{figure}[H]
      \centering
      \includegraphics[scale=1]{./02_chaps/cap_validation/figure/poiseuille_velocity.pdf}\\
      \medskip
      \caption{
-Unsteady velocity profile when $Re=100$ and the comparison between
+Steady state velocity profile when $Re=100$ and the comparison between
 the numerical and analytical solution for Poiseuille flow.} 
      \label{velocidade poiseuille}
 \end{figure}
@@ -72,8 +70,7 @@ between the numerical solution and the analytical solution
 for several unstructured linear triangular meshes, ranging 
 from 100 to 25600 linear triangular elements. For the mesh 
 with 7299 elements as in the case of this benchmark problem, 
-the estimated relative error for the velocity field is between 
-0.49\% and 0.13\%.
+the estimated relative error for the velocity field is 0.4\%.
 
 \vspace{0.5cm}
 \begin{table}[H]
@@ -82,11 +79,11 @@ the estimated relative error for the velocity field is between
 \toprule
 \textbf{Elements} & \textbf{Error} (\%) \\
 \midrule
-100 & 25,00 \\
-400 & 7,27 \\
-1600 & 1,94 \\
-6400 & 0,49 \\
-25600 & 0,13 \\
+100 & 25.00 \\
+400 & 7.47 \\
+1600 & 2.11 \\
+6400 & 0.61 \\
+25600 & 0.17 \\
 \bottomrule
 \end{tabular}
 \caption{The relative error of numerical solution for several elements numbers in an unstructured linear triangular mesh.}
