@@ -47,9 +47,9 @@ In 1976, Christie et al. \cite{christie1976} modify weight
 
 \medskip
 In 1982, Brooks and Hughes \cite{brooks1982} proposed a
- new formulation that consists of modifying the weight functions
- so that the diffusion operator acts only in the flow direction.
- This procedure appears in order to eliminate the excess of
+ new formulation that consists of the weight functions modified
+ in order to the diffusion operator acts only in the flow direction.
+ This procedure aims to eliminate the excess of
  diffusion perpendicular to the flow that
  the Petrov-Galerkin scheme presented in some cases.
  The formulation does not require the use of high-order
@@ -82,9 +82,10 @@ In 1984, Donea \cite{donea1984} presents an alternative for
  Taylor-Galerkin scheme there is no need to use modified
  weight functions. The scheme is compared with the formulations
  of Galerkin and Petrov Galerkin and it showed high accuracy and
- low numerical diffusion. Although the Taylor-Galerkin method
- is conditionally stable, the computational implementation is easy.
-
+ low numerical diffusion. 
+Although the computational implementation is easy,
+the Taylor-Galerkin method
+ is conditionally stable.
 
 \medskip
 In the same year, Lohner et al. \cite{lohner1984} 
@@ -108,12 +109,13 @@ Several researchers have analyzed the stability and convergencei
 \cite{donea1992}. In this paper, the authors present an analysis
 of several methods for solving unsteady problems governed by
 advection equations. 
-In comparison to the Petrov-Galerkin and
- SUPG schemes, the Taylor-Galerkin, Characteristic Galerkin and
+Whereas the Petrov-Galerkin and
+ SUPG schemes have the asymmetric matrix system, 
+ the Taylor-Galerkin, Characteristic Galerkin and
  semi-Lagrangian methods have the advantage of matrices were
  symmetric facilitating computational implementation.
  In addition to the Taylor-Galerkin and Characteristic Galerkin methods
- are of a much simpler implementation and can achieve a high order
+ have a simpler implementation and they can achieve a high order
 accuracy, but they are only conditionally stable.
  For large time step, unlike, the semi-Lagrangian method is
  more efficient because its unconditional stability.

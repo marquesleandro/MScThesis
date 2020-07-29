@@ -1,17 +1,22 @@
-For this case, the drug-eluting stent is placed on top of 
-the curved channel. It is modeled by 10 uniformly spaced 
-semi-circles. As in the previous case, an channel obstruction of 
-40\% was considered due to atherosclerosis and the domain was 
-discretized using 15875 nodes and 35408 linear triangular elements. 
+In this section, will be present
+the case where the coronary 
+artery has atherosclerosis and 
+the drug-eluting stent is placed. 
+It is modeled by 10 uniformly spaced 
+semi-circles. 
+The geometry used promotes a smooth reduction of the 
+distance between the upper wall and symmetry axis of the channel. 
+Due to atherosclerosis, 40\% channel obstruction was considered 
+and the domain was discretized using 15875 nodes and 35408 
+linear triangular elements. 
 
 \par 
 The \ref{velocity evolution curved stent} shows the unsteady velocity 
 profile in the middle of the channel ($x=5R$). 
 As we can see, the maximum non-dimensional value of the velocity field 
-reaches $u=3.6$ when the stent is placed, that is, we have an 
-increase of $56$\% when compared to the artery with only 
-atherosclerosis as in the previous case 
-(see section \ref{canal curvado}).
+reaches $u=3.6$ when the stent is placed, that is, 
+more than 3 times the blood velocity
+in coronary artery.
 
 \begin{figure}[H]
      \centering
@@ -84,8 +89,8 @@ drug-eluting stent.}
 
 
 \vspace{1cm}
-As mentioned by Lucena et al. (2017) \cite{lucena2017}, 
-it is estimated that $47$\% of the drug is diffused to the 
+As mentioned by Lucena et al. (2018) \cite{lucena2018}, 
+it is estimated that 47\% of the drug is diffused to the 
 lumem and it is lost to the bloodstream.
 The \ref{conc field curved stent sc 1} and 
 \ref{conc field curved stent sc 10} show the time and space evolution 
@@ -98,6 +103,8 @@ It is possible to observe that the \textit{Schmidt} number directly
 influences the drug transport in the blood flow. 
 For high values of the \textit{Schmidt} number, 
 the transport of chemical species becomes purely convective.
+
+
 
 \begin{figure}[H]
      \begin{minipage}{.50\linewidth}

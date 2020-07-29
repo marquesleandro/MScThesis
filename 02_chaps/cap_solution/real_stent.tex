@@ -1,18 +1,20 @@
-For this case, the drug-eluting stent is placed on top of 
-the curved channel. It is modeled by 10 uniformly spaced 
-semi-circles. As in the previous case, an channel obstruction of 
-40\% was considered due to atherosclerosis and the domain was 
-discretized using 11807 nodes and 26426 linear triangular elements. 
+For this case, the numerical simulation is performed for a real 
+coronary artery with atherosclerosis whose geometry was obtained 
+through an image processing as suggested by Wang et al. (2017) 
+\cite{wang2017}. This geometry is particular to each patient 
+due to the patient health conditions. As in the previous cases, 
+an channel obstruction of 40\% was considered due to atherosclerosis 
+and the stent strut was modeled by
+10 uniformly spaced semi-circles.
+The domain was discretized using 11807 nodes and 26426 linear 
+triangular elements. 
 
-\par 
+\medskip
 The \ref{velocity evolution real stent} shows the unsteady velocity 
 profile in the middle of the channel ($x=5R$). 
 As we can see, the maximum non-dimensional value of the velocity field 
-reaches $u=2.65$ when the stent is placed, that is, we have an 
-increase of $18$\% when compared to the artery with only 
-atherosclerosis as in the previous case 
-(see section \ref{canal real}).
-However, this increase of the velocity may vary according to the 
+reaches $u=2.65$ when the stent is placed. 
+However, this velocity may vary according to the 
 coronary artery geometry for each patient.
 
 \begin{figure}[H]

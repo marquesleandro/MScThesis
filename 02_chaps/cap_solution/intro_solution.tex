@@ -8,25 +8,22 @@ $\rho=1060kg/m^3$ as suggested by Bozsak, Chomaz and Barakat (2014)
 is $u=12cm/s$. Thus, the Reynolds number used will be 
 $Re=54.5$. 
 
-\par 
+\medskip
 The Navier-Stokes equation is used according to the 
 vorticity-streamfunction formulation with 
-the species transport equation for four geometries proposed 
+the species transport equation for two geometries proposed 
 by Wang et al. (2017) \cite{wang2017}, however modified to 
 cartesian coordinates as shown in \ref{coronary artery geo}. 
-In the \ref{canal curvado} section, the coronary artery 
-with atherosclerosis is modeled as a flow in a curved channel. 
 In the section \ref{canal curvado com stent}, the numerical 
 simulation for the coronary artery with atherosclerosis 
-and a drug-eluting stent is presented for several 
+and a drug-eluting stent in a curved channel model 
+is presented for several 
 \textit{Schmidt} number, such as $Sc=1$ and $10$. 
-In the \ref{canal real} section, a numerical simulation 
-of a real coronary artery with atherosclerosis is presented 
-and in the \ref{canal real com stent}, the real coronary 
-artery with atherosclerosis and a drug-eluting stent is 
+In the \ref{canal real com stent}, the real coronary 
+artery with atherosclerosis and a drug-eluting stent is also 
 simulated with several numbers of \textit{Schmidt} number 
-as in the case of the section \ref{canal curvado com stent}. 
-Due to symmetry, only half of the domain was simulated. 
+as in the previous section.
+Due to symmetry, only half of the domain is shown. 
 The simulation was visualized using the \textit{Paraview} open-source 
 software proposed by Henderson (2007) \cite{paraview}.
 
@@ -35,30 +32,18 @@ software proposed by Henderson (2007) \cite{paraview}.
      \centering
      \begin{minipage}{.45\linewidth}
       \centering
-      \includegraphics[scale=0.22]{./02_chaps/cap_solution/figure/Curved.png}\\
+      \includegraphics[scale=0.22]{./02_chaps/cap_solution/figure/CurvedStrut.png}\\
       (a)
      \end{minipage}%
      \begin{minipage}{.45\linewidth}
       \centering
-      \includegraphics[scale=0.22]{./02_chaps/cap_solution/figure/CurvedStrut.png}\\
+      \includegraphics[scale=0.22]{./02_chaps/cap_solution/figure/RealStrut.png}\\
       (b)
      \end{minipage}
-     \begin{minipage}{.45\linewidth}
-      \centering
-      \includegraphics[scale=0.16]{./02_chaps/cap_solution/figure/Real.png}\\
-      (c)
-     \end{minipage}%
-     \begin{minipage}{.45\linewidth}
-      \centering
-      \includegraphics[scale=0.22]{./02_chaps/cap_solution/figure/RealStrut.png}\\
-      (d)
-     \end{minipage}
      \medskip
-     \caption{Non-dimensional Domaian for blood flow in coronary artery
+     \caption{Non-dimensional domain for the blood flow in coronary artery
      The radius used was $R=1$ and and the lumen length was $L=10R$.
-     (a) Curved Channel
-     (b) Curved Channel with Drug-Eluting Stent
-     (c) Real Channel
-     (d) Real Channel with Drug-Eluting Stent.}
+     (a) Curved Channel with Drug-Eluting Stent
+     (b) Real Channel with Drug-Eluting Stent.}
      \label{coronary artery geo}
 \end{figure}
