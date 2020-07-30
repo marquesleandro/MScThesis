@@ -191,16 +191,19 @@ even in concave domains as can be seen in the \ref{searching procedure fig}:
  \coordinate (C) at (2.500,1.3330) {};
  \coordinate (D) at (2.500,1.6000) {};
  \coordinate (F) at (3.000,1.0500) {};
- \coordinate (G) at (2.833,1.3560) {};
- \coordinate (H) at (3.000,1.6000) {};
+ \coordinate (G) at (2.850,1.3560) {};
+ \coordinate (H) at (3.100,1.6000) {};
  \coordinate (I) at (3.000,0.5000) {};
- \coordinate (J) at (3.266,0.8660) {};
- \coordinate (K) at (3.250,1.3030) {};
- \coordinate (L) at (3.333,1.6000) {};
- \coordinate (M) at (3.800,0.5000) {};
- \coordinate (N) at (3.500,0.6230) {};
+ \coordinate (J) at (3.250,0.8300) {};
+ \coordinate (K) at (3.250,1.2530) {};
+ \coordinate (L) at (3.400,1.6000) {};
+ \coordinate (M) at (3.650,0.5000) {};
+ \coordinate (N) at (3.450,0.6200) {};
  \coordinate (O) at (3.620,1.0000) {};
  \coordinate (P) at (3.600,1.3300) {};
+ \coordinate (Q) at (2.800,1.6000) {};
+ \coordinate (R) at (2.750,1.0500) {};
+ \coordinate (S) at (3.000,0.8000) {};
 
  % elements
  \draw (J) -- (K) -- (F) -- cycle;
@@ -215,21 +218,23 @@ even in concave domains as can be seen in the \ref{searching procedure fig}:
  \draw (K) -- (L) -- (H) -- cycle;
  \draw (O) -- (P) -- (K) -- cycle;
  \draw (G) -- (K) -- (H) -- cycle;
+ \draw (Q) -- (G) -- (H) -- cycle;
+ \draw (R) -- (G) -- (R) -- cycle;
+ \draw (S) -- (J) -- (F) -- cycle;
  \draw[red,line width=2pt] (A) -- (C) -- (G) -- cycle;
  
 
 % arrow
- \draw[dashed,line width=0.03cm,-stealth]  (2.57,1.20)  -- (N) ;
+ \draw[dashed,line width=0.03cm,-stealth]  (2.57,1.20)  -- (J) ;
 
  % departure nodes
  \node[square, fill=white, draw, inner sep=0pt, minimum size=7.8pt] at (2.57,1.20) {};
- \node[square, fill=white, draw, inner sep=0pt, minimum size=7.8pt] at (N) {};
+ \node[square, fill=white, draw, inner sep=0pt, minimum size=7.8pt] at (J) {};
 
  % searching procedure path
- \draw[red, line width=2pt]  (N)--(J) ;
- \draw[red, line width=2pt]  (N)--(J) ;
  \draw[red, line width=2pt]  (J)--(F) ;
- \draw[red, line width=2pt]  (F)--(A) ;
+ \draw[red, line width=2pt]  (F)--(R) ;
+ \draw[red, line width=2pt]  (R)--(A) ;
 
  % draw nodes
  \node[circle, fill=black, inner sep=0pt, minimum size=5.5pt] at (A) {};
@@ -246,6 +251,9 @@ even in concave domains as can be seen in the \ref{searching procedure fig}:
  \node[circle, fill=black, inner sep=0pt, minimum size=5.5pt] at (N) {};
  \node[circle, fill=black, inner sep=0pt, minimum size=5.5pt] at (O) {};
  \node[circle, fill=black, inner sep=0pt, minimum size=5.5pt] at (P) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.5pt] at (Q) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.5pt] at (R) {};
+ \node[circle, fill=black, inner sep=0pt, minimum size=5.5pt] at (S) {};
 
 
  
@@ -255,7 +263,7 @@ even in concave domains as can be seen in the \ref{searching procedure fig}:
  \node[draw=none, scale=1.0] at (3.9,1.0) {\small $domain$};
  \node[draw=none, scale=1.0] at (3.8,1.65) {\small $boundary$};
 
- \node[draw=none, scale=1.0] at (3.6,0.65) {\small $x_{i}$};
+ \node[draw=none, scale=1.0] at (3.32,0.94) {\small $x_{i}$};
  \node[draw=none, scale=1.0] at (2.65,1.27) {\small $x_{d}$};
 
 
