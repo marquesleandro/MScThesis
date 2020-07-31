@@ -4,69 +4,76 @@ $\!$\\
 
 In this work, the Navier-Stokes equation according to the 
 vorticity-streamfunction formulation with the species transport 
-equation was presented in a Finite Element Method approach 
-and the Taylor-Galerkin method was applied to the governing equations. 
-As the vorticity-streamfuntion formulation does not present the 
-coupling between velocity and pressure fields, we can use the 
-linear triangular element. In addition to the unknowns are scalar,
+equation was presented in a Finite Element Method approach
+using the Arbitrary Lagrangian-Eulerian description.
+The governing equations were discretized in spatial domain by
+Galerkin Method and in time domain by semi-Lagrangian Method. 
+As the vorticity-streamfuntion formulation does not have the 
+coupling between the velocity and pressure fields, we can use the 
+linear triangular element. In addition, the unknowns are scalar,
 in contrast to the primitive variables that are vectorial fields.
 In this way, a smooth implementation 
 the numerical code is possible.
 
 \medskip
-A complete code was developed in a high-level programming language 
-using the object orientation paradigm, providing a platform for numerical
+A computational code was developed in a high-level programming language 
+using the object orientation paradigm (OOP), 
+providing a platform for numerical
 simulations of the drug transport in bloodstream. The simulator 
 is also able to describe in detail problems involving the flow 
 of Newtonian fluids with scalar transport 
-(as in concentration and temperature) due to the generalized 
-construction of the code.
+(such that the temperature) due to the generalized 
+construction of the code. The average computational cost of 
+each simulation process was measured for further improvement.
+ 
 
 \medskip
 The numerical code showed satisfactory results compared to the 
 analytical solutions of \textit{Couette Flow}, 
 \textit{Poiseuille Flow} and \textit{Half Poiseuille Flow} 
 where the free-slip condition on the symmetry axis was applied. 
+Moreover, the mesh convergence test was performed where
+it was concluded that the numerical code error decreases linearly
+as the mesh is refined.
 The \textit{lid-driven cavity flow} was also simulated where the 
 results were compared with those presented by Ghia et al. (1982) 
 \cite{ghia1982} and Marchi et al. (2009) \cite{marchi2009} 
-for several Reynolds number. Finally, the comparison between the 
-\textit{Galerkin} and \textit{Taylor-Galerkin} methods was 
+for several Reynolds number. Finally, the comparison between the
+semi-Lagrangian Method in an unstructured linear and a quadratic
+triangular mesh was
 presented for a purely advection flow of a parabolic function 
-where it was possible to observe the effectiveness of the 
-\textit{Taylor-Galerkin} method compared to \textit{Galerkin} method 
-for decrease spurious oscillations. Thus, the validation of the 
-numerical code was performed for two-dimensional 
-convective-diffusive problems in cartesian coordinates 
-and submitted to the boundary condition of \textit{Dirichlet}.
+where it was possible to observe the effectiveness of the
+quadratic triangular element compared to linear element
+for decrease the numerical diffusion in high Reynolds number.
+Thus, it was possible to validate the numerical code
+for two-dimensional simulations in cartesian coordinates,
+using the Vorticity-Streamfunction Formulation
+with the Species Transport Equation in an ALE-FE context
+and sumitted to the Dirichlet boundary condition.
+
 
 \medskip
-The objective of this work was to understand the dynamics of blood 
-flow in a coronary artery with atherosclerosis and with 
-a drug-eluting stent. Thus, the simulation for four geometries 
-modeled as two-dimensional and in cartesian coordinates was presented. 
-The profile of the velocity field was shown for the four proposed 
-geometries where it was possible to observe the increase 
-in maximum velocity when the drug-eluting stent was implanted. 
+The other goal of this work was to understand the dynamics of blood 
+flow in a coronary artery with 
+a drug-eluting stent placed. Thus, the simulation for two geometries 
+modeled in a two-dimensional cartesian coordinates was presented. 
+The profile of the velocity field was shown for the two proposed 
+geometries where it was possible to observe the horizontal
+velocity increase close to symmetric axis. 
 The simulation was done using several \textit{Schmidt} numbers, 
-such as $Sc=1$ and $10$. It was possible to verify in the 
+such as $1$, $10$, $100$ and $1000$. It was possible to verify in the 
 simulation that the number of \textit{Schmidt} directly influences 
 the transport of the drug in the bloodstream. For high values of 
-the number of \textit{Schmidt}, the transport of chemical species 
-becomes purely convective and its influence on the artery 
-wall must be verified. In addition to the curved channel shown an
-acceptable model for the real case, due to the $2$\% deviation
-from the maximum non-dimensional velocity.
+the \textit{Schmidt} number, the transport of chemical species 
+becomes purely convective and the diffusion in blood flow is decreased. 
 
 \vspace{0.7cm}
 \noindent
-The following futher developments is proposed:
+The following futher developments are proposed:
 
 \begin{itemize}
  \vspace{-0.3cm}
- \item Utilização do esquema \textit{Semi-Lagrangeano} para as derivadas materiais
-       em substituição do esquema \textit{Taylor-Galerkin}
-       para a redução das oscilações espúrias  
+ \item Increase assembly performance
 
  \item Use of primitive variables in the Navier-Stokes equation in a 3D approach
  
