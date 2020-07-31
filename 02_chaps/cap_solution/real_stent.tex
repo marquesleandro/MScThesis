@@ -2,31 +2,34 @@ For this case, the numerical simulation is performed for a real
 coronary artery with atherosclerosis whose geometry was obtained 
 through an image processing as suggested by Wang et al. (2017) 
 \cite{wang2017}. This geometry is particular to each patient 
-due to the patient health conditions. As in the previous cases, 
-an channel obstruction of 40\% was considered due to atherosclerosis 
-and the stent strut was modeled by
+due to the patient health conditions. As in the previous case, 
+the stent strut was modeled by
 10 uniformly spaced semi-circles.
 The domain was discretized using 11807 nodes and 26426 linear 
 triangular elements. 
 
 \medskip
-The \ref{velocity evolution real stent} shows the unsteady velocity 
+The \ref{velocity evolution real stent} shows the steady state velocity 
 profile in the position where the horizontal velocity 
 has the maximum non-dimensional value ($x=6.65R$). 
 As we can see, the maximum non-dimensional value of the velocity field 
 reaches $u=3.68$ when the stent is placed. 
 However, this velocity may vary according to the 
 coronary artery geometry for each patient.
+It compared to the curved channel, the maximum horizontal velocity
+had an increase of $5.14\%$. Therefore, the curved channel model
+shown an acceptable approach.
+
 
 \begin{figure}[H]
      \centering
      \includegraphics[scale=1]{./02_chaps/cap_solution/figure/vel_RealStrut_evol.pdf}\\
      \caption{
-The unsteady velocity profile for real channel with drug-eluting stent.}
+The steady state velocity profile for real channel with drug-eluting stent.}
      \label{velocity evolution real stent}
 \end{figure}
 
-\newpage
+\medskip
 The \ref{velocity field real stent} presents the evolution in 
 time and space of the velocity field for half of the domain. 
 The velocity field is represented with non-dimensional values 
@@ -40,52 +43,52 @@ we have $u=44.2cm/s$ and $u=0cm/s$ respectively.
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/vel_RealStrut1.png}\\
-      t = 0.1
+      t = 0.1s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/vel_RealStrut2.png}\\
-      t = 0.5
+      t = 0.5s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/vel_RealStrut3.png}\\
-      t = 1.0
+      t = 1.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/vel_RealStrut4.png}\\
-      t = 3.0
+      t = 3.0s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/vel_RealStrut5.png}\\
-      t = 5.0
+      t = 5.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/vel_RealStrut6.png}\\
-      t = 7.0
+      t = 7.0s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/vel_RealStrut7.png}\\
-      t = 10.0
+      t = 10.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/vel_RealStrut8.png}\\
-      steady state
+      t = 100.0s
      \end{minipage}\\[10pt]
       \centering
       \includegraphics[scale=0.5]{./02_chaps/cap_solution/figure/vel_RealStrutScale.png}\\
      \medskip
      \caption{
-Time and space evolution of the velocity field for real channel with
+Temporal and spatial evolution of the velocity field for real channel with
 drug-eluting stent.}
      \label{velocity field real stent}
 \end{figure}
@@ -95,8 +98,8 @@ drug-eluting stent.}
 
 
 \vspace{1cm}
-The \ref{conc field real stent sc 1} and 
-\ref{conc field real stent sc 10} show the time and space evolution 
+The \ref{conc field real stent sc 1} to
+\ref{conc field real stent sc 1000} show the temporal and spatial evolution 
 of the concentration field for several \textit{Schmidt} number, 
 such as: $1$, $10$, $100$ and $1000$ respectively. The concentration field is 
 represented with the non-dimensional values where the red color 
@@ -112,52 +115,52 @@ the transport of chemical species becomes purely convective.
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1_RealStrut1.png}\\
-      t = 0.1
+      t = 0.1s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1_RealStrut2.png}\\
-      t = 0.5
+      t = 0.5s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1_RealStrut3.png}\\
-      t = 1.0
+      t = 1.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1_RealStrut4.png}\\
-      t = 3.0
+      t = 3.0s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1_RealStrut5.png}\\
-      t = 5.0
+      t = 5.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1_RealStrut6.png}\\
-      t = 7.0
+      t = 7.0s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1_RealStrut7.png}\\
-      t = 10.0
+      t = 10.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1_RealStrut8.png}\\
-      steady state
+      t = 100.0s
      \end{minipage}\\[10pt]
       \centering
       \includegraphics[scale=0.5]{./02_chaps/cap_solution/figure/conc1_RealStrutScale.png}\\
      \medskip
      \caption{
-Time and space evolution of the concentration fiel for real channel with drug-eluting stent with $Sc=1$.}
+Temporal and spatial evolution of the concentration fiel for real channel with drug-eluting stent and $Sc=1$.}
      \label{conc field real stent sc 1}
 \end{figure}
 
@@ -167,52 +170,52 @@ Time and space evolution of the concentration fiel for real channel with drug-el
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc10_RealStrut1.png}\\
-      t = 0.1
+      t = 0.1s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc10_RealStrut2.png}\\
-      t = 0.5
+      t = 0.5s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc10_RealStrut3.png}\\
-      t = 1.0
+      t = 1.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc10_RealStrut4.png}\\
-      t = 3.0
+      t = 3.0s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc10_RealStrut5.png}\\
-      t = 5.0
+      t = 5.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc10_RealStrut6.png}\\
-      t = 7.0
+      t = 7.0s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc10_RealStrut7.png}\\
-      t = 10.0
+      t = 10.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc10_RealStrut8.png}\\
-      steady state
+      t = 100.0s
      \end{minipage}\\[10pt]
       \centering
       \includegraphics[scale=0.5]{./02_chaps/cap_solution/figure/conc1_RealStrutScale.png}\\
      \medskip
     \caption{
-Time and space evolution of the concentration fiel for real channel with drug-eluting stent with $Sc=10$.}
+Temporal and spatial evolution of the concentration fiel for real channel with drug-eluting stent and $Sc=10$.}
      \label{conc field real stent sc 10}
 \end{figure}
 
@@ -222,52 +225,52 @@ Time and space evolution of the concentration fiel for real channel with drug-el
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc100_RealStrut1.png}\\
-      t = 0.1
+      t = 0.1s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc100_RealStrut2.png}\\
-      t = 0.5
+      t = 0.5s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc100_RealStrut3.png}\\
-      t = 1.0
+      t = 1.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc100_RealStrut4.png}\\
-      t = 3.0
+      t = 3.0s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc100_RealStrut5.png}\\
-      t = 5.0
+      t = 5.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc100_RealStrut6.png}\\
-      t = 7.0
+      t = 7.0s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc100_RealStrut7.png}\\
-      t = 10.0
+      t = 10.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc100_RealStrut8.png}\\
-      steady state
+      t = 100.0s
      \end{minipage}\\[10pt]
       \centering
       \includegraphics[scale=0.5]{./02_chaps/cap_solution/figure/conc1_RealStrutScale.png}\\
      \medskip
     \caption{
-Time and space evolution of the concentration fiel for real channel with drug-eluting stent with $Sc=100$.}
+Temporal and spatial evolution of the concentration fiel for real channel with drug-eluting stent and $Sc=100$.}
      \label{conc field real stent sc 100}
 \end{figure}
 
@@ -276,52 +279,52 @@ Time and space evolution of the concentration fiel for real channel with drug-el
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1000_RealStrut1.png}\\
-      t = 0.1
+      t = 0.1s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1000_RealStrut2.png}\\
-      t = 0.5
+      t = 0.5s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1000_RealStrut3.png}\\
-      t = 1.0
+      t = 1.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1000_RealStrut4.png}\\
-      t = 3.0
+      t = 3.0s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1000_RealStrut5.png}\\
-      t = 5.0
+      t = 5.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1000_RealStrut6.png}\\
-      t = 7.0
+      t = 7.0s
      \end{minipage}
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1000_RealStrut7.png}\\
-      t = 10.0
+      t = 10.0s
      \end{minipage}%
      \begin{minipage}{.50\linewidth}
      \medskip
       \centering
       \includegraphics[scale=0.18]{./02_chaps/cap_solution/figure/conc1000_RealStrut8.png}\\
-      steady state
+      t = 100.0s
      \end{minipage}\\[10pt]
       \centering
       \includegraphics[scale=0.5]{./02_chaps/cap_solution/figure/conc1_RealStrutScale.png}\\
      \medskip
     \caption{
-Time and space evolution of the concentration fiel for real channel with drug-eluting stent with $Sc=1000$.}
+Temporal and spatial evolution of the concentration fiel for real channel with drug-eluting stent and $Sc=1000$.}
      \label{conc field real stent sc 1000}
 \end{figure}
 
