@@ -15,10 +15,10 @@ $\!$\\
 The present work aims at developing a 
 computational framework to simulate blood flow 
 in coronary artery with
-drug-eluting stent placed for the several Schmidt number using the Vorticity-Streamfunction 
+drug-eluting stent placed for several Schmidt number using the Vorticity-Streamfunction 
 Formulation in an Arbitrary Lagrangian-Eulerian (ALE) approach.
 The blood was modeled as single-phase, incompressible 
-and newtonian fluid and. The Navier-Stokes equation is 
+and newtonian fluid. The Navier-Stokes equation is 
 shown according to the vorticity-streamfunction 
 formulation with species transport equation.
 The Finite Element Method (FEM) is used to solve 
@@ -26,7 +26,12 @@ the governing equations where the Galerkin formulation was used
 to discretized the governing equations in spatial domain 
 and the semi-Lagrangian method was used to discretized 
 the material derivative using first order backward difference scheme. 
-The linear systems was solved using Conjugate Gradient Iterative Method.
+Moreover, the mesh update procedure performs nodes regularisation
+allowing to simulate moving boundary problems and
+the linear systems was solved using Conjugate 
+Gradient Iterative Method.
+Therefore, the new formulation proposed in this work 
+is suitable to simulate flows in coronary arteries with good accuracy. 
 
 \vspace{1cm}
 

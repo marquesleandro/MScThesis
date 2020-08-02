@@ -10,14 +10,20 @@ Due to atherosclerosis, 40\% channel obstruction was considered
 and the domain was discretized using 15875 nodes and 35408 
 linear triangular elements. 
 
-\par 
-The \ref{velocity evolution curved stent} shows the steady state velocity 
-profile in the position where the horizontal velocity has maximum
-non-dimensional value ($x=5.35R$). 
-As we can see, the maximum non-dimensional value of the velocity field 
-reaches $u=3.5$ when the stent is placed, that is, 
-more than 3 times the blood velocity
-in coronary artery.
+\medskip 
+The \ref{velocity evolution curved stent} shows the unsteady state 
+velocity profile in the section where the horizontal 
+velocity has maximum non-dimensional value.
+In this case, the section position was $x=5.35R$. 
+As expected, the numerical solution shown a similar profile to
+the Half Poiseuille, as presented in the section \ref{half poiseuille sec}.
+It is possible to observe that the maximum horizontal velocity field 
+in curvel channel reaches the $u=3.5$ non-dimensional value, that is, 
+more than 3 times the blood velocity in coronary artery
+without atherosclerosis and stent strut placed. 
+This increase can influence the dynamics of blood flow
+and its biological processes and a more detailed analysis
+should be performed.
 
 \begin{figure}[H]
      \centering
@@ -29,11 +35,18 @@ The steady state velocity profile for curved channel with drug-eluting stent.}
 
 \newpage
 The \ref{velocity field curved stent} presents the evolution in 
-time and space of the velocity field for half of the domain. 
+time and space of the velocity field for half of the domain
+due to the symmetry of the solution. 
 The velocity field is represented with non-dimensional values 
 where the red color refers to the $u=3.5$ value and the blue color 
 $u=0$ value. Conveting to dimensional values, 
 we have $u=42cm/s$ and $u=0cm/s$ respectively.
+As can be seen, the region with the lowest horizontal velocity 
+magnitude is found close to the boundary where the no-slip
+condition is applied. Whereas, it is increase close to 
+the symmetric axis. Moreover, the largest horizontal velocity value
+is found in the maximum contraction region.
+
 
 \vspace{2cm} 
 \begin{figure}[H]
@@ -102,10 +115,20 @@ such as: $1$, $10$, $100$ and $1000$ respectively. The concentration field is
 represented with the non-dimensional values where the red color 
 represents $100$\% and the blue color represents $0$\% 
 of the diffused concentration in the bloodstream. 
-It is possible to observe that the \textit{Schmidt} number directly 
-influences the drug transport in the blood flow. 
-For high values of the \textit{Schmidt} number, 
-the transport of chemical species becomes purely convective.
+
+\medskip
+It is possible to observe in the \ref{conc field curved stent sc 1}
+that the concentration field is significally more diffuse than in the
+\ref{conc field curved stent sc 10}, where the Schmidt number
+is 10 times higher. This means that a large portion of the
+diffused drug in bloodstream is quickly spread in the
+$Sc=1$ case.
+Moreover, in both cases, the concentration field
+is more dispersed at the end of the curved channel due to
+the sense of the blood flow. It is possible that the
+drug concentration diffused affects the density and viscosity of the blood
+and consequently the Reynolds number. Thefore, the velocity field would
+also be affected. However, this influence is not considered in this work.
 
 
 
@@ -216,6 +239,22 @@ Temporal and spatial evolution of the concentration fiel for curved channel with
 Temporal and spatial evolution of the concentration fiel for curved channel with drug-eluting stent and $Sc=10$.}
      \label{conc field curved stent sc 10}
 \end{figure}
+
+
+\medskip
+For the \ref{conc field curved stent sc 100}
+and the \ref{conc field curved stent sc 1000},
+the Schmidt number is increased to 100 and 1000 respectively.
+Both cases have a similar dynamic where it is possible
+to observe a decrease in the drug diffusion in the bloodstream
+when compared to the previous cases. Another important fact
+is the similarity in the concentration field for $Sc=100$
+and $Sc=1000$. Therefore, it is necessary to simulate
+for longer times. In addition, it is possible to conclude 
+that the \textit{Schmidt} number directly 
+influences the drug transport in the blood flow and 
+for high values of the \textit{Schmidt} number, 
+the transport of chemical species becomes purely convective.
 
 
 

@@ -9,16 +9,22 @@ The domain was discretized using 11807 nodes and 26426 linear
 triangular elements. 
 
 \medskip
-The \ref{velocity evolution real stent} shows the steady state velocity 
-profile in the position where the horizontal velocity 
-has the maximum non-dimensional value ($x=6.65R$). 
-As we can see, the maximum non-dimensional value of the velocity field 
-reaches $u=3.68$ when the stent is placed. 
+The \ref{velocity evolution real stent} shows the unsteady state velocity 
+profile in the section where the horizontal velocity 
+has the maximum non-dimensional value.
+In this case, the section is different than the previous one
+and its value is $x=6.65R$. 
+Even so, the numerical solution shown a simular
+profile to the previous case and
+as we can see, the maximum non-dimensional value of the velocity field 
+reaches $u=3.68$ close to symmetric axis. 
 However, this velocity may vary according to the 
 coronary artery geometry for each patient.
 It compared to the curved channel, the maximum horizontal velocity
-had an increase of $5.14\%$. Therefore, the curved channel model
-shown an acceptable approach.
+had an increase of $5.14\%$. Therefore, the curved channel
+shown an acceptable approach,
+besides this model being simpler to implement
+and to perform the numerical simulations than real channel model.
 
 
 \begin{figure}[H]
@@ -35,7 +41,15 @@ time and space of the velocity field for half of the domain.
 The velocity field is represented with non-dimensional values 
 where the red color refers to the $u=3.68$ value and the blue color 
 $u=0$ value. Conveting to dimensional values, 
-we have $u=44.2cm/s$ and $u=0cm/s$ respectively.
+we have $u=44.2cm/s$ and $u=0cm/s$ respectively. As in the previous case,
+the region with the lowest horizontal velocity magnitue is found close to
+the boundary due to the no-slip
+condition and the largest horizontal
+velocity value is found close to
+symmetric axis. For this real channel, is possible to observe that
+there is two contraction region where
+the velocity field is increased.
+However, this coronary artery geometry varies for each patient and its blood dynamics can be changed.
 
 
 \vspace{2cm} 
@@ -105,10 +119,13 @@ such as: $1$, $10$, $100$ and $1000$ respectively. The concentration field is
 represented with the non-dimensional values where the red color 
 represents $100$\% and the blue color represents $0$\% 
 of the diffused concentration in the bloodstream. 
-It is possible to observe that the \textit{Schmidt} number directly 
-influences the drug transport in the blood flow. 
-For high values of the \textit{Schmidt} number, 
-the transport of chemical species becomes purely convective.
+It is possible to observe that the concentration field dynamic
+is similar than the curved channel, no significant differences
+from the previous one for each Schmidt number.
+Only in some regions that the concentration field
+become more diffuse as a consequence of the velocity 
+field decrease due to irregular geometry close to the
+semi-circles of the stents.
 
 
 \begin{figure}[H]

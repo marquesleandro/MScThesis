@@ -113,7 +113,14 @@ as shown in \ref{laplacian smoothing space}.
  
  \draw[dashed,line width=0.03cm,-stealth] (2.95,0.55) -- (2.81,0.83);
  \draw[dashed,line width=0.03cm] (2.95,0.55) -- (3.15,0.55);
- \node[draw=none, scale=0.9] at (3.2,0.55) {\small $\hat{\textbf{x}_{i}}$};
+ \node[draw=none, scale=0.9] at (3.2,0.55) {\small $\hat{\textbf{x}}_{i}$};
+
+ \coordinate (O) at (3.100,1.0000) {};
+ \draw[dashed,line width=0.03cm,-stealth] (3.20,1.08) -- (3.12,1.01);
+ \draw[dashed,line width=0.03cm] (3.20,1.08) -- (3.30,1.08);
+ \node[draw=none, scale=0.9] at (3.35,1.08) {\small $\textbf{x}_{j}$};
+ 
+
  
  \draw[dashed,line width=0.03cm,-stealth] (1.9,1.18) -- (1.78,1.12);
  \draw[dashed,line width=0.03cm] (1.9,1.18) -- (2.0,1.18);
@@ -142,9 +149,9 @@ $\hat{\textbf{x}}_{i}$ can be approximated using an
 iterative weighted sum
 of the 1-ring neighbors of a node:
 
-\begin{equation}
+\begin{equation} \label{laplacian new position}
 \hat{\textbf{x}}_{i} 
-= \sum_{i}^{np} \sum_{j}^{N_1} w_{ij}
+= w_{ij} \sum_{j}^{N_1}
 \left( \textbf{x}_{j} - \textbf{x}_{i} \right)
 \end{equation}
 
@@ -152,16 +159,16 @@ of the 1-ring neighbors of a node:
 \noindent
 where, 
 $w_{ij}$ is the weight and it can be calculated in several ways,
-$np$ is number of computational mesh node,
 $N_{1}$ is the 1-ring neighbors of a node,
 $\textbf{x}_{j}$ is the coordinate vector of neighbor node and
-$\textbf{x}_{i}$ is the coordinate vector of node in previous step that will be moved.
+$\textbf{x}_{i}$ is the coordinate vector of node that will be moved.
 It is possible to choose several strategies to calculate 
 the weight of this equation. In this work, the weight was 
 calculated as the sum of the inverse distance from its neighbor vertices,
 that is:
-\begin{equation}
-w_{ij} = \sum_{i}^{np} \sum_{j}^{N_1}
+
+\begin{equation} \label{laplacian weight}
+w_{ij} = \sum_{j}^{N_1}
 \frac{1}{\left( \textbf{x}_{j} - \textbf{x}_{i} \right)}
 \end{equation}
 
@@ -172,7 +179,7 @@ Then, the Laplacian smoothing velocity can be calculated as:
 
 \begin{equation}
 \textbf{v}_{2}
-= \sum_{i}^{np} \sum_{j}^{N_1} w_{ij}
+= w_{ij} \sum_{j}^{N_1}
 \frac{\left( \textbf{x}_{j} - \textbf{x}_{i} \right)}{\Delta t}
 \end{equation}
 
@@ -180,10 +187,15 @@ Then, the Laplacian smoothing velocity can be calculated as:
 In \ref{laplacian smoothing fig} is shown 
 the Laplacian smoothing application in a moving boundary problem
 when it tends to the maximum compression state.
+In both simulation, was not considered the $\beta_{1}$.
 As can be seen, the elements close to the boundary are compressed 
-until they leave the domain (\ref{laplacian smoothing fig}a). 
+until they leave the domain (\ref{laplacian smoothing fig}a).
+In this case, the Laplacian smoothing velocity was not considered
+($\beta_{2} = 0$). 
 However, this effect is not seen when 
 Laplacian smoothing is applied (\ref{laplacian smoothing fig}b). 
+In this case, the $\beta_{2}$ parameter was considered
+assuming the maximum value, that is, $\beta_{2} = 1$.
 In these cases, Laplacian smoothing becomes essential 
 to perform the numerical simulation.
 
@@ -229,10 +241,14 @@ to perform the numerical simulation.
      \end{minipage}
      \medskip
      \caption{
-The comparison for the same time step between 
-     (a) no Laplacian smoothing and
-     (b) with Laplacian smoothing
-in a moving boundary problem.
+Note here that the boundary motion spoils the mesh
+structure in (a), thus  a mesh treatment to avoid element
+collapse is required as in (b). The mesh treatment
+used in this work was the Laplacian Smoothing.
+%The comparison for the same time step between 
+%     (a) no Laplacian smoothing and
+%     (b) with Laplacian smoothing
+%in a moving boundary problem.
 }
      \label{laplacian smoothing fig}
 \end{figure}

@@ -17,7 +17,7 @@ de uma estrutura computacional para simular o escoamento
 sanguíneo em uma artéria coronária com stent farmacológico 
 implantado para diversos números de Schmidt usando a Formulação Corrente-Vorticidade em uma 
 abordagem Lagrangeana-Euleriana Arbitrária (ALE).
-O sangue foi modelado como um fluido monofásico, incompressível e newtoniano.
+O fluido sanguíneo foi modelado como um fluido monofásico, incompressível e newtoniano.
 A equação de Navier-Stokes é apresentada segundo a formulação 
 corrente-vorticidade com a equação de transporte de espécie química.
 O Método dos Elementos Finitos (FEM) é usado para resolver as equações 
@@ -25,8 +25,13 @@ de governo, onde a formulação de Galerkin foi usada para
 discretização no espaço, enquanto o Método semi-Lagrangeano 
 foi usado para discretizar a derivada material usando 
 o \textit{backward difference scheme}. 
-Os sistemas lineares foram resolvidos utilizando o 
+Além disso, o procedimento de remalhamento
+realiza a regularização dos nós possibilitando
+simular problemas com contornos móveis e os sistemas lineares foram resolvidos utilizando o 
 Método Iterativo Gradientes Conjugados.
+Portanto, a nova formulação proposta
+nesse trabalho é apropriada para
+simular escoamentos em artéria coronária com boa precisão.
 
 \vspace{1cm}
 
