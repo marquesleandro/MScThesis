@@ -5,7 +5,7 @@ Thus, the strong formulation for the proposed problem is:
 \begin{align}
 & \frac{D \omega}{D t}
  =
- \frac{1}{Re} \nabla^{2} w
+ \frac{1}{Re} \nabla^{2} \omega
  \\[10pt] 
 & \nabla^{2} \psi
  = 
@@ -21,13 +21,13 @@ Thus, the strong formulation for the proposed problem is:
 \noindent
 These equations are valid in 
 $\Omega \subset \mathbb{R}^2$ domain
-with the following boundary conditions:
+with the following conditions in boundary $\Gamma$:
 
 \begin{equation} \label{bc}
  \begin{aligned}
   \omega = \omega_\Gamma \quad & \mbox{in $\Gamma_1$}\\
   \psi = \psi_\Gamma \quad & \mbox{in $\Gamma_2$}\\
-  e = e_\Gamma \quad & \mbox{in $\Gamma_4$}
+  e = e_\Gamma \quad & \mbox{in $\Gamma_3$}
 \end{aligned}
 \end{equation}
 
@@ -72,7 +72,7 @@ in a weighted sense, as mentioned by Finlayson (1972) \cite{finlayson1972}, then
 
 
 \noindent
-where $\delta$, $\phi$ and $\eta$ are weight function.
+where $\delta$, $\phi$ and $\eta$ are weight functions.
 The weight functions are a set of arbitrary functions 
 that belong to a function space that will be discussed later. 
 We then have the following integrals:
@@ -144,7 +144,7 @@ Thus the diffusive term will become:
 \end{equation}
 
 \noindent
-where \textbf{n} is the normal vector oriented outside the $\Gamma$. 
+where \textbf{n} is the normal vector oriented outside the boundary $\Gamma$. 
 The last term in the above equations is known as a natural condition. 
 As previously mentioned, 
 the problem proposed in this work has only Dirichlet conditions 
@@ -223,7 +223,7 @@ The equations, thus, can be shown in the weak form respectively:
  - \textbf{$k_2$}(\psi,\phi) 
  + \textbf{$m_2$}(\omega,\phi) 
  & = 0 \\
- \textbf{$m_3$}(\frac{De}{De},\eta) 
+ \textbf{$m_3$}(\frac{De}{Dt},\eta) 
  + \frac{1}{\textit{ReSc}}\textbf{$k_3$}(e,\eta) 
  & = 0
 \end{align}
