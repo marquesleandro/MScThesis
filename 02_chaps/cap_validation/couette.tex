@@ -6,6 +6,7 @@ is known as \textit{Couette flow}. The \ref{couette}
  presents schematically this flow and the profile of the expected velocity field.
 
 \begin{figure}[H]
+\caption{Couette Flow}
 \begin{center}
 \begin{tikzpicture}[scale=1.2]
  \draw [pattern=north east lines] (0,0) -- (0,-0.1) -- (5,-0.1) -- (5,0) -- cycle;
@@ -29,7 +30,6 @@ is known as \textit{Couette flow}. The \ref{couette}
  \draw [->,thick] (2.5,0.65) to (2.8,0.65);
 \end{tikzpicture}
 \end{center}
-\caption{Couette Flow}
 \label{couette}
 \end{figure}
 
@@ -61,12 +61,12 @@ It is possible to observe that the numerical solution
 converges to the analytical solution.
 
 \begin{figure}[H]
+     \caption{steady state velocity profile when $re=100$ and
+     the comparison between the numerical and analytical solution 
+     for couette flow.}
      \centering
      \includegraphics[scale=1]{./02_chaps/cap_validation/figure/couette_velocity.pdf}\\
      \medskip
-     \caption{Steady state velocity profile when $Re=100$ and
-     the comparison between the numerical and analytical solution 
-     for Couette flow.}
      \label{velocidade couette}
 \end{figure}
 
