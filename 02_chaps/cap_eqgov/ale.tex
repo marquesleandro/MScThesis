@@ -5,8 +5,8 @@ In the literature, two classic descriptions are commonly used,
 namely Lagrangian and Eulerian.
 
 \medskip
-The Lagrangian description is one where each computational mesh node 
-moves at the same velocity as the material point, as can be seen in
+The Lagrangian description is one where each computational mesh node (black point) 
+moves at the same velocity as the material point (white square), as can be seen in
 \ref{ale fig}a. Thus, for each time step, we have a new computational mesh. 
 The main advantage of this description is that the value of the 
 computational mesh node will have the same value as the material point
@@ -41,6 +41,7 @@ accuracy of the solution.
 
 
 \begin{figure}[H]
+\caption{One-dimensional examples of the classical descriptions}
 \begin{center}
 \begin{tikzpicture}[scale=1.7]
 
@@ -103,7 +104,7 @@ accuracy of the solution.
  % Eulerian legend 
  \draw [latexnew-latex] (-0.3,5) -- (-0.3,6);
  \node at (-0.5,5.5) {$t$};
- \node at (3,4.7) {(a)};
+ \node at (3,4.65) {(a) Lagrangian description};
  % -------------------------------------------------------------------
  
 
@@ -168,7 +169,7 @@ accuracy of the solution.
  % Eulerian legend 
  \draw [latexnew-latex] (-0.3,2.5) -- (-0.3,3.5);
  \node at (-0.5,3) {$t$};
- \node at (3,2.2) {(b)};
+ \node at (3,2.1) {(b) Eulerian description};
  % -------------------------------------------------------------------
  
 
@@ -232,7 +233,7 @@ accuracy of the solution.
  % ALE legend 
  \draw [latexnew-latex] (-0.3,0) -- (-0.3,1);
  \node at (-0.5,0.5) {$t$};
- \node at (3,-0.3) {(c)};
+ \node at (3,-0.4) {(c) ALE description};
  
 
  % picture legend
@@ -250,7 +251,6 @@ accuracy of the solution.
 
 \end{tikzpicture}
 \end{center}
-\caption{One-dimensional examples of the (a) Lagrangian description, (b) Eulerian description and (c) ALE description, where the white square is the material point, the black point is the mesh node, the dashed line is the characteristic trajectory and the continuous line is mesh nodes trajectory.}
 \label{ale fig}
 \end{figure}
 
