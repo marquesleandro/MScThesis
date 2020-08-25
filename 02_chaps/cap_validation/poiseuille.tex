@@ -8,6 +8,7 @@ The \ref{poiseuille} presents schematically this flow and
 the expected velocity field.
 
 \begin{figure}[H]
+\caption{Poiseuille Flow}
 \begin{center}
 \begin{tikzpicture}[scale=1.3]
  \draw [pattern=north east lines] (0,0) -- (0,-0.1) -- (5,-0.1) -- (5,0) -- cycle;
@@ -26,7 +27,6 @@ the expected velocity field.
  \draw [->,thick] (2.5,0.1) to (2.7,0.1);
 \end{tikzpicture}
 \end{center}
-\caption{Poiseuille Flow}
 \label{poiseuille}
 \end{figure}
 
@@ -47,20 +47,19 @@ and $y$ is the vertical coordinates and it varies
 between $y = \big[ 0,1 \big]$.
 The domain was discretized using a linear triangular mesh
 with 3835 nodes and 7299 elements.
-
-\bigskip
 The \ref{velocidade poiseuille} shows the steady state velocity profile
 when $Re=100$.
 It is possible to observe that the numerical
 solution converges to the analytical solution.
 
+\vspace{1cm}
 \begin{figure}[H]
-     \centering
-     \includegraphics[scale=1]{./02_chaps/cap_validation/figure/poiseuille_velocity.pdf}\\
-     \medskip
      \caption{
 Steady state velocity profile when $Re=100$ and the comparison between
 the numerical and analytical solution for Poiseuille flow.} 
+     \centering
+     \includegraphics[scale=1]{./02_chaps/cap_validation/figure/poiseuille_velocity.pdf}\\
+     \medskip
      \label{velocidade poiseuille}
 \end{figure}
 
@@ -116,12 +115,12 @@ solution. However, it is necessary to be investigated.
 
 
 \begin{figure}[H]
-     \centering
-     \includegraphics[scale=1]{./02_chaps/cap_validation/figure/poiseuille_error.pdf}\\
-     \medskip
      \caption{Convergence order in log-log scale:
 It is estimated the the relative error of numerical solution has
 first order convergence.}
+     \centering
+     \includegraphics[scale=1]{./02_chaps/cap_validation/figure/poiseuille_error.pdf}\\
+     \medskip
      \label{ordem de convergencia poiseuille}
 \end{figure}
 
