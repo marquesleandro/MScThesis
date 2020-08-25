@@ -470,7 +470,9 @@ in this numerical simulation.
 
 
 \begin{figure}[H]
+\caption{Solve algorithm for Vorticity-Streamfunction Formulation with Species Transport Equation using the semi-Lagrangian Method in an ALE context}
 \begin{center}
+\vspace{-0.5cm}
 \begin{tikzpicture}[node distance = 1.1cm,auto]
     % Place nodes
     \node [block] (step1) {Import mesh};
@@ -505,7 +507,6 @@ in this numerical simulation.
     \path [line,dashed] (step12) -- (finalLoop) -- (initialLoop) -- (step4);
 \end{tikzpicture}
 \end{center}
-\caption{Solve algorithm for Vorticity-Streamfunction Formulation with Species Transport Equation using the semi-Lagrangian Method in an ALE context}
 \label{solution algorithm} 
 \end{figure}  
 
