@@ -18,6 +18,7 @@ the dynamics of scalar transport.
 
 \vspace{0.5cm}
 \begin{figure}[H]
+\caption{Transport of a scalar in Pure Advection Flow.}
 \begin{center}
 \begin{tikzpicture}[scale=1.1]
  \draw (0,0) -- (3,0) -- (3,3) -- (0,3) -- cycle;
@@ -33,7 +34,6 @@ the dynamics of scalar transport.
 
 \end{tikzpicture}
 \end{center}
-\caption{Transport of a scalar in Pure Advection Flow.}
 \label{conveccao}
 \end{figure}
 
@@ -80,33 +80,28 @@ did not present a satisfactory result.
 
 \begin{center}
 \begin{figure}[H]
+     \caption{Comparison of $\alpha$ profile for the semi-Lagrangian Method and analytical solution in several positions on the axis of rotation using an unstructured linear triangular mesh} 
      \centering
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.53]{./02_chaps/cap_validation/figure/SLlinear0.pdf}\\
-      (a)
+      (a) initial
      \end{minipage}%
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.53]{./02_chaps/cap_validation/figure/SLlinear1.pdf}\\
-      (b)
+      (b) 1/4 rotation
      \end{minipage}
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.53]{./02_chaps/cap_validation/figure/SLlinear2.pdf}\\
-      (c)
+      (c) 1/2 rotation
      \end{minipage}%
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.53]{./02_chaps/cap_validation/figure/SLlinear3.pdf}\\
-      (d)
+      (d) 3/4 rotation
      \end{minipage}
-     \medskip
-     \caption{Comparison of $\alpha$ profile for the semi-Lagrangian Method and analytical solution in several positions on the axis of rotation using an unstructured linear triangular mesh: 
-     (a) initial, 
-     (b) 1/4 rotation,
-     (c) 1/2 rotation and
-     (d) 3/4 rotation.}
      \label{SL linear}
 \end{figure}
 \end{center}
@@ -129,33 +124,28 @@ present a satisfactory result.
 
 \begin{center}
 \begin{figure}[H]
+     \caption{Comparison of $\alpha$ profile for the semi-Lagrangian Method and analytical solution in several positions on the axis of rotation using an unstrutured quadratic triangular mesh} 
      \centering
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.53]{./02_chaps/cap_validation/figure/SLquad0.pdf}\\
-      (a)
+      (a) initial
      \end{minipage}%
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.53]{./02_chaps/cap_validation/figure/SLquad1.pdf}\\
-      (b)
+      (b) 1/4 rotation
      \end{minipage}
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.53]{./02_chaps/cap_validation/figure/SLquad2.pdf}\\
-      (c)
+      (c) 1/2 rotation
      \end{minipage}%
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.53]{./02_chaps/cap_validation/figure/SLquad3.pdf}\\
-      (d)
+      (d) 3/4 rotation
      \end{minipage}
-     \medskip
-     \caption{Comparison of $\alpha$ profile for the semi-Lagrangian Method and analytical solution in several positions on the axis of rotation using an unstrutured quadratic triangular mesh: 
-     (a) initial, 
-     (b) 1/4 rotation,
-     (c) 1/2 rotation and
-     (d) 3/4 rotation.}
      \label{SL quad}
 \end{figure}
 \end{center}
@@ -178,68 +168,58 @@ recommended for high Reynolds number problem.
 
 \vspace{0.5cm}
 \begin{figure}[H]
+     \caption{
+Spatial and temporal evolution for the semi-Lagrangian Method in several positions of the axis of rotation using an unstructured linear triangular mesh}	
      \centering
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.42]{./02_chaps/cap_validation/figure/figSLlinear0.png}\\
-      (a)
+      (a) inital
      \end{minipage}%
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.42]{./02_chaps/cap_validation/figure/figSLlinear1.png}\\
-      (b)
+      (b) 1/4 rotation
      \end{minipage}\\[10pt]
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.42]{./02_chaps/cap_validation/figure/figSLlinear2.png}\\
-      (c)
+      (c) 1/2 rotation
      \end{minipage}%
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.42]{./02_chaps/cap_validation/figure/figSLlinear3.png}\\
-      (d)
+      (d) 3/4 rotation
      \end{minipage}
-     \medskip
-     \caption{
-Spatial and temporal evolution for the semi-Lagrangian Method in several positions of the axis of rotation using an unstructured linear triangular mesh:	
-     (a) initial, 
-     (b) 1/4 rotation,
-     (c) 1/2 rotation and
-     (d) 3/4 rotation.}
      \label{SL linear fig}
 \end{figure}
 
 
 \vspace{0.5cm}
 \begin{figure}[H]
+     \caption{
+Spatial and temporal evolution for the semi-Lagrangian Method in several positions of the axis of rotation using an unstructured quadratic triangular mesh}	
      \centering
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.42]{./02_chaps/cap_validation/figure/figSLquad0.png}\\
-      (a)
+      (a) initial
      \end{minipage}%
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.42]{./02_chaps/cap_validation/figure/figSLquad1.png}\\
-      (b)
+      (b) 1/4 rotation
      \end{minipage}\\[10pt]
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.42]{./02_chaps/cap_validation/figure/figSLquad2.png}\\
-      (c)
+      (c) 1/2 rotation
      \end{minipage}%
      \begin{minipage}{.5\linewidth}
       \centering
       \includegraphics[scale=0.42]{./02_chaps/cap_validation/figure/figSLquad3.png}\\
-      (d)
+      (d) 3/4 rotation
      \end{minipage}
-     \medskip
-     \caption{
-Spatial and temporal evolution for the semi-Lagrangian Method in several positions of the axis of rotation using an unstructured quadratic triangular mesh:	
-     (a) initial, 
-     (b) 1/4 rotation,
-     (c) 1/2 rotation and
-     (d) 3/4 rotation.}
      \label{SL quad fig}
 \end{figure}
 
